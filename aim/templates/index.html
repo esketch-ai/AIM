@@ -503,6 +503,14 @@
           <div class="pipe-sub">MRR ₩545k / 의료법 100% 방어</div>
         </div>
       </div>
+      <div class="pipe-arrow">➔</div>
+      <div class="pipe-step" onclick="switchViewMode('creator')">
+        <div class="pipe-num" style="background:#EC4899;">6</div>
+        <div>
+          <div class="pipe-label">🎬 숏폼 크리에이터 직결</div>
+          <div class="pipe-sub">15초 브리프 & 10% 에스크로</div>
+        </div>
+      </div>
     </div>
 
     <!-- View Mode & Tenant Selector Ribbon -->
@@ -519,6 +527,9 @@
         </button>
         <button id="modeBtnService" class="mode-tab-btn" onclick="switchViewMode('service')">
           ⚡ 3. 서비스 실행 (Service Engine)
+        </button>
+        <button id="modeBtnCreator" class="mode-tab-btn" onclick="switchViewMode('creator')">
+          🎬 4. 크리에이터 온디맨드 매칭 (Creator Match)
         </button>
       </div>
 
@@ -728,6 +739,20 @@
           <div id="tenantAttributionList" style="font-size:11px; margin-bottom:8px;"></div>
           <div id="tenantInvoiceMiniList" style="font-size:11px; border-top:1px dashed var(--card-border); padding-top:8px;"></div>
         </div>
+
+        <!-- Creator Matching Quick Launcher Card -->
+        <div class="glass-card" style="border: 1px solid rgba(236,72,153,0.35); background: linear-gradient(135deg, rgba(236,72,153,0.08) 0%, rgba(13,19,34,0.6) 100%);">
+          <div class="card-title-row">
+            <span style="color:#F472B6; font-weight:800;">🎬 크리에이터 숏폼 직결 매칭 (온디맨드)</span>
+            <span style="font-size:10px; background:rgba(236,72,153,0.2); color:#F472B6; padding:2px 6px; border-radius:4px; font-weight:800;">💎 10% 우대 수수료</span>
+          </div>
+          <div style="font-size:11px; color:#E2E8F0; margin-bottom:8px; line-height:1.5;">
+            기획 공수 없이 <b>필수 3문항</b>으로 15초 바이럴 브리프 자동 생성! 오디언스 일치율 상위 크리에이터에게 10% 우대 에스크로로 안전 의뢰하세요.
+          </div>
+          <button class="btn-approve" style="background:#EC4899; box-shadow:0 4px 14px rgba(236,72,153,0.4);" onclick="switchViewMode('creator')">
+            🚀 15초 AI 표준 브리프 & 크리에이터 매칭 데스크 열기 ➔
+          </button>
+        </div>
       </section>
 
       <!-- ======================================================== -->
@@ -765,6 +790,31 @@
           <div class="kpi-stat-box">
             <div class="kpi-stat-lbl">📈 가입자 평균 ROI</div>
             <div id="admKpiRoi" class="kpi-stat-val" style="color:#F472B6;">44.5배</div>
+          </div>
+        </div>
+
+        <!-- Creator Marketplace & Take-Rate Widget -->
+        <div class="glass-card" style="border: 1px solid rgba(236,72,153,0.35); margin-bottom:12px; background:linear-gradient(135deg, rgba(236,72,153,0.05) 0%, rgba(19,27,46,0.8) 100%);">
+          <div class="card-title-row">
+            <span style="color:#F472B6; font-weight:800;">🤝 크리에이터 마켓플레이스 & 에스크로 수수료 관제</span>
+            <span style="font-size:10px; color:#34D399;">실시간 정산</span>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; margin-bottom:8px;">
+            <div style="background:#0F172A; padding:8px; border-radius:8px; border:1px solid var(--card-border);">
+              <div style="font-size:10px; color:var(--text-muted);">총 매칭 거래액 (GMV)</div>
+              <div id="admMktGmv" style="font-size:13px; font-weight:800; color:#F8FAFC;">₩450,000</div>
+            </div>
+            <div style="background:#0F172A; padding:8px; border-radius:8px; border:1px solid var(--card-border);">
+              <div style="font-size:10px; color:var(--text-muted);">플랫폼 수수료 (Take-Rate)</div>
+              <div id="admMktFee" style="font-size:13px; font-weight:800; color:#F472B6;">+₩45,000 (10%)</div>
+            </div>
+            <div style="background:#0F172A; padding:8px; border-radius:8px; border:1px solid var(--card-border);">
+              <div style="font-size:10px; color:var(--text-muted);">활성 에스크로 계약</div>
+              <div id="admMktActive" style="font-size:13px; font-weight:800; color:#34D399;">1건 (검수 대기)</div>
+            </div>
+          </div>
+          <div id="admMktRecentDeal" style="font-size:11px; color:#CBD5E1; background:rgba(0,0,0,0.2); padding:6px 10px; border-radius:6px;">
+            최근 계약: [DEAL_7749A] 성수 베이커리 ➔ 서울핫플스케치 (450,000원 / 수수료 45,000원 안전 예치 중)
           </div>
         </div>
 
@@ -824,6 +874,186 @@
             <span style="font-size:10px; color:#10B981;">99.98% 정상</span>
           </div>
           <div id="admAgentHealthGrid" style="display:grid; grid-template-columns:1fr 1fr; gap:6px; font-size:11px;">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================== -->
+      <!-- PILLAR 4: 크리에이터 온디맨드 매칭 & 초압축 브리프 (Creator Desk) -->
+      <!-- ======================================================== -->
+      <section id="colCreator" class="pillar-panel pillar-creator" style="display:none; width:100%;">
+        <div class="pillar-header">
+          <div>
+            <span class="pillar-badge badge-creator">🎬 SOLUTION 4 · 크리에이터 온디맨드 직결 매칭</span>
+            <h2 class="pillar-title">초압축 가치 전달 & 숏폼 크리에이터 매칭 데스크</h2>
+            <p class="pillar-desc">
+              필수 3문항 AI 15초 바이럴 브리프 자동 생성 · 오디언스 일치율 기반 매칭 · SaaS 구독자 10% 우대 에스크로 · 24h Fast-Track 검수
+            </p>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span style="font-size:11px; background:rgba(236,72,153,0.2); color:#F472B6; padding:4px 10px; border-radius:6px; font-weight:800;">
+              💎 구독자 우대 수수료 10% 적용 중
+            </span>
+            <button class="mode-tab-btn" style="background:#1E293B; color:#CBD5E1; padding:6px 12px;" onclick="switchViewMode('panoramic')">
+              ✖ 닫기 (파노라마 복귀)
+            </button>
+          </div>
+        </div>
+
+        <!-- 3-Column Creator Layout Grid -->
+        <div class="creator-grid-layout" style="display:grid; grid-template-columns: 340px 1fr 380px; gap: 16px;">
+
+          <!-- Panel 1: 필수 3문항 초간편 태깅 & 의뢰 (Merchant Inputs) -->
+          <div class="glass-card" style="margin-bottom:0;">
+            <div class="card-title-row">
+              <span style="color:#F472B6; font-weight:800;">📝 1. 필수 3문항 초간편 입력</span>
+              <span style="font-size:10px; color:#10B981;">기획 공수 제로</span>
+            </div>
+            <div style="font-size:11px; color:var(--text-muted); margin-bottom:12px;">
+              복잡한 기획서 없이 아래 3가지만 입력하면 15초 숏폼 콘티와 가이드가 즉시 완성됩니다.
+            </div>
+
+            <!-- Q1 -->
+            <div style="margin-bottom:10px;">
+              <label style="font-size:11px; font-weight:800; color:#E2E8F0; display:block; margin-bottom:4px;">
+                Q1. 오늘 가장 팔고 싶은 상품/메뉴
+              </label>
+              <input id="inpCrProduct" type="text" value="시그니처 바질 소금빵" style="width:100%; background:#0B0F19; border:1px solid var(--card-border); border-radius:6px; padding:7px 10px; color:#FFF; font-size:12px;" />
+            </div>
+
+            <!-- Q2 -->
+            <div style="margin-bottom:10px;">
+              <label style="font-size:11px; font-weight:800; color:#E2E8F0; display:block; margin-bottom:4px;">
+                Q2. 손님이 경험할 단 하나의 핵심 혜택
+              </label>
+              <input id="inpCrBenefit" type="text" value="프랑스산 고메버터 48%로 구워내 풍미가 진하고 바삭함" style="width:100%; background:#0B0F19; border:1px solid var(--card-border); border-radius:6px; padding:7px 10px; color:#FFF; font-size:12px;" />
+            </div>
+
+            <!-- Q3 -->
+            <div style="margin-bottom:12px;">
+              <label style="font-size:11px; font-weight:800; color:#E2E8F0; display:block; margin-bottom:4px;">
+                Q3. 우리 손님의 주 연령/성별/상황
+              </label>
+              <input id="inpCrAudience" type="text" value="2030 성수동 직장인 및 디저트 러버" style="width:100%; background:#0B0F19; border:1px solid var(--card-border); border-radius:6px; padding:7px 10px; color:#FFF; font-size:12px;" />
+            </div>
+
+            <!-- Content Format Tagging -->
+            <div style="margin-bottom:12px;">
+              <label style="font-size:11px; font-weight:800; color:#E2E8F0; display:block; margin-bottom:6px;">
+                🎬 제작 희망 포맷
+              </label>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+                <button id="fmtBtn_SHORTS" class="tenant-quick-btn active" style="text-align:center;" onclick="selectFormat('SHORTS')">📱 유튜브 쇼츠</button>
+                <button id="fmtBtn_REELS" class="tenant-quick-btn" style="text-align:center;" onclick="selectFormat('REELS')">📸 인스타 릴스</button>
+                <button id="fmtBtn_TIKTOK" class="tenant-quick-btn" style="text-align:center;" onclick="selectFormat('TIKTOK')">⚡ 틱톡</button>
+                <button id="fmtBtn_LIVE" class="tenant-quick-btn" style="text-align:center;" onclick="selectFormat('LIVE_COMMERCE')">🎙️ 라이브커머스</button>
+              </div>
+            </div>
+
+            <!-- Budget Tier Tagging -->
+            <div style="margin-bottom:16px;">
+              <label style="font-size:11px; font-weight:800; color:#E2E8F0; display:block; margin-bottom:6px;">
+                💰 희망 예산 범위
+              </label>
+              <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px;">
+                <button id="bgBtn_MICRO" class="tenant-quick-btn" style="text-align:center;" onclick="selectBudget('MICRO_150K')">마이크로<br/><span style="font-size:9px; color:#818CF8;">15만원</span></button>
+                <button id="bgBtn_MID" class="tenant-quick-btn active" style="text-align:center;" onclick="selectBudget('MID_450K')">미드티어<br/><span style="font-size:9px; color:#818CF8;">45만원</span></button>
+                <button id="bgBtn_PRO" class="tenant-quick-btn" style="text-align:center;" onclick="selectBudget('PRO_900K')">프로파워<br/><span style="font-size:9px; color:#818CF8;">90만원</span></button>
+              </div>
+            </div>
+
+            <!-- Action Button -->
+            <button class="btn-approve" style="width:100%; background:#EC4899; box-shadow:0 4px 14px rgba(236,72,153,0.4);" onclick="triggerCreatorWorkflow()">
+              ⚡ 15초 AI 표준 브리프 생성 & 추천 ➔
+            </button>
+          </div>
+
+          <!-- Panel 2: 15초 스토리보드 & 가치 압축 실시간 미리보기 -->
+          <div class="glass-card" style="margin-bottom:0; display:flex; flex-direction:column;">
+            <div class="card-title-row">
+              <span style="color:#38BDF8; font-weight:800;">🎬 2. 15초 스토리보드 & 초압축 가치 프리뷰</span>
+              <span id="crBriefIdBadge" style="font-size:10px; background:rgba(56,189,248,0.2); color:#38BDF8; padding:2px 6px; border-radius:4px; font-weight:800;">BRIEF_AUTO_GEN</span>
+            </div>
+
+            <!-- 3-Second Pain Hook Card -->
+            <div style="background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3); border-radius:8px; padding:10px 12px; margin-bottom:12px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                <span style="font-size:10px; font-weight:900; color:#EF4444;">🚨 3초 고통 직격 훅 (PAIN-POINT FOCUS)</span>
+                <span style="font-size:10px; color:#CBD5E1;">기억 잔존율 96.2%</span>
+              </div>
+              <div id="crHookText" style="font-size:13px; font-weight:800; color:#FFF;">
+                "나른한 오후, 눅눅하고 평범한 디저트에 실망하셨나요?"
+              </div>
+            </div>
+
+            <!-- 15s Storyboard 4 Scenes -->
+            <div style="font-size:11px; font-weight:800; color:#CBD5E1; margin-bottom:6px;">⏱️ 15초 4-SCENE 스토리보드 (크리에이터용 가이드)</div>
+            <div id="crStoryboardScenes" style="display:flex; flex-direction:column; gap:8px; margin-bottom:12px; flex:1;">
+              <!-- Dynamically populated or default scenes -->
+            </div>
+
+            <!-- Compliance Guardrail & SLA Box -->
+            <div style="background:#0F172A; border:1px solid var(--card-border); border-radius:8px; padding:10px; font-size:11px;">
+              <div style="color:#F59E0B; font-weight:800; margin-bottom:4px;">🛡️ 법적 컴플라이언스 & 24h Fast-Track 약관</div>
+              <ul id="crComplianceList" style="padding-left:16px; color:#94A3B8; line-height:1.5; margin-bottom:6px;">
+                <li>공정위 추천보증 심사지침 준수: 첫 화면 및 더보기란에 '유료 광고 포함' 자막 필수</li>
+                <li>허위·과장 광고 금지: 객관적 근거 없는 '국내 최초', '세계 1위' 절대 사용 불가</li>
+              </ul>
+              <div style="color:#10B981; font-weight:800; font-size:10px;">
+                ⚡ 24h Fast-Track 검수 SLA: 초안 제출 후 24시간 이내 승인 원칙 (수정 요청 1회 한정)
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel 3: 오디언스 일치율 기반 매칭 & 10% 우대 에스크로 -->
+          <div class="glass-card" style="margin-bottom:0;">
+            <div class="card-title-row">
+              <span style="color:#10B981; font-weight:800;">🤝 3. 추천 크리에이터 & 10% 우대 에스크로</span>
+              <span style="font-size:10px; color:#F472B6; font-weight:800;">💎 PRO 혜택</span>
+            </div>
+            <div style="font-size:11px; color:var(--text-muted); margin-bottom:10px;">
+              단순 구독자 수가 아닌 <b>실제 시청자 연령/성별 일치율과 과거 전환 성과</b>로 매칭합니다.
+            </div>
+
+            <!-- Matched Creators List -->
+            <div id="crMatchedList" style="display:flex; flex-direction:column; gap:10px; margin-bottom:14px;">
+              <!-- Dynamically populated -->
+            </div>
+
+            <!-- Transparent Escrow Breakdown -->
+            <div style="background:#0B0F19; border:1px solid var(--card-border); border-radius:8px; padding:12px; margin-bottom:12px; font-size:11px;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <span style="color:var(--text-muted);">총 제작 예산</span>
+                <span id="crFeeTotal" style="font-weight:800; color:#FFF;">₩450,000</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <span style="color:#F472B6;">💎 SaaS 구독자 우대 Take-Rate (10%)</span>
+                <span id="crFeePlatform" style="font-weight:800; color:#F472B6;">-₩45,000 (5%p 절감)</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px; border-top:1px dashed var(--card-border); padding-top:4px;">
+                <span style="color:var(--text-muted);">크리에이터 1차 기본 정산 (초안 승인 시 70%)</span>
+                <span id="crFeeBase" style="font-weight:700; color:#34D399;">₩283,500</span>
+              </div>
+              <div style="display:flex; justify-content:space-between;">
+                <span style="color:var(--text-muted);">크리에이터 2차 성과 정산 (업로드/목표 30%)</span>
+                <span id="crFeeBonus" style="font-weight:700; color:#818CF8;">₩121,500</span>
+              </div>
+            </div>
+
+            <button id="btnOrderEscrow" class="btn-approve" style="width:100%;" onclick="orderSelectedCreatorEscrow()">
+              🔒 에스크로 안전 예치 및 원클릭 의뢰
+            </button>
+          </div>
+        </div>
+
+        <!-- Row 4: 진행 중인 에스크로 딜 실시간 관제 및 24h Fast-Track 검수 데스크 -->
+        <div class="glass-card" style="margin-top:16px;">
+          <div class="card-title-row">
+            <span style="color:#F59E0B; font-weight:800;">📋 진행 중인 크리에이터 에스크로 계약 및 24h 검수 데스크</span>
+            <span style="font-size:10px; color:#10B981;">안전 에스크로 보호 중</span>
+          </div>
+          <div id="crActiveDealTracker">
             <!-- Dynamically populated -->
           </div>
         </div>
@@ -1154,6 +1384,79 @@
           missing_keywords: ['성수 애견동반 브런치', '글루텐프리 사워도우'],
           action_prescription: "현재 4위에서 1위로 올라서려면 '반려동물 동반', 'AOP 버터' 방문자 영수증 리뷰 5건이 필요합니다."
         }
+      },
+      creatorMarketplace: {
+        creators: [
+          {
+            creator_id: "CR_FNB_02",
+            name: "서울핫플스케치",
+            handle: "@seoul_hotplace",
+            channel: "Instagram Reels",
+            category: "FNB",
+            tier: "MID_450K",
+            price_krw: 450000,
+            follower_count: 78000,
+            avg_views: 125000,
+            retention_rate: 86.1,
+            historical_conversion_rate: 6.4,
+            match_score: 96.5,
+            audience_affinity_pct: 94.0,
+            conversion_badge: "🔥 전환율 최상위"
+          },
+          {
+            creator_id: "CR_FNB_01",
+            name: "디저트탐험가 은지",
+            handle: "@eunji_dessert",
+            channel: "YouTube Shorts",
+            category: "FNB",
+            tier: "MICRO_150K",
+            price_krw: 150000,
+            follower_count: 18500,
+            avg_views: 34000,
+            retention_rate: 82.4,
+            historical_conversion_rate: 5.8,
+            match_score: 93.8,
+            audience_affinity_pct: 91.5,
+            conversion_badge: "✨ 가성비 우수"
+          },
+          {
+            creator_id: "CR_BEAUTY_01",
+            name: "스타일리스트 민호",
+            handle: "@minho_hair_lab",
+            channel: "Instagram Reels",
+            category: "BEAUTY",
+            tier: "MID_450K",
+            price_krw: 450000,
+            follower_count: 62000,
+            avg_views: 98000,
+            retention_rate: 88.5,
+            historical_conversion_rate: 7.2,
+            match_score: 95.0,
+            audience_affinity_pct: 88.5,
+            conversion_badge: "🔥 전환율 최상위"
+          }
+        ],
+        activeDeals: [
+          {
+            deal_id: "DEAL_7749A",
+            tenant_id: "TENANT_001",
+            creator_name: "서울핫플스케치 (@seoul_hotplace)",
+            total_budget: 450000,
+            take_rate_pct: 10.0,
+            platform_fee: 45000,
+            creator_base_payout: 283500,
+            creator_bonus_payout: 121500,
+            status: "DRAFT_SUBMITTED",
+            revision_count: 0,
+            max_revisions: 1,
+            fast_track_hours_left: 18
+          }
+        ],
+        adminKpis: {
+          total_gross_volume_krw: 450000,
+          total_platform_take_rate_krw: 45000,
+          active_escrow_deals: 1
+        }
       }
     };
 
@@ -1250,6 +1553,82 @@
           }
         };
       }
+      if (url === '/api/v1/creator/brief/generate') {
+        const body = JSON.parse(options.body || '{}');
+        const prod = body.product_name || '시그니처 바질 소금빵';
+        const ben = body.core_benefit || '프랑스산 고메버터 48%';
+        const aud = body.target_audience || '2030 직장인';
+        return {
+          brief_id: 'BRIEF_' + Math.random().toString(36).substring(2, 8).toUpperCase(),
+          title: `[YouTube Shorts] ${prod} — 15초 초압축 바이럴 브리프`,
+          content_format: body.content_format || 'SHORTS',
+          budget_tier: body.budget_tier || 'MID_450K',
+          hooking_copy: `나른한 오후, 눅눅하고 평범한 디저트에 실망하셨나요?`,
+          scenes: [
+            { scene_number: 1, duration_seconds: 3, visual_cue: `시선 집중 0.5초 컷. ${prod}의 극적인 첫인상 클로즈업.`, audio_narration: '나른한 오후, 눅눅하고 평범한 디저트에 실망하셨나요?', overlay_text: `🚨 ${prod} 긴급 처방!` },
+            { scene_number: 2, duration_seconds: 4, visual_cue: '타깃 고객의 답답한 일상과 제품의 극명한 대비 컷.', audio_narration: `${aud}라면 매일 겪는 이 고민, 해결책은 딱 하나입니다.`, overlay_text: `👉 ${aud} 주목!` },
+            { scene_number: 3, duration_seconds: 5, visual_cue: `실제 소비/체험 현장. ${prod}의 결이 찢어지는 비주얼.`, audio_narration: `${prod} — ${ben}. 매일 30개 한정 오븐 직송.`, overlay_text: `✨ ${ben.slice(0, 18)}` },
+            { scene_number: 4, duration_seconds: 3, visual_cue: '단일 행동 유도 화면. 프로필 링크 타임어택 쿠폰 안내.', audio_narration: '오늘 15시 한정 [원클릭 타임어택 쿠폰 받기]! 지금 확인하세요.', overlay_text: '🎁 [원클릭 타임어택 쿠폰]' }
+          ],
+          dos_and_donts: {
+            'DO (필수 연출)': ['첫 3초 안에 제품 실물과 핵심 카피 동시 노출', 'ASMR 사운드 생생 수음'],
+            'DONT (절대 금지)': ['지루한 매장 간판 5초 이상 비추기 금지', '경쟁사 비방 금지']
+          },
+          compliance_guidelines: [
+            '공정거래위원회 추천·보증 심사지침 준수: 첫 화면 및 더보기란에 [유료 광고 포함] 자막 필수 표기',
+            '허위·과장 광고 금지: 객관적 근거 없는 [국내 최초], [1위] 절대 사용 불가'
+          ],
+          sla_notice: '⚡ 24h Fast-Track 검수 SLA: 크리에이터 초안 업로드 후 24시간 이내 사업주 승인 원칙 (수정 요청 1회 한정).'
+        };
+      }
+      if (url === '/api/v1/creator/match') {
+        return {
+          status: 'success',
+          subscriber_discount_applied: true,
+          take_rate_pct: 10.0,
+          creators: MOCK_DB.creatorMarketplace.creators.map(c => ({
+            creator: c,
+            match_score: c.match_score,
+            audience_affinity_pct: c.audience_affinity_pct,
+            conversion_rating_badge: c.conversion_badge,
+            take_rate_pct: 10.0,
+            estimated_reach: Math.round(c.avg_views * 1.15),
+            estimated_conversions: Math.round(c.avg_views * 0.064)
+          }))
+        };
+      }
+      if (url === '/api/v1/creator/escrow/order') {
+        const body = JSON.parse(options.body || '{}');
+        const c = MOCK_DB.creatorMarketplace.creators.find(x => x.creator_id === body.creator_id) || MOCK_DB.creatorMarketplace.creators[0];
+        const newDeal = {
+          deal_id: 'DEAL_' + Math.random().toString(36).substring(2, 7).toUpperCase(),
+          tenant_id: body.tenant_id,
+          creator_id: c.creator_id,
+          creator_name: `${c.name} (${c.handle})`,
+          brief_id: body.brief_id,
+          total_budget: c.price_krw,
+          subscriber_plan: 'PRO',
+          take_rate_pct: 10.0,
+          platform_fee: Math.round(c.price_krw * 0.10),
+          creator_total_fee: Math.round(c.price_krw * 0.90),
+          creator_base_payout: Math.round(c.price_krw * 0.90 * 0.70),
+          creator_bonus_payout: Math.round(c.price_krw * 0.90 * 0.30),
+          status: 'ESCROW_LOCKED',
+          revision_count: 0,
+          max_revisions: 1,
+          fast_track_hours_left: 24
+        };
+        MOCK_DB.creatorMarketplace.activeDeals.unshift(newDeal);
+        return { status: 'success', deal: newDeal };
+      }
+      if (url.includes('/creator/deal/') && url.includes('/review')) {
+        const body = JSON.parse(options.body || '{}');
+        const deal = MOCK_DB.creatorMarketplace.activeDeals[0];
+        if (deal) {
+          deal.status = body.action === 'APPROVE' ? 'APPROVED' : 'REVISION_REQUESTED';
+        }
+        return { status: 'success', deal: deal };
+      }
       return {};
     }
 
@@ -1267,11 +1646,14 @@
       document.getElementById('modeBtnTenant').classList.toggle('active', mode === 'tenant');
       document.getElementById('modeBtnAdmin').classList.toggle('active', mode === 'admin');
       document.getElementById('modeBtnService').classList.toggle('active', mode === 'service');
+      const btnC = document.getElementById('modeBtnCreator');
+      if (btnC) btnC.classList.toggle('active', mode === 'creator');
 
       const grid = document.getElementById('mainContentGrid');
       const colS = document.getElementById('colService');
       const colT = document.getElementById('colTenant');
       const colA = document.getElementById('colAdmin');
+      const colC = document.getElementById('colCreator');
 
       if (mode === 'panoramic') {
         grid.style.display = 'grid';
@@ -1279,36 +1661,65 @@
         colS.style.display = 'block';
         colT.style.display = 'block';
         colA.style.display = 'block';
+        if (colC) colC.style.display = 'none';
       } else if (mode === 'tenant') {
         grid.style.display = 'block';
         colS.style.display = 'none';
         colT.style.display = 'block';
         colA.style.display = 'none';
+        if (colC) colC.style.display = 'none';
       } else if (mode === 'admin') {
         grid.style.display = 'block';
         colS.style.display = 'none';
         colT.style.display = 'none';
         colA.style.display = 'block';
+        if (colC) colC.style.display = 'none';
       } else if (mode === 'service') {
         grid.style.display = 'block';
         colS.style.display = 'block';
         colT.style.display = 'none';
         colA.style.display = 'none';
+        if (colC) colC.style.display = 'none';
+      } else if (mode === 'creator') {
+        grid.style.display = 'block';
+        colS.style.display = 'none';
+        colT.style.display = 'none';
+        colA.style.display = 'none';
+        if (colC) colC.style.display = 'block';
+        triggerCreatorWorkflow();
       }
     }
 
-    /* Switch Active Tenant Across All 3 Pillars */
+    /* Switch Active Tenant Across All Pillars */
     async function switchTenant(tenantId) {
       currentTenantId = tenantId;
       document.querySelectorAll('.tenant-quick-btn').forEach(b => b.classList.remove('active'));
       const activeBtn = document.getElementById('qBtn_' + tenantId);
       if (activeBtn) activeBtn.classList.add('active');
 
+      const tenantPresets = {
+        'TENANT_001': { q1: '시그니처 바질 소금빵', q2: '프랑스산 고메버터 48%로 구워내 풍미가 진하고 바삭함', q3: '2030 성수동 직장인 및 디저트 러버' },
+        'TENANT_002': { q1: '1:1 리프팅 & 피부 장벽 케어', q2: '환절기 속건조 즉각 해결 및 무자극 진정', q3: '3040 강남 오피스 직장인' },
+        'TENANT_003': { q1: '시그니처 레이어드 펌 & 두피 스파', q2: '드라이 3분 컷 스타일 유지 만족도 96.4%', q3: '2030 청담/압구정 여성 고객' },
+        'TENANT_004': { q1: 'FlowDoc 올인원 실시간 문서 협업 툴', q2: '대행사 150만원 대신 월 49k로 팀 생산성 2배 향상', q3: 'IT 스타트업 개발/기획 리드' },
+        'TENANT_005': { q1: 'ISO 인증 5축 CNC 초정밀 가공', q2: '오차 0.01mm 초정밀 및 납기 지연 0.0%', q3: '대기업 구매팀 및 부품 설계 엔지니어' }
+      };
+      const p = tenantPresets[tenantId] || tenantPresets['TENANT_001'];
+      const pInp = document.getElementById('inpCrProduct');
+      if (pInp) {
+        pInp.value = p.q1;
+        const bInp = document.getElementById('inpCrBenefit');
+        if (bInp) bInp.value = p.q2;
+        const aInp = document.getElementById('inpCrAudience');
+        if (aInp) aInp.value = p.q3;
+      }
+
       try {
         currentTenantData = await apiFetch(`/api/tenant/${tenantId}`);
         renderTenantColumn(currentTenantData);
         updateServiceMatrixForTenant(currentTenantData.tenant);
-        showToast(`🏢 [${currentTenantData.tenant.business_name}] 테넌트 데이터가 3대 솔루션에 동기화되었습니다.`);
+        if (currentMode === 'creator') triggerCreatorWorkflow();
+        showToast(`🏢 [${currentTenantData.tenant.business_name}] 테넌트 데이터가 전 솔루션에 동기화되었습니다.`);
       } catch (e) {
         console.error('Tenant fetch error:', e);
       }
@@ -1669,6 +2080,289 @@
         return '<p style="margin-bottom:6px;">' + b.replace(/\n/g, '<br>') + '</p>';
       }).join('\n');
       return html;
+    }
+
+    /* Creator Marketplace & Standardized Brief Management */
+    let currentCreatorFormat = 'SHORTS';
+    let currentCreatorBudget = 'MID_450K';
+    let currentSelectedCreatorId = 'CR_FNB_02';
+    let currentGeneratedBrief = null;
+    let currentMatchedCreators = [];
+    let currentActiveDeal = {
+      deal_id: 'DEAL_7749A',
+      tenant_id: 'TENANT_001',
+      creator_name: '서울핫플스케치 (@seoul_hotplace)',
+      total_budget: 450000,
+      take_rate_pct: 10.0,
+      platform_fee: 45000,
+      creator_base_payout: 283500,
+      creator_bonus_payout: 121500,
+      status: 'DRAFT_SUBMITTED',
+      revision_count: 0,
+      max_revisions: 1,
+      fast_track_hours_left: 18
+    };
+
+    function selectFormat(fmt) {
+      currentCreatorFormat = fmt;
+      ['SHORTS', 'REELS', 'TIKTOK', 'LIVE_COMMERCE'].forEach(f => {
+        const id = 'fmtBtn_' + (f === 'LIVE_COMMERCE' ? 'LIVE' : f);
+        const btn = document.getElementById(id);
+        if (btn) btn.classList.toggle('active', f === fmt);
+      });
+      triggerCreatorWorkflow();
+    }
+
+    function selectBudget(bg) {
+      currentCreatorBudget = bg;
+      ['MICRO_150K', 'MID_450K', 'PRO_900K'].forEach(b => {
+        const key = b.split('_')[0];
+        const btn = document.getElementById('bgBtn_' + key);
+        if (btn) btn.classList.toggle('active', b === bg);
+      });
+      triggerCreatorWorkflow();
+    }
+
+    async function triggerCreatorWorkflow() {
+      const q1 = document.getElementById('inpCrProduct') ? document.getElementById('inpCrProduct').value : '시그니처 바질 소금빵';
+      const q2 = document.getElementById('inpCrBenefit') ? document.getElementById('inpCrBenefit').value : '버터 48% 바삭함';
+      const q3 = document.getElementById('inpCrAudience') ? document.getElementById('inpCrAudience').value : '2030 직장인';
+      const tenant = (MOCK_DB.tenants[currentTenantId] && MOCK_DB.tenants[currentTenantId].tenant) || { domain: 'fnb', subscription_tier: 'PRO' };
+      const domainMap = { fnb: 'FNB', beauty: 'BEAUTY', medical: 'MEDICAL', saas: 'B2B_SAAS', manufacturing: 'MANUFACTURING' };
+      const industry = domainMap[tenant.domain] || 'FNB';
+
+      try {
+        // 1. Generate Brief
+        const briefRes = await apiFetch('/api/v1/creator/brief/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            product_name: q1,
+            core_benefit: q2,
+            target_audience: q3,
+            content_format: currentCreatorFormat,
+            budget_tier: currentCreatorBudget,
+            industry: industry,
+            tenant_id: currentTenantId
+          })
+        });
+        currentGeneratedBrief = briefRes;
+        renderCreatorBrief(briefRes);
+
+        // 2. Match Creators
+        const matchRes = await apiFetch('/api/v1/creator/match', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            category: industry,
+            content_format: currentCreatorFormat,
+            budget_tier: currentCreatorBudget,
+            target_audience: q3,
+            tenant_id: currentTenantId,
+            subscriber_plan: tenant.subscription_tier || 'PRO'
+          })
+        });
+        currentMatchedCreators = matchRes.creators || [];
+        renderMatchedCreators(currentMatchedCreators);
+        renderActiveDeal(currentActiveDeal);
+      } catch (e) {
+        console.error('Creator workflow error:', e);
+      }
+    }
+
+    function renderCreatorBrief(brief) {
+      if (!brief) return;
+      const bBadge = document.getElementById('crBriefIdBadge');
+      if (bBadge) bBadge.innerText = brief.brief_id;
+      const hText = document.getElementById('crHookText');
+      if (hText) hText.innerText = '"' + brief.hooking_copy + '"';
+
+      let sHtml = '';
+      (brief.scenes || []).forEach(s => {
+        sHtml += `
+          <div style="background:#0F172A; border:1px solid var(--card-border); border-radius:8px; padding:8px 10px; display:flex; gap:10px; align-items:flex-start;">
+            <div style="background:#38BDF8; color:#0B0F19; font-weight:900; font-size:10px; padding:3px 6px; border-radius:4px; white-space:nowrap;">
+              SCENE ${s.scene_number} (${s.duration_seconds}초)
+            </div>
+            <div style="flex:1; font-size:11px;">
+              <div style="color:#FFF; font-weight:700; margin-bottom:2px;">🎬 ${s.visual_cue}</div>
+              <div style="color:#94A3B8; margin-bottom:2px;">🎙️ ${s.audio_narration}</div>
+              <div style="color:#FDE047; font-size:10px;">🏷️ 자막: ${s.overlay_text}</div>
+            </div>
+          </div>
+        `;
+      });
+      const scenesEl = document.getElementById('crStoryboardScenes');
+      if (scenesEl) scenesEl.innerHTML = sHtml;
+
+      let cHtml = '';
+      (brief.compliance_guidelines || []).forEach(g => {
+        cHtml += `<li>${g}</li>`;
+      });
+      const compEl = document.getElementById('crComplianceList');
+      if (compEl) compEl.innerHTML = cHtml;
+    }
+
+    function renderMatchedCreators(list) {
+      if (!list || list.length === 0) return;
+      let html = '';
+      list.slice(0, 3).forEach((item, idx) => {
+        const c = item.creator;
+        const isSelected = c.creator_id === currentSelectedCreatorId || idx === 0;
+        if (idx === 0 && !currentSelectedCreatorId) currentSelectedCreatorId = c.creator_id;
+        html += `
+          <div style="background:${isSelected ? '#1A1830' : '#0F172A'}; border:1px solid ${isSelected ? '#EC4899' : 'var(--card-border)'}; border-radius:10px; padding:10px 12px; cursor:pointer;" onclick="selectCreator('${c.creator_id}')">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+              <div>
+                <b style="color:#FFF; font-size:12px;">${c.name}</b>
+                <span style="font-size:10px; color:#94A3B8;">${c.handle}</span>
+              </div>
+              <span style="background:rgba(236,72,153,0.2); color:#F472B6; font-size:10px; font-weight:800; padding:2px 6px; border-radius:4px;">
+                🎯 일치율 ${item.match_score}%
+              </span>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:4px; font-size:10px; color:var(--text-muted); margin-bottom:6px;">
+              <div>• 채널: <span style="color:#FFF;">${c.channel}</span></div>
+              <div>• 평균 조회: <span style="color:#FFF;">${(c.avg_views || 0).toLocaleString()}회</span></div>
+              <div>• 시청 지속: <span style="color:#34D399; font-weight:700;">${c.retention_rate}%</span></div>
+              <div>• 과거 전환: <span style="color:#FEF08A; font-weight:700;">${c.historical_conversion_rate}% (${item.conversion_rating_badge})</span></div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px dashed var(--card-border); padding-top:6px; font-size:11px;">
+              <span style="color:var(--text-muted);">제작비</span>
+              <span style="color:#38BDF8; font-weight:800;">₩${c.price_krw.toLocaleString()}</span>
+            </div>
+          </div>
+        `;
+      });
+      const listEl = document.getElementById('crMatchedList');
+      if (listEl) listEl.innerHTML = html;
+
+      // Update financial breakdown for selected creator
+      const selectedObj = list.find(x => x.creator.creator_id === currentSelectedCreatorId) || list[0];
+      if (selectedObj) {
+        const budget = selectedObj.creator.price_krw;
+        const takeRate = selectedObj.take_rate_pct;
+        const platformFee = Math.round(budget * (takeRate / 100));
+        const creatorTotal = budget - platformFee;
+        const basePayout = Math.round(creatorTotal * 0.70);
+        const bonusPayout = creatorTotal - basePayout;
+
+        const elTot = document.getElementById('crFeeTotal');
+        if (elTot) elTot.innerText = `₩${budget.toLocaleString()}`;
+        const elPlat = document.getElementById('crFeePlatform');
+        if (elPlat) elPlat.innerText = `-₩${platformFee.toLocaleString()} (우대 ${takeRate}%)`;
+        const elBase = document.getElementById('crFeeBase');
+        if (elBase) elBase.innerText = `₩${basePayout.toLocaleString()}`;
+        const elBonus = document.getElementById('crFeeBonus');
+        if (elBonus) elBonus.innerText = `₩${bonusPayout.toLocaleString()}`;
+      }
+    }
+
+    function selectCreator(id) {
+      currentSelectedCreatorId = id;
+      renderMatchedCreators(currentMatchedCreators);
+    }
+
+    async function orderSelectedCreatorEscrow() {
+      const selectedObj = currentMatchedCreators.find(x => x.creator.creator_id === currentSelectedCreatorId) || currentMatchedCreators[0];
+      const creatorName = selectedObj ? selectedObj.creator.name : '추천 크리에이터';
+      const briefId = currentGeneratedBrief ? currentGeneratedBrief.brief_id : 'BRIEF_AUTO_01';
+
+      try {
+        const res = await apiFetch('/api/v1/creator/escrow/order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            tenant_id: currentTenantId,
+            creator_id: currentSelectedCreatorId,
+            brief_id: briefId,
+            subscriber_plan: 'PRO'
+          })
+        });
+
+        currentActiveDeal = res.deal || {
+          deal_id: 'DEAL_' + Math.random().toString(36).substring(2, 7).toUpperCase(),
+          creator_name: creatorName,
+          total_budget: selectedObj ? selectedObj.creator.price_krw : 450000,
+          take_rate_pct: 10.0,
+          platform_fee: 45000,
+          creator_base_payout: 283500,
+          creator_bonus_payout: 121500,
+          status: 'ESCROW_LOCKED',
+          fast_track_hours_left: 24
+        };
+
+        renderActiveDeal(currentActiveDeal);
+        showToast(`🔒 [에스크로 예치 완료] ${creatorName}님에게 15초 바이럴 브리프가 전송되었습니다. 제작비는 안전하게 보호됩니다.`);
+      } catch (e) {
+        alert('에스크로 의뢰 오류: ' + e.message);
+      }
+    }
+
+    function renderActiveDeal(deal) {
+      if (!deal) return;
+      const statusMap = {
+        'ESCROW_LOCKED': '<span style="color:#F59E0B; font-weight:800;">🔒 에스크로 안전 예치됨 (크리에이터 제작 중)</span>',
+        'DRAFT_SUBMITTED': '<span style="color:#38BDF8; font-weight:800;">🎬 초안 검수 대기 (24h Fast-Track 기한 진행 중)</span>',
+        'APPROVED': '<span style="color:#34D399; font-weight:800;">✅ 초안 승인 완료 (기본 70% 정산 지급됨)</span>',
+        'REVISION_REQUESTED': '<span style="color:#EF4444; font-weight:800;">🔄 1회 수정 요청 접수됨 (SLA 24시간 내 재제출)</span>',
+        'SETTLED': '<span style="color:#10B981; font-weight:800;">🎉 최종 송출 및 성과 정산 100% 완료</span>'
+      };
+
+      const html = `
+        <div style="background:#0F172A; border:1px solid var(--card-border); border-radius:10px; padding:12px 14px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <div>
+              <b style="color:#FFF; font-size:13px;">계약 번호: ${deal.deal_id}</b>
+              <span style="font-size:11px; color:#94A3B8; margin-left:8px;">대상 크리에이터: <b>${deal.creator_name}</b></span>
+            </div>
+            <div style="font-size:11px;">
+              상태: ${statusMap[deal.status] || deal.status}
+            </div>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:8px; background:#0B0F19; padding:8px 12px; border-radius:8px; font-size:11px; margin-bottom:10px;">
+            <div>예치 총액: <b style="color:#FFF;">₩${deal.total_budget.toLocaleString()}</b></div>
+            <div>우대 수수료(10%): <b style="color:#F472B6;">₩${deal.platform_fee.toLocaleString()}</b></div>
+            <div>기본 70% 정산: <b style="color:#34D399;">₩${deal.creator_base_payout.toLocaleString()}</b></div>
+            <div>성과 30% 정산: <b style="color:#818CF8;">₩${deal.creator_bonus_payout.toLocaleString()}</b></div>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div style="font-size:11px; color:#F59E0B;">
+              ⏱️ 24h Fast-Track SLA: 사업주 승인 기한 <b>${deal.fast_track_hours_left}시간 남음</b> (미응답 시 자동 승인)
+            </div>
+            <div style="display:flex; gap:8px;">
+              <button class="btn-approve" style="padding:6px 14px; font-size:11px;" onclick="reviewCurrentDeal('APPROVE')">
+                ✅ 초안 최종 승인 (기본 70% 정산 실행)
+              </button>
+              <button class="btn-reject" style="padding:6px 12px; font-size:11px;" onclick="reviewCurrentDeal('REVISE')">
+                🔄 1회 수정 요청 (24h SLA)
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+      const trackerEl = document.getElementById('crActiveDealTracker');
+      if (trackerEl) trackerEl.innerHTML = html;
+    }
+
+    async function reviewCurrentDeal(action) {
+      if (!currentActiveDeal) return;
+      try {
+        const res = await apiFetch(`/api/v1/creator/deal/${currentActiveDeal.deal_id}/review`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: action, feedback: action === 'REVISE' ? '후킹 씬 강조 요망' : null })
+        });
+        currentActiveDeal.status = action === 'APPROVE' ? 'APPROVED' : 'REVISION_REQUESTED';
+        renderActiveDeal(currentActiveDeal);
+        if (action === 'APPROVE') {
+          showToast(`🎉 [초안 승인 완료] 크리에이터에게 기본 정산금 ₩${currentActiveDeal.creator_base_payout.toLocaleString()}원이 즉시 지급되었습니다!`);
+        } else {
+          showToast('🔄 [수정 요청 발송] 표준 약관에 따라 1회 한정 수정 요청이 크리에이터에게 전달되었습니다.');
+        }
+      } catch (e) {
+        alert('검수 처리 오류: ' + e.message);
+      }
     }
 
     /* Initialize Master Portal */

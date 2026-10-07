@@ -27,7 +27,7 @@ from aim.admin.master_console import MasterAdminConsole
 from aim.core.platform import AIMPlatform
 from aim.admin.quarantine import ComplianceQuarantineQueue
 from aim.tenant.billing import BillingService
-from aim.api import service_router, tenant_router, admin_router
+from aim.api import service_router, tenant_router, admin_router, creator_router
 
 app = FastAPI(title="AIM Marketing OS", version="0.6.0")
 
@@ -35,6 +35,7 @@ app = FastAPI(title="AIM Marketing OS", version="0.6.0")
 app.include_router(service_router, prefix="/api/v1/service", tags=["Solution 1: Core Service Engine"])
 app.include_router(tenant_router, prefix="/api/v1/tenant", tags=["Solution 2: Subscriber Tenant Portal"])
 app.include_router(admin_router, prefix="/api/v1/admin", tags=["Solution 3: Master Admin Control Plane"])
+app.include_router(creator_router, tags=["Solution 4: Creator Marketplace & Escrow"])
 
 
 @app.get("/health")
