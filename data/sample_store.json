@@ -1,0 +1,62 @@
+{
+  "store_info": {
+    "store_id": "STORE_SEOUL_001",
+    "name": "성수 아뜰리에 베이커리 & 카페",
+    "category": "베이커리/디저트",
+    "address": "서울 성동구 성수이로 12길 34 1층",
+    "business_hours": "08:30 - 21:00 (월요일 휴무)",
+    "usp_highlights": [
+      "프랑스산 AOP 버터 100% 사용 천연발효 사워도우",
+      "당일 생산 당일 폐기 원칙",
+      "반려동물 동반 가능 야외 테라스 완비"
+    ]
+  },
+  "pos_summary": {
+    "analysis_period": "2026-09-01 ~ 2026-09-30",
+    "top_selling_items": [
+      { "item_name": "무화과 크림치즈 사워도우", "sales_count": 842, "unit_price": 7500 },
+      { "item_name": "클래식 솔티드 버터바", "sales_count": 690, "unit_price": 4800 },
+      { "item_name": "시그니처 바닐라빈 오트라떼", "sales_count": 520, "unit_price": 6000 }
+    ],
+    "peak_hours": "12:00 - 14:00 (직장인 점심), 15:30 - 17:30 (디저트 테이크아웃)",
+    "low_stock_risk_item": "무화과 크림치즈 사워도우 (매일 14시 조기 품절 발생)"
+  },
+  "raw_reviews": [
+    {
+      "review_id": "REV_01",
+      "source": "naver_place_receipt",
+      "author": "홍길동 (010-1234-5678)",
+      "rating": 5.0,
+      "text": "사워도우 겉바속촉 진짜 미쳤어요! 무화과 아낌없이 들어가서 최고입니다. 다만 오후 2시에 가면 품절이라 일찍 가야해요."
+    },
+    {
+      "review_id": "REV_02",
+      "source": "naver_place_receipt",
+      "author": "김철수(user_ks@naver.com)",
+      "rating": 5.0,
+      "text": "버터 풍미가 장난 아닙니다. 다른 베이커리랑 비교가 안되네요. 테라스에서 강아지랑 같이 먹을 수 있어서 너무 편해요."
+    },
+    {
+      "review_id": "REV_03",
+      "source": "instagram_mention",
+      "author": "bread_lover_99",
+      "rating": 4.5,
+      "text": "성수동 최강 빵집 인정. 솔티드 버터바 얼려먹으면 진짜 쫀득하고 극락입니다. 주차공간이 협소한 건 아쉽네요."
+    },
+    {
+      "review_id": "REV_04",
+      "source": "smartstore_qna",
+      "author": "박영희(010-9876-5432)",
+      "rating": 5.0,
+      "text": "택배로 받았는데 포장 꼼꼼하고 당일 빵맛 그대로 납니다. 재구매 의사 100%!"
+    }
+  ],
+  "current_promotions": [
+    {
+      "promo_id": "PROMO_FALL_01",
+      "title": "가을 시즌 무화과 사워도우 얼리버드 예약 이벤트",
+      "benefit": "오전 11시 이전 방문 시 아메리카노 1잔 50% 할인",
+      "valid_until": "2026-10-31"
+    }
+  ]
+}

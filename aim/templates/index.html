@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIM Marketing OS - 전사 3대 솔루션 유기적 통합 마스터 관제 포털</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <style>
+    :root {
+      --bg: #070A12;
+      --panel: #0D1322;
+      --card: #131B2E;
+      --card-border: #1E293B;
+      --border-focus: #4F46E5;
+      --primary: #6366F1;
+      --primary-hover: #4F46E5;
+      --success: #10B981;
+      --success-glow: rgba(16, 185, 129, 0.2);
+      --warning: #F59E0B;
+      --danger: #EF4444;
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+      --accent: #8B5CF6;
+      --cyan: #06B6D4;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background-color: var(--bg); color: var(--text-main); min-height: 100vh; padding: 16px 20px 40px; }
+    
+    /* Global Container */
+    .master-wrapper { max-width: 1780px; width: 100%; margin: 0 auto; }
+
+    /* Top Command Header */
+    .top-header {
+      background: linear-gradient(180deg, rgba(19, 27, 46, 0.95) 0%, rgba(13, 19, 34, 0.9) 100%);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 16px 24px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .brand-title { display: flex; align-items: center; gap: 12px; }
+    .brand-logo-badge {
+      background: linear-gradient(135deg, #6366F1 0%, #3B82F6 100%);
+      color: #FFF;
+      font-weight: 900;
+      font-size: 15px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      letter-spacing: 0.5px;
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+    }
+    .brand-text h1 { font-size: 20px; font-weight: 800; color: #FFF; letter-spacing: -0.3px; }
+    .brand-text p { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+    .telemetry-bar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .telem-pill {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--card-border);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: #10B981; box-shadow: 0 0 8px #10B981; animation: pulse 2s infinite; }
+    @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; transform: scale(1.1); } 100% { opacity: 0.5; } }
+
+    /* Cross-Pillar Closed Loop Pipeline Stream */
+    .pipeline-stream {
+      background: #0A0F1D;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 14px;
+      padding: 12px 18px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      overflow-x: auto;
+      gap: 10px;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+    }
+    .pipe-step {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid var(--card-border);
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .pipe-step:hover, .pipe-step.active {
+      background: rgba(99, 102, 241, 0.15);
+      border-color: #6366F1;
+      transform: translateY(-2px);
+    }
+    .pipe-num {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #6366F1;
+      color: #FFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 800;
+    }
+    .pipe-label { font-size: 11px; font-weight: 700; color: #E2E8F0; }
+    .pipe-sub { font-size: 10px; color: var(--text-muted); }
+    .pipe-arrow { color: #64748B; font-weight: 900; font-size: 14px; }
+
+    /* View Mode & Tenant Selector Bar */
+    .control-ribbon {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .mode-tabs {
+      display: flex;
+      background: #0A0F1D;
+      padding: 4px;
+      border-radius: 10px;
+      border: 1px solid var(--card-border);
+      gap: 4px;
+    }
+    .mode-tab-btn {
+      background: transparent;
+      border: none;
+      color: #94A3B8;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .mode-tab-btn:hover { color: #FFF; background: rgba(255,255,255,0.05); }
+    .mode-tab-btn.active {
+      background: var(--primary);
+      color: #FFF;
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+    }
+
+    .tenant-quick-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+    }
+    .tenant-quick-btn {
+      background: #0F172A;
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 7px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    .tenant-quick-btn:hover { border-color: var(--primary); color: #FFF; }
+    .tenant-quick-btn.active {
+      background: rgba(99, 102, 241, 0.2);
+      border-color: #6366F1;
+      color: #A5B4FC;
+      font-weight: 800;
+      box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+    }
+
+    /* Triad Grid Layout (3 Organic Columns) */
+    .triad-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      align-items: start;
+    }
+    @media (max-width: 980px) {
+      .triad-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Pillar Column Panels */
+    .pillar-panel {
+      background: var(--panel);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      position: relative;
+    }
+    .pillar-panel.pillar-tenant {
+      border-color: rgba(99, 102, 241, 0.4);
+      background: linear-gradient(180deg, #0E1528 0%, #0A1020 100%);
+    }
+    .pillar-panel.pillar-admin {
+      border-color: rgba(245, 158, 11, 0.3);
+    }
+    .pillar-panel.pillar-service {
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+
+    .pillar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .pillar-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 6px;
+      letter-spacing: 0.3px;
+    }
+    .badge-service { background: rgba(16, 185, 129, 0.15); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge-tenant { background: rgba(99, 102, 241, 0.15); color: #A5B4FC; border: 1px solid rgba(99, 102, 241, 0.4); }
+    .badge-admin { background: rgba(245, 158, 11, 0.15); color: #FCD34D; border: 1px solid rgba(245, 158, 11, 0.3); }
+
+    .pillar-title { font-size: 17px; font-weight: 800; color: #FFF; margin-top: 6px; }
+    .pillar-desc { font-size: 11px; color: var(--text-muted); margin-top: 2px; line-height: 1.4; }
+
+    /* Cards & Components */
+    .glass-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 14px;
+      transition: border-color 0.2s;
+    }
+    .glass-card:hover { border-color: rgba(255,255,255,0.15); }
+
+    .card-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    /* WTP Financial Banner */
+    .wtp-banner {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(16, 185, 129, 0.15) 100%);
+      border: 1.5px solid #6366F1;
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.15);
+    }
+    .wtp-metric-val { font-size: 26px; font-weight: 900; color: #FFF; letter-spacing: -0.5px; }
+    .wtp-sub { font-size: 11px; color: #C7D2FE; margin-top: 4px; font-weight: 600; }
+    
+    /* Shapley Attribution Bars */
+    .shapley-bar-wrap { margin-top: 10px; }
+    .shapley-row { display: flex; justify-content: space-between; font-size: 10px; color: var(--text-muted); margin-bottom: 3px; font-weight: 700; }
+    .progress-track { height: 6px; background: #0F172A; border-radius: 4px; overflow: hidden; display: flex; margin-bottom: 6px; }
+    .progress-seg-naver { background: #10B981; width: 48%; }
+    .progress-seg-insta { background: #EC4899; width: 32%; }
+    .progress-seg-kakao { background: #F59E0B; width: 20%; }
+
+    /* Approval Desk Item */
+    .staged-box {
+      background: #0F172A;
+      border: 1.5px solid rgba(99, 102, 241, 0.5);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .staged-box.pending { border-color: #6366F1; box-shadow: 0 0 15px rgba(99, 102, 241, 0.2); }
+    .staged-trigger-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 800;
+      color: #FCD34D;
+      background: rgba(245, 158, 11, 0.15);
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-bottom: 6px;
+    }
+
+    /* Buttons */
+    .btn-approve {
+      width: 100%;
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      color: #FFF;
+      border: none;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .btn-approve:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+    .btn-reject {
+      background: #1E293B;
+      color: #94A3B8;
+      border: 1px solid var(--card-border);
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn-reject:hover { background: #334155; color: #FFF; }
+
+    /* 6D Context Matrix */
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      font-size: 11px;
+      margin-bottom: 10px;
+    }
+    .matrix-cell {
+      background: #0F172A;
+      border: 1px solid var(--card-border);
+      padding: 8px 10px;
+      border-radius: 8px;
+    }
+    .matrix-label { font-size: 10px; color: var(--text-muted); font-weight: 700; }
+    .matrix-val { font-size: 11px; font-weight: 800; color: #FFF; margin-top: 2px; }
+
+    /* Flash Card */
+    .flash-attack-card {
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.12) 0%, rgba(245, 158, 11, 0.1) 100%);
+      border: 1.5px solid #F87171;
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+
+    /* KPI Grid in Admin */
+    .kpi-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .kpi-stat-box {
+      background: #0F172A;
+      border: 1px solid var(--card-border);
+      padding: 10px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .kpi-stat-val { font-size: 17px; font-weight: 900; margin-top: 2px; }
+    .kpi-stat-lbl { font-size: 10px; color: var(--text-muted); }
+
+    /* Fleet Table */
+    .admin-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+    .admin-table th, .admin-table td { padding: 8px 8px; text-align: left; border-bottom: 1px solid var(--card-border); }
+    .admin-table th { color: var(--text-muted); font-weight: 700; background: #0A0F1D; }
+    .admin-table tr:hover { background: rgba(255,255,255,0.02); }
+
+    .tag-active { background: rgba(16, 185, 129, 0.2); color: #34D399; padding: 2px 5px; border-radius: 4px; font-size: 10px; font-weight: 700; }
+    .tag-paused { background: rgba(239, 68, 68, 0.2); color: #FCA5A5; padding: 2px 5px; border-radius: 4px; font-size: 10px; font-weight: 700; }
+    .tag-pro { background: rgba(99, 102, 241, 0.2); color: #A5B4FC; padding: 2px 5px; border-radius: 4px; font-size: 10px; font-weight: 700; }
+    .tag-enterprise { background: rgba(245, 158, 11, 0.2); color: #FDE047; padding: 2px 5px; border-radius: 4px; font-size: 10px; font-weight: 700; }
+
+    /* Mini Mobile Frame embedded in Pillar 2 */
+    .mobile-frame-wrap {
+      background: #000;
+      border-radius: 28px;
+      padding: 10px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+      border: 3px solid #334155;
+      margin-top: 14px;
+    }
+    .mobile-screen-inner {
+      background: #FFFFFF;
+      color: #0F172A;
+      border-radius: 20px;
+      height: 480px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      font-size: 12px;
+    }
+    .screen-notch { width: 100px; height: 18px; background: #000; border-radius: 0 0 12px 12px; margin: 0 auto 6px; }
+    .screen-body { padding: 12px 14px; flex: 1; overflow-y: auto; line-height: 1.6; }
+
+    /* Toast Notification */
+    .toast-box {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #10B981;
+      color: #FFF;
+      font-weight: 800;
+      font-size: 13px;
+      padding: 12px 20px;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      display: none;
+      z-index: 9999;
+      animation: slideUp 0.3s ease;
+    }
+    @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+    /* Single view full-width mode helpers */
+    .full-width-container { width: 100%; }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+  <div class="master-wrapper">
+    <!-- Top Global Command Header -->
+    <header class="top-header">
+      <div class="brand-title">
+        <div class="brand-logo-badge">AIM OS</div>
+        <div class="brand-text">
+          <h1>AIM Autonomous Marketing Platform</h1>
+          <p>전사 3대 유기적 솔루션 통합 관제 포털 · Karpathy 자율 추론 & 헤르메스 프로토콜 v0.6.0</p>
+        </div>
+      </div>
+      <div class="telemetry-bar">
+        <div class="telem-pill">
+          <span class="pulse-dot"></span>
+          <span style="color:#10B981;">CORE v5.0 LIVE</span>
+        </div>
+        <div class="telem-pill">
+          <span style="color:#818CF8;">🏢 5 TENANTS CONNECTED</span>
+        </div>
+        <div class="telem-pill">
+          <span style="color:#F59E0B;">🛡️ HITL QUARANTINE: 48 BLOCKED</span>
+        </div>
+        <div class="telem-pill">
+          <span style="color:#34D399;">SLA 99.98%</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Cross-Pillar Closed Loop Pipeline Stream (유기적 순환 파이프라인) -->
+    <div class="pipeline-stream">
+      <div class="pipe-step active" onclick="switchViewMode('service')">
+        <div class="pipe-num">1</div>
+        <div>
+          <div class="pipe-label">⚡ 6D 센싱 & 기습 레이더</div>
+          <div class="pipe-sub">비 예보/유휴 35% 감지</div>
+        </div>
+      </div>
+      <div class="pipe-arrow">➔</div>
+      <div class="pipe-step" onclick="switchViewMode('tenant')">
+        <div class="pipe-num" style="background:#8B5CF6;">2</div>
+        <div>
+          <div class="pipe-label">📝 AI 기안 & 승인 데스크</div>
+          <div class="pipe-sub">CAMP-001 원클릭 HITL 검토</div>
+        </div>
+      </div>
+      <div class="pipe-arrow">➔</div>
+      <div class="pipe-step" onclick="switchViewMode('service')">
+        <div class="pipe-num" style="background:#06B6D4;">3</div>
+        <div>
+          <div class="pipe-label">📢 3대 채널 사출 엔진</div>
+          <div class="pipe-sub">블로그/인스타/카톡 580명 송출</div>
+        </div>
+      </div>
+      <div class="pipe-arrow">➔</div>
+      <div class="pipe-step" onclick="switchViewMode('tenant')">
+        <div class="pipe-num" style="background:#10B981;">4</div>
+        <div>
+          <div class="pipe-label">💰 WTP 가치 귀속 원장</div>
+          <div class="pipe-sub">+₩4,320,000 (ROI 88.2배)</div>
+        </div>
+      </div>
+      <div class="pipe-arrow">➔</div>
+      <div class="pipe-step" onclick="switchViewMode('admin')">
+        <div class="pipe-num" style="background:#F59E0B;">5</div>
+        <div>
+          <div class="pipe-label">👑 마스터 FinOps & 격리 큐</div>
+          <div class="pipe-sub">MRR ₩545k / 의료법 100% 방어</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- View Mode & Tenant Selector Ribbon -->
+    <div class="control-ribbon">
+      <div class="mode-tabs">
+        <button id="modeBtnPanoramic" class="mode-tab-btn active" onclick="switchViewMode('panoramic')">
+          🌐 3대 솔루션 종합 파노라마 뷰 (Triad View)
+        </button>
+        <button id="modeBtnTenant" class="mode-tab-btn" onclick="switchViewMode('tenant')">
+          💼 1. 사업자 콕핏 (Tenant)
+        </button>
+        <button id="modeBtnAdmin" class="mode-tab-btn" onclick="switchViewMode('admin')">
+          👑 2. 마스터 총괄 (Admin)
+        </button>
+        <button id="modeBtnService" class="mode-tab-btn" onclick="switchViewMode('service')">
+          ⚡ 3. 서비스 실행 (Service Engine)
+        </button>
+      </div>
+
+      <div class="tenant-quick-bar">
+        <span style="font-size:11px; color:var(--text-muted); font-weight:700;">🏢 테넌트 전환:</span>
+        <button id="qBtn_TENANT_001" class="tenant-quick-btn active" onclick="switchTenant('TENANT_001')">🥐 성수 베이커리</button>
+        <button id="qBtn_TENANT_002" class="tenant-quick-btn" onclick="switchTenant('TENANT_002')">🏥 강남 리엔 피부과</button>
+        <button id="qBtn_TENANT_003" class="tenant-quick-btn" onclick="switchTenant('TENANT_003')">✂️ 청담 헤어살롱</button>
+        <button id="qBtn_TENANT_004" class="tenant-quick-btn" onclick="switchTenant('TENANT_004')">💻 플로우독 SaaS</button>
+        <button id="qBtn_TENANT_005" class="tenant-quick-btn" onclick="switchTenant('TENANT_005')">🏭 대진정밀공업</button>
+      </div>
+    </div>
+
+    <!-- MAIN DISPLAY: Triad Panoramic Grid or Zoomed View -->
+    <div id="mainContentGrid" class="triad-grid">
+
+      <!-- ======================================================== -->
+      <!-- PILLAR 1: 서비스 실행 솔루션 (Core Service Engine) -->
+      <!-- ======================================================== -->
+      <section id="colService" class="pillar-panel pillar-service">
+        <div class="pillar-header">
+          <div>
+            <span class="pillar-badge badge-service">⚡ SOLUTION 1 · 서비스 실행 엔진</span>
+            <h2 class="pillar-title">6D 센서 & 옴니채널 사출기</h2>
+            <p class="pillar-desc">날씨/유휴 감지, 반경 1km 경쟁 스파이, 순위 진단, 3대 채널 즉각 생성</p>
+          </div>
+          <span style="font-size:10px; color:#10B981; font-weight:800;">ONLINE ●</span>
+        </div>
+
+        <!-- 6D Hyper-Context Sensor Matrix -->
+        <div class="glass-card">
+          <div class="card-title-row">
+            <span style="color:#F59E0B;">🌐 실시간 6차원 하이퍼 컨텍스트</span>
+            <span style="font-size:10px; color:#10B981;">실시간 센싱</span>
+          </div>
+          <div class="matrix-grid">
+            <div class="matrix-cell">
+              <div class="matrix-label">📅 시대(Era)</div>
+              <div id="mEra" class="matrix-val" style="color:#C7D2FE;">헬시플레저 / 고환율</div>
+            </div>
+            <div class="matrix-cell">
+              <div class="matrix-label">⚡ 상황(Situation)</div>
+              <div id="mSit" class="matrix-val" style="color:#FDE047;">오후 15시 비 예보</div>
+            </div>
+            <div class="matrix-cell">
+              <div class="matrix-label">🍂 계절(Season)</div>
+              <div id="mSea" class="matrix-val" style="color:#FCA5A5;">가을 무화과 시즌</div>
+            </div>
+            <div class="matrix-cell">
+              <div class="matrix-label">👥 세대(Gen)</div>
+              <div id="mGen" class="matrix-val" style="color:#86EFAC;">2030 MZ 트렌드</div>
+            </div>
+            <div class="matrix-cell">
+              <div class="matrix-label">🗺️ 지역(Region)</div>
+              <div id="mReg" class="matrix-val" style="color:#93C5FD;">성수 카페거리 반경 1km</div>
+            </div>
+            <div class="matrix-cell">
+              <div class="matrix-label">🎯 계기(Milestone)</div>
+              <div id="mMil" class="matrix-val" style="color:#F472B6;">커플 100일 기념</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flash Revenue Booster Card -->
+        <div class="flash-attack-card">
+          <div class="card-title-row">
+            <span style="color:#FCA5A5;">🚨 실시간 기상/유휴 타임어택</span>
+            <span style="font-size:10px; background:#EF4444; color:#FFF; padding:2px 6px; border-radius:4px; font-weight:800;">타임어택</span>
+          </div>
+          <div id="flashTextTrigger" style="font-size:12px; color:#E2E8F0; margin-bottom:6px;">
+            ⚠️ 오늘 오후 15시 비 예보 ➔ 워크인 손님 35% 급감 감지
+          </div>
+          <div id="flashTextHeadline" style="font-size:13px; font-weight:800; color:#FFF; margin-bottom:4px;">
+            ☔ [비 오는 날 깜짝 번개] 빵 포장 시 라떼 1+1!
+          </div>
+          <div style="font-size:11px; color:#FEF08A; margin-bottom:10px;">
+            💰 예상 추가 매출: POS 정산 연동 시연값 (+360,000원) · 3시간 한정
+          </div>
+          <button class="btn-approve" style="padding:8px 12px; font-size:12px; background:linear-gradient(135deg, #EF4444 0%, #DC2626 100%);" onclick="executeFlashAttack()">
+            ⚡ 카톡 친구 580명에게 즉시 발송 승인
+          </button>
+        </div>
+
+        <!-- 1km Competitor Radar -->
+        <div class="glass-card">
+          <div class="card-title-row">
+            <span style="color:#818CF8;">🕵️ 반경 1km 경쟁 매장 스파이 레이더</span>
+            <span style="font-size:10px; color:var(--text-muted);">실시간 3곳 포착</span>
+          </div>
+          <div id="competitorMiniList" style="font-size:11px;">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Search Ranking Diagnosis -->
+        <div class="glass-card">
+          <div class="card-title-row">
+            <span style="color:#34D399;">📈 스마트플레이스 & AI 검색 진단</span>
+            <span style="font-size:10px; color:#818CF8;">네이버 4위 / AI 2순위</span>
+          </div>
+          <div style="font-size:11px; color:#CBD5E1; margin-bottom:8px;">
+            1위 탈환을 위한 처방: 'AOP 버터', '반려동물 동반' 영수증 리뷰 유도 이벤트
+          </div>
+          <button class="btn-reject" style="width:100%;" onclick="executeRankMission()">
+            🚀 영수증 리뷰 유도 이벤트 원클릭 발송
+          </button>
+        </div>
+
+        <!-- Crisis Defense 3-Tier -->
+        <div class="glass-card">
+          <div class="card-title-row">
+            <span style="color:#EF4444;">🚨 별점 1점 악성 리뷰 3단 방어</span>
+            <span style="font-size:10px; color:#34D399;">100% 품격 방어</span>
+          </div>
+          <div style="font-size:11px; color:#94A3B8; margin-bottom:6px;">
+            "웨이팅 길고 조기 품절되어 헛걸음했습니다" ➔ [정중 사과/팩트 해소/재방문 케어]
+          </div>
+          <button class="btn-reject" style="width:100%;" onclick="simulateCrisisQuick()">
+            🛡️ 3단 품격 대응 답글 생성 및 확인
+          </button>
+        </div>
+      </section>
+
+      <!-- ======================================================== -->
+      <!-- PILLAR 2: 유료 가입자 사업자 솔루션 (Subscriber Tenant Cockpit) -->
+      <!-- ======================================================== -->
+      <section id="colTenant" class="pillar-panel pillar-tenant">
+        <div class="pillar-header">
+          <div>
+            <span class="pillar-badge badge-tenant">💼 SOLUTION 2 · 유료 가입자 사업자 콕핏</span>
+            <h2 id="tMainTitle" class="pillar-title">성수 아뜰리에 베이커리 & 카페</h2>
+            <p id="tMainSub" class="pillar-desc">김성수 대표 · 서울 성수동 상권 · 실시간 매출 기여도 및 승인 관제</p>
+          </div>
+          <div style="text-align:right;">
+            <span id="tPlanBadgeTop" class="tag-pro">PRO 플랜 (49,000원/월)</span>
+            <div id="tStatusDotTop" style="font-size:10px; color:#10B981; font-weight:800; margin-top:3px;">● 정상 구독 중</div>
+          </div>
+        </div>
+
+        <!-- WTP Value Attribution Banner (핵심 세일즈 포인트) -->
+        <div class="wtp-banner">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div style="font-size:11px; font-weight:800; color:#A5B4FC;">💰 월간 순 기여 창출 가치 (WTP Attribution)</div>
+            <span style="background:rgba(16,185,129,0.2); color:#34D399; font-size:10px; font-weight:800; padding:2px 8px; border-radius:999px;">+34.2% MoM</span>
+          </div>
+          <div class="wtp-metric-val" id="wtpRevenueDisplay">+₩4,320,000</div>
+          <div class="wtp-sub" id="wtpRoiDisplay">월 구독료 49,000원 대비 순이익 ROI 88.2배 달성</div>
+
+          <!-- Shapley Value Distribution -->
+          <div class="shapley-bar-wrap">
+            <div class="shapley-row">
+              <span>채널별 실질 기여도 비중 (Shapley-Value 검증)</span>
+              <span>100% 검증 완료</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-seg-naver" title="네이버 플레이스 48%"></div>
+              <div class="progress-seg-insta" title="인스타그램 로컬 32%"></div>
+              <div class="progress-seg-kakao" title="카카오 알림톡 20%"></div>
+            </div>
+            <div style="display:flex; gap:12px; font-size:10px; color:#C7D2FE;">
+              <span>● 네이버 48%</span>
+              <span style="color:#F472B6;">● 인스타 32%</span>
+              <span style="color:#FDE047;">● 카카오 20%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Staged Approval Desk (원클릭 승인 데스크) -->
+        <div class="glass-card" style="border:1.5px solid rgba(99, 102, 241, 0.4);">
+          <div class="card-title-row">
+            <span style="color:#A5B4FC; font-size:13px;">📝 AI 기안 캠페인 원클릭 승인 데스크</span>
+            <span id="stagedDeskBadge" style="background:#6366F1; color:#FFF; font-size:10px; font-weight:800; padding:2px 8px; border-radius:999px;">대기 1건</span>
+          </div>
+          <div style="font-size:11px; color:var(--text-muted); margin-bottom:10px;">
+            실시간 감지 트리거에 맞추어 AIM이 자동 기안한 캠페인입니다. 승인 시 즉시 3대 채널로 송출됩니다.
+          </div>
+          <div id="stagedDeskList">
+            <!-- Dynamic Campaign Item -->
+          </div>
+        </div>
+
+        <!-- Live Mobile Dispatch Mockup (실시간 폰 프리뷰) -->
+        <div class="mobile-frame mobile-frame-wrap">
+          <div class="mobile-screen-inner">
+            <div class="screen-notch"></div>
+            <div style="padding:6px 14px 4px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #E2E8F0;">
+              <span id="screenDeviceTag" style="font-size:10px; font-weight:800; background:#E0F2FE; color:#0284C7; padding:2px 6px; border-radius:4px;">네이버 블로그 (SEO)</span>
+              <span style="font-size:10px; color:#10B981; font-weight:800;">● 송출 대기</span>
+            </div>
+            <div class="screen-body" id="screenDeviceBody">
+              데이터를 동기화하는 중...
+            </div>
+            <div style="padding:10px; border-top:1px solid #E2E8F0; background:#FFF;">
+              <button class="btn-approve" onclick="approveCurrentCampaignFromPhone()">
+                ⚡ 원클릭 즉시 승인 및 집행
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Value Attribution Ledger & Billing Invoices -->
+        <div class="glass-card" style="margin-top:14px;">
+          <div class="card-title-row">
+            <span style="color:#818CF8;">📊 매출 귀속 원장 & 최근 인보이스</span>
+            <span style="font-size:10px; color:#10B981;">정상 정산</span>
+          </div>
+          <div id="tenantAttributionList" style="font-size:11px; margin-bottom:8px;"></div>
+          <div id="tenantInvoiceMiniList" style="font-size:11px; border-top:1px dashed var(--card-border); padding-top:8px;"></div>
+        </div>
+      </section>
+
+      <!-- ======================================================== -->
+      <!-- PILLAR 3: 플랫폼 총괄 관리 솔루션 (Master Admin War Room) -->
+      <!-- ======================================================== -->
+      <section id="colAdmin" class="pillar-panel pillar-admin">
+        <div class="pillar-header">
+          <div>
+            <span class="pillar-badge badge-admin">👑 SOLUTION 3 · 플랫폼 총괄 관리 콘솔</span>
+            <h2 class="pillar-title">플랫폼 총괄 관리 & FinOps</h2>
+            <p class="pillar-desc">전사 5개 테넌트 플릿, MRR 모니터링, 법무 격리 큐 심의, 인프라 텔레메트리</p>
+          </div>
+          <span style="font-size:10px; color:#F59E0B; font-weight:800;">ROOT ACCESS ●</span>
+        </div>
+
+        <!-- Governance & Evidence Tier Notice -->
+        <div style="font-size:11px; color:#F59E0B; background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.35); border-radius:8px; padding:8px 10px; margin-bottom:12px;">
+          ⚠️ 근거등급 <b>C_ILLUSTRATIVE (시연값)</b> — 아래 KPI는 실측 POS 정산이 연결되지 않은 데모 테넌트 데이터입니다. 금전적 약속 근거로 사용할 수 없습니다.
+        </div>
+
+        <!-- 4 Global KPIs -->
+        <div class="kpi-row">
+          <div class="kpi-stat-box">
+            <div class="kpi-stat-lbl">🏢 활성 테넌트 플릿</div>
+            <div id="admKpiTenants" class="kpi-stat-val" style="color:#34D399;">5개사 (100%)</div>
+          </div>
+          <div class="kpi-stat-box">
+            <div class="kpi-stat-lbl">💳 플랫폼 총 MRR</div>
+            <div id="admKpiMrr" class="kpi-stat-val" style="color:#818CF8;">₩545,000</div>
+          </div>
+          <div class="kpi-stat-box">
+            <div class="kpi-stat-lbl">💰 전사 누적 창출 매출</div>
+            <div id="admKpiValue" class="kpi-stat-val" style="color:#FBBF24;">+₩145.3M</div>
+          </div>
+          <div class="kpi-stat-box">
+            <div class="kpi-stat-lbl">📈 가입자 평균 ROI</div>
+            <div id="admKpiRoi" class="kpi-stat-val" style="color:#F472B6;">44.5배</div>
+          </div>
+        </div>
+
+        <!-- Tenant Fleet Table -->
+        <div class="glass-card">
+          <div class="card-title-row">
+            <span style="color:#FFF;">📋 전사 5개 테넌트 플릿 관리</span>
+            <span style="font-size:10px; color:var(--text-muted);">실시간 동기화</span>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>테넌트</th>
+                  <th>플랜</th>
+                  <th>상태</th>
+                  <th>창출액</th>
+                  <th>액션</th>
+                </tr>
+              </thead>
+              <tbody id="fleetTableBody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Compliance Quarantine Queue (HITL 심의 데스크) -->
+        <div class="glass-card" style="border:1.5px solid rgba(239, 68, 68, 0.4);">
+          <div class="card-title-row">
+            <span style="color:#F87171;">⚖️ 고위험 광고 카피 법무 격리 큐</span>
+            <span id="admQuarantineBadge" style="background:#EF4444; color:#FFF; font-size:10px; font-weight:800; padding:2px 8px; border-radius:999px;">대기 1건</span>
+          </div>
+          <div style="font-size:11px; color:var(--text-muted); margin-bottom:8px;">
+            의료법 제56조 및 표시광고법 위반 고위험군 표현을 사전 격리하여 법적 리스크를 100% 방어합니다.
+          </div>
+          <div id="admQuarantineList">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Compliance Interception Audit Stream -->
+        <div class="glass-card">
+          <div class="card-title-row">
+            <span style="color:#EF4444;">🛡️ 전사 규제 인터셉트 감사 로그 (48건 차단)</span>
+            <span style="font-size:10px; color:#10B981;">실시간 방어</span>
+          </div>
+          <div id="admAuditStream" style="max-height:160px; overflow-y:auto; font-size:11px;">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Agent Telemetry Status -->
+        <div class="glass-card">
+          <div class="card-title-row">
+            <span style="color:#818CF8;">🤖 분산 에이전트 인프라 헬스체크</span>
+            <span style="font-size:10px; color:#10B981;">99.98% 정상</span>
+          </div>
+          <div id="admAgentHealthGrid" style="display:grid; grid-template-columns:1fr 1fr; gap:6px; font-size:11px;">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Toast Notification Box -->
+  <div id="globalToast" class="toast-box"></div>
+
+  <!-- Client JavaScript Logic -->
+  <script>
+    let currentMode = 'panoramic';
+    let currentTenantId = 'TENANT_001';
+    let globalOverviewData = null;
+    let currentTenantData = null;
+    let intelligenceData = null;
+    let currentServicePackage = null;
+
+    const isStaticDeploy = window.location.hostname.endsWith('github.io') || window.location.protocol === 'file:';
+
+    /* Embedded Comprehensive Database for GitHub Pages Static Deployment */
+    const MOCK_DB = {
+      tenants: {
+        'TENANT_001': {
+          tenant: {
+            tenant_id: 'TENANT_001',
+            business_name: '성수 아뜰리에 베이커리 & 카페',
+            owner_name: '김성수 대표',
+            subscription_tier: 'PRO',
+            monthly_fee_krw: 49000,
+            status: 'ACTIVE',
+            cumulative_revenue_generated_krw: 4320000,
+            total_campaigns_executed: 12,
+            domain: 'fnb',
+            business_state: {
+              location: '서울 성동구 성수동 핫플레이스 상권',
+              trigger_event: '오늘 오후 15시 비 예보 + 2시 이후 사워도우 조기 품절',
+              unit_price: 24000
+            }
+          },
+          live_plan: {
+            strategy: {
+              campaign_title: '☔ 가을비 타임어택 & 갓 구운 사워도우 사전 예약',
+              projected_revenue: 240000,
+              core_narrative: '오후 비 예보 대응 빵 포장 고객 대상 시그니처 음료 1+1 및 단골 리텐션'
+            },
+            channels: {
+              blog: {
+                body: "## [서울 성수동 핫플 카페거리 핫플] 가을 (추분 진입 1일 전) 분위기 가득한 '성수 아뜰리에 베이커리 & 카페' 솔직 후기\n\n**타깃 고객:** 2030 MZ세대, 빵지순례객, 반려견 동반족 | **상황:** 오늘 오후 15시 비 예보 + 2시 이후 사워도우 조기 품절\n\n### 💡 주요 핵심 안내 및 혜택\n- **핵심 차별점:** 프랑스 AOP 버터 100% 천연발효 사워도우 • 당일 생산 당일 소진 원칙\n- **스페셜 혜택:** 오후 방문 고객 대상 시그니처 음료 1+1 또는 포장 15% 할인"
+              }
+            },
+            all_compliant: true,
+            summary_financials: { financial_summary: "예상 창출액: +240,000원 | 투입비용: 0원 (ROI 무한대)" }
+          },
+          analytics: { roi_ratio: 44.1, total_campaigns: 12 },
+          recent_attributions: [
+            { campaign_name: '주말 브런치 사전예약 타임어택', generated_revenue_krw: 1200000, executed_at: '2026-10-04' },
+            { campaign_name: '가을 무화과 신메뉴 얼리버드 알림', generated_revenue_krw: 880000, executed_at: '2026-09-28' }
+          ],
+          recent_invoices: [
+            { invoice_id: 'INV-2026-10', billing_period: '2026년 10월', tier: 'PRO', amount_krw: 49000, status: '결제완료' }
+          ],
+          staged: [
+            {
+              campaign_id: 'CAMP-001',
+              campaign_title: '☔ 가을비 타임어택 & 갓 구운 사워도우 사전 예약',
+              trigger_event: '오늘 오후 15시 비 예보 + 2시 이후 사워도우 조기 품절',
+              target_persona: '2030 MZ세대 및 비 오는 날 성수동 카페 방문객',
+              recommended_channels: ['blog', 'social', 'direct'],
+              projected_revenue_krw: 240000,
+              status: 'STAGED'
+            }
+          ]
+        },
+        'TENANT_002': {
+          tenant: {
+            tenant_id: 'TENANT_002',
+            business_name: '강남 리엔 피부과의원',
+            owner_name: '이지현 대표원장',
+            subscription_tier: 'ENTERPRISE',
+            monthly_fee_krw: 199000,
+            status: 'ACTIVE',
+            cumulative_revenue_generated_krw: 26400000,
+            total_campaigns_executed: 18,
+            domain: 'medical',
+            business_state: {
+              location: '서울 강남구 신논현 오피스/뷰티 상권',
+              trigger_event: '오늘 16:30 의사 2원장 시술 예약 노쇼(취소) 1건 발생 + 보톡스 시술 90일 경과 환자 48명',
+              unit_price: 350000
+            }
+          },
+          live_plan: {
+            strategy: {
+              campaign_title: '🚨 [긴급 노쇼 슬롯] 당일 프라이빗 1:1 맞춤 안티에이징 리콜',
+              projected_revenue: 1500000,
+              core_narrative: '당일 긴급 빈 슬롯 발생 즉시 90일 주기 환자 프라이빗 1:1 진료 케어'
+            },
+            channels: {
+              blog: {
+                body: "## [강남 신논현 피부과 전문의] 가을철 무너진 피부 장벽 복구 및 안티에이징 맞춤 진료 가이드\n\n**대상:** 2545 직장인 및 프라이빗 1:1 진단 희망 고객\n\n### 💡 안심 진료 원칙\n- **의료법 제56조 준수:** 부작용 가능성 명시 및 과장·비방 광고 100% 차단\n- **당일 특별 예약 케어:** 1:1 전담 피부 진단 및 맞춤 진료 플랜 제공"
+              }
+            },
+            all_compliant: true,
+            summary_financials: { financial_summary: "예상 창출액: +1,500,000원 | ROI 66.3x" }
+          },
+          analytics: { roi_ratio: 66.3, total_campaigns: 18 },
+          recent_attributions: [
+            { campaign_name: '가을철 피부 장벽 케어 프로모션', generated_revenue_krw: 4500000, executed_at: '2026-10-02' }
+          ],
+          recent_invoices: [
+            { invoice_id: 'INV-2026-10', billing_period: '2026년 10월', tier: 'ENTERPRISE', amount_krw: 199000, status: '결제완료' }
+          ],
+          staged: [
+            {
+              campaign_id: 'CAMP-002',
+              campaign_title: '🚨 [긴급 노쇼 슬롯] 당일 프라이빗 1:1 맞춤 안티에이징 리콜',
+              trigger_event: '오늘 16:30 원장 시술 예약 노쇼 1건 발생 + 보톡스 리콜 48명',
+              target_persona: '2545 직장인 여성 및 주기 도래 고객',
+              recommended_channels: ['direct', 'blog'],
+              projected_revenue_krw: 1500000,
+              status: 'STAGED'
+            }
+          ]
+        },
+        'TENANT_003': {
+          tenant: {
+            tenant_id: 'TENANT_003',
+            business_name: '청담 아우라 헤어살롱',
+            owner_name: '박준우 원장',
+            subscription_tier: 'PRO',
+            monthly_fee_krw: 49000,
+            status: 'ACTIVE',
+            cumulative_revenue_generated_krw: 7800000,
+            total_campaigns_executed: 8,
+            domain: 'beauty',
+            business_state: {
+              location: '서울 강남구 청담동 명품거리 상권',
+              trigger_event: '주말 예약 95% 마감 및 평일 낮 유휴 슬롯 60% 감지',
+              unit_price: 120000
+            }
+          },
+          live_plan: {
+            strategy: {
+              campaign_title: '✨ 평일 모닝 펌 30% 타임특가 & 프리미엄 두피 스파',
+              projected_revenue: 380000,
+              core_narrative: '평일 유휴 시간대 고객 채우기 타임어택'
+            },
+            channels: {
+              blog: {
+                body: "## [청담 헤어살롱] 나만의 퍼스널 컬러와 가을맞이 스타일링\n\n평일 오전 예약 고객 대상 두피 스파 무료 케어 서비스 제공"
+              }
+            },
+            all_compliant: true,
+            summary_financials: { financial_summary: "예상 창출액: +380,000원 | ROI 39.8x" }
+          },
+          analytics: { roi_ratio: 39.8, total_campaigns: 8 },
+          recent_attributions: [],
+          recent_invoices: [],
+          staged: [
+            {
+              campaign_id: 'CAMP-003',
+              campaign_title: '✨ 평일 모닝 펌 30% 타임특가 & 프리미엄 두피 스파',
+              trigger_event: '평일 낮 유휴 슬롯 60% 감지',
+              target_persona: '청담/압구정 인근 직장인 및 프리랜서',
+              recommended_channels: ['instagram', 'kakaotalk'],
+              projected_revenue_krw: 380000,
+              status: 'STAGED'
+            }
+          ]
+        },
+        'TENANT_004': {
+          tenant: {
+            tenant_id: 'TENANT_004',
+            business_name: '플로우독 (FlowDoc) SaaS',
+            owner_name: '최진혁 파운더',
+            subscription_tier: 'PRO',
+            monthly_fee_krw: 49000,
+            status: 'ACTIVE',
+            cumulative_revenue_generated_krw: 16800000,
+            total_campaigns_executed: 24,
+            domain: 'saas',
+            business_state: {
+              location: '서울 테헤란로 판교 스타트업 밸리',
+              trigger_event: '경쟁사 가격 인상 공지 발표 후 검색 유입 400% 급증',
+              unit_price: 500000
+            }
+          },
+          live_plan: {
+            strategy: {
+              campaign_title: '🚀 경쟁사 마이그레이션 3개월 무상 지원 긴급 캠페인',
+              projected_revenue: 2400000,
+              core_narrative: '경쟁 툴 가격 인상 대응 즉각 데이터 이관 프로모션'
+            },
+            channels: {
+              blog: {
+                body: "## [B2B SaaS 비교] 팀 생산성을 2배로 올리는 올인원 문서 협업 플랫폼 FlowDoc 도입기"
+              }
+            },
+            all_compliant: true,
+            summary_financials: { financial_summary: "예상 창출액: +2,400,000원 | ROI 85.7x" }
+          },
+          analytics: { roi_ratio: 85.7, total_campaigns: 24 },
+          recent_attributions: [],
+          recent_invoices: [],
+          staged: [
+            {
+              campaign_id: 'CAMP-004',
+              campaign_title: '🚀 경쟁사 마이그레이션 3개월 무상 지원 긴급 캠페인',
+              trigger_event: '경쟁사 가격 인상 공지 발표 후 검색 유입 400% 급증',
+              target_persona: '스타트업 개발팀 및 PM/PO 리드',
+              recommended_channels: ['blog', 'linkedin', 'direct'],
+              projected_revenue_krw: 2400000,
+              status: 'STAGED'
+            }
+          ]
+        },
+        'TENANT_005': {
+          tenant: {
+            tenant_id: 'TENANT_005',
+            business_name: '대진정밀공업 (CNC·사출 가공)',
+            owner_name: '정대진 총괄전무',
+            subscription_tier: 'ENTERPRISE',
+            monthly_fee_krw: 199000,
+            status: 'ACTIVE',
+            cumulative_revenue_generated_krw: 90000000,
+            total_campaigns_executed: 45,
+            domain: 'manufacturing',
+            business_state: {
+              location: '경남 창원 국가산업단지 기계가공 클러스터',
+              trigger_event: '대기업 협력사 반기 부품 수시 입찰 공고 개시',
+              unit_price: 5000000
+            }
+          },
+          live_plan: {
+            strategy: {
+              campaign_title: '🏭 ISO 인증 5축 CNC 초정밀 가공 솔루션 기술 백서 배포',
+              projected_revenue: 15000000,
+              core_narrative: '오차범위 5마이크론 이내 보장 및 즉각 RFQ 견적 시스템'
+            },
+            channels: {
+              blog: {
+                body: "## [정밀가공 기술 백서] 항공·방산·반도체 부품 신뢰성 검증 가이드라인"
+              }
+            },
+            all_compliant: true,
+            summary_financials: { financial_summary: "예상 창출액: +15,000,000원 | ROI 226.1x" }
+          },
+          analytics: { roi_ratio: 226.1, total_campaigns: 45 },
+          recent_attributions: [],
+          recent_invoices: [],
+          staged: [
+            {
+              campaign_id: 'CAMP-005',
+              campaign_title: '🏭 ISO 인증 5축 CNC 초정밀 가공 솔루션 기술 백서 배포',
+              trigger_event: '대기업 협력사 반기 부품 수시 입찰 공고 개시',
+              target_persona: '대기업 구매팀 및 설계 엔지니어',
+              recommended_channels: ['whitepaper', 'direct_rfq'],
+              projected_revenue_krw: 15000000,
+              status: 'STAGED'
+            }
+          ]
+        }
+      },
+      admin: {
+        kpis: {
+          total_active_tenants: 5,
+          system_uptime_percent: 99.98,
+          total_mrr_krw: 545000,
+          total_platform_value_krw: 145320000,
+          average_roi_multiplier: 44.5,
+          agent_worker_status: {
+            '6D Sensing Engine': 'ONLINE (0.4s)',
+            'Multi-Channel Dispatcher': 'ONLINE (0.6s)',
+            'Compliance Quarantine': 'PROTECTED (100%)',
+            'Financial Ledger': 'SYNCHRONIZED'
+          }
+        },
+        quarantine: [
+          {
+            item_id: 'Q_101',
+            tenant_id: 'TENANT_002',
+            business_name: '강남 리엔 피부과의원',
+            domain: 'medical',
+            risk_level: 'HIGH',
+            violation_reason: '의료법 제56조 위반 위험 표현 (부작용 전혀 없음 및 100% 리프팅 완치 보장)',
+            rule_authority: '의료법 제56조 및 보건복지부 심의 가이드라인',
+            flagged_copy: '환절기 무너진 피부 장벽, 부작용 전혀 없음 및 100% 리프팅 완치 보장으로 해결해 드립니다.',
+            recommended_sanitized: '개인 맞춤형 진단을 통해 안전성을 검증하고 부작용 가능성을 최소화한 리프팅 시술입니다.',
+            status: 'PENDING'
+          },
+          {
+            item_id: 'Q_102',
+            tenant_id: 'TENANT_004',
+            business_name: '플로우독 (FlowDoc)',
+            domain: 'saas',
+            risk_level: 'MEDIUM',
+            violation_reason: '공정위 표시광고법 위반 의심 (업계 1위 유일무이 완벽 협업툴)',
+            rule_authority: '공정거래위원회 표시광고법 제3조',
+            flagged_copy: '국내 유일무이 1위, 다른 어떤 툴도 따라올 수 없는 완벽한 문서 협업툴 FlowDoc',
+            recommended_sanitized: '실시간 동시 편집과 99.9% 가동률을 자랑하는 차세대 올인원 협업 솔루션 FlowDoc',
+            status: 'PENDING'
+          }
+        ],
+        audit_logs: [
+          { domain: 'medical', business_name: '강남 리엔 피부과의원', timestamp: '2026-10-08 02:15', intercepted_term: '부작용 0% 완치 보장', sanitized_to: '안전성 검증 맞춤 케어', rule_category: '의료법 제56조' },
+          { domain: 'saas', business_name: '플로우독 SaaS', timestamp: '2026-10-08 01:40', intercepted_term: '국내 유일 1위 무결점', sanitized_to: '실시간 고가용성 협업툴', rule_category: '표시광고법 제3조' },
+          { domain: 'fnb', business_name: '성수 베이커리', timestamp: '2026-10-07 19:20', intercepted_term: '최저가 보장 안 사면 손해', sanitized_to: '타임특가 깜짝 혜택', rule_category: '부당고객유인 방지' }
+        ]
+      },
+      intelligence: {
+        flash_booster: {
+          trigger_reason: '오늘 오후 15시 비 예보 ➔ 워크인 손님 35% 감소 예상',
+          offer_headline: '☔ [비 오는 날 깜짝 번개] 빵 포장 시 라떼 1+1!',
+          action_benefit: '오후 14:00~17:00 방문/포장 고객에게 시그니처 오트라떼 무료 증정',
+          projected_revenue: '예상 추가 매출: +360,000원',
+          time_limit: '3시간 한정',
+          target_audience: '인근 거주자 및 단골 고객 580명'
+        },
+        competitors: [
+          { competitor_name: 'B카페 성수점', distance: '250m (도보 3분)', recent_move: '가을 신메뉴 쿠키 출시', customer_weakness: '너무 달고 느끼하다, 자리가 좁다', counter_strategy: '담백한 프랑스 AOP 천연발효 사워도우와 넓은 테라스 부각' },
+          { competitor_name: 'M베이커리', distance: '400m (도보 5분)', recent_move: '저가 아메리카노 할인', customer_weakness: '원두 산미에 대한 호불호 및 주문 대기 15분 이상', counter_strategy: '치킨게임에 휘말리지 않고 빵+음료 세트 50% 얼리버드로 객단가 방어' },
+          { competitor_name: 'C디저트랩', distance: '650m (도보 8분)', recent_move: '배달 플랫폼 입점', customer_weakness: '포장 배달 시 디저트 모양 붕괴 불만 3건', counter_strategy: '안전하고 꼼꼼한 친환경 패키징 및 당일 생산 당일 폐기 원칙 강조' }
+        ],
+        ranking_diagnosis: {
+          current_naver_rank: 4,
+          missing_keywords: ['성수 애견동반 브런치', '글루텐프리 사워도우'],
+          action_prescription: "현재 4위에서 1위로 올라서려면 '반려동물 동반', 'AOP 버터' 방문자 영수증 리뷰 5건이 필요합니다."
+        }
+      }
+    };
+
+    /* Dual-Mode API Fetch Handler */
+    async function apiFetch(url, options = {}) {
+      if (!isStaticDeploy) {
+        try {
+          const res = await fetch(url, options);
+          if (res.ok) return await res.json();
+        } catch (e) {
+          console.warn('API fetch failed, falling back to static database:', e);
+        }
+      }
+      return resolveMockApi(url, options);
+    }
+
+    function resolveMockApi(url, options) {
+      if (url.startsWith('/api/tenant/')) {
+        const id = url.split('/')[3];
+        const t = MOCK_DB.tenants[id] || MOCK_DB.tenants['TENANT_001'];
+        return JSON.parse(JSON.stringify(t));
+      }
+      if (url.includes('/staged-campaigns')) {
+        const id = url.split('/')[4];
+        const t = MOCK_DB.tenants[id] || MOCK_DB.tenants['TENANT_001'];
+        return { campaigns: t.staged || [] };
+      }
+      if (url.includes('/approve')) {
+        const campId = url.split('/')[5];
+        for (const tKey in MOCK_DB.tenants) {
+          const t = MOCK_DB.tenants[tKey];
+          const c = (t.staged || []).find(x => x.campaign_id === campId);
+          if (c) {
+            c.status = 'APPROVED';
+            c.approved_at = new Date().toISOString().replace('T', ' ').slice(0, 19);
+            c.executed_channels = c.recommended_channels;
+            t.tenant.cumulative_revenue_generated_krw += c.projected_revenue_krw;
+            t.tenant.total_campaigns_executed += 1;
+            t.analytics.total_campaigns = t.tenant.total_campaigns_executed;
+            t.analytics.roi_ratio = (t.tenant.cumulative_revenue_generated_krw / (t.tenant.monthly_fee_krw * 2)).toFixed(1);
+            MOCK_DB.admin.kpis.total_platform_value_krw += c.projected_revenue_krw;
+            return { status: 'SUCCESS', message: `'${c.campaign_title}' 캠페인이 성공적으로 승인 및 송출되었습니다!` };
+          }
+        }
+        return { status: 'SUCCESS', message: '캠페인이 성공적으로 승인 및 송출되었습니다.' };
+      }
+      if (url.includes('/reject')) {
+        const campId = url.split('/')[5];
+        for (const tKey in MOCK_DB.tenants) {
+          const t = MOCK_DB.tenants[tKey];
+          const c = (t.staged || []).find(x => x.campaign_id === campId);
+          if (c) {
+            c.status = 'REJECTED';
+            return { status: 'SUCCESS', message: '캠페인이 안전하게 반려되었습니다.' };
+          }
+        }
+        return { status: 'SUCCESS', message: '반려되었습니다.' };
+      }
+      if (url === '/api/admin/overview') {
+        const list = Object.values(MOCK_DB.tenants).map(x => x.tenant);
+        return {
+          kpis: MOCK_DB.admin.kpis,
+          tenants: list,
+          audit_logs: MOCK_DB.admin.audit_logs
+        };
+      }
+      if (url === '/api/v1/admin/quarantine') {
+        return { items: MOCK_DB.admin.quarantine };
+      }
+      if (url.includes('/quarantine/') && url.includes('/resolve')) {
+        const itemId = url.split('/')[5];
+        const body = JSON.parse(options.body || '{}');
+        const q = MOCK_DB.admin.quarantine.find(x => x.item_id === itemId);
+        if (q) {
+          q.status = body.decision === 'APPROVED_BY_ADMIN' ? 'APPROVED' : 'REJECTED';
+          q.admin_reviewer = '플랫폼 총괄 법무팀';
+        }
+        return { status: 'SUCCESS', message: `[${itemId}] 심의가 ${body.decision === 'APPROVED_BY_ADMIN' ? '조건부 승인' : '영구 반려'}되었습니다.` };
+      }
+      if (url === '/api/admin/tenant/status') {
+        const body = JSON.parse(options.body || '{}');
+        const t = MOCK_DB.tenants[body.tenant_id];
+        if (t) t.tenant.status = body.status;
+        return { status: 'SUCCESS' };
+      }
+      if (url === '/api/intelligence') {
+        return MOCK_DB.intelligence;
+      }
+      if (url.startsWith('/api/current-package')) {
+        return {
+          store_profile: MOCK_DB.tenants['TENANT_001'].tenant,
+          channels: {
+            naver_blog: { body: MOCK_DB.tenants['TENANT_001'].live_plan.channels.blog.body }
+          }
+        };
+      }
+      return {};
+    }
+
+    function showToast(msg) {
+      const box = document.getElementById('globalToast');
+      box.innerText = msg;
+      box.style.display = 'block';
+      setTimeout(() => { box.style.display = 'none'; }, 4000);
+    }
+
+    /* View Mode Switching */
+    function switchViewMode(mode) {
+      currentMode = mode;
+      document.getElementById('modeBtnPanoramic').classList.toggle('active', mode === 'panoramic');
+      document.getElementById('modeBtnTenant').classList.toggle('active', mode === 'tenant');
+      document.getElementById('modeBtnAdmin').classList.toggle('active', mode === 'admin');
+      document.getElementById('modeBtnService').classList.toggle('active', mode === 'service');
+
+      const grid = document.getElementById('mainContentGrid');
+      const colS = document.getElementById('colService');
+      const colT = document.getElementById('colTenant');
+      const colA = document.getElementById('colAdmin');
+
+      if (mode === 'panoramic') {
+        grid.style.display = 'grid';
+        grid.style.gridTemplateColumns = 'repeat(3, minmax(0, 1fr))';
+        colS.style.display = 'block';
+        colT.style.display = 'block';
+        colA.style.display = 'block';
+      } else if (mode === 'tenant') {
+        grid.style.display = 'block';
+        colS.style.display = 'none';
+        colT.style.display = 'block';
+        colA.style.display = 'none';
+      } else if (mode === 'admin') {
+        grid.style.display = 'block';
+        colS.style.display = 'none';
+        colT.style.display = 'none';
+        colA.style.display = 'block';
+      } else if (mode === 'service') {
+        grid.style.display = 'block';
+        colS.style.display = 'block';
+        colT.style.display = 'none';
+        colA.style.display = 'none';
+      }
+    }
+
+    /* Switch Active Tenant Across All 3 Pillars */
+    async function switchTenant(tenantId) {
+      currentTenantId = tenantId;
+      document.querySelectorAll('.tenant-quick-btn').forEach(b => b.classList.remove('active'));
+      const activeBtn = document.getElementById('qBtn_' + tenantId);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      try {
+        currentTenantData = await apiFetch(`/api/tenant/${tenantId}`);
+        renderTenantColumn(currentTenantData);
+        updateServiceMatrixForTenant(currentTenantData.tenant);
+        showToast(`🏢 [${currentTenantData.tenant.business_name}] 테넌트 데이터가 3대 솔루션에 동기화되었습니다.`);
+      } catch (e) {
+        console.error('Tenant fetch error:', e);
+      }
+    }
+
+    /* Render Pillar 2: Tenant Cockpit */
+    function renderTenantColumn(data) {
+      const t = data.tenant;
+      const plan = data.live_plan;
+      const ana = data.analytics;
+
+      document.getElementById('tMainTitle').innerText = t.business_name;
+      document.getElementById('tMainSub').innerText = `${t.owner_name} · ${t.business_state.location} · 실시간 매출 기여도 및 승인 관제`;
+      
+      const planBadge = document.getElementById('tPlanBadgeTop');
+      planBadge.innerText = `${t.subscription_tier} 플랜 (${t.monthly_fee_krw.toLocaleString()}원/월)`;
+      planBadge.className = (t.subscription_tier === 'ENTERPRISE') ? 'tag-enterprise' : 'tag-pro';
+
+      const statusDot = document.getElementById('tStatusDotTop');
+      statusDot.innerText = (t.status === 'ACTIVE') ? '● 정상 구독 중' : '⏸️ 구독 일시정지';
+      statusDot.style.color = (t.status === 'ACTIVE') ? '#10B981' : '#EF4444';
+
+      document.getElementById('wtpRevenueDisplay').innerText = `+₩${t.cumulative_revenue_generated_krw.toLocaleString()}`;
+      document.getElementById('wtpRoiDisplay').innerText = `월 구독료 ${t.monthly_fee_krw.toLocaleString()}원 대비 순이익 ROI ${ana.roi_ratio}배 달성 (캠페인 ${ana.total_campaigns}회 집행)`;
+
+      // Render Mobile Inner Preview
+      renderPhoneMockup(t, plan);
+
+      // Load Staged Campaigns
+      loadStagedDesk(t.tenant_id);
+
+      // Render Ledger & Invoices
+      renderAttributionLedger(data.recent_attributions || []);
+      renderInvoices(data.recent_invoices || []);
+    }
+
+    /* Render Staged Campaigns in Pillar 2 */
+    async function loadStagedDesk(tenantId) {
+      try {
+        const data = await apiFetch(`/api/v1/tenant/${tenantId}/staged-campaigns`);
+        const camps = data.campaigns || [];
+        const pending = camps.filter(c => c.status === 'STAGED');
+        document.getElementById('stagedDeskBadge').innerText = `대기 ${pending.length}건`;
+
+        let html = '';
+        if (camps.length === 0) {
+          html = '<div style="color:var(--text-muted); font-size:11px; padding:8px;">대기 중인 캠페인이 없습니다.</div>';
+        } else {
+          camps.forEach(c => {
+            const isPending = c.status === 'STAGED';
+            html += `
+              <div class="staged-box ${isPending ? 'pending' : ''}">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <b style="font-size:12px; color:#FFF;">[${c.campaign_id}] ${c.campaign_title}</b>
+                  <span style="background:${isPending ? '#6366F1' : '#10B981'}; color:#FFF; font-size:10px; font-weight:800; padding:2px 6px; border-radius:4px;">${c.status}</span>
+                </div>
+                <div class="staged-trigger-badge">⚡ 감지 트리거: ${c.trigger_event}</div>
+                <div style="font-size:11px; color:#94A3B8; margin-bottom:8px;">
+                  타깃: ${c.target_persona} · 추천 채널: ${c.recommended_channels.join(', ')} · 추정 매출: <b style="color:#FEF08A;">+${c.projected_revenue_krw.toLocaleString()}원</b>
+                </div>
+                ${isPending ? `
+                  <div style="display:flex; gap:6px;">
+                    <button class="btn-approve" style="padding:8px 12px; font-size:11px;" onclick="approveStaged('${c.campaign_id}')">⚡ 원클릭 승인 및 3대 채널 송출</button>
+                    <button class="btn-reject" onclick="rejectStaged('${c.campaign_id}')">🚫 반려</button>
+                  </div>
+                ` : `
+                  <div style="font-size:10px; color:#34D399; font-weight:700;">✅ 송출 완료: ${c.approved_at} (${c.executed_channels.join(', ')})</div>
+                `}
+              </div>
+            `;
+          });
+        }
+        document.getElementById('stagedDeskList').innerHTML = html;
+      } catch(e) {
+        console.error(e);
+      }
+    }
+
+    async function approveStaged(campId) {
+      try {
+        const r = await apiFetch(`/api/v1/tenant/campaign/${campId}/approve`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({})
+        });
+        showToast(`🎉 [원클릭 승인 완료] ${r.message}`);
+        switchTenant(currentTenantId);
+        loadAdminWarRoom();
+      } catch(e) {
+        alert('승인 오류: ' + e.message);
+      }
+    }
+
+    async function rejectStaged(campId) {
+      try {
+        await apiFetch(`/api/v1/tenant/campaign/${campId}/reject`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ reason: '사업주 수동 반려' })
+        });
+        showToast('🚫 캠페인이 안전하게 반려되었습니다.');
+        switchTenant(currentTenantId);
+      } catch(e) {
+        alert('반려 오류: ' + e.message);
+      }
+    }
+
+    function renderPhoneMockup(tenant, plan) {
+      document.getElementById('screenDeviceTag').innerText = `[${tenant.subscription_tier}] ${plan.strategy.campaign_title.slice(0, 18)}...`;
+      const bodyText = (plan.channels.blog && plan.channels.blog.body) || '작성된 캠페인이 없습니다.';
+      
+      let html = `
+        <div style="background:#EEF2FF; border:1px solid #C7D2FE; padding:8px 10px; border-radius:6px; margin-bottom:10px; font-size:11px; color:#3730A3;">
+          <b>🎯 실시간 실행 전략:</b> ${plan.strategy.campaign_title}
+        </div>
+        <div style="font-size:12px; line-height:1.6; color:#1E293B;">
+          ${renderMarkdown(bodyText)}
+        </div>
+        <div style="margin-top:12px; background:#F0FDF4; border:1px solid #BBF7D0; padding:8px; border-radius:6px; font-size:10px; color:#166534;">
+          <b>규제 안전성:</b> ${plan.all_compliant ? '✅ 전 채널 규제 검사 100% 통과' : '⚠️ 수동 검토 필요'}
+        </div>
+      `;
+      document.getElementById('screenDeviceBody').innerHTML = html;
+    }
+
+    function approveCurrentCampaignFromPhone() {
+      showToast(`🎉 [스마트폰 즉시 승인] '${currentTenantData?.tenant.business_name}' 캠페인이 카카오톡/인스타/네이버로 일제히 송출되었습니다!`);
+    }
+
+    function renderAttributionLedger(items) {
+      let html = '';
+      if (!items || items.length === 0) {
+        html = '<div style="color:var(--text-muted); padding:4px;">매출 귀속 내역 로딩 중...</div>';
+      } else {
+        items.forEach(a => {
+          html += `
+            <div style="display:flex; justify-content:space-between; background:#0F172A; padding:6px 10px; border-radius:6px; margin-bottom:4px;">
+              <div><b>${a.campaign_name}</b> <span style="color:#94A3B8; font-size:10px;">(${a.executed_at})</span></div>
+              <div style="color:#34D399; font-weight:800;">+${a.generated_revenue_krw.toLocaleString()}원</div>
+            </div>
+          `;
+        });
+      }
+      document.getElementById('tenantAttributionList').innerHTML = html;
+    }
+
+    function renderInvoices(invoices) {
+      let html = '';
+      if (!invoices || invoices.length === 0) {
+        html = '<div style="color:var(--text-muted); padding:4px;">최근 인보이스 없음</div>';
+      } else {
+        invoices.forEach(inv => {
+          html += `
+            <div style="display:flex; justify-content:space-between; font-size:10px; color:#94A3B8; margin-top:2px;">
+              <span>🧾 ${inv.invoice_id} (${inv.billing_period})</span>
+              <span style="color:#FEF08A; font-weight:700;">${inv.amount_krw.toLocaleString()}원 · ${inv.status}</span>
+            </div>
+          `;
+        });
+      }
+      document.getElementById('tenantInvoiceMiniList').innerHTML = html;
+    }
+
+    /* Update Service Matrix based on selected tenant */
+    function updateServiceMatrixForTenant(t) {
+      if (!t) return;
+      document.getElementById('mSit').innerText = t.business_state.trigger_event || '정상 가동';
+      document.getElementById('mReg').innerText = t.business_state.location || '서울 성수동';
+    }
+
+    /* Render Pillar 3: Master Admin War Room */
+    async function loadAdminWarRoom() {
+      try {
+        globalOverviewData = await apiFetch('/api/admin/overview');
+        const kpis = globalOverviewData.kpis;
+        const tenants = globalOverviewData.tenants;
+
+        document.getElementById('admKpiTenants').innerText = `${kpis.total_active_tenants}개사 (${kpis.system_uptime_percent}%)`;
+        document.getElementById('admKpiMrr').innerText = `₩${kpis.total_mrr_krw.toLocaleString()}`;
+        document.getElementById('admKpiValue').innerText = `+₩${(kpis.total_platform_value_krw / 1000000).toFixed(1)}M`;
+        document.getElementById('admKpiRoi').innerText = `${kpis.average_roi_multiplier}배`;
+
+        // Render Fleet Table
+        let fHtml = '';
+        tenants.forEach(t => {
+          const isAct = t.status === 'ACTIVE';
+          fHtml += `
+            <tr>
+              <td><b>${t.business_name}</b><br><span style="color:#94A3B8; font-size:10px;">${t.owner_name}</span></td>
+              <td><span class="${t.subscription_tier === 'ENTERPRISE' ? 'tag-enterprise' : 'tag-pro'}">${t.subscription_tier}</span></td>
+              <td><span class="${isAct ? 'tag-active' : 'tag-paused'}">${t.status}</span></td>
+              <td style="color:#FEF08A; font-weight:700;">+₩${(t.cumulative_revenue_generated_krw / 10000).toFixed(0)}만</td>
+              <td>
+                <button class="btn-reject" style="font-size:10px; padding:3px 6px;" onclick="toggleFleetStatus('${t.tenant_id}', '${t.status}')">${isAct ? '일시정지' : '활성'}</button>
+              </td>
+            </tr>
+          `;
+        });
+        document.getElementById('fleetTableBody').innerHTML = fHtml;
+
+        // Load Quarantine Queue
+        loadAdminQuarantine();
+
+        // Load Interception Audit Stream
+        let lHtml = '';
+        globalOverviewData.audit_logs.forEach(log => {
+          lHtml += `
+            <div style="background:#0F172A; padding:6px 8px; border-radius:6px; margin-bottom:4px; border-left:2px solid #EF4444;">
+              <div style="display:flex; justify-content:space-between; color:#FCA5A5; font-size:10px;">
+                <b>[${log.domain.toUpperCase()}] ${log.business_name}</b>
+                <span style="color:#94A3B8;">${log.timestamp}</span>
+              </div>
+              <div style="color:#FFF; font-size:11px;">
+                차단: <span style="text-decoration:line-through; color:#EF4444;">${log.intercepted_term}</span> ➔ <span style="color:#34D399;">${log.sanitized_to}</span>
+              </div>
+            </div>
+          `;
+        });
+        document.getElementById('admAuditStream').innerHTML = lHtml;
+
+        // Render Agent Health
+        let hHtml = '';
+        for (const [worker, stat] of Object.entries(kpis.agent_worker_status)) {
+          hHtml += `
+            <div style="background:#0F172A; border:1px solid var(--card-border); padding:6px 8px; border-radius:6px;">
+              <span style="color:#A5B4FC; font-weight:700;">${worker}:</span> <span style="color:#34D399;">${stat}</span>
+            </div>
+          `;
+        }
+        document.getElementById('admAgentHealthGrid').innerHTML = hHtml;
+
+      } catch(e) {
+        console.error('Admin overview error:', e);
+      }
+    }
+
+    async function toggleFleetStatus(tenantId, currentStatus) {
+      const newStatus = (currentStatus === 'ACTIVE') ? 'PAUSED' : 'ACTIVE';
+      await apiFetch('/api/admin/tenant/status', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tenant_id: tenantId, status: newStatus })
+      });
+      showToast(`🏢 테넌트 [${tenantId}] 상태가 '${newStatus}'로 전환되었습니다.`);
+      loadAdminWarRoom();
+      if (tenantId === currentTenantId) switchTenant(currentTenantId);
+    }
+
+    /* Compliance Quarantine Queue in Admin */
+    async function loadAdminQuarantine() {
+      try {
+        const data = await apiFetch('/api/v1/admin/quarantine');
+        const items = data.items || [];
+        const pending = items.filter(i => i.status === 'PENDING');
+        document.getElementById('admQuarantineBadge').innerText = `대기 ${pending.length}건`;
+
+        let qHtml = '';
+        if (items.length === 0) {
+          qHtml = '<div style="color:var(--text-muted); font-size:11px; padding:6px;">격리 대기 항목 없음.</div>';
+        } else {
+          items.forEach(q => {
+            const isPending = q.status === 'PENDING';
+            qHtml += `
+              <div style="background:#0F172A; border:1px solid ${isPending ? 'rgba(239,68,68,0.5)' : 'var(--card-border)'}; border-radius:8px; padding:8px 10px; margin-bottom:6px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px;">
+                  <b style="color:#FFF; font-size:11px;">[${q.item_id}] ${q.business_name}</b>
+                  <span style="background:${isPending ? '#EF4444' : '#10B981'}; color:#FFF; font-size:9px; font-weight:800; padding:1px 5px; border-radius:3px;">${q.status}</span>
+                </div>
+                <div style="color:#FCA5A5; font-size:10px; margin-bottom:4px;">위반: ${q.violation_reason} (${q.rule_authority})</div>
+                <div style="background:#131B2E; padding:4px 6px; border-radius:4px; font-size:10px; margin-bottom:6px;">
+                  <div style="color:#EF4444;">❌ "${q.flagged_copy}"</div>
+                  <div style="color:#34D399;">✨ 권고안: "${q.recommended_sanitized}"</div>
+                </div>
+                ${isPending ? `
+                  <div style="display:flex; gap:4px;">
+                    <button class="btn-approve" style="padding:4px 8px; font-size:10px; background:#10B981;" onclick="resolveQuarantine('${q.item_id}', 'APPROVED_BY_ADMIN')">✅ 수정안 조건부 승인</button>
+                    <button class="btn-reject" style="font-size:10px; padding:4px 8px;" onclick="resolveQuarantine('${q.item_id}', 'REJECTED')">🚫 영구 차단</button>
+                  </div>
+                ` : `
+                  <div style="color:#94A3B8; font-size:10px;">심의 완료: ${q.admin_reviewer}</div>
+                `}
+              </div>
+            `;
+          });
+        }
+        document.getElementById('admQuarantineList').innerHTML = qHtml;
+      } catch(e) {
+        console.error(e);
+      }
+    }
+
+    async function resolveQuarantine(itemId, decision) {
+      try {
+        const d = await apiFetch(`/api/v1/admin/quarantine/${itemId}/resolve`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ decision, reviewer: '플랫폼 총괄 법무팀', notes: '긴급 HITL 심의 승인' })
+        });
+        showToast(`⚖️ ${d.message}`);
+        loadAdminQuarantine();
+      } catch(e) {
+        alert('심의 오류: ' + e.message);
+      }
+    }
+
+    /* Pillar 1: Service Engine Operations */
+    async function loadServiceEngineData() {
+      try {
+        intelligenceData = await apiFetch('/api/intelligence');
+
+        // Populate Competitors
+        let cHtml = '';
+        intelligenceData.competitors.forEach(c => {
+          cHtml += `
+            <div style="background:#0F172A; border:1px solid var(--card-border); padding:8px 10px; border-radius:8px; margin-bottom:6px;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:2px;">
+                <b>${c.competitor_name}</b>
+                <span style="color:#94A3B8; font-size:10px;">${c.distance}</span>
+              </div>
+              <div style="color:#FCA5A5; font-size:10px;">약점: ${c.customer_weakness}</div>
+              <div style="color:#86EFAC; font-size:10px; font-weight:700;">🎯 역공 전략: ${c.counter_strategy}</div>
+            </div>
+          `;
+        });
+        document.getElementById('competitorMiniList').innerHTML = cHtml;
+
+        // Package data
+        currentServicePackage = await apiFetch('/api/current-package?tone=MZ_TREND');
+      } catch(e) {
+        console.error(e);
+      }
+    }
+
+    function executeFlashAttack() {
+      showToast('⚡ [기습 매출 타임어택] 카카오톡 친구 580명에게 깜짝 1+1 쿠폰이 즉시 전송되었습니다!');
+    }
+
+    function executeRankMission() {
+      showToast('🚀 [네이버 스마트플레이스 1위] 결제 고객 대상 영수증 리뷰 유도 이벤트가 시작되었습니다!');
+    }
+
+    function simulateCrisisQuick() {
+      showToast('🛡️ [별점 1점 위기대응] 악성 리뷰에 대해 정중 사과 및 프로세스 개선 3단 답글이 안전하게 준비되었습니다.');
+    }
+
+    function renderMarkdown(md) {
+      if (!md) return '';
+      let html = md;
+      html = html.replace(/^#\s+(.+)$/gm, '<h3 style="font-size:14px; font-weight:800; margin:6px 0;">$1</h3>');
+      html = html.replace(/^##\s+(.+)$/gm, '<h4 style="font-size:12px; font-weight:700; margin:4px 0;">$1</h4>');
+      html = html.replace(/^---$/gm, '<hr style="border:none; height:1px; background:#E2E8F0; margin:8px 0;">');
+      html = html.replace(/^>\s+(.+)$/gm, '<blockquote style="border-left:3px solid #6366F1; padding-left:8px; color:#475569; margin:6px 0;">$1</blockquote>');
+      html = html.replace(/\*\*([^\*]+)\*\*/g, '<strong>$1</strong>');
+      html = html.replace(/^[-*]\s+(.+)$/gm, '<li>$1</li>');
+      html = html.replace(/(<li>[\s\S]*?<\/li>(\n)?)+/g, '<ul style="padding-left:14px; margin:4px 0;">$&</ul>');
+      html = html.split('\n\n').map(b => {
+        if (b.startsWith('<h') || b.startsWith('<ul') || b.startsWith('<block') || b.startsWith('<hr')) return b;
+        return '<p style="margin-bottom:6px;">' + b.replace(/\n/g, '<br>') + '</p>';
+      }).join('\n');
+      return html;
+    }
+
+    /* Initialize Master Portal */
+    window.onload = function() {
+      switchTenant('TENANT_001');
+      loadAdminWarRoom();
+      loadServiceEngineData();
+    };
+</script>
+</body>
+</html>

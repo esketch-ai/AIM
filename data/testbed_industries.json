@@ -1,0 +1,149 @@
+{
+  "industries": {
+    "fnb_cafe": {
+      "id": "fnb_cafe",
+      "industry_type": "F&B / 디저트 카페",
+      "name": "성수 아뜰리에 베이커리 & 카페",
+      "location": "서울 성동구 성수동 핫플레이스 상권",
+      "target_audience": "2030 MZ세대, 빵지순례객, 반려견 동반족",
+      "core_usps": [
+        "프랑스 AOP 버터 100% 천연발효 사워도우",
+        "당일 생산 당일 소진 원칙",
+        "반려동물 동반 가능 야외 테라스"
+      ],
+      "current_pain_or_event": "오늘 오후 15시 비 예보 + 2시 이후 사워도우 조기 품절",
+      "context_6d": {
+        "era": "2026 헬시플레저 & 도파민 당충전 트렌드",
+        "situation": "수요일 오후 15시 가을비 예보",
+        "season": "가을 무화과 & 밤 시즌",
+        "generation": "2030 MZ 트렌드",
+        "region": "성수동 핫플 카페거리",
+        "milestone": "커플 100일 기념 데이트"
+      },
+      "simulated_actions": {
+        "action_title": "☔ 가을비 타임어택 & 100일 기념 프라이빗 테라스 예약",
+        "channel_1_blog": "# [성수 핫플] 가을비 내리는 날 혈중 버터 농도 완충! 성수 아뜰리에 솔직 털이\n\n오후 2시면 품절되는 겉바속촉 폼 미친 사워도우 영접하고 옴;; 비 오는 날 포장 시 오트라떼 1+1 쿠폰 필수 챙기기!",
+        "channel_2_insta": "🚨 빵순이들 비상: 가을비 내릴 땐 따끈한 사워도우에 라떼 1+1 조합 국룰 ☕🌧️ [무화과 사워도우] 폼 미쳤음;; 테라스 댕댕이존 예약 오픈 🐶🤍",
+        "channel_3_direct": "📢 [비 오는 날 깜짝 번개] 오늘 14~17시 포장 고객 라떼 1+1 쿠폰 도착! 빈 테이블 12석 방어 ➔ 예상 추가 매출 +360,000원",
+        "compliance_check": "✅ 표시광고법 100% 통과 (과장/허위 표현 0건)",
+        "expected_roi": "오늘 예상 추가 매출: +360,000원 (집행 비용 0원, 알림톡 2만 원 소요)"
+      }
+    },
+    "medical_derma": {
+      "id": "medical_derma",
+      "industry_type": "메디컬 / 피부과·에스테틱",
+      "name": "강남 리엔 피부과의원",
+      "location": "서울 강남구 신논현 오피스/뷰티 상권",
+      "target_audience": "2545 직장인 여성, 예비 신부, 리프팅 주기 도래 고객",
+      "core_usps": [
+        "피부과 전문의 1:1 맞춤 진단",
+        "정품 정량 100% 현장 개봉 원칙",
+        "프라이빗 1인 관리실 완비"
+      ],
+      "current_pain_or_event": "오늘 16:30 의사 2원장 시술 예약 노쇼(취소) 1건 발생 + 보톡스 시술 90일 경과 환자 48명",
+      "context_6d": {
+        "era": "슬로우 에이징 & 자연스러운 웰에이징 트렌드",
+        "situation": "평일 오후 노쇼 발생으로 인한 고정비 손실 위기",
+        "season": "가을철 환절기 건조/탄력 저하 시즌",
+        "generation": "3040 전문직 여성",
+        "region": "강남 오피스/역세권",
+        "milestone": "결혼 D-60 웨딩 케어 & 보톡스 90일 리콜 주기"
+      },
+      "simulated_actions": {
+        "action_title": "🛡️ 의료법 제56조 철통 가드레일 & 90일 골든타임 리콜",
+        "channel_1_blog": "# [강남 피부과 전문의 칼럼] 환절기 무너진 피부 장벽, 리프팅 시술 주기가 중요한 이유\n\n무리한 과잉 시술보다 정품·정량을 통한 개인 맞춤형 플랜이 필수적입니다. (의료법 제56조 준수, 개인별 멍/붓기 부작용 고지 포함)",
+        "channel_2_insta": "건조한 환절기, 피부 탄력 지키는 골든타임 🌿 피부과 전문의 1:1 진단으로 완성하는 프라이빗 웰에이징 케어. (심의필 번호 자동 표기)",
+        "channel_3_direct": "💌 [골든타임 케어] 고객님, 지난 보톡스 시술 후 90일이 경과하여 효과 유지를 위한 정기 점검 시점입니다. (당일 잔여 1슬롯 우선 예약 가능)",
+        "compliance_check": "🛡️ 의료법 제56조 100% 필터링 완료 (완치/100% 보장 등 금지어 차단 및 부작용 문구 자동 삽입)",
+        "expected_roi": "노쇼 1슬롯 재예약(25만원) + 90일 리콜 8건 전환 ➔ 예상 매출 +2,200,000원"
+      }
+    },
+    "beauty_salon": {
+      "id": "beauty_salon",
+      "industry_type": "뷰티 / 헤어살롱",
+      "name": "청담 아우라 헤어살롱",
+      "location": "서울 강남구 청담동 럭셔리 뷰티 상권",
+      "target_audience": "2040 트렌드세터, 컷트 4주/염색 8주 도래 단골",
+      "core_usps": [
+        "퍼스널 컬러 & 얼굴형 분석 1:1 맞춤 컨설팅",
+        "프리미엄 비건 헤어 케어 라인 사용",
+        "단독 샴푸 스파 룸 구비"
+      ],
+      "current_pain_or_event": "내일 목요일 13:00~16:00 유휴 의자(빈 좌석) 6석 발생",
+      "context_6d": {
+        "era": "퍼스널 이미지 컨설팅 & 콰이어트 럭셔리 헤어",
+        "situation": "목요일 평일 낮 유휴 슬롯",
+        "season": "가을 톤다운 매트 브라운 염색 시즌",
+        "generation": "2030 영프로페셔널",
+        "region": "청담동 뷰티 거리",
+        "milestone": "이직/승진 면접 D-3 스타일링"
+      },
+      "simulated_actions": {
+        "action_title": "✂️ 목요일 해피아워 다이내믹 슬롯 채우기 & 4주 컷트 넛지",
+        "channel_1_blog": "# [청담 헤어 컨설팅] 가을 톤다운 염색으로 분위기 여신 변신한 실화 후기\n\n얼굴형에 맞춘 레이어드 컷과 모발 손상 없는 비건 스파 클리닉 솔직 리뷰!",
+        "channel_2_insta": "가을 무드 가득한 매트 브라운 염색 🍂 평일 낮 13~16시 네이버 예약 시 프리미엄 두피 스파 무료 업그레이드! 프로필 링크 👆",
+        "channel_3_direct": "✂️ [단골 전용] 고객님, 지난 컷트 후 4주가 경과하여 라인 정리가 필요한 타이밍입니다. 내일 목요일 낮 방문 시 스파 서비스 증정!",
+        "compliance_check": "✅ 뷰티 표시광고법 안전 통과 (초상권 동의 완료 포맷)",
+        "expected_roi": "빈 의자 6석 중 5석 예약 완료 ➔ 목요일 유휴 손실 방어 +650,000원"
+      }
+    },
+    "b2b_saas": {
+      "id": "b2b_saas",
+      "industry_type": "IT / B2B SaaS 웹앱",
+      "name": "플로우독 (FlowDoc) - AI 협업 툴",
+      "location": "온라인 / 판교 테크노밸리 & 글로벌 원격",
+      "target_audience": "IT 스타트업 팀장, 프로젝트 매니저(PM), 개발팀",
+      "core_usps": [
+        "깃허브 이슈-기획서 실시간 양방향 동기화",
+        "AI 자동 회의록 및 액션 아이템 추출",
+        "슬랙/지라 원클릭 연동"
+      ],
+      "current_pain_or_event": "v2.4 신기능(AI 스프린트 회고) 배포 완료 + 가입 48시간 내 미사용 이탈 위험군 120명",
+      "context_6d": {
+        "era": "2026 AI 에이전틱 워크플로우 & 생산성 극대화",
+        "situation": "신규 메이저 버전 배포 직후 (Release Day)",
+        "season": "Q4 연말 결산 및 차년도 스프린트 계획 수립",
+        "generation": "2030 테크 엔지니어 & 테크 파운더",
+        "region": "글로벌 테크 커뮤니티 (US/KR/JP)",
+        "milestone": "스타트업 시드 투자 유치 후 팀 확장 시점"
+      },
+      "simulated_actions": {
+        "action_title": "🚀 GitHub Release-to-Viral & 이탈 방어 온보딩 넛지",
+        "channel_1_blog": "# [Product Release] FlowDoc v2.4 런칭: 스프린트 회고를 10초 만에 끝내는 AI 에이전트\n\nJira와 Slack의 지루한 수동 입력을 끝내세요. GitHub 커밋 기반 자동 회고 리포트 공개!",
+        "channel_2_insta": "🚀 Product Hunt Featured! 팀 생산성 3배 끌어올리는 FlowDoc v2.4 릴리즈 스레드 (X & LinkedIn 글로벌 동시 배포 완료)",
+        "channel_3_direct": "📧 [Onboarding Trigger] 가입 48시간 동안 템플릿 생성이 없으셨나요? 고객님 팀에 딱 맞는 '3분 스타터 템플릿 복사 링크'를 선물합니다.",
+        "compliance_check": "✅ 글로벌 GDPR & 개인정보 보안 준수 (SOC2 Type2 인증 표기)",
+        "expected_roi": "무료 체험자 중 유료 플랜 전환 14팀 달성 ➔ MRR +2,800,000원 추가 확보"
+      }
+    },
+    "b2b_manufacturing": {
+      "id": "b2b_manufacturing",
+      "industry_type": "제조업 / B2B 정밀가공",
+      "name": "대진정밀공업 (CNC·사출 가공)",
+      "location": "경남 창원 국가산업단지 & 글로벌 수출",
+      "target_audience": "국내외 자동차 부품사, 방산·로봇 기구 설계 구매팀",
+      "core_usps": [
+        "5축 머시닝 센터 공차 ±0.005mm 정밀 가공",
+        "IATF 16949 & ISO 9001 글로벌 품질 인증",
+        "알루미늄/티타늄 난삭재 전문 가공"
+      ],
+      "current_pain_or_event": "2주 뒤 3호 사출 라인 유휴 캐파 35% 발생 + LME 알루미늄 국제 시세 7% 일시 하락",
+      "context_6d": {
+        "era": "글로벌 공급망 재편 & 고정밀 친환경 소부장",
+        "situation": "원자재가 하락 및 2주 후 생산 라인 유휴 감지",
+        "season": "연간 단가 계약 및 차기 프로젝트 조달 시즌",
+        "generation": "4050 대기업 구매팀장 & 엔지니어",
+        "region": "창원 기계산단 ➔ 글로벌 바이어 (미국/독일)",
+        "milestone": "해외 바이어 새벽 2시 RFQ(견적요청) 접수"
+      },
+      "simulated_actions": {
+        "action_title": "🌐 24/7 글로벌 RFQ 영문 자동 견적 & 원자재 연동 기습 대량오퍼",
+        "channel_1_blog": "# [Technical Whitepaper] High-Precision 5-Axis CNC Machining for Robotics (Tolerance ±0.005mm)\n\nIATF 16949 certified manufacturing process, material test reports (MTR), and rapid lead-time data sheets.",
+        "channel_2_insta": "🏭 [Global Spec Indexing] Perplexity & Google AEO: High-accuracy CNC aluminum components verified for defense & robotics.",
+        "channel_3_direct": "📨 [B2B Flash Deal] 원자재가 일시 인하 연동: 기존 거래처 30곳 구매팀에 '사전 발주 시 단가 5% 네고 + 2주 납기 보장' 영문 공문 발송",
+        "compliance_check": "✅ 수출입 통제 규정 및 공정거래법 하도급법 준수",
+        "expected_roi": "유휴 사출 3호 라인 수주 계약 2건 체결 ➔ 단일 발주 수주액 +45,000,000원 달성"
+      }
+    }
+  }
+}
