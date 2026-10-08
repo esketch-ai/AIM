@@ -513,6 +513,22 @@
       </div>
     </div>
 
+    <!-- Real-Time Signal Injection Bar (실시간 신호 주입 & 유기적 오케스트레이션) -->
+    <div class="glass-card" style="margin-bottom:16px; border:1px solid #4F46E5; background:linear-gradient(90deg, rgba(79,70,229,0.12) 0%, rgba(236,72,153,0.12) 100%);">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="font-size:12px; font-weight:900; color:#818CF8;">⚡ 실시간 신호 주입 & 유기적 연동 시뮬레이터:</span>
+          <span style="font-size:11px; color:var(--text-muted);">신호를 클릭하면 4대 솔루션(센서 ➔ 전략 ➔ 브리프 ➔ 크리에이터 에스크로)이 즉시 동기화됩니다.</span>
+        </div>
+        <div style="display:flex; gap:6px; flex-wrap:wrap;">
+          <button class="tenant-quick-btn" style="border-color:#38BDF8; color:#38BDF8; font-weight:800;" onclick="injectSignalSimulation('WEATHER_IDLE')">☔ 비 예보 주입 (유휴 방어)</button>
+          <button class="tenant-quick-btn" style="border-color:#F59E0B; color:#F59E0B; font-weight:800;" onclick="injectSignalSimulation('COMPETITOR_WEAKNESS')">🕵️ 경쟁사 약점 포착 (반사이익)</button>
+          <button class="tenant-quick-btn" style="border-color:#10B981; color:#10B981; font-weight:800;" onclick="injectSignalSimulation('RANK_DROP')">📈 플레이스 1위 처방 (AEO)</button>
+          <button class="tenant-quick-btn" style="border-color:#EF4444; color:#EF4444; font-weight:800;" onclick="injectSignalSimulation('CRISIS_REVIEW')">🚨 1점 악성 리뷰 (품격 방어)</button>
+        </div>
+      </div>
+    </div>
+
     <!-- View Mode & Tenant Selector Ribbon -->
     <div class="control-ribbon">
       <div class="mode-tabs">
@@ -1629,6 +1645,116 @@
         }
         return { status: 'success', deal: deal };
       }
+      if (url === '/api/v1/orchestrator/trigger') {
+        const body = JSON.parse(options.body || '{}');
+        const stype = body.signal_type || 'WEATHER_IDLE';
+        const t = MOCK_DB.tenants[currentTenantId] || MOCK_DB.tenants['TENANT_001'];
+        const bName = t.tenant.business_name;
+
+        let headline = '☔ 비 오는 날 3시간 깜짝 번개! 빵 포장 시 오트라떼 1+1';
+        let summary = '15시 비 예보로 인한 워크인 유휴 좌석 35% 방어 타임어택 가동';
+        let pain = '비 오는 날 축축하고 나른한 오후, 눅눅한 빵에 실망하셨나요?';
+        let numbers = '시그니처 바질 소금빵 — 프랑스 고메버터 48% 극강 풍미, 매일 30개 한정 오븐 직송.';
+        let cta = '오늘 15시 한정 [원클릭 타임어택 쿠폰 받기]';
+        let projRev = 240000;
+
+        if (stype === 'COMPETITOR_WEAKNESS') {
+          headline = '✨ 경쟁사 불만 속성 반사이익! 천연발효 사워도우 & 넓은 테라스';
+          summary = "반경 250m B카페의 '느끼하고 좁다'는 고객 불만을 흡수하는 반사이익 역공 전략";
+          pain = '너무 달고 느끼한 디저트와 좁은 좌석에 지치셨나요?';
+          numbers = '속이 편안한 100% 천연발효 사워도우와 쾌적한 야외 테라스. (옆집 B카페 불만 고객 흡수)';
+          cta = '오늘 퇴근길 [매장 3분 픽업 길찾기]';
+          projRev = 360000;
+        } else if (stype === 'RANK_DROP') {
+          headline = "🚀 스마트플레이스 1위 탈환! '반려동물 동반/AOP버터' 영수증 리뷰 이벤트";
+          summary = '네이버 4위에서 1위로 도약하기 위한 핵심 키워드 방문자 영수증 리뷰 5건 집중 확보';
+          pain = '어디가 진짜 맛집인지 검색 결과 광고에 피로하셨나요?';
+          numbers = '실제 결제 손님들의 100% 찐 영수증 인증 리뷰. 대행사 150만원 대신 자체 영수증 리뷰 1위 처방.';
+          cta = '지금 즉시 [영수증 리뷰 참여하고 음료권 받기]';
+          projRev = 192000;
+        } else if (stype === 'CRISIS_REVIEW') {
+          headline = '🛡️ 1점 악성 리뷰 품격 방어! 정중 사과 및 재방문 케어';
+          summary = '웨이팅/품절 불만에 대한 3단계 품격 대응(사과-원인규명-재방문 보장)으로 잠재 고객 신뢰 회복';
+          pain = '귀한 걸음 하셨는데 조기 품절로 실망을 안겨드렸나요?';
+          numbers = '당일 생산 당일 소진 원칙을 지키며 사전 예약 시스템 도입. 3단계 품격 대응 가동.';
+          cta = '선착순 10명 [원클릭 1초 우선 예약하기]';
+          projRev = 120000;
+        }
+
+        const bundle = {
+          bundle_id: 'BUNDLE_' + Math.random().toString(36).substring(2, 8).toUpperCase(),
+          tenant_id: currentTenantId,
+          business_name: bName,
+          domain: t.tenant.domain,
+          trigger_signal: {
+            signal_id: body.signal_id || 'SIG_MOCK',
+            tenant_id: currentTenantId,
+            signal_type: stype,
+            headline: headline
+          },
+          strategy_summary: summary,
+          compressed_pitch: {
+            pain_point_strike: pain,
+            metaphor_and_number: numbers,
+            direct_cta: cta,
+            full_compressed_pitch: `[3초 후킹] ${pain}\n[10초 핵심 가치] ${numbers}\n[2초 CTA] 👉 ${cta}`
+          },
+          creator_brief: {
+            brief_id: 'BRIEF_AUTO_' + Math.random().toString(36).substring(2, 6).toUpperCase(),
+            hooking_copy: pain,
+            scenes: [
+              { scene_number: 1, duration_seconds: 3, visual_cue: `극적 클로즈업. ${t.tenant.business_name}의 핵심 시각 훅`, audio_narration: pain, overlay_text: `🚨 ${headline.slice(0, 16)}...` },
+              { scene_number: 2, duration_seconds: 4, visual_cue: '타깃 고객 공감 및 대비 컷', audio_narration: '매일 겪는 이 고민, 해결책은 딱 하나입니다.', overlay_text: '👉 지금 집중!' },
+              { scene_number: 3, duration_seconds: 5, visual_cue: '실제 소비 현장 및 사운드', audio_narration: numbers, overlay_text: '✨ 특급 시그니처' },
+              { scene_number: 4, duration_seconds: 3, visual_cue: '단일 원클릭 CTA 화면', audio_narration: cta + '! 지금 확인하세요.', overlay_text: '🎁 ' + cta }
+            ],
+            compliance_guidelines: [
+              '공정위 추천보증 심사지침 준수: [유료 광고 포함] 필수 표기',
+              '허위·과장 광고 금지: 객관적 근거 없는 [1위] 절대 사용 불가'
+            ]
+          },
+          omnichannel_copies: {
+            kakao_alert: { headline: `[${bName}] ${headline}`, body: `${pain}\n${numbers}\n\n👉 ${cta}`, cta_button: cta },
+            instagram_reels: { caption: `${pain} 🔥 ${numbers}`, hook_3sec: pain },
+            naver_blog: { title: `[${bName}] ${headline} 솔직 방문 후기`, summary: numbers }
+          },
+          matched_creators: MOCK_DB.creatorMarketplace.creators.map(c => ({
+            creator: c,
+            match_score: c.match_score,
+            audience_affinity_pct: c.audience_affinity_pct,
+            conversion_rating_badge: c.conversion_badge,
+            take_rate_pct: 10.0
+          })),
+          escrow_preview: {
+            top_creator_name: '서울핫플스케치',
+            total_budget: 450000,
+            take_rate_pct: 10.0,
+            platform_fee: 45000,
+            creator_base_payout: 283500,
+            creator_bonus_payout: 121500,
+            fast_track_hours_left: 24,
+            subscriber_discount_applied: true
+          },
+          projected_revenue_krw: projRev,
+          projected_roi: (projRev / 49000).toFixed(1),
+          evidence_tier: 'C_ILLUSTRATIVE',
+          status: 'READY_FOR_HITL'
+        };
+        return bundle;
+      }
+      if (url === '/api/v1/orchestrator/global-flow') {
+        return {
+          total_signals_orchestrated: 8,
+          active_tenants_connected: 5,
+          marketplace_metrics: MOCK_DB.creatorMarketplace.adminKpis,
+          pipeline_health: {
+            sensor_latency_ms: 2.8,
+            orchestrator_latency_ms: 4.1,
+            compliance_guardrail: "100% PROTECTED",
+            escrow_clearing: "SYNCHRONIZED"
+          }
+        };
+      }
       return {};
     }
 
@@ -2362,6 +2488,91 @@
         }
       } catch (e) {
         alert('검수 처리 오류: ' + e.message);
+      }
+    }
+
+    async function injectSignalSimulation(signalType) {
+      showToast('⚡ [실시간 신호 인젝션 감지] 6D 센서에서 이벤트가 발생하여 전 솔루션으로 오케스트레이션 중...');
+      try {
+        const bundle = await apiFetch('/api/v1/orchestrator/trigger', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            signal_id: 'SIG_' + Math.random().toString(36).substring(2, 7).toUpperCase(),
+            tenant_id: currentTenantId,
+            signal_type: signalType,
+            headline: '동적 실시간 시뮬레이션 이벤트',
+            detected_data: { simulated: true }
+          })
+        });
+
+        // 1. Update Pillar 1 (Service Engine Sensor)
+        const mSit = document.getElementById('mSit');
+        if (mSit) mSit.innerText = bundle.trigger_signal.headline.slice(0, 20);
+
+        // 2. Update Pillar 2 (Tenant Cockpit)
+        const screenTag = document.getElementById('screenDeviceTag');
+        if (screenTag) screenTag.innerText = `[긴급] ${bundle.trigger_signal.headline.slice(0, 15)}...`;
+        const screenBody = document.getElementById('screenDeviceBody');
+        if (screenBody) {
+          screenBody.innerHTML = `
+            <div style="background:#EEF2FF; border:1px solid #C7D2FE; padding:8px 10px; border-radius:6px; margin-bottom:10px; font-size:11px; color:#3730A3;">
+              <b>⚡ 동적 오케스트레이션 작전:</b> ${bundle.strategy_summary}
+            </div>
+            <div style="font-size:12px; line-height:1.6; color:#1E293B;">
+              <p><b>🚨 3초 훅:</b> ${bundle.compressed_pitch.pain_point_strike}</p>
+              <p><b>✨ 핵심 가치:</b> ${bundle.compressed_pitch.metaphor_and_number}</p>
+              <p style="margin-top:6px; color:#4F46E5;"><b>👉 단일 CTA:</b> ${bundle.compressed_pitch.direct_cta}</p>
+            </div>
+            <div style="margin-top:12px; background:#F0FDF4; border:1px solid #BBF7D0; padding:8px; border-radius:6px; font-size:10px; color:#166534;">
+              <b>예상 창출액:</b> +${bundle.projected_revenue_krw.toLocaleString()}원 (ROI ${bundle.projected_roi}x)
+            </div>
+          `;
+        }
+
+        // Add to staged campaigns desk in Tenant cockpit
+        const stagedList = document.getElementById('stagedDeskList');
+        if (stagedList) {
+          const newCard = `
+            <div style="background:#0F172A; border:1px solid #4F46E5; border-radius:10px; padding:12px; margin-bottom:8px; animation:slideUp 0.3s ease;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <b style="color:#FFF; font-size:12px;">${bundle.trigger_signal.headline}</b>
+                <span style="background:#8B5CF6; color:#FFF; font-size:9px; font-weight:800; padding:2px 6px; border-radius:4px;">⚡ 신호 자동 기안</span>
+              </div>
+              <div style="font-size:11px; color:#CBD5E1; margin-bottom:6px;">
+                작전: ${bundle.strategy_summary} · 추정 매출: <b style="color:#FEF08A;">+${bundle.projected_revenue_krw.toLocaleString()}원</b>
+              </div>
+              <div style="display:flex; gap:6px;">
+                <button class="btn-approve" style="padding:6px 12px; font-size:11px;" onclick="approveStaged('${bundle.bundle_id}')">⚡ 원클릭 즉시 승인 및 송출</button>
+                <button class="btn-reject" onclick="switchViewMode('creator')">🎬 15초 숏폼 크리에이터 연동</button>
+              </div>
+            </div>
+          `;
+          stagedList.insertAdjacentHTML('afterbegin', newCard);
+        }
+
+        // 3. Update Pillar 3 (Admin Audit Stream)
+        const auditStream = document.getElementById('admAuditStream');
+        if (auditStream) {
+          const logItem = `
+            <div style="border-bottom:1px solid var(--card-border); padding:4px 0; color:#CBD5E1;">
+              <span style="color:#10B981; font-weight:700;">[신호 감지]</span> ${bundle.business_name}: ${bundle.trigger_signal.headline.slice(0, 25)}... (전략 수립 4ms)
+            </div>
+          `;
+          auditStream.insertAdjacentHTML('afterbegin', logItem);
+        }
+
+        // 4. Update Pillar 4 (Creator Marketplace)
+        if (bundle.creator_brief) {
+          renderCreatorBrief(bundle.creator_brief);
+        }
+        if (bundle.matched_creators) {
+          renderMatchedCreators(bundle.matched_creators);
+        }
+
+        showToast(`🎉 [유기적 동기화 완료] '${bundle.trigger_signal.headline.slice(0, 20)}...' 신호가 4대 솔루션에 100% 실시간 연동되었습니다!`);
+      } catch (e) {
+        console.error('Signal injection error:', e);
       }
     }
 
