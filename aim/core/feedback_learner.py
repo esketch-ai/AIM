@@ -84,6 +84,25 @@ class FeedbackLearner:
         return [c.applied_rule for c in constraints[:3]]
 
     @classmethod
+    def clear_tenant_constraints(cls, tenant_id: str) -> None:
+        """Clears all adaptive constraints for a given tenant."""
+        if tenant_id in cls._tenant_constraints:
+            cls._tenant_constraints[tenant_id] = []
+
+    @classmethod
+    def get_feedback_statistics(cls, tenant_id: str) -> Dict[str, Any]:
+        """Returns distribution count of feedback reasons for a tenant."""
+        constraints = cls.get_tenant_constraints(tenant_id)
+        counts: Dict[str, int] = {}
+        for c in constraints:
+            counts[c.reason_code] = counts.get(c.reason_code, 0) + 1
+        return {
+            "tenant_id": tenant_id,
+            "total_rejections": len(constraints),
+            "counts_by_reason": counts,
+        }
+
+    @classmethod
     def generate_ab_variants(
         cls,
         campaign_id: str,
@@ -91,12 +110,15 @@ class FeedbackLearner:
         base_title: str,
         base_body: str,
     ) -> CampaignVariants:
+        title = base_title.strip() if base_title and base_title.strip() else "특별 타임어택 프로모션"
+        body = base_body.strip() if base_body and base_body.strip() else "매장 방문 고객을 위한 특급 프로모션 안내입니다."
+
         # Variant A: Benefit & Curiosity (혜택 및 호기심)
         var_a = VariantCopy(
             variant_id="VARIANT_A",
             strategy_theme="BENEFIT_CURIOSITY",
-            headline=f"✨ {base_title} (단독 혜택)",
-            body=f"{base_body}\n\n[방문 손님 전용] 오늘만 준비된 스페셜 웰컴 혜택을 놓치지 마세요.",
+            headline=f"✨ {title} (단독 혜택)",
+            body=f"{body}\n\n[방문 손님 전용] 오늘만 준비된 스페셜 웰컴 혜택을 놓치지 마세요.",
             cta_button="🎁 단독 혜택 확인하고 예약",
             impressions=180,
             clicks=26,

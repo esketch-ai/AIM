@@ -50,32 +50,34 @@ class ScenarioEngine:
     ) -> ScenarioResult:
         cat = category.upper()
         rate = cls.BASE_RATES.get(cat, 0.17)
+        clean_revenue = max(0, revenue)
+        clean_monthly_fee = max(0, monthly_fee)
 
         # 1. Baseline: Standard automated optimization
-        base_gain = int(revenue * rate)
-        base_roi = round(base_gain / monthly_fee, 1) if monthly_fee > 0 else 0.0
-        base_hours = int(18 + (revenue / 10000000) * 3)
+        base_gain = int(clean_revenue * rate)
+        base_roi = round(base_gain / clean_monthly_fee, 1) if clean_monthly_fee > 0 else 0.0
+        base_hours = int(18 + (clean_revenue / 10000000) * 3)
 
         # 2. Downside: Weather crisis / seasonal drop defense (defending 30% dip by 70%)
         # E.g. rainy days, no-show surges, dead hours capacity recovery
         downside_gain = int(base_gain * 0.65)
-        downside_roi = round(downside_gain / monthly_fee, 1) if monthly_fee > 0 else 0.0
+        downside_roi = round(downside_gain / clean_monthly_fee, 1) if clean_monthly_fee > 0 else 0.0
         downside_hours = max(12, int(base_hours * 0.7))
 
         # 3. Upside: Viral Shorts / Place #1 Rank takeover
         upside_gain = int(base_gain * 1.85)
-        upside_roi = round(upside_gain / monthly_fee, 1) if monthly_fee > 0 else 0.0
+        upside_roi = round(upside_gain / clean_monthly_fee, 1) if clean_monthly_fee > 0 else 0.0
         upside_hours = int(base_hours * 1.4)
 
         # Daily gain on baseline
         daily_gain = max(1, int(base_gain / 30))
         # Payback period in days = fee / daily_gain
-        payback_days = round(monthly_fee / daily_gain, 1)
+        payback_days = round(clean_monthly_fee / daily_gain, 1) if clean_monthly_fee > 0 and base_gain > 0 else 0.0
 
         return ScenarioResult(
             category=cat,
-            monthly_revenue_krw=revenue,
-            monthly_subscription_fee_krw=monthly_fee,
+            monthly_revenue_krw=clean_revenue,
+            monthly_subscription_fee_krw=clean_monthly_fee,
             daily_gain_krw=daily_gain,
             payback_days=payback_days,
             scenarios={

@@ -3017,6 +3017,16 @@
           }
         };
       }
+      if (url.includes('/admin/circuit-breaker/') && url.endsWith('/resolve')) {
+        return {
+          status: 'SUCCESS',
+          circuit_breaker: {
+            circuit_id: 'CB_101',
+            status: 'RESOLVED_SAFE',
+            defense_action: '원장 무결성 검증 및 이상 거래 격리 해제 완료'
+          }
+        };
+      }
       if (url.startsWith('/api/v1/admin/fleet/benchmark/')) {
         const t = MOCK_DB.tenants[currentTenantId] || MOCK_DB.tenants['TENANT_001'];
         return {

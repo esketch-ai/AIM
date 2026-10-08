@@ -175,13 +175,40 @@ class MasterAdminConsole:
         }
 
     @classmethod
+    def resolve_circuit_breaker(
+        cls,
+        circuit_id: str,
+        reviewer: str = "마스터 총괄 관리자",
+        resolution_notes: str = "원장 무결성 검증 및 이상 거래 격리 해제 완료",
+    ) -> Dict[str, Any]:
+        """Resolves/unfreezes a tripped circuit breaker record."""
+        target = next((cb for cb in cls._circuit_breakers if cb["circuit_id"] == circuit_id), None)
+        if not target:
+            raise ValueError(f"Circuit breaker incident {circuit_id} not found.")
+        target["status"] = "RESOLVED_SAFE"
+        target["resolved_by"] = reviewer
+        target["resolution_notes"] = resolution_notes
+        target["resolved_at"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        return target
+
+    @classmethod
+    def clear_circuit_breakers(cls) -> None:
+        """Clears all circuit breaker incidents for test resetting."""
+        cls._circuit_breakers.clear()
+
+    @classmethod
     def get_peer_benchmark(cls, tenant_id: str) -> Dict[str, Any]:
         """Computes domain and neighborhood percentile benchmark for a tenant."""
         tenant = TenantManager.get_tenant(tenant_id)
         if not tenant:
             raise ValueError(f"Tenant {tenant_id} not found")
 
-        domain = tenant.domain
+        domain = tenant.domain.lower()
+        domain_aliases = {
+            "saas": "b2b_saas",
+            "mfg": "manufacturing",
+        }
+        normalized_domain = domain_aliases.get(domain, domain)
         my_rev = tenant.cumulative_revenue_generated_krw
 
         domain_benchmarks = {
@@ -191,7 +218,7 @@ class MasterAdminConsole:
             "b2b_saas": {"peer_avg": 6500000, "top_10_threshold": 10000000, "peers_count": 19},
             "manufacturing": {"peer_avg": 18000000, "top_10_threshold": 28000000, "peers_count": 9},
         }
-        bench = domain_benchmarks.get(domain, domain_benchmarks["fnb"])
+        bench = domain_benchmarks.get(normalized_domain, domain_benchmarks["fnb"])
         peer_avg = bench["peer_avg"]
 
         # Percentile estimate

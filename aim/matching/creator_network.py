@@ -298,6 +298,8 @@ class CreatorNetwork:
         deal = self.active_deals.get(deal_id)
         if not deal:
             raise ValueError(f"Deal {deal_id} not found.")
+        if deal.status == "SETTLED":
+            raise ValueError("이미 정산 완료된 계약에는 초안을 제출할 수 없습니다.")
         deal.status = "DRAFT_SUBMITTED"
         deal.fast_track_hours_left = 24
         return {
@@ -323,6 +325,8 @@ class CreatorNetwork:
         deal = self.active_deals.get(deal_id)
         if not deal:
             raise ValueError(f"Deal {deal_id} not found.")
+        if deal.status in ["BASE_PAYOUT_RELEASED", "SETTLED"]:
+            raise ValueError("이미 기본 정산금이 지급된 계약입니다.")
         deal.status = "BASE_PAYOUT_RELEASED"
         return {
             "deal_id": deal_id,
@@ -338,6 +342,10 @@ class CreatorNetwork:
         deal = self.active_deals.get(deal_id)
         if not deal:
             raise ValueError(f"Deal {deal_id} not found.")
+        if deal.status == "SETTLED":
+            raise ValueError("이미 최종 정산이 완료된 계약입니다.")
+        if deal.status != "BASE_PAYOUT_RELEASED":
+            raise ValueError("1차 기본 정산금 지급이 완료된 후에만 성과 마일스톤을 언락할 수 있습니다.")
 
         # Thresholds: VIEWS >= 50,000 or CONVERSIONS >= 20
         target_met = (metric_type == "VIEWS" and metric_value >= 50000) or (

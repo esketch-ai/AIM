@@ -417,6 +417,11 @@ class SimulateAnomalyRequest(BaseModel):
     evidence: dict = {}
 
 
+class ResolveCircuitBreakerRequest(BaseModel):
+    reviewer: str = "마스터 총괄 관리자"
+    resolution_notes: str = "원장 무결성 검증 및 이상 거래 격리 해제 완료"
+
+
 @app.post("/api/v1/scenario/calculate")
 def calculate_dynamic_scenarios(req: ScenarioCalcRequest):
     """Calculates 3-tier financial scenarios and BEP payback days."""
@@ -479,7 +484,8 @@ def request_creator_video_revision(deal_id: str, req: DraftRevisionRequest):
         deal = creator_network.request_revision(deal_id, req.feedback)
         return {"status": "SUCCESS", "deal": deal.model_dump(), "message": "수정 요청이 크리에이터에게 전달되었습니다 (1회 제한 준수)."}
     except ValueError as e:
-        return JSONResponse(status_code=400, content={"error": str(e)})
+        status_code = 404 if "not found" in str(e).lower() else 400
+        return JSONResponse(status_code=status_code, content={"error": str(e)})
 
 
 @app.post("/api/v1/creator/deal/{deal_id}/milestone/unlock")
@@ -489,7 +495,8 @@ def unlock_creator_milestone_bonus(deal_id: str, req: MilestoneUnlockRequest):
         res = creator_network.unlock_milestone_bonus(deal_id, req.metric_type, req.metric_value)
         return res
     except ValueError as e:
-        return JSONResponse(status_code=400, content={"error": str(e)})
+        status_code = 404 if "not found" in str(e).lower() else 400
+        return JSONResponse(status_code=status_code, content={"error": str(e)})
 
 
 @app.post("/api/v1/attribution/deduplicate")
@@ -530,6 +537,20 @@ def simulate_circuit_breaker_anomaly(req: SimulateAnomalyRequest):
         evidence_payload=req.evidence,
     )
     return {"status": "SUCCESS", "circuit_breaker": record}
+
+
+@app.post("/api/v1/admin/circuit-breaker/{circuit_id}/resolve")
+def resolve_circuit_breaker_endpoint(circuit_id: str, req: ResolveCircuitBreakerRequest):
+    """Resolves/unfreezes a tripped circuit breaker record."""
+    try:
+        record = MasterAdminConsole.resolve_circuit_breaker(
+            circuit_id=circuit_id,
+            reviewer=req.reviewer,
+            resolution_notes=req.resolution_notes,
+        )
+        return {"status": "SUCCESS", "circuit_breaker": record}
+    except ValueError as e:
+        return JSONResponse(status_code=404, content={"error": str(e)})
 
 
 @app.get("/api/v1/admin/fleet/benchmark/{tenant_id}")

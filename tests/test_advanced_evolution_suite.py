@@ -89,6 +89,51 @@ class TestDynamicScenarioAndBEP:
         assert mfg_res.scenarios["baseline"].monthly_gain_krw == 16000000
         assert mfg_res.payback_days <= 0.1
 
+    def test_zero_revenue_scenario(self):
+        res = ScenarioEngine.calculate_scenarios("FNB", 0, 49000)
+        assert res.monthly_revenue_krw == 0
+        assert res.scenarios["baseline"].monthly_gain_krw == 0
+        assert res.scenarios["baseline"].roi_multiplier == 0.0
+        assert res.payback_days == 0.0
+
+    def test_negative_revenue_normalized(self):
+        res = ScenarioEngine.calculate_scenarios("FNB", -500000, 49000)
+        assert res.monthly_revenue_krw == 0
+        assert res.scenarios["baseline"].monthly_gain_krw == 0
+
+    def test_zero_monthly_fee_free_tier(self):
+        res = ScenarioEngine.calculate_scenarios("FNB", 20000000, 0)
+        assert res.monthly_subscription_fee_krw == 0
+        assert res.scenarios["baseline"].roi_multiplier == 0.0
+        assert res.payback_days == 0.0
+
+    def test_enterprise_tier_fee_payback(self):
+        res = ScenarioEngine.calculate_scenarios("MEDICAL", 50000000, 199000)
+        assert res.monthly_subscription_fee_krw == 199000
+        # Daily gain = 7,500,000 / 30 = 250,000 KRW; 199,000 / 250,000 = ~0.8 days
+        assert res.payback_days <= 1.0
+
+    def test_extreme_large_revenue_scaling(self):
+        res = ScenarioEngine.calculate_scenarios("MANUFACTURING", 10_000_000_000, 199000)
+        assert res.scenarios["baseline"].monthly_gain_krw == 2_000_000_000
+        assert res.payback_days < 0.1
+
+    def test_unknown_category_fallback(self):
+        res = ScenarioEngine.calculate_scenarios("UNKNOWN_DOMAIN", 20000000, 49000)
+        # Defaults to 0.17 (same as FNB)
+        assert res.scenarios["baseline"].monthly_gain_krw == int(20000000 * 0.17)
+
+    def test_all_five_categories_comparative_matrix(self):
+        rev = 30000000
+        r_fnb = ScenarioEngine.calculate_scenarios("FNB", rev).scenarios["baseline"].monthly_gain_krw
+        r_beauty = ScenarioEngine.calculate_scenarios("BEAUTY", rev).scenarios["baseline"].monthly_gain_krw
+        r_med = ScenarioEngine.calculate_scenarios("MEDICAL", rev).scenarios["baseline"].monthly_gain_krw
+        r_saas = ScenarioEngine.calculate_scenarios("SAAS", rev).scenarios["baseline"].monthly_gain_krw
+        r_mfg = ScenarioEngine.calculate_scenarios("MANUFACTURING", rev).scenarios["baseline"].monthly_gain_krw
+
+        # SAAS (22%) > MFG (20%) > BEAUTY (19%) > FNB (17%) > MEDICAL (15%)
+        assert r_saas > r_mfg > r_beauty > r_fnb > r_med
+
 
 # ============================================================================
 # 2. Feedback Learning & A/B Copy Variant Tests
@@ -143,6 +188,61 @@ class TestFeedbackLearningAndABVariants:
         camp = ApprovalDesk.get_campaign("CAMP-001")
         assert camp.status == "REJECTED"
 
+    def test_multiple_rejection_history_accumulation(self):
+        FeedbackLearner.record_feedback("TENANT_001", "DISCOUNT_TOO_HIGH", "마진 부족 1")
+        FeedbackLearner.record_feedback("TENANT_001", "TIMING_MISMATCH", "시간대 부적합")
+        FeedbackLearner.record_feedback("TENANT_001", "DISCOUNT_TOO_HIGH", "마진 부족 2")
+
+        constraints = FeedbackLearner.get_tenant_constraints("TENANT_001")
+        assert len(constraints) == 3
+        # Most recent first
+        assert constraints[0].reason_code == "DISCOUNT_TOO_HIGH"
+        assert constraints[1].reason_code == "TIMING_MISMATCH"
+
+    def test_feedback_statistics_counts(self):
+        FeedbackLearner.record_feedback("TENANT_003", "DISCOUNT_TOO_HIGH")
+        FeedbackLearner.record_feedback("TENANT_003", "DISCOUNT_TOO_HIGH")
+        FeedbackLearner.record_feedback("TENANT_003", "TONE_TOO_CASUAL")
+
+        stats = FeedbackLearner.get_feedback_statistics("TENANT_003")
+        assert stats["tenant_id"] == "TENANT_003"
+        assert stats["total_rejections"] == 3
+        assert stats["counts_by_reason"]["DISCOUNT_TOO_HIGH"] == 2
+        assert stats["counts_by_reason"]["TONE_TOO_CASUAL"] == 1
+
+    def test_clear_tenant_constraints(self):
+        FeedbackLearner.record_feedback("TENANT_004", "WRONG_AUDIENCE")
+        assert len(FeedbackLearner.get_tenant_constraints("TENANT_004")) == 1
+
+        FeedbackLearner.clear_tenant_constraints("TENANT_004")
+        assert len(FeedbackLearner.get_tenant_constraints("TENANT_004")) == 0
+
+    def test_unknown_reason_code_fallback_rule(self):
+        c = FeedbackLearner.record_feedback("TENANT_001", "CUSTOM_UNRECOGNIZED_REASON")
+        assert c.reason_code == "CUSTOM_UNRECOGNIZED_REASON"
+        assert "기본 가이드라인 준수" in c.applied_rule
+
+    def test_ab_variant_empty_title_and_body_fallback(self):
+        variants = FeedbackLearner.generate_ab_variants(
+            campaign_id="CAMP-EMPTY-01",
+            tenant_id="TENANT_001",
+            base_title="",
+            base_body="   ",
+        )
+        assert "특별 타임어택" in variants.variant_a.headline
+        assert "특급 프로모션" in variants.variant_a.body
+
+    def test_ab_variant_retrieval_by_campaign_id(self):
+        variants = FeedbackLearner.generate_ab_variants(
+            campaign_id="CAMP-LOOKUP-01",
+            tenant_id="TENANT_001",
+            base_title="가을 한정 신메뉴",
+            base_body="얼리버드 쿠폰",
+        )
+        fetched = FeedbackLearner.get_campaign_variants("CAMP-LOOKUP-01")
+        assert fetched is not None
+        assert fetched.campaign_id == "CAMP-LOOKUP-01"
+
 
 # ============================================================================
 # 3. Creator 24h Fast-Track & Milestone Bonus Tests
@@ -194,6 +294,65 @@ class TestCreatorFastTrackAndMilestoneBonus:
         assert res["unlocked_bonus_krw"] == deal.creator_bonus_payout
         assert deal.status == "SETTLED"
 
+    def test_submit_draft_nonexistent_deal_raises(self):
+        with pytest.raises(ValueError, match="Deal NONEXISTENT not found"):
+            creator_network.submit_draft("NONEXISTENT", "https://cdn.aim.link/v.mp4")
+
+    def test_submit_draft_on_settled_deal_raises(self):
+        deal = creator_network.create_escrow_deal("TENANT_001", "CR_FNB_02", "BRIEF_01")
+        creator_network.approve_draft_and_release_base(deal.deal_id)
+        creator_network.unlock_milestone_bonus(deal.deal_id, metric_type="VIEWS", metric_value=60000)
+        assert deal.status == "SETTLED"
+
+        with pytest.raises(ValueError, match="이미 정산 완료된 계약"):
+            creator_network.submit_draft(deal.deal_id, "https://cdn.aim.link/new.mp4")
+
+    def test_approve_draft_already_released_raises(self):
+        deal = creator_network.create_escrow_deal("TENANT_001", "CR_FNB_02", "BRIEF_01")
+        creator_network.approve_draft_and_release_base(deal.deal_id)
+
+        with pytest.raises(ValueError, match="이미 기본 정산금이 지급된 계약"):
+            creator_network.approve_draft_and_release_base(deal.deal_id)
+
+    def test_unlock_milestone_already_settled_raises(self):
+        deal = creator_network.create_escrow_deal("TENANT_001", "CR_FNB_02", "BRIEF_01")
+        creator_network.approve_draft_and_release_base(deal.deal_id)
+        creator_network.unlock_milestone_bonus(deal.deal_id, metric_type="VIEWS", metric_value=55000)
+
+        with pytest.raises(ValueError, match="이미 최종 정산이 완료된 계약"):
+            creator_network.unlock_milestone_bonus(deal.deal_id, metric_type="VIEWS", metric_value=70000)
+
+    def test_unlock_milestone_before_base_payout_raises(self):
+        deal = creator_network.create_escrow_deal("TENANT_001", "CR_FNB_02", "BRIEF_01")
+        # status is ESCROW_LOCKED
+        with pytest.raises(ValueError, match="1차 기본 정산금 지급이 완료된 후에만"):
+            creator_network.unlock_milestone_bonus(deal.deal_id, metric_type="VIEWS", metric_value=80000)
+
+    def test_unlock_milestone_via_conversions(self):
+        deal = creator_network.create_escrow_deal("TENANT_001", "CR_FNB_02", "BRIEF_01")
+        creator_network.approve_draft_and_release_base(deal.deal_id)
+
+        # Conversions < 20 fails
+        with pytest.raises(ValueError, match="성과 마일스톤 기준 미달"):
+            creator_network.unlock_milestone_bonus(deal.deal_id, metric_type="CONVERSIONS", metric_value=18)
+
+        # Conversions >= 20 succeeds
+        res = creator_network.unlock_milestone_bonus(deal.deal_id, metric_type="CONVERSIONS", metric_value=25)
+        assert res["status"] == "SETTLED"
+        assert res["metric_type"] == "CONVERSIONS"
+        assert res["metric_value"] == 25
+
+    def test_unlock_milestone_invalid_metric_type_fails(self):
+        deal = creator_network.create_escrow_deal("TENANT_001", "CR_FNB_02", "BRIEF_01")
+        creator_network.approve_draft_and_release_base(deal.deal_id)
+
+        with pytest.raises(ValueError, match="성과 마일스톤 기준 미달"):
+            creator_network.unlock_milestone_bonus(deal.deal_id, metric_type="LIKES", metric_value=100000)
+
+    def test_request_revision_nonexistent_deal_raises(self):
+        with pytest.raises(ValueError, match="Deal NONEXISTENT not found"):
+            creator_network.request_revision("NONEXISTENT", "수정 요청")
+
 
 # ============================================================================
 # 4. Cross-Attribution Deduplication & Monthly Statement Tests
@@ -243,6 +402,90 @@ class TestCrossAttributionAndSettlement:
         assert stmt.net_payout_to_merchant_krw == 4450000 - 49000
         assert stmt.roi_multiple >= 50.0
 
+    def test_single_channel_touchpoint_full_attribution(self):
+        res = CrossAttributionEngine.deduplicate_transaction(
+            tenant_id="TENANT_001",
+            customer_id="CUST_SINGLE",
+            order_amount_krw=50000,
+            channels=["POS_COUPON"],
+        )
+        assert len(res.touchpoints) == 1
+        assert res.touchpoints[0].shapley_weight == 1.0
+        assert res.touchpoints[0].attributed_amount_krw == 50000
+        assert res.deduplication_saved_krw == 0
+
+    def test_empty_channels_fallback_to_direct(self):
+        res = CrossAttributionEngine.deduplicate_transaction(
+            tenant_id="TENANT_001",
+            customer_id="CUST_NONE",
+            order_amount_krw=30000,
+            channels=[],
+        )
+        assert len(res.touchpoints) == 1
+        assert res.touchpoints[0].channel == "DIRECT"
+        assert res.touchpoints[0].attributed_amount_krw == 30000
+
+    def test_zero_order_amount_transaction(self):
+        res = CrossAttributionEngine.deduplicate_transaction(
+            tenant_id="TENANT_001",
+            customer_id="CUST_ZERO",
+            order_amount_krw=0,
+            channels=["UTM_SHORTS", "POS_COUPON"],
+        )
+        assert res.actual_order_amount_krw == 0
+        assert res.raw_claimed_total_krw == 0
+        assert res.revenue_split["platform_fee_krw"] == 0
+        assert res.revenue_split["creator_bonus_krw"] == 0
+        assert res.revenue_split["merchant_net_revenue_krw"] == 0
+
+    def test_negative_order_amount_normalized(self):
+        res = CrossAttributionEngine.deduplicate_transaction(
+            tenant_id="TENANT_001",
+            customer_id="CUST_NEG",
+            order_amount_krw=-20000,
+            channels=["POS_COUPON"],
+        )
+        assert res.actual_order_amount_krw == 0
+
+    def test_all_five_channels_simultaneous_attribution(self):
+        all_channels = ["UTM_SHORTS", "KAKAO_ALERT", "POS_COUPON", "RECEIPT_OCR", "VIRTUAL_NUMBER"]
+        res = CrossAttributionEngine.deduplicate_transaction(
+            tenant_id="TENANT_001",
+            customer_id="CUST_ALL5",
+            order_amount_krw=100000,
+            channels=all_channels,
+        )
+        assert len(res.touchpoints) == 5
+        assert res.raw_claimed_total_krw == 500000
+        assert res.deduplication_saved_krw == 400000
+
+        total_weight = sum(t.shapley_weight for t in res.touchpoints)
+        assert total_weight == pytest.approx(1.0, abs=0.01)
+
+        total_attr = sum(t.attributed_amount_krw for t in res.touchpoints)
+        assert total_attr == 100000
+
+    def test_monthly_statement_zero_fee_no_division_error(self):
+        stmt = CrossAttributionEngine.generate_monthly_statement(
+            tenant_id="TENANT_FREE",
+            business_name="무료 체험 사업장",
+            cumulative_gmv=1000000,
+            monthly_fee=0,
+        )
+        assert stmt.saas_subscription_fee_krw == 0
+        assert stmt.roi_multiple == 0.0
+        assert stmt.net_payout_to_merchant_krw == stmt.merchant_net_revenue_krw
+
+    def test_monthly_statement_negative_net_payout(self):
+        stmt = CrossAttributionEngine.generate_monthly_statement(
+            tenant_id="TENANT_LOW",
+            business_name="초기 저조 사업장",
+            cumulative_gmv=10000,  # 89% = 8,900 KRW
+            monthly_fee=49000,
+        )
+        # 8,900 - 49,000 = -40,100 KRW
+        assert stmt.net_payout_to_merchant_krw < 0
+
 
 # ============================================================================
 # 5. Circuit Breaker & Peer Benchmark Tests
@@ -285,6 +528,67 @@ class TestCircuitBreakerAndPeerBenchmark:
     def test_peer_benchmark_invalid_tenant_raises(self):
         with pytest.raises(ValueError, match="Tenant INVALID_ID not found"):
             MasterAdminConsole.get_peer_benchmark("INVALID_ID")
+
+    def test_circuit_breaker_resolution_workflow(self):
+        rec = MasterAdminConsole.scan_and_trip_circuit_breaker(
+            tenant_id="TENANT_002",
+            anomaly_type="RAPID_COUPON_BURST",
+            evidence_payload={"rate": "30/min"},
+        )
+        circuit_id = rec["circuit_id"]
+
+        # Health is active before resolution
+        status_before = MasterAdminConsole.get_circuit_breaker_status()
+        assert status_before["health"] == "CIRCUIT_TRIPPED_ACTIVE"
+        assert status_before["currently_frozen_count"] == 1
+
+        # Resolve incident
+        resolved = MasterAdminConsole.resolve_circuit_breaker(
+            circuit_id=circuit_id,
+            reviewer="보안 총괄 이사",
+            resolution_notes="IP 차단 조치 후 격리 해제",
+        )
+        assert resolved["status"] == "RESOLVED_SAFE"
+        assert resolved["resolved_by"] == "보안 총괄 이사"
+        assert "resolved_at" in resolved
+
+        # Health returns to PROTECTED
+        status_after = MasterAdminConsole.get_circuit_breaker_status()
+        assert status_after["health"] == "PROTECTED"
+        assert status_after["currently_frozen_count"] == 0
+
+    def test_resolve_nonexistent_circuit_id_raises(self):
+        with pytest.raises(ValueError, match="Circuit breaker incident NONEXISTENT not found"):
+            MasterAdminConsole.resolve_circuit_breaker("NONEXISTENT")
+
+    def test_peer_benchmark_all_five_domains(self):
+        # TENANT_001 = fnb, 002 = medical, 003 = beauty, 004 = b2b_saas, 005 = manufacturing
+        tids = ["TENANT_001", "TENANT_002", "TENANT_003", "TENANT_004", "TENANT_005"]
+        expected_domains = ["fnb", "medical", "beauty", "b2b_saas", "manufacturing"]
+        for tid, expected_dom in zip(tids, expected_domains):
+            bench = MasterAdminConsole.get_peer_benchmark(tid)
+            assert bench["tenant_id"] == tid
+            assert bench["domain"] == expected_dom
+            assert bench["peers_analyzed_count"] > 0
+            assert bench["peer_average_revenue_krw"] > 0
+
+    def test_peer_benchmark_domain_aliases(self):
+        # Create temporary custom tenant with alias "saas"
+        t_saas = TenantManager.get_tenant("TENANT_004")
+        orig_dom = t_saas.domain
+        try:
+            t_saas.domain = "saas"
+            bench = MasterAdminConsole.get_peer_benchmark("TENANT_004")
+            # Should correctly map to b2b_saas threshold (19 peers)
+            assert bench["peers_analyzed_count"] == 19
+        finally:
+            t_saas.domain = orig_dom
+
+    def test_peer_benchmark_ranking_levels(self):
+        # 1. Top tier (> 10M for b2b_saas -> TENANT_004 has 16.8M)
+        b_top = MasterAdminConsole.get_peer_benchmark("TENANT_004")
+        assert "상위 5% 최우수" in b_top["rank_label"]
+        assert b_top["percentile_score"] >= 90.0
 
 
 # ============================================================================
@@ -409,3 +713,87 @@ class TestEvolutionRestApiContracts:
         assert data["tenant_id"] == "TENANT_001"
         assert "percentile_score" in data
         assert "rank_label" in data
+
+    def test_api_creator_draft_submit_nonexistent_deal_404(self, client):
+        r = client.post(
+            "/api/v1/creator/deal/NONEXISTENT/draft/submit",
+            json={"video_url": "https://cdn.aim.link/v.mp4", "compliance_passed": True},
+        )
+        assert r.status_code == 404
+        assert "not found" in r.json()["error"].lower()
+
+    def test_api_creator_draft_approve_nonexistent_deal_404(self, client):
+        r = client.post("/api/v1/creator/deal/NONEXISTENT/draft/approve")
+        assert r.status_code == 404
+
+    def test_api_creator_draft_revision_nonexistent_deal_404(self, client):
+        r = client.post(
+            "/api/v1/creator/deal/NONEXISTENT/draft/revision",
+            json={"feedback": "수정 요망"},
+        )
+        assert r.status_code == 404
+
+    def test_api_creator_milestone_unlock_nonexistent_deal_404(self, client):
+        r = client.post(
+            "/api/v1/creator/deal/NONEXISTENT/milestone/unlock",
+            json={"metric_type": "VIEWS", "metric_value": 60000},
+        )
+        assert r.status_code == 404
+
+    def test_api_creator_milestone_unlock_target_unmet_400(self, client):
+        # DEAL_7749A is seeded in DRAFT_SUBMITTED
+        client.post("/api/v1/creator/deal/DEAL_7749A/draft/approve")
+        r = client.post(
+            "/api/v1/creator/deal/DEAL_7749A/milestone/unlock",
+            json={"metric_type": "VIEWS", "metric_value": 15000},
+        )
+        assert r.status_code == 400
+        assert "기준 미달" in r.json()["error"]
+
+    def test_api_circuit_breaker_resolve_success_and_404(self, client):
+        # 1. Trip anomaly
+        r_sim = client.post(
+            "/api/v1/admin/circuit-breaker/simulate-anomaly",
+            json={
+                "tenant_id": "TENANT_001",
+                "anomaly_type": "DUPLICATE_RECEIPT_FRAUD",
+                "evidence": {"receipt": "REC-77"},
+            },
+        )
+        cid = r_sim.json()["circuit_breaker"]["circuit_id"]
+
+        # 2. Resolve successfully
+        r_res = client.post(
+            f"/api/v1/admin/circuit-breaker/{cid}/resolve",
+            json={"reviewer": "보안팀장", "resolution_notes": "이상 없음 확인"},
+        )
+        assert r_res.status_code == 200
+        assert r_res.json()["circuit_breaker"]["status"] == "RESOLVED_SAFE"
+
+        # 3. 404 on invalid circuit ID
+        r_invalid = client.post(
+            "/api/v1/admin/circuit-breaker/CB_NONEXISTENT/resolve",
+            json={"reviewer": "보안팀장"},
+        )
+        assert r_invalid.status_code == 404
+
+    def test_api_peer_benchmark_nonexistent_tenant_404(self, client):
+        r = client.get("/api/v1/admin/fleet/benchmark/TENANT_NONEXISTENT")
+        assert r.status_code == 404
+
+    def test_api_scenario_calculate_zero_payload(self, client):
+        r = client.post(
+            "/api/v1/scenario/calculate",
+            json={"category": "FNB", "revenue": 0, "monthly_fee": 0},
+        )
+        assert r.status_code == 200
+        data = r.json()
+        assert data["monthly_revenue_krw"] == 0
+        assert data["payback_days"] == 0.0
+
+    def test_api_reject_with_feedback_nonexistent_campaign_404(self, client):
+        r = client.post(
+            "/api/v1/tenant/campaign/CAMP-NONEXISTENT/reject-with-feedback",
+            json={"reason_code": "TONE_TOO_CASUAL"},
+        )
+        assert r.status_code == 404
