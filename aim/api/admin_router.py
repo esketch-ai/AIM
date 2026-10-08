@@ -76,9 +76,9 @@ def update_tenant_plan(req: UpdateTenantPlanRequest):
 
 
 @admin_router.get("/quarantine", summary="List compliance quarantine queue")
-def list_quarantine_items():
+def list_quarantine_items(status: Optional[str] = None):
     """Returns marketing campaigns flagged for regulatory review (Human-in-the-Loop)."""
-    items = ComplianceQuarantineQueue.list_quarantined()
+    items = ComplianceQuarantineQueue.list_quarantined(status_filter=status)
     return {"items": [item.model_dump() for item in items]}
 
 
@@ -102,9 +102,9 @@ def resolve_quarantine_item(item_id: str, req: ResolveQuarantineRequest):
 
 
 @admin_router.get("/audit-logs", summary="List full compliance audit trail")
-def list_audit_logs():
+def list_audit_logs(domain: Optional[str] = None):
     """Returns chronological audit trail of all intercepted terms and sanitization actions."""
-    logs = MasterAdminConsole.get_audit_logs()
+    logs = MasterAdminConsole.get_audit_logs(domain=domain)
     return {"audit_logs": [log.model_dump() for log in logs]}
 
 

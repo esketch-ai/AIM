@@ -22,6 +22,11 @@ class FleetMetrics(BaseModel):
     platform_overall_roi: float
     domain_distribution: Dict[str, int]
     tier_distribution: Dict[str, int]
+    # Ergonomic aliases for API clients and frontend consumers
+    arr_krw: Optional[int] = None
+    arpu_krw: Optional[int] = None
+    total_platform_value_krw: Optional[int] = None
+    average_roi_multiplier: Optional[float] = None
 
 
 class OnboardTenantRequest(BaseModel):
@@ -30,11 +35,11 @@ class OnboardTenantRequest(BaseModel):
     owner_name: str
     domain: str
     subscription_tier: str = "PRO"
-    location: str
-    target_audience: str
-    core_usps: List[str]
-    unit_price: int
-    trigger_event: str
+    location: str = "대한민국"
+    target_audience: str = "2030 소비자 및 주요 고객군"
+    core_usps: List[str] = Field(default_factory=lambda: ["신규 프리미엄 혜택", "100% 만족 보장"])
+    unit_price: int = 30000
+    trigger_event: str = "신규 사업자 온보딩 완료"
 
 
 class FleetController:
@@ -72,11 +77,22 @@ class FleetController:
             platform_overall_roi=platform_roi,
             domain_distribution=domains,
             tier_distribution=tiers,
+            arr_krw=arr,
+            arpu_krw=arpu,
+            total_platform_value_krw=total_value,
+            average_roi_multiplier=platform_roi,
         )
 
     @classmethod
     def onboard_new_tenant(cls, req: OnboardTenantRequest) -> TenantAccount:
         """Onboards new subscriber business into the tenant fleet and issues initial invoice."""
+        TenantManager._initialize_defaults()
+        if req.tenant_id in TenantManager._tenants:
+            raise ValueError(f"Tenant with ID '{req.tenant_id}' already exists in fleet.")
+
+        if not req.business_name or not req.business_name.strip():
+            raise ValueError("business_name cannot be empty.")
+
         fee = 199000 if req.subscription_tier == "ENTERPRISE" else (49000 if req.subscription_tier == "PRO" else 0)
         
         bstate = BusinessState(

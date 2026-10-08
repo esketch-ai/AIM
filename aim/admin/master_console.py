@@ -4,7 +4,7 @@ agent worker health, and platform-wide compliance audit inspection.
 """
 
 from datetime import datetime
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 
 from aim.schema import PlatformMasterKPI, ComplianceAuditLogEntry
 from aim.tenant.manager import TenantManager
@@ -96,9 +96,18 @@ class MasterAdminConsole:
         )
 
     @classmethod
-    def get_audit_logs(cls) -> List[ComplianceAuditLogEntry]:
+    def reset_defaults(cls) -> None:
+        """Resets audit logs to clean default initial state (used for tests)."""
+        cls._audit_logs.clear()
         cls._initialize_default_logs()
-        return list(cls._audit_logs)
+
+    @classmethod
+    def get_audit_logs(cls, domain: Optional[str] = None) -> List[ComplianceAuditLogEntry]:
+        cls._initialize_default_logs()
+        logs = list(cls._audit_logs)
+        if domain:
+            logs = [log for log in logs if log.domain.lower() == domain.lower()]
+        return logs
 
     @classmethod
     def record_audit_intercept(

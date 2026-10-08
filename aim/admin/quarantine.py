@@ -21,6 +21,7 @@ class QuarantinedItem(BaseModel):
     status: str = Field(default="PENDING", description="'PENDING', 'APPROVED_BY_ADMIN', 'REJECTED'")
     admin_reviewer: Optional[str] = None
     review_notes: Optional[str] = None
+    reviewed_at: Optional[str] = None
 
 
 class ComplianceQuarantineQueue:
@@ -63,9 +64,18 @@ class ComplianceQuarantineQueue:
         }
 
     @classmethod
-    def list_quarantined(cls) -> List[QuarantinedItem]:
+    def reset_defaults(cls) -> None:
+        """Resets quarantine queue to clean default initial state (used for tests)."""
+        cls._queue.clear()
         cls._initialize_defaults()
-        return list(cls._queue.values())
+
+    @classmethod
+    def list_quarantined(cls, status_filter: Optional[str] = None) -> List[QuarantinedItem]:
+        cls._initialize_defaults()
+        items = list(cls._queue.values())
+        if status_filter:
+            items = [item for item in items if item.status == status_filter]
+        return items
 
     @classmethod
     def get_item(cls, item_id: str) -> Optional[QuarantinedItem]:
@@ -82,4 +92,5 @@ class ComplianceQuarantineQueue:
             item.status = decision  # 'APPROVED_BY_ADMIN' or 'REJECTED'
             item.admin_reviewer = reviewer
             item.review_notes = notes
+            item.reviewed_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         return item

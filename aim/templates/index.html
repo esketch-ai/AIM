@@ -1720,21 +1720,120 @@
           </div>
         </div>
 
+        <!-- SaaS FinOps Deep-Dive & Distribution Analytics -->
+        <div class="glass-card" style="border: 1px solid rgba(129, 140, 248, 0.35); margin-bottom:12px; background:linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.6) 100%);">
+          <div class="card-title-row">
+            <span style="color:#C7D2FE; font-weight:800;">📊 SaaS FinOps 심층 분석 & 플릿 분포 (Fleet Analytics)</span>
+            <span style="font-size:10px; color:#34D399;">실시간 동기화</span>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:8px; margin-bottom:10px;">
+            <div style="background:#0F172A; padding:8px; border-radius:8px; border:1px solid var(--card-border);">
+              <div style="font-size:10px; color:var(--text-muted);">연간 환산 매출 (ARR)</div>
+              <div id="admFinopsArr" style="font-size:13px; font-weight:800; color:#38BDF8;">₩6,540,000</div>
+              <div style="font-size:9px; color:#94A3B8;">MRR × 12개월</div>
+            </div>
+            <div style="background:#0F172A; padding:8px; border-radius:8px; border:1px solid var(--card-border);">
+              <div style="font-size:10px; color:var(--text-muted);">가입자당 평균 단가 (ARPU)</div>
+              <div id="admFinopsArpu" style="font-size:13px; font-weight:800; color:#A78BFA;">₩109,000</div>
+              <div style="font-size:9px; color:#94A3B8;">활성 테넌트 평균</div>
+            </div>
+            <div style="background:#0F172A; padding:8px; border-radius:8px; border:1px solid var(--card-border);">
+              <div style="font-size:10px; color:var(--text-muted);">플랫폼 가치 창출 총액</div>
+              <div id="admFinopsTotalVal" style="font-size:13px; font-weight:800; color:#FBBF24;">₩145,320,000</div>
+              <div style="font-size:9px; color:#10B981;">누적 WTP Attribution</div>
+            </div>
+            <div style="background:#0F172A; padding:8px; border-radius:8px; border:1px solid var(--card-border);">
+              <div style="font-size:10px; color:var(--text-muted);">플랫폼 종합 가치 배수</div>
+              <div id="admFinopsRoi" style="font-size:13px; font-weight:800; color:#F472B6;">44.5배</div>
+              <div style="font-size:9px; color:#F472B6;">비용 대비 창출 ROI</div>
+            </div>
+          </div>
+
+          <!-- Domain & Tier Distribution Grid -->
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:11px;">
+            <div style="background:#0F172A; padding:8px 10px; border-radius:8px; border:1px solid var(--card-border);">
+              <div style="font-size:10px; color:#A5B4FC; font-weight:800; margin-bottom:4px;">🌐 5대 업종(Domain) 플릿 분포</div>
+              <div id="admDomainDist" style="display:flex; gap:8px; flex-wrap:wrap; color:#CBD5E1; font-size:10px;">
+                <span>🥐 F&B: 1</span>
+                <span>🏥 Medical: 1</span>
+                <span>✂️ Beauty: 1</span>
+                <span>💻 SaaS: 1</span>
+                <span>🏭 Mfg: 1</span>
+              </div>
+            </div>
+            <div style="background:#0F172A; padding:8px 10px; border-radius:8px; border:1px solid var(--card-border);">
+              <div style="font-size:10px; color:#F472B6; font-weight:800; margin-bottom:4px;">💎 플랜 티어(Tier) 분포</div>
+              <div id="admTierDist" style="display:flex; gap:8px; flex-wrap:wrap; color:#CBD5E1; font-size:10px;">
+                <span style="color:#A5B4FC;">PRO (₩49k): 3개사</span>
+                <span style="color:#C084FC;">ENTERPRISE (₩199k): 2개사</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Tenant Fleet Table -->
         <div class="glass-card">
           <div class="card-title-row">
-            <span style="color:#FFF;">📋 전사 5개 테넌트 플릿 관리</span>
-            <span style="font-size:10px; color:var(--text-muted);">실시간 동기화</span>
+            <span style="color:#FFF; font-weight:800;">📋 전사 테넌트 플릿 관리 & 라이프사이클 제어</span>
+            <button class="tenant-quick-btn" style="border-color:#6366F1; color:#A5B4FC; font-weight:800;" onclick="toggleOnboardForm()">
+              ➕ 신규 테넌트 개통 (Onboard)
+            </button>
           </div>
+
+          <!-- Collapsible New Tenant Onboarding Form -->
+          <div id="onboardTenantForm" style="display:none; background:#0B0F19; border:1px solid #6366F1; border-radius:10px; padding:12px; margin-bottom:12px; animation:slideUp 0.25s ease;">
+            <div style="font-size:12px; font-weight:800; color:#FFF; margin-bottom:8px;">🚀 신규 구독 사업자 플릿 즉시 개통</div>
+            <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; margin-bottom:8px; font-size:11px;">
+              <div>
+                <label style="color:var(--text-muted); display:block; margin-bottom:2px;">테넌트 ID</label>
+                <input id="inpOnboardId" style="width:100%; background:#131B2E; border:1px solid var(--card-border); color:#FFF; padding:6px 8px; border-radius:6px;" placeholder="TENANT_006" value="TENANT_006">
+              </div>
+              <div>
+                <label style="color:var(--text-muted); display:block; margin-bottom:2px;">사업체명</label>
+                <input id="inpOnboardName" style="width:100%; background:#131B2E; border:1px solid var(--card-border); color:#FFF; padding:6px 8px; border-radius:6px;" placeholder="판교 넥스트 바이오팜" value="판교 넥스트 바이오팜">
+              </div>
+              <div>
+                <label style="color:var(--text-muted); display:block; margin-bottom:2px;">대표자명</label>
+                <input id="inpOnboardOwner" style="width:100%; background:#131B2E; border:1px solid var(--card-border); color:#FFF; padding:6px 8px; border-radius:6px;" placeholder="강태훈 대표" value="강태훈 대표">
+              </div>
+              <div>
+                <label style="color:var(--text-muted); display:block; margin-bottom:2px;">업종 도메인</label>
+                <select id="inpOnboardDomain" style="width:100%; background:#131B2E; border:1px solid var(--card-border); color:#FFF; padding:6px 8px; border-radius:6px;">
+                  <option value="fnb">🥐 F&B 식음료</option>
+                  <option value="medical" selected>🏥 의료/병원</option>
+                  <option value="beauty">✂️ 뷰티/살롱</option>
+                  <option value="b2b_saas">💻 B2B SaaS</option>
+                  <option value="manufacturing">🏭 정밀 제조</option>
+                </select>
+              </div>
+              <div>
+                <label style="color:var(--text-muted); display:block; margin-bottom:2px;">구독 플랜</label>
+                <select id="inpOnboardTier" style="width:100%; background:#131B2E; border:1px solid var(--card-border); color:#FFF; padding:6px 8px; border-radius:6px;">
+                  <option value="PRO">PRO (월 49,000원)</option>
+                  <option value="ENTERPRISE" selected>ENTERPRISE (월 199,000원)</option>
+                  <option value="FREE">FREE 체험 (0원)</option>
+                </select>
+              </div>
+              <div>
+                <label style="color:var(--text-muted); display:block; margin-bottom:2px;">사업장 위치</label>
+                <input id="inpOnboardLoc" style="width:100%; background:#131B2E; border:1px solid var(--card-border); color:#FFF; padding:6px 8px; border-radius:6px;" placeholder="경기 성남시 판교밸리" value="경기 성남시 판교밸리">
+              </div>
+            </div>
+            <div style="display:flex; justify-content:flex-end; gap:6px;">
+              <button class="btn-reject" style="padding:6px 12px; font-size:11px;" onclick="toggleOnboardForm()">취소</button>
+              <button class="btn-approve" style="padding:6px 14px; font-size:11px;" onclick="submitOnboardTenant()">⚡ 테넌트 개통 및 인보이스 자동 발행</button>
+            </div>
+          </div>
+
           <div style="overflow-x:auto;">
             <table class="admin-table">
               <thead>
                 <tr>
-                  <th>테넌트</th>
-                  <th>플랜</th>
-                  <th>상태</th>
-                  <th>창출액</th>
-                  <th>액션</th>
+                  <th>테넌트 / 대표자</th>
+                  <th>업종</th>
+                  <th>구독 플랜 (변경)</th>
+                  <th>계정 상태 (토글)</th>
+                  <th>누적 창출액</th>
                 </tr>
               </thead>
               <tbody id="fleetTableBody">
@@ -1747,7 +1846,7 @@
         <!-- Compliance Quarantine Queue (HITL 심의 데스크) -->
         <div class="glass-card" style="border:1.5px solid rgba(239, 68, 68, 0.4);">
           <div class="card-title-row">
-            <span style="color:#F87171;">⚖️ 고위험 광고 카피 법무 격리 큐</span>
+            <span style="color:#F87171; font-weight:800;">⚖️ 고위험 광고 카피 법무 격리 큐 (Human-in-the-Loop)</span>
             <span id="admQuarantineBadge" style="background:#EF4444; color:#FFF; font-size:10px; font-weight:800; padding:2px 8px; border-radius:999px;">대기 1건</span>
           </div>
           <div style="font-size:11px; color:var(--text-muted); margin-bottom:8px;">
@@ -1760,9 +1859,16 @@
 
         <!-- Compliance Interception Audit Stream -->
         <div class="glass-card">
-          <div class="card-title-row">
-            <span style="color:#EF4444;">🛡️ 전사 규제 인터셉트 감사 로그 (48건 차단)</span>
-            <span style="font-size:10px; color:#10B981;">실시간 방어</span>
+          <div class="card-title-row" style="flex-wrap:wrap; gap:6px;">
+            <span style="color:#EF4444; font-weight:800;">🛡️ 전사 규제 인터셉트 감사 로그 실시간 스트림</span>
+            <!-- Domain Filters -->
+            <div style="display:flex; gap:4px; font-size:10px;">
+              <button id="btnAuditAll" class="tenant-quick-btn active" style="padding:3px 7px; font-size:10px;" onclick="filterAuditLogs('')">전체</button>
+              <button id="btnAuditMed" class="tenant-quick-btn" style="padding:3px 7px; font-size:10px;" onclick="filterAuditLogs('medical')">🏥 의료법</button>
+              <button id="btnAuditFnb" class="tenant-quick-btn" style="padding:3px 7px; font-size:10px;" onclick="filterAuditLogs('fnb')">🥐 표시광고</button>
+              <button id="btnAuditSaas" class="tenant-quick-btn" style="padding:3px 7px; font-size:10px;" onclick="filterAuditLogs('b2b_saas')">💻 GDPR</button>
+              <button id="btnAuditMfg" class="tenant-quick-btn" style="padding:3px 7px; font-size:10px;" onclick="filterAuditLogs('manufacturing')">🏭 공정거래</button>
+            </div>
           </div>
           <div id="admAuditStream" style="max-height:160px; overflow-y:auto; font-size:11px;">
             <!-- Dynamically populated -->
@@ -1772,8 +1878,11 @@
         <!-- Agent Telemetry Status -->
         <div class="glass-card">
           <div class="card-title-row">
-            <span style="color:#818CF8;">🤖 분산 에이전트 인프라 헬스체크</span>
-            <span style="font-size:10px; color:#10B981;">99.98% 정상</span>
+            <span style="color:#818CF8; font-weight:800;">🤖 분산 에이전트 인프라 텔레메트리</span>
+            <div style="display:flex; align-items:center; gap:6px;">
+              <span id="admUptimeBadge" style="font-size:10px; color:#10B981; font-weight:700;">● 99.98% 가동</span>
+              <button class="tenant-quick-btn" style="padding:3px 8px; font-size:10px; border-color:#818CF8; color:#818CF8;" onclick="refreshTelemetryHealth()">🔄 갱신</button>
+            </div>
           </div>
           <div id="admAgentHealthGrid" style="display:grid; grid-template-columns:1fr 1fr; gap:6px; font-size:11px;">
             <!-- Dynamically populated -->
@@ -2237,7 +2346,7 @@
         }
         return { status: 'SUCCESS', message: '반려되었습니다.' };
       }
-      if (url === '/api/admin/overview') {
+      if (url === '/api/admin/overview' || url === '/api/v1/admin/overview') {
         const list = Object.values(MOCK_DB.tenants).map(x => x.tenant);
         return {
           kpis: MOCK_DB.admin.kpis,
@@ -2245,8 +2354,98 @@
           audit_logs: MOCK_DB.admin.audit_logs
         };
       }
-      if (url === '/api/v1/admin/quarantine') {
-        return { items: MOCK_DB.admin.quarantine };
+      if (url === '/api/v1/admin/fleet/metrics') {
+        const tenants = Object.values(MOCK_DB.tenants).map(x => x.tenant);
+        const active = tenants.filter(t => t.status === 'ACTIVE');
+        const totalMrr = active.reduce((sum, t) => sum + (t.monthly_fee_krw || 0), 0);
+        const arr = totalMrr * 12;
+        const arpu = active.length > 0 ? Math.floor(totalMrr / active.length) : 0;
+        const totalVal = MOCK_DB.admin.kpis.total_platform_value_krw;
+        const dDist = {};
+        const tDist = {};
+        tenants.forEach(t => {
+          const d = t.domain || 'fnb';
+          dDist[d] = (dDist[d] || 0) + 1;
+          const tier = t.subscription_tier || 'PRO';
+          tDist[tier] = (tDist[tier] || 0) + 1;
+        });
+        return {
+          total_tenants: tenants.length,
+          active_tenants: active.length,
+          total_mrr_krw: totalMrr,
+          arr_krw: arr,
+          arpu_krw: arpu,
+          total_platform_value_krw: totalVal,
+          average_roi_multiplier: MOCK_DB.admin.kpis.average_roi_multiplier,
+          domain_distribution: dDist,
+          tier_distribution: tDist
+        };
+      }
+      if (url === '/api/v1/admin/fleet/onboard') {
+        const body = JSON.parse(options.body || '{}');
+        const fee = body.subscription_tier === 'ENTERPRISE' ? 199000 : (body.subscription_tier === 'PRO' ? 49000 : 0);
+        const newT = {
+          tenant_id: body.tenant_id,
+          business_name: body.business_name,
+          owner_name: body.owner_name,
+          subscription_tier: body.subscription_tier || 'PRO',
+          monthly_fee_krw: fee,
+          status: 'ACTIVE',
+          cumulative_revenue_generated_krw: 0,
+          total_campaigns_executed: 0,
+          domain: body.domain || 'fnb',
+          business_state: {
+            location: body.location || '대한민국',
+            trigger_event: '플랫폼 온보딩 완료',
+            unit_price: 30000
+          }
+        };
+        MOCK_DB.tenants[body.tenant_id] = {
+          tenant: newT,
+          live_plan: {
+            strategy: { campaign_title: '신규 테넌트 온보딩 론칭 캠페인', projected_revenue: 500000, core_narrative: '신규 고객 확보' },
+            channels: { blog: { body: `## [신규 오픈] ${body.business_name} 오픈 기념 프로모션` } },
+            all_compliant: true,
+            summary_financials: { financial_summary: "온보딩 대기" }
+          },
+          analytics: { roi_ratio: 0.0, total_campaigns: 0 },
+          recent_attributions: [],
+          recent_invoices: [
+            { invoice_id: `INV-2026-${body.tenant_id.slice(-3)}`, billing_period: '2026년 10월', tier: body.subscription_tier, amount_krw: fee, status: '결제완료' }
+          ],
+          staged: []
+        };
+        MOCK_DB.admin.kpis.total_active_tenants = Object.values(MOCK_DB.tenants).filter(x => x.tenant.status === 'ACTIVE').length;
+        MOCK_DB.admin.kpis.total_mrr_krw += fee;
+        return { status: 'SUCCESS', tenant: newT, message: `테넌트 ${body.business_name} (${body.tenant_id})이 성공적으로 개통되었습니다.` };
+      }
+      if (url.includes('/admin/tenant/plan') || (url.includes('/admin/tenant/') && url.endsWith('/plan'))) {
+        const body = JSON.parse(options.body || '{}');
+        const tid = body.tenant_id || url.split('/')[4];
+        const t = MOCK_DB.tenants[tid];
+        if (t) {
+          t.tenant.subscription_tier = body.tier;
+          t.tenant.monthly_fee_krw = body.tier === 'ENTERPRISE' ? 199000 : (body.tier === 'PRO' ? 49000 : 0);
+          const active = Object.values(MOCK_DB.tenants).filter(x => x.tenant.status === 'ACTIVE');
+          MOCK_DB.admin.kpis.total_mrr_krw = active.reduce((s, x) => s + x.tenant.monthly_fee_krw, 0);
+        }
+        return { status: 'SUCCESS', tenant: t ? t.tenant : null };
+      }
+      if (url.startsWith('/api/v1/admin/audit-logs')) {
+        let logs = MOCK_DB.admin.audit_logs;
+        if (url.includes('domain=')) {
+          const d = decodeURIComponent(url.split('domain=')[1].split('&')[0]);
+          if (d) logs = logs.filter(l => l.domain === d);
+        }
+        return { audit_logs: logs };
+      }
+      if (url.startsWith('/api/v1/admin/quarantine') && !url.includes('/resolve')) {
+        let items = MOCK_DB.admin.quarantine;
+        if (url.includes('status=')) {
+          const st = decodeURIComponent(url.split('status=')[1].split('&')[0]);
+          if (st) items = items.filter(i => i.status === st);
+        }
+        return { items: items };
       }
       if (url.includes('/quarantine/') && url.includes('/resolve')) {
         const itemId = url.split('/')[5];
@@ -2254,14 +2453,21 @@
         const q = MOCK_DB.admin.quarantine.find(x => x.item_id === itemId);
         if (q) {
           q.status = body.decision === 'APPROVED_BY_ADMIN' ? 'APPROVED' : 'REJECTED';
-          q.admin_reviewer = '플랫폼 총괄 법무팀';
+          q.admin_reviewer = body.reviewer || '플랫폼 총괄 법무팀';
+          q.review_notes = body.notes || 'HITL 심의 완료';
+          q.reviewed_at = new Date().toISOString().replace('T', ' ').slice(0, 19);
         }
         return { status: 'SUCCESS', message: `[${itemId}] 심의가 ${body.decision === 'APPROVED_BY_ADMIN' ? '조건부 승인' : '영구 반려'}되었습니다.` };
       }
-      if (url === '/api/admin/tenant/status') {
+      if (url === '/api/admin/tenant/status' || url === '/api/v1/admin/tenant/status') {
         const body = JSON.parse(options.body || '{}');
         const t = MOCK_DB.tenants[body.tenant_id];
-        if (t) t.tenant.status = body.status;
+        if (t) {
+          t.tenant.status = body.status;
+          const active = Object.values(MOCK_DB.tenants).filter(x => x.tenant.status === 'ACTIVE');
+          MOCK_DB.admin.kpis.total_active_tenants = active.length;
+          MOCK_DB.admin.kpis.total_mrr_krw = active.reduce((s, x) => s + x.tenant.monthly_fee_krw, 0);
+        }
         return { status: 'SUCCESS' };
       }
       if (url === '/api/intelligence') {
@@ -2971,43 +3177,47 @@
         document.getElementById('admKpiValue').innerText = `+₩${(kpis.total_platform_value_krw / 1000000).toFixed(1)}M`;
         document.getElementById('admKpiRoi').innerText = `${kpis.average_roi_multiplier}배`;
 
-        // Render Fleet Table
+        // Render FinOps deep-dive metrics
+        await loadFinOpsMetrics();
+
+        // Render Fleet Table with Tier Dropdown, Domain, Status Toggle, and Cumulative Revenue
         let fHtml = '';
         tenants.forEach(t => {
           const isAct = t.status === 'ACTIVE';
           fHtml += `
             <tr>
-              <td><b>${t.business_name}</b><br><span style="color:#94A3B8; font-size:10px;">${t.owner_name}</span></td>
-              <td><span class="${t.subscription_tier === 'ENTERPRISE' ? 'tag-enterprise' : 'tag-pro'}">${t.subscription_tier}</span></td>
-              <td><span class="${isAct ? 'tag-active' : 'tag-paused'}">${t.status}</span></td>
-              <td style="color:#FEF08A; font-weight:700;">+₩${(t.cumulative_revenue_generated_krw / 10000).toFixed(0)}만</td>
               <td>
-                <button class="btn-reject" style="font-size:10px; padding:3px 6px;" onclick="toggleFleetStatus('${t.tenant_id}', '${t.status}')">${isAct ? '일시정지' : '활성'}</button>
+                <b>${t.business_name}</b> <span style="color:#64748B; font-size:10px;">(${t.tenant_id})</span><br>
+                <span style="color:#94A3B8; font-size:10px;">${t.owner_name} · ${t.business_state?.location || '위치 미지정'}</span>
               </td>
+              <td>
+                <span style="background:rgba(99,102,241,0.15); color:#A5B4FC; padding:2px 6px; border-radius:4px; font-size:10px; font-weight:700;">
+                  ${(t.domain || 'FNB').toUpperCase()}
+                </span>
+              </td>
+              <td>
+                <select onchange="updateTenantPlan('${t.tenant_id}', this.value)" style="background:#1E293B; color:#FFF; border:1px solid #475569; border-radius:4px; padding:3px 6px; font-size:10px;">
+                  <option value="PRO" ${t.subscription_tier === 'PRO' ? 'selected' : ''}>PRO (월 49,000원)</option>
+                  <option value="ENTERPRISE" ${t.subscription_tier === 'ENTERPRISE' ? 'selected' : ''}>ENTERPRISE (월 199,000원)</option>
+                  <option value="FREE" ${t.subscription_tier === 'FREE' ? 'selected' : ''}>FREE 체험 (0원)</option>
+                </select>
+              </td>
+              <td>
+                <button class="${isAct ? 'btn-reject' : 'btn-approve'}" style="font-size:10px; padding:3px 8px; border-radius:4px;" onclick="toggleFleetStatus('${t.tenant_id}', '${t.status}')">
+                  ${isAct ? '🟢 ACTIVE (일시정지)' : '⏸️ PAUSED (활성화)'}
+                </button>
+              </td>
+              <td style="color:#FEF08A; font-weight:700;">+₩${(t.cumulative_revenue_generated_krw / 10000).toFixed(0)}만</td>
             </tr>
           `;
         });
         document.getElementById('fleetTableBody').innerHTML = fHtml;
 
-        // Load Quarantine Queue
-        loadAdminQuarantine();
+        // Load Quarantine Queue (HITL)
+        await loadAdminQuarantine();
 
-        // Load Interception Audit Stream
-        let lHtml = '';
-        globalOverviewData.audit_logs.forEach(log => {
-          lHtml += `
-            <div style="background:#0F172A; padding:6px 8px; border-radius:6px; margin-bottom:4px; border-left:2px solid #EF4444;">
-              <div style="display:flex; justify-content:space-between; color:#FCA5A5; font-size:10px;">
-                <b>[${log.domain.toUpperCase()}] ${log.business_name}</b>
-                <span style="color:#94A3B8;">${log.timestamp}</span>
-              </div>
-              <div style="color:#FFF; font-size:11px;">
-                차단: <span style="text-decoration:line-through; color:#EF4444;">${log.intercepted_term}</span> ➔ <span style="color:#34D399;">${log.sanitized_to}</span>
-              </div>
-            </div>
-          `;
-        });
-        document.getElementById('admAuditStream').innerHTML = lHtml;
+        // Load Interception Audit Stream with active domain filter
+        await filterAuditLogs(currentAuditDomainFilter || '');
 
         // Render Agent Health
         let hHtml = '';
@@ -3025,6 +3235,103 @@
       }
     }
 
+    /* FinOps Deep-Dive & Distribution Analytics */
+    async function loadFinOpsMetrics() {
+      try {
+        const data = await apiFetch('/api/v1/admin/fleet/metrics');
+        if (!data) return;
+
+        const arrEl = document.getElementById('admFinopsArr');
+        if (arrEl) arrEl.innerText = `₩${(data.annual_run_rate_arr_krw || data.arr_krw || 0).toLocaleString()}`;
+
+        const arpuEl = document.getElementById('admFinopsArpu');
+        if (arpuEl) arpuEl.innerText = `₩${(data.average_revenue_per_user_arpu_krw || data.arpu_krw || 0).toLocaleString()}`;
+
+        const totalValEl = document.getElementById('admFinopsTotalVal');
+        if (totalValEl) totalValEl.innerText = `₩${(data.total_value_generated_krw || data.total_platform_value_krw || 0).toLocaleString()}`;
+
+        const roiEl = document.getElementById('admFinopsRoi');
+        if (roiEl) roiEl.innerText = `${(data.platform_overall_roi || data.average_roi_multiplier || 0).toFixed(1)}배`;
+
+        const domainBox = document.getElementById('admDomainDist');
+        if (domainBox && data.domain_distribution) {
+          const icons = { fnb: '🥐', medical: '🏥', beauty: '✂️', b2b_saas: '💻', saas: '💻', manufacturing: '🏭' };
+          domainBox.innerHTML = Object.entries(data.domain_distribution).map(([k, v]) =>
+            `<span>${icons[k] || '🌐'} ${k.toUpperCase()}: <b>${v}</b></span>`
+          ).join('');
+        }
+
+        const tierBox = document.getElementById('admTierDist');
+        if (tierBox && data.tier_distribution) {
+          tierBox.innerHTML = Object.entries(data.tier_distribution).map(([k, v]) =>
+            `<span style="color:${k === 'ENTERPRISE' ? '#C084FC' : '#A5B4FC'};">${k}: <b>${v}개사</b></span>`
+          ).join('');
+        }
+      } catch(e) {
+        console.error('FinOps load error:', e);
+      }
+    }
+
+    /* Change Subscription Tier */
+    async function updateTenantPlan(tenantId, newTier) {
+      try {
+        await apiFetch('/api/v1/admin/tenant/plan', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ tenant_id: tenantId, tier: newTier })
+        });
+        showToast(`💎 [${tenantId}] 플랜이 ${newTier}로 변경되었습니다.`);
+        await loadAdminWarRoom();
+        if (tenantId === currentTenantId) await switchTenant(currentTenantId);
+      } catch(e) {
+        alert('플랜 변경 오류: ' + e.message);
+      }
+    }
+
+    /* Toggle & Submit New Tenant Onboarding */
+    function toggleOnboardForm() {
+      const form = document.getElementById('onboardTenantForm');
+      if (!form) return;
+      form.style.display = (form.style.display === 'none' || !form.style.display) ? 'block' : 'none';
+    }
+
+    async function submitOnboardTenant() {
+      try {
+        const tenant_id = document.getElementById('inpOnboardId')?.value.trim();
+        const business_name = document.getElementById('inpOnboardName')?.value.trim();
+        const owner_name = document.getElementById('inpOnboardOwner')?.value.trim();
+        const domain = document.getElementById('inpOnboardDomain')?.value;
+        const subscription_tier = document.getElementById('inpOnboardTier')?.value;
+        const location = document.getElementById('inpOnboardLoc')?.value.trim();
+
+        if (!tenant_id || !business_name || !owner_name) {
+          alert('테넌트 ID, 사업체명, 대표자명을 모두 입력해주세요.');
+          return;
+        }
+
+        const payload = {
+          tenant_id,
+          business_name,
+          owner_name,
+          domain: domain || 'fnb',
+          subscription_tier: subscription_tier || 'PRO',
+          location: location || '서울특별시'
+        };
+
+        await apiFetch('/api/v1/admin/fleet/onboard', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        showToast(`🚀 신규 테넌트 [${business_name}] 개통 완료! 플릿에 등록되었습니다.`);
+        toggleOnboardForm();
+        await loadAdminWarRoom();
+      } catch(e) {
+        alert('테넌트 개통 실패: ' + e.message);
+      }
+    }
+
     async function toggleFleetStatus(tenantId, currentStatus) {
       const newStatus = (currentStatus === 'ACTIVE') ? 'PAUSED' : 'ACTIVE';
       await apiFetch('/api/admin/tenant/status', {
@@ -3033,17 +3340,18 @@
         body: JSON.stringify({ tenant_id: tenantId, status: newStatus })
       });
       showToast(`🏢 테넌트 [${tenantId}] 상태가 '${newStatus}'로 전환되었습니다.`);
-      loadAdminWarRoom();
-      if (tenantId === currentTenantId) switchTenant(currentTenantId);
+      await loadAdminWarRoom();
+      if (tenantId === currentTenantId) await switchTenant(currentTenantId);
     }
 
-    /* Compliance Quarantine Queue in Admin */
+    /* Compliance Quarantine Queue in Admin (HITL 심의 데스크) */
     async function loadAdminQuarantine() {
       try {
         const data = await apiFetch('/api/v1/admin/quarantine');
         const items = data.items || [];
         const pending = items.filter(i => i.status === 'PENDING');
-        document.getElementById('admQuarantineBadge').innerText = `대기 ${pending.length}건`;
+        const badge = document.getElementById('admQuarantineBadge');
+        if (badge) badge.innerText = `대기 ${pending.length}건`;
 
         let qHtml = '';
         if (items.length === 0) {
@@ -3063,12 +3371,16 @@
                   <div style="color:#34D399;">✨ 권고안: "${q.recommended_sanitized}"</div>
                 </div>
                 ${isPending ? `
-                  <div style="display:flex; gap:4px;">
-                    <button class="btn-approve" style="padding:4px 8px; font-size:10px; background:#10B981;" onclick="resolveQuarantine('${q.item_id}', 'APPROVED_BY_ADMIN')">✅ 수정안 조건부 승인</button>
+                  <div style="margin-top:4px; display:flex; gap:4px; align-items:center;">
+                    <input id="qReviewNote_${q.item_id}" style="flex:1; background:#131B2E; border:1px solid var(--card-border); color:#FFF; padding:4px 6px; border-radius:4px; font-size:10px;" placeholder="심의 메모 (예: 표시광고법 제3조 준수 수정안 확정)" value="가이드라인 준수 수정안 반영 확정">
+                    <button class="btn-approve" style="padding:4px 8px; font-size:10px; background:#10B981;" onclick="resolveQuarantine('${q.item_id}', 'APPROVED_BY_ADMIN')">✅ 조건부 승인</button>
                     <button class="btn-reject" style="font-size:10px; padding:4px 8px;" onclick="resolveQuarantine('${q.item_id}', 'REJECTED')">🚫 영구 차단</button>
                   </div>
                 ` : `
-                  <div style="color:#94A3B8; font-size:10px;">심의 완료: ${q.admin_reviewer}</div>
+                  <div style="color:#94A3B8; font-size:10px; display:flex; justify-content:space-between;">
+                    <span>심의 완료: <b>${q.admin_reviewer || '법무팀'}</b> (${q.review_notes || '규정 준수 확인'})</span>
+                    <span style="color:#64748B;">${q.reviewed_at ? q.reviewed_at.slice(0, 16) : ''}</span>
+                  </div>
                 `}
               </div>
             `;
@@ -3082,15 +3394,86 @@
 
     async function resolveQuarantine(itemId, decision) {
       try {
+        const noteInp = document.getElementById(`qReviewNote_${itemId}`);
+        const notes = noteInp ? noteInp.value.trim() : '심의 완료';
         const d = await apiFetch(`/api/v1/admin/quarantine/${itemId}/resolve`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ decision, reviewer: '플랫폼 총괄 법무팀', notes: '긴급 HITL 심의 승인' })
+          body: JSON.stringify({ decision, reviewer: '플랫폼 총괄 법무팀', notes: notes || 'HITL 심의 통과' })
         });
         showToast(`⚖️ ${d.message}`);
-        loadAdminQuarantine();
+        await loadAdminQuarantine();
       } catch(e) {
         alert('심의 오류: ' + e.message);
+      }
+    }
+
+    /* Interception Audit Stream Filtering */
+    let currentAuditDomainFilter = '';
+    async function filterAuditLogs(domain) {
+      currentAuditDomainFilter = domain || '';
+      const filterBtns = {
+        '': 'btnAuditAll',
+        'medical': 'btnAuditMed',
+        'fnb': 'btnAuditFnb',
+        'b2b_saas': 'btnAuditSaas',
+        'manufacturing': 'btnAuditMfg'
+      };
+      Object.entries(filterBtns).forEach(([k, btnId]) => {
+        const btn = document.getElementById(btnId);
+        if (btn) btn.classList.toggle('active', k === currentAuditDomainFilter);
+      });
+
+      try {
+        const url = currentAuditDomainFilter ? `/api/v1/admin/audit-logs?domain=${encodeURIComponent(currentAuditDomainFilter)}` : '/api/v1/admin/audit-logs';
+        const data = await apiFetch(url);
+        renderAuditLogs(data.audit_logs || data.logs || []);
+      } catch(e) {
+        console.error('Audit filter error:', e);
+      }
+    }
+
+    function renderAuditLogs(logs) {
+      let lHtml = '';
+      if (!logs || logs.length === 0) {
+        lHtml = '<div style="color:var(--text-muted); padding:8px; font-size:11px;">해당 도메인의 감사 로그가 없습니다.</div>';
+      } else {
+        logs.forEach(log => {
+          lHtml += `
+            <div style="background:#0F172A; padding:6px 8px; border-radius:6px; margin-bottom:4px; border-left:2px solid #EF4444;">
+              <div style="display:flex; justify-content:space-between; color:#FCA5A5; font-size:10px;">
+                <b>[${(log.domain || 'ETC').toUpperCase()}] ${log.business_name}</b>
+                <span style="color:#94A3B8;">${log.timestamp}</span>
+              </div>
+              <div style="color:#FFF; font-size:11px;">
+                차단: <span style="text-decoration:line-through; color:#EF4444;">${log.intercepted_term}</span> ➔ <span style="color:#34D399;">${log.sanitized_to}</span>
+                <span style="color:#94A3B8; font-size:9px; margin-left:4px;">(${log.rule_category})</span>
+              </div>
+            </div>
+          `;
+        });
+      }
+      document.getElementById('admAuditStream').innerHTML = lHtml;
+    }
+
+    /* Telemetry Refresh */
+    async function refreshTelemetryHealth() {
+      try {
+        const ov = await apiFetch('/api/admin/overview');
+        if (ov && ov.kpis && ov.kpis.agent_worker_status) {
+          let hHtml = '';
+          for (const [worker, stat] of Object.entries(ov.kpis.agent_worker_status)) {
+            hHtml += `
+              <div style="background:#0F172A; border:1px solid var(--card-border); padding:6px 8px; border-radius:6px;">
+                <span style="color:#A5B4FC; font-weight:700;">${worker}:</span> <span style="color:#34D399;">${stat}</span>
+              </div>
+            `;
+          }
+          document.getElementById('admAgentHealthGrid').innerHTML = hHtml;
+          showToast('📡 분산 에이전트 텔레메트리 헬스체크가 최신 상태로 갱신되었습니다.');
+        }
+      } catch(e) {
+        console.error('Telemetry refresh error:', e);
       }
     }
 
