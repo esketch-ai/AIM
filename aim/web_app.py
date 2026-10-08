@@ -23,6 +23,7 @@ from aim.reputation import ReputationCrisisEngine
 from aim.intelligence import LocalIntelligenceEngine
 from aim.testbed_engine import IndustryTestbedEngine
 from aim.tenant.manager import TenantManager
+from aim.tenant.approval import ApprovalDesk
 from aim.admin.master_console import MasterAdminConsole
 from aim.core.platform import AIMPlatform
 from aim.admin.quarantine import ComplianceQuarantineQueue
@@ -186,6 +187,36 @@ def execute_tenant_campaign(req: TenantCampaignExecuteRequest):
         ),
         "message": f"'{tenant.business_name}' 캠페인이 {len(exec_result['dispatched_channels'])}개 채널에 즉시 집행되었습니다.",
     }
+
+
+@app.get("/api/tenant/{tenant_id}/staged-campaigns")
+def get_tenant_staged_campaigns(tenant_id: str, status: Optional[str] = None):
+    """Returns pending/staged campaigns for subscriber approval desk."""
+    tenant = TenantManager.get_tenant(tenant_id)
+    if not tenant:
+        return JSONResponse(status_code=404, content={"error": f"Tenant '{tenant_id}' not found", "detail": f"Tenant '{tenant_id}' not found"})
+    campaigns = ApprovalDesk.list_campaigns(tenant_id=tenant_id, status=status)
+    return {"tenant_id": tenant_id, "campaigns": [c.model_dump() for c in campaigns]}
+
+
+@app.post("/api/tenant/{tenant_id}/campaign/{campaign_id}/approve")
+def approve_tenant_staged_campaign(tenant_id: str, campaign_id: str):
+    """One-click mobile/portal approval of staged marketing campaign."""
+    try:
+        result = ApprovalDesk.approve_and_dispatch(campaign_id)
+        return result
+    except ValueError as e:
+        return JSONResponse(status_code=404, content={"error": str(e), "detail": str(e)})
+
+
+@app.post("/api/tenant/{tenant_id}/campaign/{campaign_id}/reject")
+def reject_tenant_staged_campaign(tenant_id: str, campaign_id: str):
+    """Business owner rejection of staged campaign."""
+    try:
+        rejected = ApprovalDesk.reject_campaign(campaign_id, reason="Owner dismissed proposal")
+        return {"status": "SUCCESS", "campaign": rejected.model_dump(), "message": "반려되었습니다"}
+    except ValueError as e:
+        return JSONResponse(status_code=404, content={"error": str(e), "detail": str(e)})
 
 
 # --- Platform Master Admin APIs ---
