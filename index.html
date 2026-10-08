@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AIM Marketing OS - 전사 3대 솔루션 유기적 통합 마스터 관제 포털</title>
+  <title>AIM Marketing OS - 자율 마케팅 플랫폼 포털</title>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <style>
     :root {
@@ -72,54 +72,6 @@
     .pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: #10B981; box-shadow: 0 0 8px #10B981; animation: pulse 2s infinite; }
     @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; transform: scale(1.1); } 100% { opacity: 0.5; } }
 
-    /* Cross-Pillar Closed Loop Pipeline Stream */
-    .pipeline-stream {
-      background: #0A0F1D;
-      border: 1px solid rgba(99, 102, 241, 0.3);
-      border-radius: 14px;
-      padding: 12px 18px;
-      margin-bottom: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      overflow-x: auto;
-      gap: 10px;
-      box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
-    }
-    .pipe-step {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 14px;
-      border-radius: 10px;
-      background: rgba(30, 41, 59, 0.6);
-      border: 1px solid var(--card-border);
-      cursor: pointer;
-      transition: all 0.2s;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .pipe-step:hover, .pipe-step.active {
-      background: rgba(99, 102, 241, 0.15);
-      border-color: #6366F1;
-      transform: translateY(-2px);
-    }
-    .pipe-num {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: #6366F1;
-      color: #FFF;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 10px;
-      font-weight: 800;
-    }
-    .pipe-label { font-size: 11px; font-weight: 700; color: #E2E8F0; }
-    .pipe-sub { font-size: 10px; color: var(--text-muted); }
-    .pipe-arrow { color: #64748B; font-weight: 900; font-size: 14px; }
-
     /* View Mode & Tenant Selector Bar */
     .control-ribbon {
       display: flex;
@@ -133,9 +85,10 @@
       display: flex;
       background: #0A0F1D;
       padding: 4px;
-      border-radius: 10px;
+      border-radius: 12px;
       border: 1px solid var(--card-border);
       gap: 4px;
+      flex-wrap: wrap;
     }
     .mode-tab-btn {
       background: transparent;
@@ -143,7 +96,7 @@
       color: #94A3B8;
       font-size: 12px;
       font-weight: 700;
-      padding: 8px 16px;
+      padding: 9px 18px;
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.2s;
@@ -185,10 +138,246 @@
       box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
     }
 
-    /* Triad Grid Layout (3 Organic Columns) */
+    /* View Panels */
+    .view-panel { width: 100%; margin-bottom: 24px; }
+
+    /* Hero Section */
+    .hero-section {
+      background: linear-gradient(180deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.95) 100%);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 18px;
+      padding: 36px 32px;
+      margin-bottom: 24px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    }
+    .hero-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(99, 102, 241, 0.2);
+      border: 1px solid rgba(99, 102, 241, 0.5);
+      color: #A5B4FC;
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    .hero-title {
+      font-size: 32px;
+      font-weight: 900;
+      color: #FFFFFF;
+      letter-spacing: -0.8px;
+      line-height: 1.35;
+      margin-bottom: 14px;
+    }
+    .hero-sub {
+      font-size: 14px;
+      color: #94A3B8;
+      max-width: 800px;
+      margin: 0 auto 24px;
+      line-height: 1.6;
+    }
+    .hero-cta-group {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .btn-hero-primary {
+      background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
+      color: #FFF;
+      border: none;
+      padding: 13px 26px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+      transition: all 0.2s;
+    }
+    .btn-hero-primary:hover { transform: translateY(-2px); filter: brightness(1.1); }
+    .btn-hero-secondary {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid var(--card-border);
+      color: #E2E8F0;
+      padding: 13px 22px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-hero-secondary:hover { background: #334155; color: #FFF; }
+    .hero-metrics-bar {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .hero-metric-item { font-size: 12px; color: #CBD5E1; }
+    .hero-metric-item b { color: #38BDF8; font-size: 14px; }
+
+    /* Benefit Grid */
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 980px) { .benefit-grid { grid-template-columns: 1fr; } }
+    .benefit-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 22px;
+      transition: all 0.2s;
+    }
+    .benefit-card:hover { border-color: rgba(99, 102, 241, 0.5); transform: translateY(-2px); }
+    .benefit-icon-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 14px;
+    }
+    .benefit-title { font-size: 16px; font-weight: 800; color: #FFF; margin-bottom: 8px; }
+    .benefit-desc { font-size: 12px; color: var(--text-muted); line-height: 1.6; margin-bottom: 14px; }
+    .benefit-outcome {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 11px;
+      color: #34D399;
+      font-weight: 700;
+    }
+
+    /* Pricing Grid */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 980px) { .pricing-grid { grid-template-columns: 1fr; } }
+    .pricing-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: all 0.2s;
+    }
+    .pricing-card.featured {
+      border: 2px solid #6366F1;
+      background: linear-gradient(180deg, #131B2E 0%, #0E1528 100%);
+      box-shadow: 0 8px 30px rgba(99, 102, 241, 0.25);
+    }
+    .pricing-featured-badge {
+      position: absolute;
+      top: -11px;
+      right: 18px;
+      background: linear-gradient(135deg, #6366F1 0%, #EC4899 100%);
+      color: #FFF;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+    .pricing-tier-name { font-size: 17px; font-weight: 800; color: #FFF; margin-bottom: 4px; }
+    .pricing-tier-sub { font-size: 11px; color: var(--text-muted); margin-bottom: 14px; }
+    .pricing-price-wrap { display: flex; align-items: baseline; gap: 4px; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--card-border); }
+    .pricing-price-val { font-size: 26px; font-weight: 900; color: #FFF; letter-spacing: -0.5px; }
+    .pricing-price-period { font-size: 11px; color: var(--text-muted); }
+    .pricing-features-list { list-style: none; margin-bottom: 20px; flex: 1; }
+    .pricing-features-list li { font-size: 11px; color: #CBD5E1; margin-bottom: 8px; display: flex; align-items: flex-start; gap: 6px; line-height: 1.5; }
+    .pricing-features-list li::before { content: "✓"; color: #10B981; font-weight: 900; }
+
+    /* ROI Calc Box */
+    .roi-calc-box {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.8) 100%);
+      border: 1.5px solid rgba(99, 102, 241, 0.4);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+    @media (max-width: 800px) { .calc-grid { grid-template-columns: 1fr; } }
+    .calc-metric-highlight {
+      background: #0B0F19;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 20px;
+      text-align: center;
+    }
+    .calc-metric-number {
+      font-size: 32px;
+      font-weight: 900;
+      color: #34D399;
+      letter-spacing: -0.5px;
+      margin: 6px 0;
+    }
+
+    /* Onboarding Step Cards */
+    .onboard-step-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 14px;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+    .step-num-circle {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #6366F1;
+      color: #FFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .step-body { flex: 1; }
+    .step-header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+    .step-title { font-size: 15px; font-weight: 800; color: #FFF; }
+    .step-badge-done { background: rgba(16, 185, 129, 0.2); color: #34D399; padding: 3px 8px; border-radius: 999px; font-size: 10px; font-weight: 800; }
+    .step-badge-active { background: rgba(99, 102, 241, 0.2); color: #A5B4FC; padding: 3px 8px; border-radius: 999px; font-size: 10px; font-weight: 800; }
+    .step-badge-pending { background: rgba(245, 158, 11, 0.2); color: #FCD34D; padding: 3px 8px; border-radius: 999px; font-size: 10px; font-weight: 800; }
+
+    /* Tenant Cockpit 2-Column Grid */
+    .tenant-cockpit-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 16px;
+      align-items: start;
+    }
+    @media (max-width: 1024px) { .tenant-cockpit-grid { grid-template-columns: 1fr; } }
+
+    /* Triad Grid Layout */
     .triad-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 16px;
       align-items: start;
     }
@@ -237,6 +426,7 @@
     .badge-service { background: rgba(16, 185, 129, 0.15); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.3); }
     .badge-tenant { background: rgba(99, 102, 241, 0.15); color: #A5B4FC; border: 1px solid rgba(99, 102, 241, 0.4); }
     .badge-admin { background: rgba(245, 158, 11, 0.15); color: #FCD34D; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .badge-creator { background: rgba(236, 72, 153, 0.15); color: #F472B6; border: 1px solid rgba(236, 72, 153, 0.4); }
 
     .pillar-title { font-size: 17px; font-weight: 800; color: #FFF; margin-top: 6px; }
     .pillar-desc { font-size: 11px; color: var(--text-muted); margin-top: 2px; line-height: 1.4; }
@@ -388,14 +578,14 @@
     .tag-pro { background: rgba(99, 102, 241, 0.2); color: #A5B4FC; padding: 2px 5px; border-radius: 4px; font-size: 10px; font-weight: 700; }
     .tag-enterprise { background: rgba(245, 158, 11, 0.2); color: #FDE047; padding: 2px 5px; border-radius: 4px; font-size: 10px; font-weight: 700; }
 
-    /* Mini Mobile Frame embedded in Pillar 2 */
+    /* Mini Mobile Frame */
     .mobile-frame-wrap {
       background: #000;
       border-radius: 28px;
       padding: 10px;
       box-shadow: 0 15px 35px rgba(0,0,0,0.6);
       border: 3px solid #334155;
-      margin-top: 14px;
+      margin-top: 0;
     }
     .mobile-screen-inner {
       background: #FFFFFF;
@@ -410,6 +600,54 @@
     }
     .screen-notch { width: 100px; height: 18px; background: #000; border-radius: 0 0 12px 12px; margin: 0 auto 6px; }
     .screen-body { padding: 12px 14px; flex: 1; overflow-y: auto; line-height: 1.6; }
+
+    /* Cross-Pillar Closed Loop Pipeline Stream */
+    .pipeline-stream {
+      background: #0A0F1D;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 14px;
+      padding: 12px 18px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      overflow-x: auto;
+      gap: 10px;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+    }
+    .pipe-step {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid var(--card-border);
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .pipe-step:hover, .pipe-step.active {
+      background: rgba(99, 102, 241, 0.15);
+      border-color: #6366F1;
+      transform: translateY(-2px);
+    }
+    .pipe-num {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #6366F1;
+      color: #FFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 800;
+    }
+    .pipe-label { font-size: 11px; font-weight: 700; color: #E2E8F0; }
+    .pipe-sub { font-size: 10px; color: var(--text-muted); }
+    .pipe-arrow { color: #64748B; font-weight: 900; font-size: 14px; }
 
     /* Toast Notification */
     .toast-box {
@@ -428,10 +666,6 @@
       animation: slideUp 0.3s ease;
     }
     @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-    /* Single view full-width mode helpers */
-    .full-width-container { width: 100%; }
-    .hidden { display: none !important; }
   </style>
 </head>
 <body>
@@ -442,19 +676,19 @@
         <div class="brand-logo-badge">AIM OS</div>
         <div class="brand-text">
           <h1>AIM Autonomous Marketing Platform</h1>
-          <p>전사 3대 유기적 솔루션 통합 관제 포털 · Karpathy 자율 추론 & 헤르메스 프로토콜 v0.6.0</p>
+          <p>월 4.9만원으로 24시간 일하는 소상공인 AI 마케터 · Karpathy 자율 추론 & 헤르메스 프로토콜 v0.6.0</p>
         </div>
       </div>
       <div class="telemetry-bar">
         <div class="telem-pill">
           <span class="pulse-dot"></span>
-          <span style="color:#10B981;">CORE v5.0 LIVE</span>
+          <span style="color:#10B981;">24시간 자율 AI LIVE</span>
         </div>
         <div class="telem-pill">
-          <span style="color:#818CF8;">🏢 5 TENANTS CONNECTED</span>
+          <span style="color:#818CF8;">🏢 5개 매장 활성 연동</span>
         </div>
         <div class="telem-pill">
-          <span style="color:#F59E0B;">🛡️ HITL QUARANTINE: 48 BLOCKED</span>
+          <span style="color:#F59E0B;">🛡️ 공정위·의료법 100% 안심 방어</span>
         </div>
         <div class="telem-pill">
           <span style="color:#34D399;">SLA 99.98%</span>
@@ -462,95 +696,28 @@
       </div>
     </header>
 
-    <!-- Cross-Pillar Closed Loop Pipeline Stream (유기적 순환 파이프라인) -->
-    <div class="pipeline-stream">
-      <div class="pipe-step active" onclick="switchViewMode('service')">
-        <div class="pipe-num">1</div>
-        <div>
-          <div class="pipe-label">⚡ 6D 센싱 & 기습 레이더</div>
-          <div class="pipe-sub">비 예보/유휴 35% 감지</div>
-        </div>
-      </div>
-      <div class="pipe-arrow">➔</div>
-      <div class="pipe-step" onclick="switchViewMode('tenant')">
-        <div class="pipe-num" style="background:#8B5CF6;">2</div>
-        <div>
-          <div class="pipe-label">📝 AI 기안 & 승인 데스크</div>
-          <div class="pipe-sub">CAMP-001 원클릭 HITL 검토</div>
-        </div>
-      </div>
-      <div class="pipe-arrow">➔</div>
-      <div class="pipe-step" onclick="switchViewMode('service')">
-        <div class="pipe-num" style="background:#06B6D4;">3</div>
-        <div>
-          <div class="pipe-label">📢 3대 채널 사출 엔진</div>
-          <div class="pipe-sub">블로그/인스타/카톡 580명 송출</div>
-        </div>
-      </div>
-      <div class="pipe-arrow">➔</div>
-      <div class="pipe-step" onclick="switchViewMode('tenant')">
-        <div class="pipe-num" style="background:#10B981;">4</div>
-        <div>
-          <div class="pipe-label">💰 WTP 가치 귀속 원장</div>
-          <div class="pipe-sub">+₩4,320,000 (ROI 88.2배)</div>
-        </div>
-      </div>
-      <div class="pipe-arrow">➔</div>
-      <div class="pipe-step" onclick="switchViewMode('admin')">
-        <div class="pipe-num" style="background:#F59E0B;">5</div>
-        <div>
-          <div class="pipe-label">👑 마스터 FinOps & 격리 큐</div>
-          <div class="pipe-sub">MRR ₩545k / 의료법 100% 방어</div>
-        </div>
-      </div>
-      <div class="pipe-arrow">➔</div>
-      <div class="pipe-step" onclick="switchViewMode('creator')">
-        <div class="pipe-num" style="background:#EC4899;">6</div>
-        <div>
-          <div class="pipe-label">🎬 숏폼 크리에이터 직결</div>
-          <div class="pipe-sub">15초 브리프 & 10% 에스크로</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Real-Time Signal Injection Bar (실시간 신호 주입 & 유기적 오케스트레이션) -->
-    <div class="glass-card" style="margin-bottom:16px; border:1px solid #4F46E5; background:linear-gradient(90deg, rgba(79,70,229,0.12) 0%, rgba(236,72,153,0.12) 100%);">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-        <div style="display:flex; align-items:center; gap:8px;">
-          <span style="font-size:12px; font-weight:900; color:#818CF8;">⚡ 실시간 신호 주입 & 유기적 연동 시뮬레이터:</span>
-          <span style="font-size:11px; color:var(--text-muted);">신호를 클릭하면 4대 솔루션(센서 ➔ 전략 ➔ 브리프 ➔ 크리에이터 에스크로)이 즉시 동기화됩니다.</span>
-        </div>
-        <div style="display:flex; gap:6px; flex-wrap:wrap;">
-          <button class="tenant-quick-btn" style="border-color:#38BDF8; color:#38BDF8; font-weight:800;" onclick="injectSignalSimulation('WEATHER_IDLE')">☔ 비 예보 주입 (유휴 방어)</button>
-          <button class="tenant-quick-btn" style="border-color:#F59E0B; color:#F59E0B; font-weight:800;" onclick="injectSignalSimulation('COMPETITOR_WEAKNESS')">🕵️ 경쟁사 약점 포착 (반사이익)</button>
-          <button class="tenant-quick-btn" style="border-color:#10B981; color:#10B981; font-weight:800;" onclick="injectSignalSimulation('RANK_DROP')">📈 플레이스 1위 처방 (AEO)</button>
-          <button class="tenant-quick-btn" style="border-color:#EF4444; color:#EF4444; font-weight:800;" onclick="injectSignalSimulation('CRISIS_REVIEW')">🚨 1점 악성 리뷰 (품격 방어)</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- View Mode & Tenant Selector Ribbon -->
+    <!-- Main Navigation Ribbon -->
     <div class="control-ribbon">
       <div class="mode-tabs">
-        <button id="modeBtnPanoramic" class="mode-tab-btn active" onclick="switchViewMode('panoramic')">
-          🌐 3대 솔루션 종합 파노라마 뷰 (Triad View)
+        <button id="modeBtnIntro" class="mode-tab-btn active" onclick="switchViewMode('intro')">
+          ⭐ 1. 서비스 소개 & 요금제
+        </button>
+        <button id="modeBtnOnboarding" class="mode-tab-btn" onclick="switchViewMode('onboarding')">
+          📋 2. 가입 후 시작하기
         </button>
         <button id="modeBtnTenant" class="mode-tab-btn" onclick="switchViewMode('tenant')">
-          💼 1. 사업자 콕핏 (Tenant)
-        </button>
-        <button id="modeBtnAdmin" class="mode-tab-btn" onclick="switchViewMode('admin')">
-          👑 2. 마스터 총괄 (Admin)
-        </button>
-        <button id="modeBtnService" class="mode-tab-btn" onclick="switchViewMode('service')">
-          ⚡ 3. 서비스 실행 (Service Engine)
+          💼 3. 사업주 마이 데스크
         </button>
         <button id="modeBtnCreator" class="mode-tab-btn" onclick="switchViewMode('creator')">
-          🎬 4. 크리에이터 온디맨드 매칭 (Creator Match)
+          🎬 4. 15초 숏폼 크리에이터
+        </button>
+        <button id="modeBtnMaster" class="mode-tab-btn" onclick="switchViewMode('master')">
+          🛠️ 5. 시스템 마스터 관제
         </button>
       </div>
 
       <div class="tenant-quick-bar">
-        <span style="font-size:11px; color:var(--text-muted); font-weight:700;">🏢 테넌트 전환:</span>
+        <span style="font-size:11px; color:var(--text-muted); font-weight:700;">🏢 내 매장 선택:</span>
         <button id="qBtn_TENANT_001" class="tenant-quick-btn active" onclick="switchTenant('TENANT_001')">🥐 성수 베이커리</button>
         <button id="qBtn_TENANT_002" class="tenant-quick-btn" onclick="switchTenant('TENANT_002')">🏥 강남 리엔 피부과</button>
         <button id="qBtn_TENANT_003" class="tenant-quick-btn" onclick="switchTenant('TENANT_003')">✂️ 청담 헤어살롱</button>
@@ -559,121 +726,326 @@
       </div>
     </div>
 
-    <!-- MAIN DISPLAY: Triad Panoramic Grid or Zoomed View -->
-    <div id="mainContentGrid" class="triad-grid">
+    <!-- ======================================================== -->
+    <!-- VIEW 1: 서비스 소개 & 요금제 (Why AIM / Landing) -->
+    <!-- ======================================================== -->
+    <section id="viewIntro" class="view-panel">
+      <!-- Hero Section -->
+      <div class="hero-section">
+        <div class="hero-badge-pill">
+          <span>⚡ 국내 최초 실시간 자율 추론형 AI 마케팅 OS</span>
+        </div>
+        <h1 class="hero-title">
+          월 49,000원으로 24시간 일하는<br>
+          <span style="background: linear-gradient(135deg, #818CF8 0%, #C084FC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+            전담 AI 마케터를 내 매장에 고용하세요
+          </span>
+        </h1>
+        <p class="hero-sub">
+          마케팅 대행사에 월 수백만 원 쓰지 마세요. 비 오는 날 유휴 좌석 방어부터 15초 숏폼 바이럴까지 —<br>
+          사업주는 복잡한 세팅 없이 스마트폰에서 <b>[하루 1분 원클릭 승인]</b>만 누르면 끝납니다.
+        </p>
+        <div class="hero-cta-group">
+          <button class="btn-hero-primary" onclick="switchViewMode('tenant')">
+            💼 내 매장 마이 데스크 체험하기 (오늘 할 일 확인) ➔
+          </button>
+          <button class="btn-hero-secondary" onclick="switchViewMode('onboarding')">
+            📋 가입 후 3단계 시작 가이드 보기
+          </button>
+          <button class="btn-hero-secondary" style="border-color:#EC4899; color:#F472B6;" onclick="switchViewMode('creator')">
+            🎬 15초 숏폼 크리에이터 의뢰 데스크
+          </button>
+        </div>
+        <div class="hero-metrics-bar">
+          <div class="hero-metric-item">💰 월간 평균 순 창출 이득 <b>+₩4,320,000</b></div>
+          <div class="hero-metric-item">📈 월 구독료 대비 <b>ROI 88.2배</b></div>
+          <div class="hero-metric-item">⏱️ 기획/마케팅 공수 <b>월 24시간 절감</b></div>
+          <div class="hero-metric-item">🛡️ 공정위·의료법 <b>100% 자동 안심 방어</b></div>
+        </div>
+      </div>
 
-      <!-- ======================================================== -->
-      <!-- PILLAR 1: 서비스 실행 솔루션 (Core Service Engine) -->
-      <!-- ======================================================== -->
-      <section id="colService" class="pillar-panel pillar-service">
-        <div class="pillar-header">
+      <!-- 3 Concrete Benefits Cards -->
+      <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 8px;">
+        <div>
+          <span style="font-size: 11px; font-weight: 800; color: #818CF8; letter-spacing: 0.5px;">WHY CHOOSE AIM</span>
+          <h2 style="font-size: 20px; font-weight: 800; color: #FFF; margin-top: 2px;">사업주가 매달 요금을 내고 얻는 3대 실질 이득</h2>
+        </div>
+        <span style="font-size: 11px; color: var(--text-muted);">복잡한 기능이 아닌, 매장의 현금 흐름과 시간을 지켜드립니다.</span>
+      </div>
+
+      <div class="benefit-grid">
+        <!-- Card 1 -->
+        <div class="benefit-card">
+          <div class="benefit-icon-badge" style="background: rgba(56, 189, 248, 0.15); color: #38BDF8;">
+            ☔
+          </div>
+          <h3 class="benefit-title">1. 비 오는 날·유휴 시간 즉시 매출화</h3>
+          <p class="benefit-desc">
+            비 예보나 나른한 오후 3시 손님이 끊길 때, AI가 실시간 기상/유동인구를 감지해 <b>"3시간 한정 타임특가 번개 쿠폰"</b>을 즉시 기안합니다.
+          </p>
+          <div class="benefit-outcome">
+            💰 실질 이득: 버려지던 유휴 테이블 매출 월 +240만~430만 원 회수
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="benefit-card">
+          <div class="benefit-icon-badge" style="background: rgba(16, 185, 129, 0.15); color: #10B981;">
+            ⏱️
+          </div>
+          <h3 class="benefit-title">2. 기획 공수 제로! 하루 1분 원클릭</h3>
+          <p class="benefit-desc">
+            블로그 글쓰기, 인스타그램 해시태그, 이미지 기획 고민 끝. AI가 완성된 완제품 카피를 스마트폰으로 보내주면 <b>[승인]</b> 버튼만 누르면 3대 채널로 자동 송출됩니다.
+          </p>
+          <div class="benefit-outcome">
+            ⏳ 실질 이득: 월 20시간 기획 공수 제로화 · 월 300만 원 마케터 인건비 대체
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="benefit-card">
+          <div class="benefit-icon-badge" style="background: rgba(236, 72, 153, 0.15); color: #EC4899;">
+            🎬
+          </div>
+          <h3 class="benefit-title">3. 질문 3개로 15초 숏폼 & 크리에이터 매칭</h3>
+          <p class="benefit-desc">
+            상품명과 핵심 혜택 딱 3가지만 적으면 15초 쇼츠 콘티 자동 완성! 타깃 오디언스 일치율 상위 크리에이터에게 <b>10% 우대 수수료</b>로 에스크로 안전 의뢰합니다.
+          </p>
+          <div class="benefit-outcome">
+            💎 실질 이득: 섭외/소통 공수 90% 감축 · 24시간 패스트트랙 SLA 보호
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive ROI Calculator -->
+      <div class="roi-calc-box">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
           <div>
-            <span class="pillar-badge badge-service">⚡ SOLUTION 1 · 서비스 실행 엔진</span>
-            <h2 class="pillar-title">6D 센서 & 옴니채널 사출기</h2>
-            <p class="pillar-desc">날씨/유휴 감지, 반경 1km 경쟁 스파이, 순위 진단, 3대 채널 즉각 생성</p>
+            <span style="font-size: 11px; font-weight: 800; color: #A5B4FC;">💰 실시간 가치 시뮬레이터</span>
+            <h3 style="font-size: 18px; font-weight: 800; color: #FFF; margin-top: 2px;">내 매장에서는 월 얼마의 이득을 얻을 수 있을까요?</h3>
           </div>
-          <span style="font-size:10px; color:#10B981; font-weight:800;">ONLINE ●</span>
+          <span style="background: rgba(245, 158, 11, 0.15); color: #FCD34D; font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 6px;">
+            ⚠️ 근거등급 C_ILLUSTRATIVE (업종별 시연값)
+          </span>
         </div>
 
-        <!-- 6D Hyper-Context Sensor Matrix -->
-        <div class="glass-card">
-          <div class="card-title-row">
-            <span style="color:#F59E0B;">🌐 실시간 6차원 하이퍼 컨텍스트</span>
-            <span style="font-size:10px; color:#10B981;">실시간 센싱</span>
+        <div class="calc-grid">
+          <!-- Input Controls -->
+          <div style="background: #090D18; border: 1px solid var(--card-border); border-radius: 14px; padding: 18px;">
+            <label style="font-size: 12px; font-weight: 700; color: #CBD5E1; display: block; margin-bottom: 8px;">
+              내 매장 업종 선택:
+            </label>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px;">
+              <button id="calcCatBtn_FNB" class="tenant-quick-btn active" onclick="setCalcCategory('FNB')">🥐 베이커리 / 카페</button>
+              <button id="calcCatBtn_MEDICAL" class="tenant-quick-btn" onclick="setCalcCategory('MEDICAL')">🏥 피부과 / 의원</button>
+              <button id="calcCatBtn_BEAUTY" class="tenant-quick-btn" onclick="setCalcCategory('BEAUTY')">✂️ 헤어살롱 / 뷰티</button>
+              <button id="calcCatBtn_SAAS" class="tenant-quick-btn" onclick="setCalcCategory('SAAS')">💻 B2B SaaS</button>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <label style="font-size: 12px; font-weight: 700; color: #CBD5E1;">현재 월 매출 규모:</label>
+              <span id="calcRevenueDisplay" style="font-size: 14px; font-weight: 800; color: #818CF8;">월 2,500만 원</span>
+            </div>
+            <input id="calcRevenueSlider" type="range" min="10000000" max="100000000" step="5000000" value="25000000" style="width: 100%; accent-color: #6366F1; cursor: pointer;" oninput="updateRoiCalculator()">
+            <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--text-muted); margin-top: 4px;">
+              <span>1,000만 원</span>
+              <span>5,000만 원</span>
+              <span>1억 원+</span>
+            </div>
           </div>
-          <div class="matrix-grid">
-            <div class="matrix-cell">
-              <div class="matrix-label">📅 시대(Era)</div>
-              <div id="mEra" class="matrix-val" style="color:#C7D2FE;">헬시플레저 / 고환율</div>
+
+          <!-- Result Highlight -->
+          <div class="calc-metric-highlight">
+            <div style="font-size: 12px; color: #A5B4FC; font-weight: 700;">월 구독료 (PRO 기준 49,000원) 대비 예상 성과:</div>
+            <div class="calc-metric-number" id="calcGainDisplay">+₩4,250,000</div>
+            <div style="font-size: 12px; color: #E2E8F0; margin-bottom: 14px;">
+              순이익 투자 회수율: <b id="calcRoiDisplay" style="color: #FCD34D;">86.7배</b> · 절감 시간: <b id="calcHoursDisplay" style="color: #38BDF8;">월 25시간</b>
             </div>
-            <div class="matrix-cell">
-              <div class="matrix-label">⚡ 상황(Situation)</div>
-              <div id="mSit" class="matrix-val" style="color:#FDE047;">오후 15시 비 예보</div>
-            </div>
-            <div class="matrix-cell">
-              <div class="matrix-label">🍂 계절(Season)</div>
-              <div id="mSea" class="matrix-val" style="color:#FCA5A5;">가을 무화과 시즌</div>
-            </div>
-            <div class="matrix-cell">
-              <div class="matrix-label">👥 세대(Gen)</div>
-              <div id="mGen" class="matrix-val" style="color:#86EFAC;">2030 MZ 트렌드</div>
-            </div>
-            <div class="matrix-cell">
-              <div class="matrix-label">🗺️ 지역(Region)</div>
-              <div id="mReg" class="matrix-val" style="color:#93C5FD;">성수 카페거리 반경 1km</div>
-            </div>
-            <div class="matrix-cell">
-              <div class="matrix-label">🎯 계기(Milestone)</div>
-              <div id="mMil" class="matrix-val" style="color:#F472B6;">커플 100일 기념</div>
-            </div>
+            <button class="btn-approve" style="margin: 0 auto; max-width: 280px;" onclick="switchViewMode('onboarding')">
+              🚀 이 혜택으로 지금 3단계 시작하기 ➔
+            </button>
           </div>
         </div>
+      </div>
 
-        <!-- Flash Revenue Booster Card -->
-        <div class="flash-attack-card">
-          <div class="card-title-row">
-            <span style="color:#FCA5A5;">🚨 실시간 기상/유휴 타임어택</span>
-            <span style="font-size:10px; background:#EF4444; color:#FFF; padding:2px 6px; border-radius:4px; font-weight:800;">타임어택</span>
+      <!-- Subscription Pricing Tiers -->
+      <div style="margin-bottom: 12px; text-align: center;">
+        <span style="font-size: 11px; font-weight: 800; color: #818CF8;">TRANSPARENT PRICING</span>
+        <h2 style="font-size: 20px; font-weight: 800; color: #FFF; margin-top: 2px;">매장 규모에 맞춘 투명한 월간 요금제</h2>
+        <p style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">언제든지 위약금 없이 해지 가능합니다.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Starter -->
+        <div class="pricing-card">
+          <div class="pricing-tier-name">Starter</div>
+          <div class="pricing-tier-sub">1인 소상공인 및 소형 로컬 매장</div>
+          <div class="pricing-price-wrap">
+            <span class="pricing-price-val">₩29,000</span>
+            <span class="pricing-price-period">/ 월 (VAT 별도)</span>
           </div>
-          <div id="flashTextTrigger" style="font-size:12px; color:#E2E8F0; margin-bottom:6px;">
-            ⚠️ 오늘 오후 15시 비 예보 ➔ 워크인 손님 35% 급감 감지
-          </div>
-          <div id="flashTextHeadline" style="font-size:13px; font-weight:800; color:#FFF; margin-bottom:4px;">
-            ☔ [비 오는 날 깜짝 번개] 빵 포장 시 라떼 1+1!
-          </div>
-          <div style="font-size:11px; color:#FEF08A; margin-bottom:10px;">
-            💰 예상 추가 매출: POS 정산 연동 시연값 (+360,000원) · 3시간 한정
-          </div>
-          <button class="btn-approve" style="padding:8px 12px; font-size:12px; background:linear-gradient(135deg, #EF4444 0%, #DC2626 100%);" onclick="executeFlashAttack()">
-            ⚡ 카톡 친구 580명에게 즉시 발송 승인
+          <ul class="pricing-features-list">
+            <li>기상 급변 감지 (비/눈 실시간 알림)</li>
+            <li>네이버 스마트플레이스 순위 진단</li>
+            <li>월 10회 AI 맞춤 마케팅 기안</li>
+            <li>카카오톡 알림톡 채널 연동</li>
+            <li>크리에이터 마켓 중개 수수료 15%</li>
+          </ul>
+          <button class="btn-reject" style="width: 100%; padding: 12px; font-weight: 800;" onclick="switchViewMode('onboarding')">
+            Starter 플랜 선택
           </button>
         </div>
 
-        <!-- 1km Competitor Radar -->
-        <div class="glass-card">
-          <div class="card-title-row">
-            <span style="color:#818CF8;">🕵️ 반경 1km 경쟁 매장 스파이 레이더</span>
-            <span style="font-size:10px; color:var(--text-muted);">실시간 3곳 포착</span>
+        <!-- Pro (Featured) -->
+        <div class="pricing-card featured">
+          <div class="pricing-featured-badge">🔥 84% 사업주 추천</div>
+          <div class="pricing-tier-name" style="color: #A5B4FC;">Pro (가장 인기)</div>
+          <div class="pricing-tier-sub">단골 유치 및 숏폼 바이럴이 필요한 핵심 매장</div>
+          <div class="pricing-price-wrap">
+            <span class="pricing-price-val" style="color: #38BDF8;">₩49,000</span>
+            <span class="pricing-price-period">/ 월 (VAT 별도)</span>
           </div>
-          <div id="competitorMiniList" style="font-size:11px;">
-            <!-- Dynamically populated -->
-          </div>
-        </div>
-
-        <!-- Search Ranking Diagnosis -->
-        <div class="glass-card">
-          <div class="card-title-row">
-            <span style="color:#34D399;">📈 스마트플레이스 & AI 검색 진단</span>
-            <span style="font-size:10px; color:#818CF8;">네이버 4위 / AI 2순위</span>
-          </div>
-          <div style="font-size:11px; color:#CBD5E1; margin-bottom:8px;">
-            1위 탈환을 위한 처방: 'AOP 버터', '반려동물 동반' 영수증 리뷰 유도 이벤트
-          </div>
-          <button class="btn-reject" style="width:100%;" onclick="executeRankMission()">
-            🚀 영수증 리뷰 유도 이벤트 원클릭 발송
+          <ul class="pricing-features-list">
+            <li><b>24시간 6D 환경 센서 자율 감시</b> (날씨/유휴 35%)</li>
+            <li><b>3대 채널 동시 사출</b> (네이버 블로그/인스타/카톡)</li>
+            <li><b>무제한 AI 마케팅 기안 & 원클릭 승인</b></li>
+            <li><b>WTP 매출 귀속 원장 & 실시간 ROI 분석</b></li>
+            <li><b style="color: #F472B6;">크리에이터 10% 우대 수수료 에스크로</b></li>
+            <li>24시간 패스트트랙 SLA 검수 보호</li>
+          </ul>
+          <button class="btn-approve" style="width: 100%; padding: 12px;" onclick="switchViewMode('onboarding')">
+            ⚡ Pro 플랜으로 지금 시작하기
           </button>
         </div>
 
-        <!-- Crisis Defense 3-Tier -->
-        <div class="glass-card">
-          <div class="card-title-row">
-            <span style="color:#EF4444;">🚨 별점 1점 악성 리뷰 3단 방어</span>
-            <span style="font-size:10px; color:#34D399;">100% 품격 방어</span>
+        <!-- Enterprise -->
+        <div class="pricing-card">
+          <div class="pricing-tier-name">Enterprise</div>
+          <div class="pricing-tier-sub">전문 병의원, 프랜차이즈, B2B 기업</div>
+          <div class="pricing-price-wrap">
+            <span class="pricing-price-val">₩99,000</span>
+            <span class="pricing-price-period">/ 월 (VAT 별도)</span>
           </div>
-          <div style="font-size:11px; color:#94A3B8; margin-bottom:6px;">
-            "웨이팅 길고 조기 품절되어 헛걸음했습니다" ➔ [정중 사과/팩트 해소/재방문 케어]
-          </div>
-          <button class="btn-reject" style="width:100%;" onclick="simulateCrisisQuick()">
-            🛡️ 3단 품격 대응 답글 생성 및 확인
+          <ul class="pricing-features-list">
+            <li>Pro의 모든 기능 포함</li>
+            <li>반경 1km 경쟁 매장 3곳 실시간 스파이 레이더</li>
+            <li>의료법 제56조 등 고위험 광고 100% 자동 필터링</li>
+            <li>악성 리뷰 3단 품격 대응 자동 가동</li>
+            <li><b style="color: #FCD34D;">크리에이터 5% VIP 최저 수수료</b></li>
+            <li>전담 마케팅 컨시어지 1:1 배정</li>
+          </ul>
+          <button class="btn-reject" style="width: 100%; padding: 12px; font-weight: 800;" onclick="switchViewMode('onboarding')">
+            Enterprise 문의하기
           </button>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- ======================================================== -->
-      <!-- PILLAR 2: 유료 가입자 사업자 솔루션 (Subscriber Tenant Cockpit) -->
-      <!-- ======================================================== -->
-      <section id="colTenant" class="pillar-panel pillar-tenant">
-        <div class="pillar-header">
+    <!-- ======================================================== -->
+    <!-- VIEW 2: 가입 후 시작하기 (온보딩 3단계 체크리스트) -->
+    <!-- ======================================================== -->
+    <section id="viewOnboarding" class="view-panel" style="display: none;">
+      <div style="background: linear-gradient(180deg, #131B2E 0%, #0A1020 100%); border: 1px solid var(--card-border); border-radius: 18px; padding: 28px; margin-bottom: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 18px;">
+          <div>
+            <span class="step-badge-done">🎉 유료 구독 정상 활성화</span>
+            <h2 style="font-size: 22px; font-weight: 900; color: #FFF; margin-top: 6px;">
+              가입을 환영합니다! 이제 아래 3단계만 확인하시면 준비 끝입니다.
+            </h2>
+            <p style="font-size: 13px; color: var(--text-muted); margin-top: 3px;">
+              사업주님이 복잡한 툴이나 마케팅 기획을 배울 필요가 전혀 없습니다. AIM이 알아서 움직입니다.
+            </p>
+          </div>
+          <button class="btn-hero-primary" style="padding: 10px 20px; font-size: 12px;" onclick="switchViewMode('tenant')">
+            💼 사업주 마이 데스크 바로가기 ➔
+          </button>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="onboard-step-card">
+          <div class="step-num-circle" style="background: #10B981;">1</div>
+          <div class="step-body">
+            <div class="step-header-row">
+              <div class="step-title">1단계: 매장 정보 & 마케팅 채널 1분 연동</div>
+              <span class="step-badge-done">✅ 연동 100% 완료</span>
+            </div>
+            <p style="font-size: 12px; color: #CBD5E1; margin-bottom: 12px; line-height: 1.5;">
+              기존에 운영 중이신 네이버 플레이스와 인스타그램, 카카오톡 채널이 AIM 두뇌와 안전하게 연동되었습니다.
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+              <div style="background: #0B0F19; border: 1px solid var(--card-border); border-radius: 8px; padding: 10px; font-size: 11px;">
+                <div style="color: #10B981; font-weight: 800; margin-bottom: 2px;">● 네이버 스마트플레이스</div>
+                <div style="color: #FFF;" id="onboardStoreName">성수 아뜰리에 베이커리 & 카페</div>
+                <div style="color: var(--text-muted); font-size: 10px;">서울 성수동 카페거리 반경 1km</div>
+              </div>
+              <div style="background: #0B0F19; border: 1px solid var(--card-border); border-radius: 8px; padding: 10px; font-size: 11px;">
+                <div style="color: #EC4899; font-weight: 800; margin-bottom: 2px;">● 인스타그램 비즈니스</div>
+                <div style="color: #FFF;">@seoul_atelier_cafe</div>
+                <div style="color: var(--text-muted); font-size: 10px;">팔로워 1.2k / 릴스 연동 활성</div>
+              </div>
+              <div style="background: #0B0F19; border: 1px solid var(--card-border); border-radius: 8px; padding: 10px; font-size: 11px;">
+                <div style="color: #FCD34D; font-weight: 800; margin-bottom: 2px;">● 카카오톡 알림톡 채널</div>
+                <div style="color: #FFF;">성수아뜰리에 공식채널</div>
+                <div style="color: var(--text-muted); font-size: 10px;">활성 친구 580명 즉시 발송 가능</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="onboard-step-card">
+          <div class="step-num-circle" style="background: #3B82F6;">2</div>
+          <div class="step-body">
+            <div class="step-header-row">
+              <div class="step-title">2단계: 24시간 자율 AI 마케터 상시 감시 가동</div>
+              <span class="step-badge-active">● 실시간 감시 ONLINE</span>
+            </div>
+            <p style="font-size: 12px; color: #CBD5E1; margin-bottom: 12px; line-height: 1.5;">
+              기상청 레이더, 반경 1km 경쟁 매장 3곳의 웨이팅 상황, 네이버 검색 순위를 AI가 24시간 실시간 감시합니다. 기회가 포착되면 마케팅 완제품을 즉시 작성합니다.
+            </p>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap; background: #0B0F19; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--card-border); font-size: 11px;">
+              <div style="color: #38BDF8;">☁️ 기상 레이더: <b>오후 15시 비 예보 (강수확률 88%)</b></div>
+              <div style="color: #FCD34D;">🕵️ 경쟁사 레이더: <b>인근 A베이커리 조기 품절 포착</b></div>
+              <div style="color: #34D399;">📈 검색 순위: <b>성수 디저트 카페 4위 (AEO 처방 준비됨)</b></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="onboard-step-card" style="border-color: #6366F1; box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);">
+          <div class="step-num-circle" style="background: #6366F1;">3</div>
+          <div class="step-body">
+            <div class="step-header-row">
+              <div class="step-title">3단계: 하루 1분 스마트폰 원클릭 승인 (오늘 할 일!)</div>
+              <span class="step-badge-pending">🔔 오늘 대기 건 1건</span>
+            </div>
+            <p style="font-size: 12px; color: #CBD5E1; margin-bottom: 12px; line-height: 1.5;">
+              새로운 상황이 감지되면 AIM이 카카오톡/스마트폰으로 완성본을 보내드립니다. 사업주님은 스마트폰 화면에서 <b>[원클릭 승인]</b> 버튼만 누르면 3대 채널로 동시 발송됩니다.
+            </p>
+            <div style="background: rgba(99, 102, 241, 0.12); border: 1px solid #6366F1; border-radius: 10px; padding: 14px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+              <div>
+                <div style="font-size: 13px; font-weight: 800; color: #FFF;">
+                  ⚡ 오늘 비 예보 대응 타임어택 캠페인이 기안되어 승인을 기다리고 있습니다!
+                </div>
+                <div style="font-size: 11px; color: #A5B4FC; margin-top: 2px;">
+                  예상 창출 추가 매출: <b>+₩240,000원</b> (카톡 친구 580명에게 3시간 한정 쿠폰 발송)
+                </div>
+              </div>
+              <button class="btn-approve" style="padding: 10px 18px; font-size: 12px;" onclick="switchViewMode('tenant')">
+                👉 오늘의 승인 데스크로 이동하기 (1건 대기) ➔
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- VIEW 3: 사업주 마이 데스크 (Subscriber Tenant Cockpit) -->
+    <!-- ======================================================== -->
+    <section id="viewTenant" class="view-panel" style="display: none;">
+      <section id="colTenant" class="pillar-panel pillar-tenant" style="width:100%;">
+  <div class="pillar-header">
           <div>
             <span class="pillar-badge badge-tenant">💼 SOLUTION 2 · 유료 가입자 사업자 콕핏</span>
             <h2 id="tMainTitle" class="pillar-title">성수 아뜰리에 베이커리 & 카페</h2>
@@ -683,9 +1055,11 @@
             <span id="tPlanBadgeTop" class="tag-pro">PRO 플랜 (49,000원/월)</span>
             <div id="tStatusDotTop" style="font-size:10px; color:#10B981; font-weight:800; margin-top:3px;">● 정상 구독 중</div>
           </div>
-        </div>
-
-        <!-- WTP Value Attribution Banner (핵심 세일즈 포인트) -->
+  
+  <div class="tenant-cockpit-grid">
+    <!-- Left Column (Core Actions & Ledger) -->
+    <div class="tenant-col-left">
+      <!-- WTP Value Attribution Banner (핵심 세일즈 포인트) -->
         <div class="wtp-banner">
           <div style="display:flex; justify-content:space-between; align-items:center;">
             <div style="font-size:11px; font-weight:800; color:#A5B4FC;">💰 월간 순 기여 창출 가치 (WTP Attribution)</div>
@@ -712,8 +1086,7 @@
             </div>
           </div>
         </div>
-
-        <!-- AI Staged Approval Desk (원클릭 승인 데스크) -->
+      <!-- AI Staged Approval Desk (원클릭 승인 데스크) -->
         <div class="glass-card" style="border:1.5px solid rgba(99, 102, 241, 0.4);">
           <div class="card-title-row">
             <span style="color:#A5B4FC; font-size:13px;">📝 AI 기안 캠페인 원클릭 승인 데스크</span>
@@ -726,8 +1099,33 @@
             <!-- Dynamic Campaign Item -->
           </div>
         </div>
-
-        <!-- Live Mobile Dispatch Mockup (실시간 폰 프리뷰) -->
+      <!-- Creator Matching Quick Launcher Card -->
+        <div class="glass-card" style="border: 1px solid rgba(236,72,153,0.35); background: linear-gradient(135deg, rgba(236,72,153,0.08) 0%, rgba(13,19,34,0.6) 100%);">
+          <div class="card-title-row">
+            <span style="color:#F472B6; font-weight:800;">🎬 크리에이터 숏폼 직결 매칭 (온디맨드)</span>
+            <span style="font-size:10px; background:rgba(236,72,153,0.2); color:#F472B6; padding:2px 6px; border-radius:4px; font-weight:800;">💎 10% 우대 수수료</span>
+          </div>
+          <div style="font-size:11px; color:#E2E8F0; margin-bottom:8px; line-height:1.5;">
+            기획 공수 없이 <b>필수 3문항</b>으로 15초 바이럴 브리프 자동 생성! 오디언스 일치율 상위 크리에이터에게 10% 우대 에스크로로 안전 의뢰하세요.
+          </div>
+          <button class="btn-approve" style="background:#EC4899; box-shadow:0 4px 14px rgba(236,72,153,0.4);" onclick="switchViewMode('creator')">
+            🚀 15초 AI 표준 브리프 & 크리에이터 매칭 데스크 열기 ➔
+          </button>
+        </div>
+      <!-- Value Attribution Ledger & Billing Invoices -->
+        <div class="glass-card" style="margin-top:14px;">
+          <div class="card-title-row">
+            <span style="color:#818CF8;">📊 매출 귀속 원장 & 최근 인보이스</span>
+            <span style="font-size:10px; color:#10B981;">정상 정산</span>
+          </div>
+          <div id="tenantAttributionList" style="font-size:11px; margin-bottom:8px;"></div>
+          <div id="tenantInvoiceMiniList" style="font-size:11px; border-top:1px dashed var(--card-border); padding-top:8px;"></div>
+        </div>
+    </div>
+    
+    <!-- Right Column (Mobile Preview & Interactive Signal Bar) -->
+    <div class="tenant-col-right">
+      <!-- Live Mobile Dispatch Mockup (실시간 폰 프리뷰) -->
         <div class="mobile-frame mobile-frame-wrap">
           <div class="mobile-screen-inner">
             <div class="screen-notch"></div>
@@ -745,160 +1143,34 @@
             </div>
           </div>
         </div>
+      
+<!-- Tenant Quick Signal Simulator Widget -->
+<div class="glass-card" style="border: 1px solid #6366F1; background: linear-gradient(135deg, rgba(99, 102, 241, 0.12) 0%, rgba(15, 23, 42, 0.8) 100%);">
+  <div class="card-title-row">
+    <span style="color:#A5B4FC; font-weight:800;">⚡ 실시간 상황 감지 시뮬레이터</span>
+    <span style="font-size:10px; color:#10B981;">1초 즉시 반응</span>
+  </div>
+  <div style="font-size:11px; color:var(--text-muted); margin-bottom:10px;">
+    실제 상권에서 일어나는 상황을 클릭해보세요. AI가 1초 만에 최적의 마케팅 캠페인을 기안합니다.
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+    <button class="tenant-quick-btn" style="border-color:#38BDF8; color:#38BDF8;" onclick="injectSignalSimulation('WEATHER_IDLE')">☔ 비 예보 (유휴 방어)</button>
+    <button class="tenant-quick-btn" style="border-color:#F59E0B; color:#F59E0B;" onclick="injectSignalSimulation('COMPETITOR_WEAKNESS')">🕵️ 경쟁사 약점 포착</button>
+    <button class="tenant-quick-btn" style="border-color:#10B981; color:#10B981;" onclick="injectSignalSimulation('RANK_DROP')">📈 플레이스 1위 처방</button>
+    <button class="tenant-quick-btn" style="border-color:#EF4444; color:#EF4444;" onclick="injectSignalSimulation('CRISIS_REVIEW')">🚨 악성 리뷰 방어</button>
+  </div>
+</div>
 
-        <!-- Value Attribution Ledger & Billing Invoices -->
-        <div class="glass-card" style="margin-top:14px;">
-          <div class="card-title-row">
-            <span style="color:#818CF8;">📊 매출 귀속 원장 & 최근 인보이스</span>
-            <span style="font-size:10px; color:#10B981;">정상 정산</span>
-          </div>
-          <div id="tenantAttributionList" style="font-size:11px; margin-bottom:8px;"></div>
-          <div id="tenantInvoiceMiniList" style="font-size:11px; border-top:1px dashed var(--card-border); padding-top:8px;"></div>
-        </div>
+    </div>
+  </div>
+</section>
+    </section>
 
-        <!-- Creator Matching Quick Launcher Card -->
-        <div class="glass-card" style="border: 1px solid rgba(236,72,153,0.35); background: linear-gradient(135deg, rgba(236,72,153,0.08) 0%, rgba(13,19,34,0.6) 100%);">
-          <div class="card-title-row">
-            <span style="color:#F472B6; font-weight:800;">🎬 크리에이터 숏폼 직결 매칭 (온디맨드)</span>
-            <span style="font-size:10px; background:rgba(236,72,153,0.2); color:#F472B6; padding:2px 6px; border-radius:4px; font-weight:800;">💎 10% 우대 수수료</span>
-          </div>
-          <div style="font-size:11px; color:#E2E8F0; margin-bottom:8px; line-height:1.5;">
-            기획 공수 없이 <b>필수 3문항</b>으로 15초 바이럴 브리프 자동 생성! 오디언스 일치율 상위 크리에이터에게 10% 우대 에스크로로 안전 의뢰하세요.
-          </div>
-          <button class="btn-approve" style="background:#EC4899; box-shadow:0 4px 14px rgba(236,72,153,0.4);" onclick="switchViewMode('creator')">
-            🚀 15초 AI 표준 브리프 & 크리에이터 매칭 데스크 열기 ➔
-          </button>
-        </div>
-      </section>
-
-      <!-- ======================================================== -->
-      <!-- PILLAR 3: 플랫폼 총괄 관리 솔루션 (Master Admin War Room) -->
-      <!-- ======================================================== -->
-      <section id="colAdmin" class="pillar-panel pillar-admin">
-        <div class="pillar-header">
-          <div>
-            <span class="pillar-badge badge-admin">👑 SOLUTION 3 · 플랫폼 총괄 관리 콘솔</span>
-            <h2 class="pillar-title">플랫폼 총괄 관리 & FinOps</h2>
-            <p class="pillar-desc">전사 5개 테넌트 플릿, MRR 모니터링, 법무 격리 큐 심의, 인프라 텔레메트리</p>
-          </div>
-          <span style="font-size:10px; color:#F59E0B; font-weight:800;">ROOT ACCESS ●</span>
-        </div>
-
-        <!-- Governance & Evidence Tier Notice -->
-        <div style="font-size:11px; color:#F59E0B; background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.35); border-radius:8px; padding:8px 10px; margin-bottom:12px;">
-          ⚠️ 근거등급 <b>C_ILLUSTRATIVE (시연값)</b> — 아래 KPI는 실측 POS 정산이 연결되지 않은 데모 테넌트 데이터입니다. 금전적 약속 근거로 사용할 수 없습니다.
-        </div>
-
-        <!-- 4 Global KPIs -->
-        <div class="kpi-row">
-          <div class="kpi-stat-box">
-            <div class="kpi-stat-lbl">🏢 활성 테넌트 플릿</div>
-            <div id="admKpiTenants" class="kpi-stat-val" style="color:#34D399;">5개사 (100%)</div>
-          </div>
-          <div class="kpi-stat-box">
-            <div class="kpi-stat-lbl">💳 플랫폼 총 MRR</div>
-            <div id="admKpiMrr" class="kpi-stat-val" style="color:#818CF8;">₩545,000</div>
-          </div>
-          <div class="kpi-stat-box">
-            <div class="kpi-stat-lbl">💰 전사 누적 창출 매출</div>
-            <div id="admKpiValue" class="kpi-stat-val" style="color:#FBBF24;">+₩145.3M</div>
-          </div>
-          <div class="kpi-stat-box">
-            <div class="kpi-stat-lbl">📈 가입자 평균 ROI</div>
-            <div id="admKpiRoi" class="kpi-stat-val" style="color:#F472B6;">44.5배</div>
-          </div>
-        </div>
-
-        <!-- Creator Marketplace & Take-Rate Widget -->
-        <div class="glass-card" style="border: 1px solid rgba(236,72,153,0.35); margin-bottom:12px; background:linear-gradient(135deg, rgba(236,72,153,0.05) 0%, rgba(19,27,46,0.8) 100%);">
-          <div class="card-title-row">
-            <span style="color:#F472B6; font-weight:800;">🤝 크리에이터 마켓플레이스 & 에스크로 수수료 관제</span>
-            <span style="font-size:10px; color:#34D399;">실시간 정산</span>
-          </div>
-          <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; margin-bottom:8px;">
-            <div style="background:#0F172A; padding:8px; border-radius:8px; border:1px solid var(--card-border);">
-              <div style="font-size:10px; color:var(--text-muted);">총 매칭 거래액 (GMV)</div>
-              <div id="admMktGmv" style="font-size:13px; font-weight:800; color:#F8FAFC;">₩450,000</div>
-            </div>
-            <div style="background:#0F172A; padding:8px; border-radius:8px; border:1px solid var(--card-border);">
-              <div style="font-size:10px; color:var(--text-muted);">플랫폼 수수료 (Take-Rate)</div>
-              <div id="admMktFee" style="font-size:13px; font-weight:800; color:#F472B6;">+₩45,000 (10%)</div>
-            </div>
-            <div style="background:#0F172A; padding:8px; border-radius:8px; border:1px solid var(--card-border);">
-              <div style="font-size:10px; color:var(--text-muted);">활성 에스크로 계약</div>
-              <div id="admMktActive" style="font-size:13px; font-weight:800; color:#34D399;">1건 (검수 대기)</div>
-            </div>
-          </div>
-          <div id="admMktRecentDeal" style="font-size:11px; color:#CBD5E1; background:rgba(0,0,0,0.2); padding:6px 10px; border-radius:6px;">
-            최근 계약: [DEAL_7749A] 성수 베이커리 ➔ 서울핫플스케치 (450,000원 / 수수료 45,000원 안전 예치 중)
-          </div>
-        </div>
-
-        <!-- Tenant Fleet Table -->
-        <div class="glass-card">
-          <div class="card-title-row">
-            <span style="color:#FFF;">📋 전사 5개 테넌트 플릿 관리</span>
-            <span style="font-size:10px; color:var(--text-muted);">실시간 동기화</span>
-          </div>
-          <div style="overflow-x:auto;">
-            <table class="admin-table">
-              <thead>
-                <tr>
-                  <th>테넌트</th>
-                  <th>플랜</th>
-                  <th>상태</th>
-                  <th>창출액</th>
-                  <th>액션</th>
-                </tr>
-              </thead>
-              <tbody id="fleetTableBody">
-                <!-- Dynamically populated -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- Compliance Quarantine Queue (HITL 심의 데스크) -->
-        <div class="glass-card" style="border:1.5px solid rgba(239, 68, 68, 0.4);">
-          <div class="card-title-row">
-            <span style="color:#F87171;">⚖️ 고위험 광고 카피 법무 격리 큐</span>
-            <span id="admQuarantineBadge" style="background:#EF4444; color:#FFF; font-size:10px; font-weight:800; padding:2px 8px; border-radius:999px;">대기 1건</span>
-          </div>
-          <div style="font-size:11px; color:var(--text-muted); margin-bottom:8px;">
-            의료법 제56조 및 표시광고법 위반 고위험군 표현을 사전 격리하여 법적 리스크를 100% 방어합니다.
-          </div>
-          <div id="admQuarantineList">
-            <!-- Dynamically populated -->
-          </div>
-        </div>
-
-        <!-- Compliance Interception Audit Stream -->
-        <div class="glass-card">
-          <div class="card-title-row">
-            <span style="color:#EF4444;">🛡️ 전사 규제 인터셉트 감사 로그 (48건 차단)</span>
-            <span style="font-size:10px; color:#10B981;">실시간 방어</span>
-          </div>
-          <div id="admAuditStream" style="max-height:160px; overflow-y:auto; font-size:11px;">
-            <!-- Dynamically populated -->
-          </div>
-        </div>
-
-        <!-- Agent Telemetry Status -->
-        <div class="glass-card">
-          <div class="card-title-row">
-            <span style="color:#818CF8;">🤖 분산 에이전트 인프라 헬스체크</span>
-            <span style="font-size:10px; color:#10B981;">99.98% 정상</span>
-          </div>
-          <div id="admAgentHealthGrid" style="display:grid; grid-template-columns:1fr 1fr; gap:6px; font-size:11px;">
-            <!-- Dynamically populated -->
-          </div>
-        </div>
-      </section>
-
-      <!-- ======================================================== -->
-      <!-- PILLAR 4: 크리에이터 온디맨드 매칭 & 초압축 브리프 (Creator Desk) -->
-      <!-- ======================================================== -->
-      <section id="colCreator" class="pillar-panel pillar-creator" style="display:none; width:100%;">
+    <!-- ======================================================== -->
+    <!-- VIEW 4: 크리에이터 온디맨드 매칭 (Creator Match Desk) -->
+    <!-- ======================================================== -->
+    <section id="viewCreator" class="view-panel" style="display: none;">
+      <section id="colCreator" class="pillar-panel pillar-creator" style="display:block; width:100%;">
         <div class="pillar-header">
           <div>
             <span class="pillar-badge badge-creator">🎬 SOLUTION 4 · 크리에이터 온디맨드 직결 매칭</span>
@@ -1074,15 +1346,312 @@
           </div>
         </div>
       </section>
+    </section>
 
+    <!-- ======================================================== -->
+    <!-- VIEW 5: 시스템 마스터 관제 (Engineering & FinOps War Room) -->
+    <!-- ======================================================== -->
+    <section id="viewMaster" class="view-panel" style="display: none;">
+      <!-- Cross-Pillar Closed Loop Pipeline Stream (유기적 순환 파이프라인) -->
+    <div class="pipeline-stream">
+      <div class="pipe-step active" onclick="switchViewMode('service')">
+        <div class="pipe-num">1</div>
+        <div>
+          <div class="pipe-label">⚡ 6D 센싱 & 기습 레이더</div>
+          <div class="pipe-sub">비 예보/유휴 35% 감지</div>
+        </div>
+      </div>
+      <div class="pipe-arrow">➔</div>
+      <div class="pipe-step" onclick="switchViewMode('tenant')">
+        <div class="pipe-num" style="background:#8B5CF6;">2</div>
+        <div>
+          <div class="pipe-label">📝 AI 기안 & 승인 데스크</div>
+          <div class="pipe-sub">CAMP-001 원클릭 HITL 검토</div>
+        </div>
+      </div>
+      <div class="pipe-arrow">➔</div>
+      <div class="pipe-step" onclick="switchViewMode('service')">
+        <div class="pipe-num" style="background:#06B6D4;">3</div>
+        <div>
+          <div class="pipe-label">📢 3대 채널 사출 엔진</div>
+          <div class="pipe-sub">블로그/인스타/카톡 580명 송출</div>
+        </div>
+      </div>
+      <div class="pipe-arrow">➔</div>
+      <div class="pipe-step" onclick="switchViewMode('tenant')">
+        <div class="pipe-num" style="background:#10B981;">4</div>
+        <div>
+          <div class="pipe-label">💰 WTP 가치 귀속 원장</div>
+          <div class="pipe-sub">+₩4,320,000 (ROI 88.2배)</div>
+        </div>
+      </div>
+      <div class="pipe-arrow">➔</div>
+      <div class="pipe-step" onclick="switchViewMode('admin')">
+        <div class="pipe-num" style="background:#F59E0B;">5</div>
+        <div>
+          <div class="pipe-label">👑 마스터 FinOps & 격리 큐</div>
+          <div class="pipe-sub">MRR ₩545k / 의료법 100% 방어</div>
+        </div>
+      </div>
+      <div class="pipe-arrow">➔</div>
+      <div class="pipe-step" onclick="switchViewMode('creator')">
+        <div class="pipe-num" style="background:#EC4899;">6</div>
+        <div>
+          <div class="pipe-label">🎬 숏폼 크리에이터 직결</div>
+          <div class="pipe-sub">15초 브리프 & 10% 에스크로</div>
+        </div>
+      </div>
     </div>
+
+    <!-- Real-Time Signal Injection Bar (실시간 신호 주입 & 유기적 오케스트레이션) -->
+    <div class="glass-card" style="margin-bottom:16px; border:1px solid #4F46E5; background:linear-gradient(90deg, rgba(79,70,229,0.12) 0%, rgba(236,72,153,0.12) 100%);">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="font-size:12px; font-weight:900; color:#818CF8;">⚡ 실시간 신호 주입 & 유기적 연동 시뮬레이터:</span>
+          <span style="font-size:11px; color:var(--text-muted);">신호를 클릭하면 4대 솔루션(센서 ➔ 전략 ➔ 브리프 ➔ 크리에이터 에스크로)이 즉시 동기화됩니다.</span>
+        </div>
+        <div style="display:flex; gap:6px; flex-wrap:wrap;">
+          <button class="tenant-quick-btn" style="border-color:#38BDF8; color:#38BDF8; font-weight:800;" onclick="injectSignalSimulation('WEATHER_IDLE')">☔ 비 예보 주입 (유휴 방어)</button>
+          <button class="tenant-quick-btn" style="border-color:#F59E0B; color:#F59E0B; font-weight:800;" onclick="injectSignalSimulation('COMPETITOR_WEAKNESS')">🕵️ 경쟁사 약점 포착 (반사이익)</button>
+          <button class="tenant-quick-btn" style="border-color:#10B981; color:#10B981; font-weight:800;" onclick="injectSignalSimulation('RANK_DROP')">📈 플레이스 1위 처방 (AEO)</button>
+          <button class="tenant-quick-btn" style="border-color:#EF4444; color:#EF4444; font-weight:800;" onclick="injectSignalSimulation('CRISIS_REVIEW')">🚨 1점 악성 리뷰 (품격 방어)</button>
+        </div>
+      </div>
+    </div>
+
+      <div class="triad-grid" style="grid-template-columns: repeat(2, minmax(0, 1fr));">
+        <section id="colService" class="pillar-panel pillar-service">
+        <div class="pillar-header">
+          <div>
+            <span class="pillar-badge badge-service">⚡ SOLUTION 1 · 서비스 실행 엔진</span>
+            <h2 class="pillar-title">6D 센서 & 옴니채널 사출기</h2>
+            <p class="pillar-desc">날씨/유휴 감지, 반경 1km 경쟁 스파이, 순위 진단, 3대 채널 즉각 생성</p>
+          </div>
+          <span style="font-size:10px; color:#10B981; font-weight:800;">ONLINE ●</span>
+        </div>
+
+        <!-- 6D Hyper-Context Sensor Matrix -->
+        <div class="glass-card">
+          <div class="card-title-row">
+            <span style="color:#F59E0B;">🌐 실시간 6차원 하이퍼 컨텍스트</span>
+            <span style="font-size:10px; color:#10B981;">실시간 센싱</span>
+          </div>
+          <div class="matrix-grid">
+            <div class="matrix-cell">
+              <div class="matrix-label">📅 시대(Era)</div>
+              <div id="mEra" class="matrix-val" style="color:#C7D2FE;">헬시플레저 / 고환율</div>
+            </div>
+            <div class="matrix-cell">
+              <div class="matrix-label">⚡ 상황(Situation)</div>
+              <div id="mSit" class="matrix-val" style="color:#FDE047;">오후 15시 비 예보</div>
+            </div>
+            <div class="matrix-cell">
+              <div class="matrix-label">🍂 계절(Season)</div>
+              <div id="mSea" class="matrix-val" style="color:#FCA5A5;">가을 무화과 시즌</div>
+            </div>
+            <div class="matrix-cell">
+              <div class="matrix-label">👥 세대(Gen)</div>
+              <div id="mGen" class="matrix-val" style="color:#86EFAC;">2030 MZ 트렌드</div>
+            </div>
+            <div class="matrix-cell">
+              <div class="matrix-label">🗺️ 지역(Region)</div>
+              <div id="mReg" class="matrix-val" style="color:#93C5FD;">성수 카페거리 반경 1km</div>
+            </div>
+            <div class="matrix-cell">
+              <div class="matrix-label">🎯 계기(Milestone)</div>
+              <div id="mMil" class="matrix-val" style="color:#F472B6;">커플 100일 기념</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flash Revenue Booster Card -->
+        <div class="flash-attack-card">
+          <div class="card-title-row">
+            <span style="color:#FCA5A5;">🚨 실시간 기상/유휴 타임어택</span>
+            <span style="font-size:10px; background:#EF4444; color:#FFF; padding:2px 6px; border-radius:4px; font-weight:800;">타임어택</span>
+          </div>
+          <div id="flashTextTrigger" style="font-size:12px; color:#E2E8F0; margin-bottom:6px;">
+            ⚠️ 오늘 오후 15시 비 예보 ➔ 워크인 손님 35% 급감 감지
+          </div>
+          <div id="flashTextHeadline" style="font-size:13px; font-weight:800; color:#FFF; margin-bottom:4px;">
+            ☔ [비 오는 날 깜짝 번개] 빵 포장 시 라떼 1+1!
+          </div>
+          <div style="font-size:11px; color:#FEF08A; margin-bottom:10px;">
+            💰 예상 추가 매출: POS 정산 연동 시연값 (+360,000원) · 3시간 한정
+          </div>
+          <button class="btn-approve" style="padding:8px 12px; font-size:12px; background:linear-gradient(135deg, #EF4444 0%, #DC2626 100%);" onclick="executeFlashAttack()">
+            ⚡ 카톡 친구 580명에게 즉시 발송 승인
+          </button>
+        </div>
+
+        <!-- 1km Competitor Radar -->
+        <div class="glass-card">
+          <div class="card-title-row">
+            <span style="color:#818CF8;">🕵️ 반경 1km 경쟁 매장 스파이 레이더</span>
+            <span style="font-size:10px; color:var(--text-muted);">실시간 3곳 포착</span>
+          </div>
+          <div id="competitorMiniList" style="font-size:11px;">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Search Ranking Diagnosis -->
+        <div class="glass-card">
+          <div class="card-title-row">
+            <span style="color:#34D399;">📈 스마트플레이스 & AI 검색 진단</span>
+            <span style="font-size:10px; color:#818CF8;">네이버 4위 / AI 2순위</span>
+          </div>
+          <div style="font-size:11px; color:#CBD5E1; margin-bottom:8px;">
+            1위 탈환을 위한 처방: 'AOP 버터', '반려동물 동반' 영수증 리뷰 유도 이벤트
+          </div>
+          <button class="btn-reject" style="width:100%;" onclick="executeRankMission()">
+            🚀 영수증 리뷰 유도 이벤트 원클릭 발송
+          </button>
+        </div>
+
+        <!-- Crisis Defense 3-Tier -->
+        <div class="glass-card">
+          <div class="card-title-row">
+            <span style="color:#EF4444;">🚨 별점 1점 악성 리뷰 3단 방어</span>
+            <span style="font-size:10px; color:#34D399;">100% 품격 방어</span>
+          </div>
+          <div style="font-size:11px; color:#94A3B8; margin-bottom:6px;">
+            "웨이팅 길고 조기 품절되어 헛걸음했습니다" ➔ [정중 사과/팩트 해소/재방문 케어]
+          </div>
+          <button class="btn-reject" style="width:100%;" onclick="simulateCrisisQuick()">
+            🛡️ 3단 품격 대응 답글 생성 및 확인
+          </button>
+        </div>
+      </section>
+        <section id="colAdmin" class="pillar-panel pillar-admin">
+        <div class="pillar-header">
+          <div>
+            <span class="pillar-badge badge-admin">👑 SOLUTION 3 · 플랫폼 총괄 관리 콘솔</span>
+            <h2 class="pillar-title">플랫폼 총괄 관리 & FinOps</h2>
+            <p class="pillar-desc">전사 5개 테넌트 플릿, MRR 모니터링, 법무 격리 큐 심의, 인프라 텔레메트리</p>
+          </div>
+          <span style="font-size:10px; color:#F59E0B; font-weight:800;">ROOT ACCESS ●</span>
+        </div>
+
+        <!-- Governance & Evidence Tier Notice -->
+        <div style="font-size:11px; color:#F59E0B; background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.35); border-radius:8px; padding:8px 10px; margin-bottom:12px;">
+          ⚠️ 근거등급 <b>C_ILLUSTRATIVE (시연값)</b> — 아래 KPI는 실측 POS 정산이 연결되지 않은 데모 테넌트 데이터입니다. 금전적 약속 근거로 사용할 수 없습니다.
+        </div>
+
+        <!-- 4 Global KPIs -->
+        <div class="kpi-row">
+          <div class="kpi-stat-box">
+            <div class="kpi-stat-lbl">🏢 활성 테넌트 플릿</div>
+            <div id="admKpiTenants" class="kpi-stat-val" style="color:#34D399;">5개사 (100%)</div>
+          </div>
+          <div class="kpi-stat-box">
+            <div class="kpi-stat-lbl">💳 플랫폼 총 MRR</div>
+            <div id="admKpiMrr" class="kpi-stat-val" style="color:#818CF8;">₩545,000</div>
+          </div>
+          <div class="kpi-stat-box">
+            <div class="kpi-stat-lbl">💰 전사 누적 창출 매출</div>
+            <div id="admKpiValue" class="kpi-stat-val" style="color:#FBBF24;">+₩145.3M</div>
+          </div>
+          <div class="kpi-stat-box">
+            <div class="kpi-stat-lbl">📈 가입자 평균 ROI</div>
+            <div id="admKpiRoi" class="kpi-stat-val" style="color:#F472B6;">44.5배</div>
+          </div>
+        </div>
+
+        <!-- Creator Marketplace & Take-Rate Widget -->
+        <div class="glass-card" style="border: 1px solid rgba(236,72,153,0.35); margin-bottom:12px; background:linear-gradient(135deg, rgba(236,72,153,0.05) 0%, rgba(19,27,46,0.8) 100%);">
+          <div class="card-title-row">
+            <span style="color:#F472B6; font-weight:800;">🤝 크리에이터 마켓플레이스 & 에스크로 수수료 관제</span>
+            <span style="font-size:10px; color:#34D399;">실시간 정산</span>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; margin-bottom:8px;">
+            <div style="background:#0F172A; padding:8px; border-radius:8px; border:1px solid var(--card-border);">
+              <div style="font-size:10px; color:var(--text-muted);">총 매칭 거래액 (GMV)</div>
+              <div id="admMktGmv" style="font-size:13px; font-weight:800; color:#F8FAFC;">₩450,000</div>
+            </div>
+            <div style="background:#0F172A; padding:8px; border-radius:8px; border:1px solid var(--card-border);">
+              <div style="font-size:10px; color:var(--text-muted);">플랫폼 수수료 (Take-Rate)</div>
+              <div id="admMktFee" style="font-size:13px; font-weight:800; color:#F472B6;">+₩45,000 (10%)</div>
+            </div>
+            <div style="background:#0F172A; padding:8px; border-radius:8px; border:1px solid var(--card-border);">
+              <div style="font-size:10px; color:var(--text-muted);">활성 에스크로 계약</div>
+              <div id="admMktActive" style="font-size:13px; font-weight:800; color:#34D399;">1건 (검수 대기)</div>
+            </div>
+          </div>
+          <div id="admMktRecentDeal" style="font-size:11px; color:#CBD5E1; background:rgba(0,0,0,0.2); padding:6px 10px; border-radius:6px;">
+            최근 계약: [DEAL_7749A] 성수 베이커리 ➔ 서울핫플스케치 (450,000원 / 수수료 45,000원 안전 예치 중)
+          </div>
+        </div>
+
+        <!-- Tenant Fleet Table -->
+        <div class="glass-card">
+          <div class="card-title-row">
+            <span style="color:#FFF;">📋 전사 5개 테넌트 플릿 관리</span>
+            <span style="font-size:10px; color:var(--text-muted);">실시간 동기화</span>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>테넌트</th>
+                  <th>플랜</th>
+                  <th>상태</th>
+                  <th>창출액</th>
+                  <th>액션</th>
+                </tr>
+              </thead>
+              <tbody id="fleetTableBody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Compliance Quarantine Queue (HITL 심의 데스크) -->
+        <div class="glass-card" style="border:1.5px solid rgba(239, 68, 68, 0.4);">
+          <div class="card-title-row">
+            <span style="color:#F87171;">⚖️ 고위험 광고 카피 법무 격리 큐</span>
+            <span id="admQuarantineBadge" style="background:#EF4444; color:#FFF; font-size:10px; font-weight:800; padding:2px 8px; border-radius:999px;">대기 1건</span>
+          </div>
+          <div style="font-size:11px; color:var(--text-muted); margin-bottom:8px;">
+            의료법 제56조 및 표시광고법 위반 고위험군 표현을 사전 격리하여 법적 리스크를 100% 방어합니다.
+          </div>
+          <div id="admQuarantineList">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Compliance Interception Audit Stream -->
+        <div class="glass-card">
+          <div class="card-title-row">
+            <span style="color:#EF4444;">🛡️ 전사 규제 인터셉트 감사 로그 (48건 차단)</span>
+            <span style="font-size:10px; color:#10B981;">실시간 방어</span>
+          </div>
+          <div id="admAuditStream" style="max-height:160px; overflow-y:auto; font-size:11px;">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Agent Telemetry Status -->
+        <div class="glass-card">
+          <div class="card-title-row">
+            <span style="color:#818CF8;">🤖 분산 에이전트 인프라 헬스체크</span>
+            <span style="font-size:10px; color:#10B981;">99.98% 정상</span>
+          </div>
+          <div id="admAgentHealthGrid" style="display:grid; grid-template-columns:1fr 1fr; gap:6px; font-size:11px;">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </section>
+      </div>
+    </section>
+
+    <!-- Global Toast Notification Container -->
+    <div id="globalToast" class="toast-box"></div>
   </div>
 
-  <!-- Toast Notification Box -->
-  <div id="globalToast" class="toast-box"></div>
-
-  <!-- Client JavaScript Logic -->
   <script>
+
     let currentMode = 'panoramic';
     let currentTenantId = 'TENANT_001';
     let globalOverviewData = null;
@@ -1767,53 +2336,77 @@
 
     /* View Mode Switching */
     function switchViewMode(mode) {
+      if (mode === 'panoramic' || mode === 'admin' || mode === 'service') mode = 'master';
       currentMode = mode;
-      document.getElementById('modeBtnPanoramic').classList.toggle('active', mode === 'panoramic');
-      document.getElementById('modeBtnTenant').classList.toggle('active', mode === 'tenant');
-      document.getElementById('modeBtnAdmin').classList.toggle('active', mode === 'admin');
-      document.getElementById('modeBtnService').classList.toggle('active', mode === 'service');
-      const btnC = document.getElementById('modeBtnCreator');
-      if (btnC) btnC.classList.toggle('active', mode === 'creator');
 
-      const grid = document.getElementById('mainContentGrid');
-      const colS = document.getElementById('colService');
-      const colT = document.getElementById('colTenant');
-      const colA = document.getElementById('colAdmin');
-      const colC = document.getElementById('colCreator');
+      const btnIntro = document.getElementById('modeBtnIntro');
+      const btnOnboard = document.getElementById('modeBtnOnboarding');
+      const btnTenant = document.getElementById('modeBtnTenant');
+      const btnCreator = document.getElementById('modeBtnCreator');
+      const btnMaster = document.getElementById('modeBtnMaster');
 
-      if (mode === 'panoramic') {
-        grid.style.display = 'grid';
-        grid.style.gridTemplateColumns = 'repeat(3, minmax(0, 1fr))';
-        colS.style.display = 'block';
-        colT.style.display = 'block';
-        colA.style.display = 'block';
-        if (colC) colC.style.display = 'none';
-      } else if (mode === 'tenant') {
-        grid.style.display = 'block';
-        colS.style.display = 'none';
-        colT.style.display = 'block';
-        colA.style.display = 'none';
-        if (colC) colC.style.display = 'none';
-      } else if (mode === 'admin') {
-        grid.style.display = 'block';
-        colS.style.display = 'none';
-        colT.style.display = 'none';
-        colA.style.display = 'block';
-        if (colC) colC.style.display = 'none';
-      } else if (mode === 'service') {
-        grid.style.display = 'block';
-        colS.style.display = 'block';
-        colT.style.display = 'none';
-        colA.style.display = 'none';
-        if (colC) colC.style.display = 'none';
-      } else if (mode === 'creator') {
-        grid.style.display = 'block';
-        colS.style.display = 'none';
-        colT.style.display = 'none';
-        colA.style.display = 'none';
-        if (colC) colC.style.display = 'block';
-        triggerCreatorWorkflow();
+      if (btnIntro) btnIntro.classList.toggle('active', mode === 'intro');
+      if (btnOnboard) btnOnboard.classList.toggle('active', mode === 'onboarding');
+      if (btnTenant) btnTenant.classList.toggle('active', mode === 'tenant');
+      if (btnCreator) btnCreator.classList.toggle('active', mode === 'creator');
+      if (btnMaster) btnMaster.classList.toggle('active', mode === 'master');
+
+      const vIntro = document.getElementById('viewIntro');
+      const vOnboard = document.getElementById('viewOnboarding');
+      const vTenant = document.getElementById('viewTenant');
+      const vCreator = document.getElementById('viewCreator');
+      const vMaster = document.getElementById('viewMaster');
+
+      if (vIntro) vIntro.style.display = (mode === 'intro') ? 'block' : 'none';
+      if (vOnboard) vOnboard.style.display = (mode === 'onboarding') ? 'block' : 'none';
+      if (vTenant) vTenant.style.display = (mode === 'tenant') ? 'block' : 'none';
+      if (vCreator) {
+        vCreator.style.display = (mode === 'creator') ? 'block' : 'none';
+        if (mode === 'creator') triggerCreatorWorkflow();
       }
+      if (vMaster) {
+        vMaster.style.display = (mode === 'master') ? 'block' : 'none';
+        if (mode === 'master') {
+          loadAdminWarRoom();
+          loadServiceEngineData();
+        }
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    let currentCalcCat = 'FNB';
+    function setCalcCategory(cat) {
+      currentCalcCat = cat;
+      ['FNB', 'MEDICAL', 'BEAUTY', 'SAAS'].forEach(c => {
+        const btn = document.getElementById('calcCatBtn_' + c);
+        if (btn) btn.classList.toggle('active', c === cat);
+      });
+      updateRoiCalculator();
+    }
+
+    function updateRoiCalculator() {
+      const revSlider = document.getElementById('calcRevenueSlider');
+      if (!revSlider) return;
+      const revVal = parseInt(revSlider.value);
+      
+      const revDisplay = document.getElementById('calcRevenueDisplay');
+      if (revDisplay) revDisplay.innerText = `월 ${Math.round(revVal / 10000).toLocaleString()}만 원`;
+
+      const rates = { 'FNB': 0.17, 'BEAUTY': 0.19, 'MEDICAL': 0.15, 'SAAS': 0.22 };
+      const rate = rates[currentCalcCat] || 0.17;
+      const gain = Math.round(revVal * rate);
+      const monthlyFee = 49000;
+      const roi = (gain / monthlyFee).toFixed(1);
+      const hours = Math.round(18 + (revVal / 10000000) * 3);
+
+      const gainDisplay = document.getElementById('calcGainDisplay');
+      if (gainDisplay) gainDisplay.innerText = `+₩${gain.toLocaleString()}`;
+
+      const roiDisplay = document.getElementById('calcRoiDisplay');
+      if (roiDisplay) roiDisplay.innerText = `${roi}배`;
+
+      const hoursDisplay = document.getElementById('calcHoursDisplay');
+      if (hoursDisplay) hoursDisplay.innerText = `월 ${hours}시간`;
     }
 
     /* Switch Active Tenant Across All Pillars */
@@ -1844,6 +2437,10 @@
         currentTenantData = await apiFetch(`/api/tenant/${tenantId}`);
         renderTenantColumn(currentTenantData);
         updateServiceMatrixForTenant(currentTenantData.tenant);
+        const obStore = document.getElementById('onboardStoreName');
+        if (obStore) obStore.innerText = currentTenantData.tenant.business_name;
+        const domMap = { 'fnb': 'FNB', 'medical': 'MEDICAL', 'beauty': 'BEAUTY', 'saas': 'SAAS' };
+        if (domMap[currentTenantData.tenant.domain]) setCalcCategory(domMap[currentTenantData.tenant.domain]);
         if (currentMode === 'creator') triggerCreatorWorkflow();
         showToast(`🏢 [${currentTenantData.tenant.business_name}] 테넌트 데이터가 전 솔루션에 동기화되었습니다.`);
       } catch (e) {
@@ -2581,7 +3178,10 @@
       switchTenant('TENANT_001');
       loadAdminWarRoom();
       loadServiceEngineData();
+      updateRoiCalculator();
+      switchViewMode('intro');
     };
-</script>
+
+  </script>
 </body>
 </html>
