@@ -48,6 +48,11 @@ DOCS_DESIGN_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "docs
 if os.path.exists(DOCS_DESIGN_DIR):
     app.mount("/docs/design", StaticFiles(directory=DOCS_DESIGN_DIR, html=True), name="stitch_design")
 
+IMAGES_DIR = os.path.join(DOCS_DESIGN_DIR, "images")
+if os.path.exists(IMAGES_DIR):
+    app.mount("/images", StaticFiles(directory=IMAGES_DIR), name="images")
+
+
 
 @app.get("/health")
 def health_check():
@@ -606,6 +611,24 @@ def consumer_voucher_page(coupon_code: str):
       <p style="font-size: 12px; opacity: 0.9;">{loc}</p>
     </div>
     <div class="ticket-body">
+      <!-- 3-Step Visual Benefit Strip (글 읽을 필요 없는 3단계 비주얼) -->
+      <div style="display:flex; justify-content:space-around; background:#EEF2FF; border-radius:10px; padding:10px 6px; margin-bottom:14px;">
+        <div style="text-align:center;">
+          <div style="font-size:16px;">📱</div>
+          <div style="font-size:10px; font-weight:800; color:#4338CA;">1. 바코드 제시</div>
+        </div>
+        <div style="align-self:center; color:#818CF8; font-weight:900; font-size:12px;">➔</div>
+        <div style="text-align:center;">
+          <div style="font-size:16px;">⚡</div>
+          <div style="font-size:10px; font-weight:800; color:#4338CA;">2. 1초 스캔</div>
+        </div>
+        <div style="align-self:center; color:#818CF8; font-weight:900; font-size:12px;">➔</div>
+        <div style="text-align:center;">
+          <div style="font-size:16px;">🎉</div>
+          <div style="font-size:10px; font-weight:800; color:#059669;">3. 3,000원 할인!</div>
+        </div>
+      </div>
+
       <div style="font-size: 13px; color: #64748B;">현장 즉시 할인권</div>
       <div style="font-size: 32px; font-weight: 900; color: #4F46E5; margin: 4px 0 2px;">₩{disc:,}원</div>
       <div style="font-size: 11px; color: #94A3B8;">{min_ord:,}원 이상 결제 시 즉시 적용</div>

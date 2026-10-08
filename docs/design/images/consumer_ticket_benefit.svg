@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 240" width="100%" height="100%" style="border-radius: 16px; background: linear-gradient(135deg, #111827 0%, #1E1B4B 100%); font-family: -apple-system, BlinkMacSystemFont, 'Pretendard', sans-serif;">
+  <defs>
+    <linearGradient id="glowCard" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" fill="#1E293B" stop-opacity="0.9"/>
+      <stop offset="100%" fill="#0F172A" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="accentPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#6D28D9"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Title Pill Header -->
+  <g transform="translate(30, 24)">
+    <rect width="210" height="26" rx="13" fill="#2E1065" stroke="#7C3AED" stroke-width="1"/>
+    <text x="12" y="17" fill="#DDD6FE" font-size="11" font-weight="800">🎟️ 소비자: 앱 설치 없이 3초 혜택</text>
+  </g>
+  <text x="250" y="42" fill="#C7D2FE" font-size="12">숏폼 링크 클릭 ➔ 바코드 제시 ➔ 결제 시 3,000원 즉시 할인</text>
+
+  <!-- STEP 1: Zero Install Claim -->
+  <g transform="translate(30, 65)" filter="url(#shadow)">
+    <rect width="250" height="145" rx="14" fill="#1E1B4B" stroke="#4338CA" stroke-width="1.5"/>
+    <rect x="16" y="16" width="34" height="34" rx="10" fill="#312E81" stroke="#6366F1" stroke-width="1"/>
+    <text x="24" y="39" font-size="18">📱</text>
+    <text x="60" y="30" fill="#A5B4FC" font-size="11" font-weight="800">STEP 1. 무마찰 1초 발급</text>
+    <text x="60" y="46" fill="#FFFFFF" font-size="14" font-weight="900">앱 설치 & 가입 불필요</text>
+    <line x1="16" y1="62" x2="234" y2="62" stroke="#3730A3" stroke-dasharray="3 3"/>
+    <text x="16" y="85" fill="#C7D2FE" font-size="12">인스타/쇼츠 링크 1클릭</text>
+    <text x="16" y="105" fill="#E0E7FF" font-size="12" font-weight="700">모바일 웹 티켓 즉시 생성</text>
+    <rect x="16" y="118" width="140" height="20" rx="4" fill="#4338CA" fill-opacity="0.4"/>
+    <text x="22" y="132" fill="#C7D2FE" font-size="10" font-weight="800">카카오 지갑 1클릭 보관 가능</text>
+  </g>
+
+  <!-- Arrow 1 -->
+  <g transform="translate(290, 130)">
+    <circle cx="10" cy="0" r="14" fill="#1E293B" stroke="#475569"/>
+    <path d="M 6 -5 L 14 0 L 6 5" fill="none" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- STEP 2: Live Barcode & Timer -->
+  <g transform="translate(325, 65)" filter="url(#shadow)">
+    <rect width="250" height="145" rx="14" fill="#1E1B4B" stroke="#8B5CF6" stroke-width="2"/>
+    <rect x="16" y="16" width="34" height="34" rx="10" fill="#4C1D95" stroke="#A78BFA" stroke-width="1"/>
+    <text x="24" y="39" font-size="18">⏰</text>
+    <text x="60" y="30" fill="#DDD6FE" font-size="11" font-weight="800">STEP 2. 3시간 타임어택</text>
+    <text x="60" y="46" fill="#FCD34D" font-size="14" font-weight="900">02:49:15 카운트다운</text>
+    <line x1="16" y1="62" x2="234" y2="62" stroke="#3730A3" stroke-dasharray="3 3"/>
+    <!-- Dynamic Barcode graphic -->
+    <rect x="16" y="74" width="218" height="42" rx="6" fill="#FFFFFF"/>
+    <text x="35" y="93" fill="#0F172A" font-size="14" font-family="monospace" font-weight="900" letter-spacing="3">||||| | |||| ||| ||||</text>
+    <text x="60" y="108" fill="#475569" font-size="10" font-family="monospace" font-weight="800">AIM-SEONGSU-CR02</text>
+    <text x="16" y="132" fill="#E0E7FF" font-size="10">캡처 방지 워터마크 자동 가동 중</text>
+  </g>
+
+  <!-- Arrow 2 -->
+  <g transform="translate(585, 130)">
+    <circle cx="10" cy="0" r="14" fill="#1E293B" stroke="#475569"/>
+    <path d="M 6 -5 L 14 0 L 6 5" fill="none" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- STEP 3: Instant Discount Benefit -->
+  <g transform="translate(620, 65)" filter="url(#shadow)">
+    <rect width="250" height="145" rx="14" fill="#1E1B4B" stroke="#10B981" stroke-width="1.5"/>
+    <rect x="16" y="16" width="34" height="34" rx="10" fill="#064E3B" stroke="#10B981" stroke-width="1"/>
+    <text x="24" y="39" font-size="18">🎉</text>
+    <text x="60" y="30" fill="#34D399" font-size="11" font-weight="800">STEP 3. 결제 즉시 할인</text>
+    <text x="60" y="46" fill="#34D399" font-size="14" font-weight="900">현장 3,000원 즉시 차감</text>
+    <line x1="16" y1="62" x2="234" y2="62" stroke="#3730A3" stroke-dasharray="3 3"/>
+    <text x="16" y="85" fill="#E2E8F0" font-size="11">24,000원 ➔ 21,000원 결제</text>
+    <text x="16" y="112" fill="#38BDF8" font-size="20" font-weight="900">-₩3,000</text>
+    <text x="135" y="112" fill="#FCD34D" font-size="11" font-weight="800">(체감 할인!)</text>
+    <text x="16" y="132" fill="#94A3B8" font-size="10">노포는 영수증 촬영 시 1,000P 캐시백</text>
+  </g>
+</svg>
