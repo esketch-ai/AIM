@@ -216,3 +216,33 @@ def test_monetization_api_rest_endpoints():
     assert sim_data["status"] == "success"
     assert sim_data["coupon_redeemed"]["success"] is True
     assert sim_data["receipt_verified"]["success"] is True
+
+
+def test_consumer_mobile_voucher_page_and_api():
+    """Tests consumer mobile voucher web view (/c/{code}) and coupon detail lookup API."""
+    # 1. Issue a test coupon
+    cp = coupon_vault.issue_coupon(
+        tenant_id="TENANT_001",
+        campaign_id="CAMP_VOUCHER_TEST",
+        channel="INSTAGRAM",
+        discount_amount_krw=3000,
+        min_order_amount_krw=15000,
+    )
+
+    # 2. GET /c/{coupon_code} - Mobile web page
+    res_page = client.get(f"/c/{cp.coupon_code}")
+    assert res_page.status_code == 200
+    assert "text/html" in res_page.headers["content-type"]
+    assert cp.coupon_code in res_page.text
+    assert "3,000" in res_page.text
+    assert "타임어택 모바일 쿠폰" in res_page.text
+    assert "현장 즉시 할인권" in res_page.text
+
+    # 3. GET /api/v1/coupon/{coupon_code} - JSON metadata
+    res_api = client.get(f"/api/v1/coupon/{cp.coupon_code}")
+    assert res_api.status_code == 200
+    data = res_api.json()
+    assert data["coupon"]["coupon_code"] == cp.coupon_code
+    assert data["coupon"]["discount_amount_krw"] == 3000
+    assert "store_name" in data
+

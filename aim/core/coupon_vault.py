@@ -317,6 +317,9 @@ class CouponVault:
             verified_at=now_str,
         )
 
+    def get_coupon(self, coupon_code: str) -> Optional[CouponItem]:
+        return self.coupons.get(coupon_code)
+
     def get_tenant_coupons(self, tenant_id: str) -> List[CouponItem]:
         return [c for c in self.coupons.values() if c.tenant_id == tenant_id]
 

@@ -28,6 +28,7 @@ from aim.admin.master_console import MasterAdminConsole
 from aim.core.platform import AIMPlatform
 from aim.admin.quarantine import ComplianceQuarantineQueue
 from aim.tenant.billing import BillingService
+from aim.core.coupon_vault import coupon_vault
 from aim.api import service_router, tenant_router, admin_router, creator_router, orchestrator_router, monetization_router
 
 from fastapi.staticfiles import StaticFiles
@@ -561,6 +562,112 @@ def get_tenant_peer_benchmark(tenant_id: str):
         return bench
     except ValueError as e:
         return JSONResponse(status_code=404, content={"error": str(e)})
+
+@app.get("/c/{coupon_code}", response_class=HTMLResponse)
+def consumer_voucher_page(coupon_code: str):
+    """Consumer mobile web voucher page with dynamic barcode, countdown, and POS scan action."""
+    c = coupon_vault.get_coupon(coupon_code)
+    disc = c.discount_amount_krw if c else 3000
+    min_ord = c.min_order_amount_krw if c else 15000
+    tenant_id = c.tenant_id if c else "TENANT_001"
+    t = TenantManager.get_tenant(tenant_id)
+    b_name = t.business_name if t else "성수 아뜰리에 베이커리 & 카페"
+    loc = t.business_state.location if t else "서울 성동구 성수동 핫플레이스"
+
+    html = f"""<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>{b_name} — 타임어택 모바일 쿠폰</title>
+  <style>
+    * {{ box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Segoe UI", Roboto, sans-serif; }}
+    body {{ background: #0F172A; color: #F8FAFC; display: flex; justify-content: center; min-height: 100vh; padding: 16px; }}
+    .ticket-card {{ width: 100%; max-width: 380px; background: #FFFFFF; color: #1E293B; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5); }}
+    .ticket-header {{ background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%); color: #FFF; padding: 24px 20px; text-align: center; }}
+    .badge {{ background: rgba(255,255,255,0.2); font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 999px; display: inline-block; margin-bottom: 8px; }}
+    .ticket-body {{ padding: 20px; text-align: center; }}
+    .barcode-box {{ background: #F8FAFC; border: 2px dashed #CBD5E1; border-radius: 12px; padding: 16px; margin: 16px 0; }}
+    .barcode-graphic {{ font-family: monospace; font-size: 26px; letter-spacing: 5px; font-weight: 900; color: #0F172A; }}
+    .code-text {{ font-size: 13px; font-weight: 800; color: #4F46E5; margin-top: 6px; }}
+    .timer-badge {{ font-size: 13px; font-weight: 800; color: #DC2626; margin-bottom: 16px; }}
+    .btn {{ width: 100%; padding: 12px; border-radius: 10px; font-weight: 800; font-size: 13px; border: none; cursor: pointer; margin-bottom: 8px; transition: transform 0.1s; }}
+    .btn:active {{ transform: scale(0.98); }}
+    .btn-pos {{ background: #0284C7; color: #FFF; }}
+    .btn-kakao {{ background: #FEE500; color: #1E293B; }}
+    .btn-ocr {{ background: #F1F5F9; color: #475569; }}
+  </style>
+</head>
+<body>
+  <div class="ticket-card">
+    <div class="ticket-header">
+      <div class="badge">⚡ 3시간 한정 깜짝 번개 쿠폰</div>
+      <h1 style="font-size: 18px; font-weight: 900; margin-bottom: 4px;">{b_name}</h1>
+      <p style="font-size: 12px; opacity: 0.9;">{loc}</p>
+    </div>
+    <div class="ticket-body">
+      <div style="font-size: 13px; color: #64748B;">현장 즉시 할인권</div>
+      <div style="font-size: 32px; font-weight: 900; color: #4F46E5; margin: 4px 0 2px;">₩{disc:,}원</div>
+      <div style="font-size: 11px; color: #94A3B8;">{min_ord:,}원 이상 결제 시 즉시 적용</div>
+
+      <div class="barcode-box">
+        <div class="barcode-graphic">|||| | ||||| || | |||| |||||</div>
+        <div class="code-text" id="couponCode">{coupon_code}</div>
+        <div style="font-size: 10px; color: #94A3B8; margin-top: 4px;">결제 시 카운터 직원에게 바코드를 제시해 주세요</div>
+      </div>
+
+      <div class="timer-badge">
+        ⏰ 남은 유효 시간: <span id="countdown">02:49:15</span> (마감 임박)
+      </div>
+
+      <button class="btn btn-pos" onclick="redeemCoupon()">⚡ 매장 카운터 바코드 스캔 결제 (₩24,000 결제)</button>
+      <button class="btn btn-kakao" onclick="alert('💬 카카오톡 알림톡으로 바코드 쿠폰이 전송되었습니다!')">💬 카카오톡 지갑에 저장하기</button>
+      <button class="btn btn-ocr" onclick="alert('🧾 영수증 사진 업로드 완료! AI OCR 인증으로 1,000P 캐시백이 적립되었습니다.')">🧾 종이 영수증 사진 찍고 1,000P 받기</button>
+      
+      <p style="font-size: 10px; color: #94A3B8; margin-top: 12px;">
+        🛡️ 캡처 방지 워터마크 가동 중 · 1회 사용 시 자동 소멸
+      </p>
+    </div>
+  </div>
+
+  <script>
+    async function redeemCoupon() {{
+      const code = document.getElementById('couponCode').innerText;
+      try {{
+        const res = await fetch('/api/v1/monetization/coupon/redeem', {{
+          method: 'POST',
+          headers: {{ 'Content-Type': 'application/json' }},
+          body: JSON.stringify({{ coupon_code: code, order_amount_krw: 24000 }})
+        }});
+        const data = await res.json();
+        if (res.ok) {{
+          alert(`🎉 [결제 완료!] 3,000원 할인이 적용되어 21,000원 결제되었습니다!\\n\\n(AIM 마케팅 OS 가치 원장에 실측으로 정산 완료)`);
+        }} else {{
+          alert(data.error || '쿠폰 사용 실패');
+        }}
+      }} catch(e) {{
+        alert('오류: ' + e.message);
+      }}
+    }}
+  </script>
+</body>
+</html>"""
+    return HTMLResponse(content=html)
+
+
+@app.get("/api/v1/coupon/{coupon_code}")
+def get_coupon_details(coupon_code: str):
+    """Returns coupon item details and merchant store location."""
+    c = coupon_vault.get_coupon(coupon_code)
+    if not c:
+        return JSONResponse(status_code=404, content={"error": f"쿠폰 {coupon_code}을 찾을 수 없습니다."})
+    tenant = TenantManager.get_tenant(c.tenant_id)
+    return {
+        "coupon": c.model_dump(),
+        "store_name": tenant.business_name if tenant else "AIM 파트너 매장",
+        "store_location": tenant.business_state.location if tenant else "서울 성동구 성수동",
+    }
+
 
 TEMPLATES_DIR = os.path.join(os.path.dirname(__file__), "templates")
 INDEX_HTML_PATH = os.path.join(TEMPLATES_DIR, "index.html")

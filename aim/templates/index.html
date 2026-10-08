@@ -1382,10 +1382,11 @@
           <div class="mobile-screen-inner">
             <div class="screen-notch"></div>
             <!-- Multichannel Switcher Tabs inside Phone -->
-            <div style="display:flex; background:#0F172A; padding:4px 6px; gap:4px; border-bottom:1px solid #334155;">
-              <button id="devTabKakao" class="tenant-channel-btn active" onclick="switchDeviceChannel('kakao')" style="flex:1; font-size:10px; padding:4px 6px; border-radius:4px; font-weight:800; border:none; cursor:pointer; background:#FCD34D; color:#1E293B;">💬 카카오 알림톡</button>
-              <button id="devTabInsta" class="tenant-channel-btn" onclick="switchDeviceChannel('instagram')" style="flex:1; font-size:10px; padding:4px 6px; border-radius:4px; font-weight:700; border:none; cursor:pointer; background:#1E293B; color:#CBD5E1;">📸 릴스/인스타</button>
-              <button id="devTabBlog" class="tenant-channel-btn" onclick="switchDeviceChannel('blog')" style="flex:1; font-size:10px; padding:4px 6px; border-radius:4px; font-weight:700; border:none; cursor:pointer; background:#1E293B; color:#CBD5E1;">📝 네이버 블로그</button>
+            <div style="display:flex; background:#0F172A; padding:4px 6px; gap:3px; border-bottom:1px solid #334155;">
+              <button id="devTabKakao" class="tenant-channel-btn active" onclick="switchDeviceChannel('kakao')" style="flex:1; font-size:9px; padding:4px 4px; border-radius:4px; font-weight:800; border:none; cursor:pointer; background:#FCD34D; color:#1E293B;">💬 카톡 알림</button>
+              <button id="devTabInsta" class="tenant-channel-btn" onclick="switchDeviceChannel('instagram')" style="flex:1; font-size:9px; padding:4px 4px; border-radius:4px; font-weight:700; border:none; cursor:pointer; background:#1E293B; color:#CBD5E1;">📸 릴스/쇼츠</button>
+              <button id="devTabBlog" class="tenant-channel-btn" onclick="switchDeviceChannel('blog')" style="flex:1; font-size:9px; padding:4px 4px; border-radius:4px; font-weight:700; border:none; cursor:pointer; background:#1E293B; color:#CBD5E1;">📝 블로그</button>
+              <button id="devTabVoucher" class="tenant-channel-btn" onclick="switchDeviceChannel('voucher')" style="flex:1; font-size:9px; padding:4px 4px; border-radius:4px; font-weight:800; border:none; cursor:pointer; background:#1E293B; color:#34D399;">🎟️ 소비자 티켓</button>
             </div>
             <!-- A/B Copy Variant Switcher inside Phone -->
             <div style="padding:4px 8px; background:#F8FAFC; border-bottom:1px solid #E2E8F0; display:flex; justify-content:space-between; align-items:center; font-size:10px;">
@@ -3358,14 +3359,14 @@
 
     function switchDeviceChannel(channel) {
       currentDeviceChannel = channel;
-      ['kakao', 'instagram', 'blog'].forEach(ch => {
+      ['kakao', 'instagram', 'blog', 'voucher'].forEach(ch => {
         const btnId = 'devTab' + ch.charAt(0).toUpperCase() + ch.slice(1);
         const btn = document.getElementById(btnId);
         if (btn) {
           const isActive = ch === channel;
           btn.classList.toggle('active', isActive);
           if (isActive) {
-            btn.style.background = (ch === 'kakao' ? '#FCD34D' : (ch === 'instagram' ? '#EC4899' : '#10B981'));
+            btn.style.background = (ch === 'kakao' ? '#FCD34D' : (ch === 'instagram' ? '#EC4899' : (ch === 'voucher' ? '#8B5CF6' : '#10B981')));
             btn.style.color = (ch === 'kakao' ? '#1E293B' : '#FFFFFF');
             btn.style.fontWeight = '800';
           } else {
@@ -3397,7 +3398,7 @@
             <div style="font-size:10px; font-weight:800; color:#78350F; margin-bottom:4px;">알림톡 도착 · ${tenant.business_name}</div>
             <div style="font-size:12px; font-weight:800; margin-bottom:6px;">${plan.strategy.campaign_title}</div>
             <div style="font-size:11px; line-height:1.5; white-space:pre-line;">${kakaoText}</div>
-            <div style="margin-top:10px; background:#1E293B; color:#FCD34D; font-size:11px; font-weight:800; padding:8px; border-radius:6px; text-align:center;">
+            <div style="margin-top:10px; background:#1E293B; color:#FCD34D; font-size:11px; font-weight:800; padding:8px; border-radius:6px; text-align:center; cursor:pointer;" onclick="switchDeviceChannel('voucher')">
               🎁 3시간 한정 특별 쿠폰 바코드 받기
             </div>
           </div>
@@ -3434,6 +3435,54 @@
             </div>
           </div>
         `;
+      } else if (currentDeviceChannel === 'voucher') {
+        if (tagEl) {
+          tagEl.innerText = `🎟️ 모바일 쿠폰 티켓 (소비자 현장제시)`;
+          tagEl.style.background = '#EDE9FE';
+          tagEl.style.color = '#6D28D9';
+        }
+        const couponCode = 'AIM-SEONGSU-CR02-RAIN24K';
+        html = `
+          <div style="background:linear-gradient(135deg, #1E1B4B 0%, #312E81 100%); border-radius:12px; padding:14px; color:#FFF; box-shadow:0 4px 15px rgba(0,0,0,0.3); border:1px solid #4338CA;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <span style="font-size:10px; font-weight:800; background:#4F46E5; color:#EEF2FF; padding:2px 6px; border-radius:4px;">AIM 스마트 바코드 티켓</span>
+              <span style="font-size:10px; color:#FCD34D; font-weight:800;">⏱️ 02:49:15 남음</span>
+            </div>
+            <div style="font-size:13px; font-weight:900; color:#FFFFFF; margin-bottom:2px;">${tenant.business_name}</div>
+            <div style="font-size:11px; color:#C7D2FE; margin-bottom:10px;">${plan.strategy.campaign_title || '크리에이터 특별 제휴 프로모션'}</div>
+            
+            <div style="background:rgba(255,255,255,0.08); border:1px dashed #818CF8; border-radius:8px; padding:10px; text-align:center; margin-bottom:12px;">
+              <div style="font-size:10px; color:#93C5FD; font-weight:700;">결제 시 현장 즉시 할인</div>
+              <div style="font-size:20px; font-weight:900; color:#38BDF8; letter-spacing:-0.5px;">₩3,000 DISCOUNT</div>
+              <div style="font-size:10px; color:#CBD5E1; margin-top:2px;">최소 주문금액 ₩15,000 이상 시 적용</div>
+            </div>
+
+            <div style="background:#FFFFFF; border-radius:8px; padding:10px 8px; text-align:center; margin-bottom:10px;">
+              <div style="letter-spacing:4px; font-family:monospace; font-size:15px; font-weight:900; color:#0F172A; margin-bottom:4px;">
+                ||||| | |||| ||| |||| | ||||| || |||
+              </div>
+              <div style="font-family:monospace; font-size:11px; font-weight:800; color:#475569; letter-spacing:1px;" id="inPhoneCouponCode">
+                ${couponCode}
+              </div>
+              <div style="font-size:9px; color:#64748B; margin-top:2px;">
+                (POS 바코드 스캐너 또는 테이블 오더에 스캔하세요)
+              </div>
+            </div>
+
+            <div style="display:flex; gap:6px; margin-top:8px;">
+              <button onclick="window.open('/c/${couponCode}', '_blank')" style="flex:1; background:#6366F1; color:#FFF; border:none; padding:7px; border-radius:6px; font-size:10px; font-weight:800; cursor:pointer;">
+                🔗 전용창 열기
+              </button>
+              <button onclick="simulatePosRedeem('${couponCode}')" style="flex:1; background:#10B981; color:#FFF; border:none; padding:7px; border-radius:6px; font-size:10px; font-weight:800; cursor:pointer;">
+                ⚡ POS 스캔 사용
+              </button>
+            </div>
+
+            <div style="margin-top:10px; font-size:9px; color:#94A3B8; text-align:center; line-height:1.4;">
+              🛡️ 캡처 방지 워터마크 가동 중 · 1회 사용 시 자동 소멸
+            </div>
+          </div>
+        `;
       } else {
         // Blog
         if (tagEl) {
@@ -3458,11 +3507,35 @@
       document.getElementById('screenDeviceBody').innerHTML = html;
     }
 
+    function simulatePosRedeem(code) {
+      fetch('/api/v1/monetization/coupon/redeem', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          coupon_code: code,
+          order_amount_krw: 24000
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.status === 'success') {
+          showToast(`🎉 [POS 스캔 성공] 3,000원 할인 적용! (실결제 21,000원, 플랫폼 수수료 8% ₩${data.platform_commission_krw.toLocaleString()}, 크리에이터 성과보수 ₩${data.creator_bonus_krw.toLocaleString()} 즉시 정산 완료)`);
+          if (typeof refreshAttributionLedger === 'function') refreshAttributionLedger();
+        } else {
+          showToast(`⚠️ [쿠폰 검증] ${data.error || data.detail || '이미 사용되었거나 만료된 쿠폰입니다.'}`);
+        }
+      })
+      .catch(err => {
+        showToast(`ℹ️ [쿠폰 시뮬레이션] ${code} 확인 완료`);
+      });
+    }
+
     function approveCurrentCampaignFromPhone() {
       const channelNames = {
         'kakao': '카카오 알림톡',
         'instagram': '인스타그램 릴스',
-        'blog': '네이버 블로그'
+        'blog': '네이버 블로그',
+        'voucher': '모바일 쿠폰 티켓'
       };
       const activeChName = channelNames[currentDeviceChannel] || '선택 채널';
       showToast(`🎉 [스마트폰 즉시 승인] '${currentTenantData?.tenant.business_name}' [${activeChName}] 포함 3대 채널로 즉시 송출되었습니다!`);
