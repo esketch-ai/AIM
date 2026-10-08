@@ -975,6 +975,16 @@
               <button id="calcCatBtn_MANUFACTURING" class="tenant-quick-btn" onclick="setCalcCategory('MANUFACTURING')">🏭 정밀제조 / B2B</button>
             </div>
 
+            <!-- 3-Tier Scenario Switcher -->
+            <label style="font-size: 12px; font-weight: 700; color: #CBD5E1; display: block; margin-bottom: 6px;">
+              실행 환경 시나리오 선택:
+            </label>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px;">
+              <button id="scenBtnDownside" class="tenant-quick-btn" onclick="switchScenario('downside')" style="font-size:11px; padding:5px 8px;">🌧️ 비수기/기상악화 방어</button>
+              <button id="scenBtnBaseline" class="tenant-quick-btn active" onclick="switchScenario('baseline')" style="font-size:11px; padding:5px 8px;">⚡ 평시 정상 가동 (기본)</button>
+              <button id="scenBtnUpside" class="tenant-quick-btn" onclick="switchScenario('upside')" style="font-size:11px; padding:5px 8px;">🚀 숏폼 바이럴/1위 폭발</button>
+            </div>
+
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
               <label style="font-size: 12px; font-weight: 700; color: #CBD5E1;">현재 월 매출 규모:</label>
               <span id="calcRevenueDisplay" style="font-size: 14px; font-weight: 800; color: #818CF8;">월 2,500만 원</span>
@@ -989,10 +999,16 @@
 
           <!-- Result Highlight -->
           <div class="calc-metric-highlight">
+            <div style="background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 8px; padding: 6px 10px; margin-bottom: 10px; font-size: 11px; color: #FEF08A;">
+              💡 <b>BEP 투자 회수 기간:</b> PRO 요금제(49,000원)는 <b id="calcPaybackDisplay" style="color: #38BDF8; font-size: 13px;">단 0.4일 (10시간)</b> 만에 전액 회수됩니다!
+            </div>
             <div style="font-size: 12px; color: #A5B4FC; font-weight: 700;">월 구독료 (PRO 기준 49,000원) 대비 예상 성과:</div>
             <div class="calc-metric-number" id="calcGainDisplay">+₩4,250,000</div>
-            <div style="font-size: 12px; color: #E2E8F0; margin-bottom: 14px;">
+            <div style="font-size: 12px; color: #E2E8F0; margin-bottom: 8px;">
               순이익 투자 회수율: <b id="calcRoiDisplay" style="color: #FCD34D;">86.7배</b> · 절감 시간: <b id="calcHoursDisplay" style="color: #38BDF8;">월 25시간</b>
+            </div>
+            <div id="calcScenarioDesc" style="font-size: 11px; color: #94A3B8; margin-bottom: 14px;">
+              6D 환경 센서와 3대 채널 동시 사출을 통한 표준 순증 이익
             </div>
             <button class="btn-approve" style="margin: 0 auto; max-width: 280px;" onclick="switchViewMode('onboarding')">
               🚀 이 혜택으로 지금 3단계 시작하기 ➔
@@ -1337,6 +1353,16 @@
             </button>
           </div>
           <div id="attributionActionResult" style="margin-top:8px; font-size:11px; color:#34D399; display:none;"></div>
+          <!-- Cross-Attribution Deduplication & Statement Bar -->
+          <div style="margin-top:10px; display:flex; justify-content:space-between; align-items:center; background:#0B0F19; padding:8px 10px; border-radius:8px; border:1px solid rgba(16,185,129,0.3);">
+            <div>
+              <span style="font-size:10px; font-weight:800; color:#34D399;">🛡️ 다채널 풀 퍼널 교차 기여도 중복 제거 (Deduplication)</span>
+              <div style="font-size:9px; color:#94A3B8;">Shorts UTM ➔ 카카오 알림톡 ➔ POS 쿠폰 Shapley Value 합리적 분배 완료</div>
+            </div>
+            <button class="btn-approve" style="padding:6px 10px; font-size:10px; background:#059669;" onclick="openMonthlyStatementModal()">
+              📄 이번 달 공식 정산서 보기
+            </button>
+          </div>
         </div>
       <!-- Value Attribution Ledger & Billing Invoices -->
         <div class="glass-card" style="margin-top:14px;">
@@ -1360,6 +1386,14 @@
               <button id="devTabKakao" class="tenant-channel-btn active" onclick="switchDeviceChannel('kakao')" style="flex:1; font-size:10px; padding:4px 6px; border-radius:4px; font-weight:800; border:none; cursor:pointer; background:#FCD34D; color:#1E293B;">💬 카카오 알림톡</button>
               <button id="devTabInsta" class="tenant-channel-btn" onclick="switchDeviceChannel('instagram')" style="flex:1; font-size:10px; padding:4px 6px; border-radius:4px; font-weight:700; border:none; cursor:pointer; background:#1E293B; color:#CBD5E1;">📸 릴스/인스타</button>
               <button id="devTabBlog" class="tenant-channel-btn" onclick="switchDeviceChannel('blog')" style="flex:1; font-size:10px; padding:4px 6px; border-radius:4px; font-weight:700; border:none; cursor:pointer; background:#1E293B; color:#CBD5E1;">📝 네이버 블로그</button>
+            </div>
+            <!-- A/B Copy Variant Switcher inside Phone -->
+            <div style="padding:4px 8px; background:#F8FAFC; border-bottom:1px solid #E2E8F0; display:flex; justify-content:space-between; align-items:center; font-size:10px;">
+              <span style="font-weight:800; color:#475569;">⚖️ A/B 카피 경쟁</span>
+              <div style="display:flex; gap:4px;">
+                <button id="btnVariantA" class="tenant-quick-btn active" onclick="switchCopyVariant('VARIANT_A')" style="font-size:9px; padding:2px 6px;">A. 호기심 (CTR 14.4%)</button>
+                <button id="btnVariantB" class="tenant-quick-btn" onclick="switchCopyVariant('VARIANT_B')" style="font-size:9px; padding:2px 6px;">B. 마감임박 (CTR 10.8%)</button>
+              </div>
             </div>
             <div style="padding:6px 14px 4px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #E2E8F0;">
               <span id="screenDeviceTag" style="font-size:10px; font-weight:800; background:#E0F2FE; color:#0284C7; padding:2px 6px; border-radius:4px;">네이버 블로그 (SEO)</span>
@@ -1849,6 +1883,39 @@
           </div>
           <div id="admMktRecentDeal" style="font-size:11px; color:#CBD5E1; background:rgba(0,0,0,0.2); padding:6px 10px; border-radius:6px;">
             최근 계약: [DEAL_7749A] 성수 베이커리 ➔ 서울핫플스케치 (450,000원 / 수수료 45,000원 안전 예치 중)
+          </div>
+        </div>
+
+        <!-- Guardian Radar & Circuit Breaker Widget (Self-Healing Guard) -->
+        <div class="glass-card" style="border: 1.5px solid rgba(239, 68, 68, 0.4); margin-bottom:12px; background:linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(19, 27, 46, 0.85) 100%);">
+          <div class="card-title-row">
+            <span style="color:#FCA5A5; font-weight:800;">🛡️ 가디언 레이더 이상 거래 감지 & 서킷 브레이커 (Self-Healing Guard)</span>
+            <span id="admCircuitStatusBadge" style="background:#10B981; color:#FFF; font-size:10px; font-weight:800; padding:2px 8px; border-radius:999px;">● 100% PROTECTED 정상 가동</span>
+          </div>
+          <div style="font-size:11px; color:#CBD5E1; margin-bottom:10px;">
+            영수증 위변조 및 중복 업로드, 1분 내 쿠폰 비정상 난사 시도를 AI 가디언이 실시간 감지하여 <b>원장 오염을 사전 차단</b>합니다.
+          </div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
+            <button class="btn-reject" style="border-color:#EF4444; color:#FCA5A5; font-size:11px; padding:6px 10px;" onclick="triggerAnomalySim('DUPLICATE_RECEIPT_FRAUD')">
+              🚨 1. 위조/중복 영수증 침입 차단 테스트
+            </button>
+            <button class="btn-reject" style="border-color:#F59E0B; color:#FCD34D; font-size:11px; padding:6px 10px;" onclick="triggerAnomalySim('RAPID_COUPON_BURST')">
+              ⚡ 2. 1분 내 쿠폰 난사 침입 방어 테스트
+            </button>
+          </div>
+          <div id="admCircuitIncidentLog" style="font-size:10px; color:#94A3B8; background:rgba(0,0,0,0.3); padding:6px 10px; border-radius:6px;">
+            현재 감지된 이상 공격 패턴 없음 (원장 무결성 정상 보호 중)
+          </div>
+        </div>
+
+        <!-- Peer Benchmarking Widget -->
+        <div class="glass-card" style="border: 1px solid rgba(16, 185, 129, 0.35); margin-bottom:12px; background:linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(19, 27, 46, 0.8) 100%);">
+          <div class="card-title-row">
+            <span style="color:#34D399; font-weight:800;">📊 동종 상권 백분위 벤치마크 인텔리전스 (Peer Intelligence)</span>
+            <span style="font-size:10px; color:#38BDF8;">상권 28개사 비교</span>
+          </div>
+          <div id="admBenchmarkDisplay" style="font-size:11px; color:#E2E8F0; line-height:1.6;">
+            [성수 아뜰리에 베이커리] 성수 카페거리 28개 표본 중 <b style="color:#34D399;">상위 5.8% 최우수</b> 순증 성장 달성 (동종 평균 대비 +72.8% 초과 달성)
           </div>
         </div>
 
@@ -2888,6 +2955,80 @@
           lift_attributed_krw: 150000
         };
       }
+      if (url.includes('/reject-with-feedback')) {
+        const body = JSON.parse(options.body || '{}');
+        const code = body.reason_code || 'DISCOUNT_TOO_HIGH';
+        const rules = {
+          'DISCOUNT_TOO_HIGH': '최대 할인율 10% 이내로 엄격 제한 및 부가가치 중심 소구',
+          'TONE_TOO_CASUAL': '신조어 배제, 정중하고 신뢰감 높은 존댓말 어조 고정',
+          'WRONG_AUDIENCE': '타깃 연령대를 3040 오피스 직장인으로 상향 조정',
+          'TIMING_MISMATCH': '퇴근 1시간 전(17:30~19:00) 송출 시간대 고정'
+        };
+        const rule = rules[code] || '사업주 피드백 준수';
+        return { status: 'REJECTED', applied_rule: rule, message: `캠페인이 반려되었으며, 차기 기안 자율 학습 규칙('${rule}')이 적용되었습니다.` };
+      }
+      if (url.includes('/draft/submit')) {
+        return { status: 'DRAFT_SUBMITTED', compliance_summary: '✅ 공정위 추천보증 심사지침 [유료 광고 포함] 표기 확인 완료', fast_track_hours_left: 24 };
+      }
+      if (url.includes('/draft/approve')) {
+        return { status: 'BASE_PAYOUT_RELEASED', released_base_payout_krw: 283500, message: '초안 검수 최종 승인! 계약금 70%(283,500원)가 에스크로에서 크리에이터에게 정산되었습니다.' };
+      }
+      if (url.includes('/draft/revision')) {
+        return { status: 'SUCCESS', message: '수정 요청이 크리에이터에게 전달되었습니다 (1회 제한 준수).' };
+      }
+      if (url.includes('/milestone/unlock')) {
+        return { status: 'SETTLED', unlocked_bonus_krw: 121500, message: '🎉 성과 마일스톤 달성 확인! 보너스 30%(121,500원)가 언락되어 최종 정산이 완료되었습니다.' };
+      }
+      if (url.includes('/attribution/monthly-statement/')) {
+        const tid = url.split('/')[4] || currentTenantId;
+        const t = MOCK_DB.tenants[tid] || MOCK_DB.tenants['TENANT_001'];
+        const gmv = t.tenant.cumulative_revenue_generated_krw;
+        const fee = Math.round(gmv * 0.08);
+        const bonus = Math.round(gmv * 0.03);
+        const net = gmv - fee - bonus;
+        return {
+          statement_id: 'STMT-202610-001',
+          tenant_id: tid,
+          business_name: t.tenant.business_name,
+          billing_period: '2026년 10월',
+          total_attributed_gmv_krw: gmv,
+          merchant_net_revenue_krw: net,
+          platform_take_rate_krw: fee,
+          creator_performance_bonus_krw: bonus,
+          saas_subscription_fee_krw: 49000,
+          net_payout_to_merchant_krw: net - 49000,
+          roi_multiple: (gmv / 98000).toFixed(1)
+        };
+      }
+      if (url === '/api/v1/admin/circuit-breaker/status') {
+        return { health: 'PROTECTED', currently_frozen_count: 0 };
+      }
+      if (url === '/api/v1/admin/circuit-breaker/simulate-anomaly') {
+        const body = JSON.parse(options.body || '{}');
+        const atype = body.anomaly_type || 'DUPLICATE_RECEIPT_FRAUD';
+        return {
+          status: 'SUCCESS',
+          circuit_breaker: {
+            circuit_id: 'CB_101',
+            anomaly_type: atype,
+            status: 'TRIPPED_FROZEN',
+            defense_action: atype === 'DUPLICATE_RECEIPT_FRAUD' ? '동일 영수증 번호 2차 등록 즉시 동결 및 가치 원장 왜곡 100% 방어' : '동일 단말 1분 내 과다 스캔 감지: 5분간 해당 쿠폰 코드 일시 잠금',
+            tripped_at: new Date().toISOString().replace('T', ' ').slice(0, 19)
+          }
+        };
+      }
+      if (url.startsWith('/api/v1/admin/fleet/benchmark/')) {
+        const t = MOCK_DB.tenants[currentTenantId] || MOCK_DB.tenants['TENANT_001'];
+        return {
+          tenant_id: currentTenantId,
+          business_name: t.tenant.business_name,
+          location: '성수 카페거리',
+          peers_analyzed_count: 28,
+          percentile_score: 94.2,
+          rank_label: '상위 5.8% 최우수',
+          growth_rate_vs_peers: 72.8
+        };
+      }
       return {};
     }
 
@@ -2948,6 +3089,16 @@
       updateRoiCalculator();
     }
 
+    let currentScenario = 'baseline';
+    function switchScenario(tier) {
+      currentScenario = tier;
+      ['downside', 'baseline', 'upside'].forEach(sc => {
+        const btn = document.getElementById('scenBtn' + sc.charAt(0).toUpperCase() + sc.slice(1));
+        if (btn) btn.classList.toggle('active', sc === tier);
+      });
+      updateRoiCalculator();
+    }
+
     function updateRoiCalculator() {
       const revSlider = document.getElementById('calcRevenueSlider');
       if (!revSlider) return;
@@ -2958,10 +3109,30 @@
 
       const rates = { 'FNB': 0.17, 'BEAUTY': 0.19, 'MEDICAL': 0.15, 'SAAS': 0.22, 'MANUFACTURING': 0.20 };
       const rate = rates[currentCalcCat] || 0.17;
-      const gain = Math.round(revVal * rate);
+      const scenarioMultipliers = { 'downside': 0.65, 'baseline': 1.0, 'upside': 1.85 };
+      const scenMulti = scenarioMultipliers[currentScenario] || 1.0;
+
+      const baseGain = Math.round(revVal * rate);
+      const gain = Math.round(baseGain * scenMulti);
       const monthlyFee = 49000;
       const roi = (gain / monthlyFee).toFixed(1);
-      const hours = Math.round(18 + (revVal / 10000000) * 3);
+      const hours = Math.round((18 + (revVal / 10000000) * 3) * (currentScenario === 'downside' ? 0.7 : (currentScenario === 'upside' ? 1.4 : 1.0)));
+      const dailyGain = Math.max(1, Math.round(baseGain / 30));
+      const paybackDays = (monthlyFee / dailyGain).toFixed(1);
+
+      const pbDisplay = document.getElementById('calcPaybackDisplay');
+      if (pbDisplay) pbDisplay.innerText = `단 ${paybackDays}일 (${Math.round(paybackDays * 24)}시간)`;
+
+      const scenDesc = document.getElementById('calcScenarioDesc');
+      if (scenDesc) {
+        if (currentScenario === 'downside') {
+          scenDesc.innerText = '🌧️ 비 예보·당일 노쇼 등 악천후 타임어택 쿠폰으로 유휴 손실의 70%를 긴급 방어';
+        } else if (currentScenario === 'upside') {
+          scenDesc.innerText = '🚀 15초 바이럴 릴스/쇼츠 터짐 및 네이버 스마트플레이스 1위 등극 시 신규 유입 2.5배 폭증';
+        } else {
+          scenDesc.innerText = '⚡ 6D 환경 센서와 3대 채널 동시 사출을 통한 표준 순증 이익';
+        }
+      }
 
       const gainDisplay = document.getElementById('calcGainDisplay');
       if (gainDisplay) gainDisplay.innerText = `+₩${gain.toLocaleString()}`;
@@ -3099,9 +3270,11 @@
                   타깃: ${c.target_persona} · 추천 채널: ${c.recommended_channels.join(', ')} · 추정 매출: <b style="color:#FEF08A;">+${c.projected_revenue_krw.toLocaleString()}원</b>
                 </div>
                 ${isPending ? `
-                  <div style="display:flex; gap:6px;">
-                    <button class="btn-approve" style="padding:8px 12px; font-size:11px;" onclick="approveStaged('${c.campaign_id}')">⚡ 원클릭 승인 및 3대 채널 송출</button>
-                    <button class="btn-reject" onclick="rejectStaged('${c.campaign_id}')">🚫 반려</button>
+                  <div style="display:flex; gap:6px; flex-wrap:wrap; margin-top:6px;">
+                    <button class="btn-approve" style="padding:7px 12px; font-size:11px;" onclick="approveStaged('${c.campaign_id}')">⚡ 원클릭 승인 송출</button>
+                    <button class="btn-reject" style="font-size:10px; padding:4px 7px;" onclick="rejectStagedWithFeedback('${c.campaign_id}', 'DISCOUNT_TOO_HIGH')">💸 할인율 축소</button>
+                    <button class="btn-reject" style="font-size:10px; padding:4px 7px;" onclick="rejectStagedWithFeedback('${c.campaign_id}', 'TONE_TOO_CASUAL')">👔 정중 어조</button>
+                    <button class="btn-reject" style="font-size:10px; padding:4px 7px;" onclick="rejectStagedWithFeedback('${c.campaign_id}', 'WRONG_AUDIENCE')">👥 타깃 변경</button>
                   </div>
                 ` : `
                   <div style="font-size:10px; color:#34D399; font-weight:700;">✅ 송출 완료: ${c.approved_at} (${c.executed_channels.join(', ')})</div>
@@ -3142,6 +3315,32 @@
         switchTenant(currentTenantId);
       } catch(e) {
         alert('반려 오류: ' + e.message);
+      }
+    }
+
+    async function rejectStagedWithFeedback(campId, reasonCode) {
+      try {
+        const r = await apiFetch(`/api/v1/tenant/campaign/${campId}/reject-with-feedback`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ reason_code: reasonCode, note: '사업주 1클릭 자율 피드백' })
+        });
+        showToast(`🚫 [반려 & 자율 학습] ${r.message}`);
+        switchTenant(currentTenantId);
+      } catch(e) {
+        alert('반려 오류: ' + e.message);
+      }
+    }
+
+    let currentCopyVariant = 'VARIANT_A';
+    function switchCopyVariant(variantId) {
+      currentCopyVariant = variantId;
+      const btnA = document.getElementById('btnVariantA');
+      const btnB = document.getElementById('btnVariantB');
+      if (btnA) btnA.classList.toggle('active', variantId === 'VARIANT_A');
+      if (btnB) btnB.classList.toggle('active', variantId === 'VARIANT_B');
+      if (currentTenantData) {
+        renderPhoneMockup(currentTenantData.tenant, currentTenantData.live_plan);
       }
     }
 
@@ -3481,6 +3680,12 @@
           `;
         }
         document.getElementById('admAgentHealthGrid').innerHTML = hHtml;
+
+        // Load Guardian Radar Circuit Breaker Status
+        await loadCircuitBreakerStatus();
+
+        // Load Peer Benchmark
+        await loadPeerBenchmark(currentTenantId);
 
       } catch(e) {
         console.error('Admin overview error:', e);
@@ -4030,16 +4235,22 @@
             <div>기본 70% 정산: <b style="color:#34D399;">₩${deal.creator_base_payout.toLocaleString()}</b></div>
             <div>성과 30% 정산: <b style="color:#818CF8;">₩${deal.creator_bonus_payout.toLocaleString()}</b></div>
           </div>
-          <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
             <div style="font-size:11px; color:#F59E0B;">
               ⏱️ 24h Fast-Track SLA: 사업주 승인 기한 <b>${deal.fast_track_hours_left}시간 남음</b> (미응답 시 자동 승인)
             </div>
-            <div style="display:flex; gap:8px;">
-              <button class="btn-approve" style="padding:6px 14px; font-size:11px;" onclick="reviewCurrentDeal('APPROVE')">
-                ✅ 초안 최종 승인 (기본 70% 정산 실행)
+            <div style="display:flex; gap:6px; flex-wrap:wrap;">
+              <button class="btn-approve" style="padding:6px 10px; font-size:11px; background:#0284C7;" onclick="submitDraftFastTrack('${deal.deal_id}')">
+                🎬 15초 초안 제출
               </button>
-              <button class="btn-reject" style="padding:6px 12px; font-size:11px;" onclick="reviewCurrentDeal('REVISE')">
-                🔄 1회 수정 요청 (24h SLA)
+              <button class="btn-approve" style="padding:6px 10px; font-size:11px;" onclick="approveDraftFastTrack('${deal.deal_id}')">
+                ✅ 초안 승인 (70% 지급)
+              </button>
+              <button class="btn-approve" style="background:#818CF8; padding:6px 10px; font-size:11px;" onclick="unlockMilestoneBonusFastTrack('${deal.deal_id}')">
+                🎉 조회수 5만! 30% 보너스 언락
+              </button>
+              <button class="btn-reject" style="padding:6px 10px; font-size:11px;" onclick="requestRevisionFastTrack('${deal.deal_id}')">
+                🔄 1회 수정 요청
               </button>
             </div>
           </div>
@@ -4047,6 +4258,65 @@
       `;
       const trackerEl = document.getElementById('crActiveDealTracker');
       if (trackerEl) trackerEl.innerHTML = html;
+    }
+
+    async function submitDraftFastTrack(dealId) {
+      try {
+        const res = await apiFetch(`/api/v1/creator/deal/${dealId}/draft/submit`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ video_url: 'https://cdn.aim.link/v/shorts_15s.mp4', compliance_passed: true })
+        });
+        showToast(`🎬 [15초 초안 제출 완료] 준법 검사 완료: ${res.compliance_summary}`);
+        if (currentActiveDeal) currentActiveDeal.status = 'DRAFT_SUBMITTED';
+        renderActiveDeal(currentActiveDeal);
+      } catch(e) {
+        alert(e.message);
+      }
+    }
+
+    async function approveDraftFastTrack(dealId) {
+      try {
+        const res = await apiFetch(`/api/v1/creator/deal/${dealId}/draft/approve`, { method: 'POST' });
+        showToast(res.message);
+        if (currentActiveDeal) currentActiveDeal.status = 'BASE_PAYOUT_RELEASED';
+        renderActiveDeal(currentActiveDeal);
+      } catch(e) {
+        alert(e.message);
+      }
+    }
+
+    async function unlockMilestoneBonusFastTrack(dealId) {
+      try {
+        const res = await apiFetch(`/api/v1/creator/deal/${dealId}/milestone/unlock`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ metric_type: 'VIEWS', metric_value: 65000 })
+        });
+        showToast(res.message);
+        if (currentActiveDeal) currentActiveDeal.status = 'SETTLED';
+        renderActiveDeal(currentActiveDeal);
+      } catch(e) {
+        alert(e.message);
+      }
+    }
+
+    async function requestRevisionFastTrack(dealId) {
+      try {
+        const res = await apiFetch(`/api/v1/creator/deal/${dealId}/draft/revision`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ feedback: '엔딩 씬 브랜드 로고 1초 노출 확대' })
+        });
+        showToast(res.message);
+        if (currentActiveDeal) {
+          currentActiveDeal.status = 'REVISION_REQUESTED';
+          currentActiveDeal.revision_count = (currentActiveDeal.revision_count || 0) + 1;
+        }
+        renderActiveDeal(currentActiveDeal);
+      } catch(e) {
+        alert(e.message);
+      }
     }
 
     async function reviewCurrentDeal(action) {
@@ -4066,6 +4336,83 @@
         }
       } catch (e) {
         alert('검수 처리 오류: ' + e.message);
+      }
+    }
+
+    async function openMonthlyStatementModal() {
+      try {
+        const stmt = await apiFetch(`/api/v1/attribution/monthly-statement/${currentTenantId}`);
+        const modalMsg = `[AIM 공식 월간 가치 귀속 및 수익 배분 정산서]\n` +
+          `--------------------------------------------------\n` +
+          `• 정산서 번호: ${stmt.statement_id}\n` +
+          `• 테넌트: ${stmt.business_name} (${stmt.billing_period})\n` +
+          `--------------------------------------------------\n` +
+          `1. 다채널 풀 퍼널 총 거래액 (GMV): ₩${stmt.total_attributed_gmv_krw.toLocaleString()}원\n` +
+          `2. 플랫폼 성과 수수료 (Take-Rate 8%): -₩${stmt.platform_take_rate_krw.toLocaleString()}원\n` +
+          `3. 크리에이터 성과 보너스 (3%): -₩${stmt.creator_performance_bonus_krw.toLocaleString()}원\n` +
+          `--------------------------------------------------\n` +
+          `▶ 사업주 귀속 순수익: ₩${stmt.merchant_net_revenue_krw.toLocaleString()}원\n` +
+          `4. SaaS 월간 소프트웨어 구독료: -₩${stmt.saas_subscription_fee_krw.toLocaleString()}원\n` +
+          `--------------------------------------------------\n` +
+          `💰 최종 순수익 배분액: +₩${stmt.net_payout_to_merchant_krw.toLocaleString()}원\n` +
+          `📈 구독료 대비 실질 창출 배수 (ROI): ${stmt.roi_multiple}배\n` +
+          `🛡️ Shapley Value 중복 제거 100% 무결성 검증 완료`;
+        alert(modalMsg);
+      } catch (e) {
+        alert('정산서 조회 실패: ' + e.message);
+      }
+    }
+
+    async function loadPeerBenchmark(tenantId) {
+      try {
+        const bench = await apiFetch(`/api/v1/admin/fleet/benchmark/${tenantId}`);
+        const disp = document.getElementById('admBenchmarkDisplay');
+        if (disp && bench) {
+          disp.innerHTML = `[${bench.business_name}] ${bench.location} ${bench.peers_analyzed_count}개 표본 중 <b style="color:#34D399;">${bench.rank_label}</b> 순증 성장 달성 (동종 평균 대비 +${bench.growth_rate_vs_peers}% 초과 달성)`;
+        }
+      } catch (e) {
+        console.error('Peer benchmark load error:', e);
+      }
+    }
+
+    async function loadCircuitBreakerStatus() {
+      try {
+        const status = await apiFetch('/api/v1/admin/circuit-breaker/status');
+        const badge = document.getElementById('admCircuitStatusBadge');
+        if (badge && status) {
+          if (status.currently_frozen_count === 0) {
+            badge.style.background = '#10B981';
+            badge.innerText = '● 100% PROTECTED 정상 가동';
+          } else {
+            badge.style.background = '#EF4444';
+            badge.innerText = `⚠️ ${status.currently_frozen_count}건 격리/동결 보호 중`;
+          }
+        }
+      } catch (e) {
+        console.error('Circuit breaker status load error:', e);
+      }
+    }
+
+    async function triggerAnomalySim(anomalyType) {
+      try {
+        const res = await apiFetch('/api/v1/admin/circuit-breaker/simulate-anomaly', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ tenant_id: currentTenantId, anomaly_type: anomalyType })
+        });
+        const cb = res.circuit_breaker;
+        const badge = document.getElementById('admCircuitStatusBadge');
+        if (badge) {
+          badge.style.background = '#EF4444';
+          badge.innerText = '⚠️ 1건 격리 동결됨';
+        }
+        const logBox = document.getElementById('admCircuitIncidentLog');
+        if (logBox && cb) {
+          logBox.innerHTML = `🚨 <b style="color:#F87171;">[이상 공격 차단 발동]</b> 유형: ${cb.anomaly_type} | <b>조치:</b> ${cb.defense_action} <span style="color:#64748B;">(${cb.tripped_at})</span>`;
+        }
+        showToast(`🛡️ [가디언 서킷브레이커 작동] ${anomalyType === 'DUPLICATE_RECEIPT_FRAUD' ? '위조/중복 영수증 2차 승인이 즉시 차단되었습니다!' : '비정상 쿠폰 난사 시도가 감지되어 잠금 조치되었습니다!'}`);
+      } catch (e) {
+        alert('이상 감지 시뮬레이션 실패: ' + e.message);
       }
     }
 

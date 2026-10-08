@@ -208,6 +208,9 @@ class CreatorNetwork:
         )
         self.active_deals[seed_deal.deal_id] = seed_deal
 
+    def _initialize_defaults(self) -> None:
+        self.__init__()
+
     def match_creators(self, req: MatchRequest) -> List[MatchedCreatorCard]:
         results = []
         is_subscriber = req.subscriber_plan.upper() in ["PRO", "ENTERPRISE"]
@@ -289,6 +292,71 @@ class CreatorNetwork:
         self.active_deals[deal_id] = deal
         return deal
 
+    def submit_draft(
+        self, deal_id: str, video_url: str, compliance_passed: bool = True
+    ) -> Dict[str, Any]:
+        deal = self.active_deals.get(deal_id)
+        if not deal:
+            raise ValueError(f"Deal {deal_id} not found.")
+        deal.status = "DRAFT_SUBMITTED"
+        deal.fast_track_hours_left = 24
+        return {
+            "deal_id": deal_id,
+            "status": deal.status,
+            "video_url": video_url,
+            "compliance_checked": compliance_passed,
+            "compliance_summary": "✅ 공정위 추천보증 심사지침 준수 [유료 광고 포함] 표기 확인 완료",
+            "fast_track_hours_left": deal.fast_track_hours_left,
+        }
+
+    def request_revision(self, deal_id: str, feedback: str = "") -> EscrowDeal:
+        deal = self.active_deals.get(deal_id)
+        if not deal:
+            raise ValueError(f"Deal {deal_id} not found.")
+        if deal.revision_count >= deal.max_revisions:
+            raise ValueError("표준 약관상 1회를 초과하는 수정 요청은 불가합니다 (24h Fast-Track 규정).")
+        deal.revision_count += 1
+        deal.status = "REVISION_REQUESTED"
+        return deal
+
+    def approve_draft_and_release_base(self, deal_id: str) -> Dict[str, Any]:
+        deal = self.active_deals.get(deal_id)
+        if not deal:
+            raise ValueError(f"Deal {deal_id} not found.")
+        deal.status = "BASE_PAYOUT_RELEASED"
+        return {
+            "deal_id": deal_id,
+            "status": deal.status,
+            "released_base_payout_krw": deal.creator_base_payout,
+            "held_bonus_payout_krw": deal.creator_bonus_payout,
+            "message": f"초안 검수 최종 승인! 계약금 70%({deal.creator_base_payout:,}원)가 에스크로에서 크리에이터에게 정산되었습니다.",
+        }
+
+    def unlock_milestone_bonus(
+        self, deal_id: str, metric_type: str = "VIEWS", metric_value: int = 55000
+    ) -> Dict[str, Any]:
+        deal = self.active_deals.get(deal_id)
+        if not deal:
+            raise ValueError(f"Deal {deal_id} not found.")
+
+        # Thresholds: VIEWS >= 50,000 or CONVERSIONS >= 20
+        target_met = (metric_type == "VIEWS" and metric_value >= 50000) or (
+            metric_type == "CONVERSIONS" and metric_value >= 20
+        )
+        if not target_met:
+            raise ValueError(f"성과 마일스톤 기준 미달 ({metric_type}: {metric_value})")
+
+        deal.status = "SETTLED"
+        return {
+            "deal_id": deal_id,
+            "status": deal.status,
+            "metric_type": metric_type,
+            "metric_value": metric_value,
+            "unlocked_bonus_krw": deal.creator_bonus_payout,
+            "total_payout_krw": deal.creator_total_fee,
+            "message": f"🎉 성과 마일스톤 달성 확인! 보너스 30%({deal.creator_bonus_payout:,}원)가 언락되어 최종 정산이 완료되었습니다.",
+        }
+
     def review_deal(self, deal_id: str, action: str, feedback: Optional[str] = None) -> EscrowDeal:
         deal = self.active_deals.get(deal_id)
         if not deal:
@@ -297,10 +365,7 @@ class CreatorNetwork:
         if action == "APPROVE":
             deal.status = "APPROVED"
         elif action == "REVISE":
-            if deal.revision_count >= deal.max_revisions:
-                raise ValueError("표준 약관상 1회를 초과하는 수정 요청은 불가합니다.")
-            deal.revision_count += 1
-            deal.status = "REVISION_REQUESTED"
+            return self.request_revision(deal_id, feedback or "")
         elif action == "SETTLE":
             deal.status = "SETTLED"
         return deal

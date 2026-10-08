@@ -369,6 +369,178 @@ def approve_campaign(req: ApproveRequest):
         "evidence_tier": EvidenceTier.C_ILLUSTRATIVE.value,
     }
 
+
+# ============================================================================
+# Advanced Evolution Endpoints (Scenario, Feedback, Fast-Track, Dedup, Guard)
+# ============================================================================
+from aim.core.scenario_engine import ScenarioEngine
+from aim.core.feedback_learner import FeedbackLearner
+from aim.core.cross_attribution import CrossAttributionEngine
+from aim.matching.creator_network import creator_network
+
+
+class ScenarioCalcRequest(BaseModel):
+    category: str
+    revenue: int
+    monthly_fee: int = 49000
+
+
+class RejectWithFeedbackRequest(BaseModel):
+    reason_code: str
+    note: str = ""
+
+
+class DraftSubmitRequest(BaseModel):
+    video_url: str
+    compliance_passed: bool = True
+
+
+class DraftRevisionRequest(BaseModel):
+    feedback: str = ""
+
+
+class MilestoneUnlockRequest(BaseModel):
+    metric_type: str = "VIEWS"
+    metric_value: int = 55000
+
+
+class DeduplicateAttributionRequest(BaseModel):
+    tenant_id: str
+    customer_id: str
+    order_amount_krw: int
+    channels: list
+
+
+class SimulateAnomalyRequest(BaseModel):
+    tenant_id: str
+    anomaly_type: str
+    evidence: dict = {}
+
+
+@app.post("/api/v1/scenario/calculate")
+def calculate_dynamic_scenarios(req: ScenarioCalcRequest):
+    """Calculates 3-tier financial scenarios and BEP payback days."""
+    res = ScenarioEngine.calculate_scenarios(
+        category=req.category,
+        revenue=req.revenue,
+        monthly_fee=req.monthly_fee,
+    )
+    return res.model_dump()
+
+
+@app.post("/api/v1/tenant/campaign/{campaign_id}/reject-with-feedback")
+def reject_staged_campaign_with_feedback(campaign_id: str, req: RejectWithFeedbackRequest):
+    """Dismisses proposal and records tenant feedback for autonomous adaptation."""
+    try:
+        res = ApprovalDesk.reject_with_feedback(
+            campaign_id=campaign_id,
+            reason_code=req.reason_code,
+            note=req.note,
+        )
+        return res
+    except ValueError as e:
+        return JSONResponse(status_code=404, content={"error": str(e), "detail": str(e)})
+
+
+@app.get("/api/v1/tenant/campaign/{campaign_id}/variants")
+def get_campaign_ab_variants(campaign_id: str, tenant_id: str = "TENANT_001"):
+    """Returns A/B copy variants (Benefit vs Urgency) with live CTR comparisons."""
+    camp = ApprovalDesk.get_campaign(campaign_id)
+    title = camp.campaign_title if camp else "시그니처 바질 소금빵 특별 타임어택"
+    body = (camp.preview_copies.get("blog", "") if camp else "정성껏 구워낸 갓 구운 빵")
+    variants = FeedbackLearner.generate_ab_variants(campaign_id, tenant_id, title, body)
+    return variants.model_dump()
+
+
+@app.post("/api/v1/creator/deal/{deal_id}/draft/submit")
+def submit_creator_video_draft(deal_id: str, req: DraftSubmitRequest):
+    """Creator submits 15s video draft with compliance check."""
+    try:
+        res = creator_network.submit_draft(deal_id, req.video_url, req.compliance_passed)
+        return res
+    except ValueError as e:
+        return JSONResponse(status_code=404, content={"error": str(e)})
+
+
+@app.post("/api/v1/creator/deal/{deal_id}/draft/approve")
+def approve_creator_video_draft(deal_id: str):
+    """Merchant approves draft and releases 70% base escrow payout."""
+    try:
+        res = creator_network.approve_draft_and_release_base(deal_id)
+        return res
+    except ValueError as e:
+        return JSONResponse(status_code=404, content={"error": str(e)})
+
+
+@app.post("/api/v1/creator/deal/{deal_id}/draft/revision")
+def request_creator_video_revision(deal_id: str, req: DraftRevisionRequest):
+    """Merchant requests single point revision (enforced maximum 1 revision)."""
+    try:
+        deal = creator_network.request_revision(deal_id, req.feedback)
+        return {"status": "SUCCESS", "deal": deal.model_dump(), "message": "수정 요청이 크리에이터에게 전달되었습니다 (1회 제한 준수)."}
+    except ValueError as e:
+        return JSONResponse(status_code=400, content={"error": str(e)})
+
+
+@app.post("/api/v1/creator/deal/{deal_id}/milestone/unlock")
+def unlock_creator_milestone_bonus(deal_id: str, req: MilestoneUnlockRequest):
+    """Unlocks 30% performance bonus upon verified views or conversions."""
+    try:
+        res = creator_network.unlock_milestone_bonus(deal_id, req.metric_type, req.metric_value)
+        return res
+    except ValueError as e:
+        return JSONResponse(status_code=400, content={"error": str(e)})
+
+
+@app.post("/api/v1/attribution/deduplicate")
+def deduplicate_cross_attribution(req: DeduplicateAttributionRequest):
+    """Deduplicates cross-channel touchpoints and computes Shapley distributions."""
+    res = CrossAttributionEngine.deduplicate_transaction(
+        tenant_id=req.tenant_id,
+        customer_id=req.customer_id,
+        order_amount_krw=req.order_amount_krw,
+        channels=req.channels,
+    )
+    return res.model_dump()
+
+
+@app.get("/api/v1/attribution/monthly-statement/{tenant_id}")
+def get_monthly_settlement_statement(tenant_id: str):
+    """Generates official monthly Statement of Accounts and tax breakdown."""
+    t = TenantManager.get_tenant(tenant_id)
+    b_name = t.business_name if t else "성수 아뜰리에 베이커리 & 카페"
+    gmv = t.cumulative_revenue_generated_krw if t else 4320000
+    fee = t.monthly_fee_krw if t else 49000
+    stmt = CrossAttributionEngine.generate_monthly_statement(tenant_id, b_name, gmv, fee)
+    return stmt.model_dump()
+
+
+@app.get("/api/v1/admin/circuit-breaker/status")
+def get_circuit_breaker_status():
+    """Returns guardian radar anomaly protection and circuit breaker health."""
+    return MasterAdminConsole.get_circuit_breaker_status()
+
+
+@app.post("/api/v1/admin/circuit-breaker/simulate-anomaly")
+def simulate_circuit_breaker_anomaly(req: SimulateAnomalyRequest):
+    """Simulates malicious fraud (duplicate receipt, coupon spam) and trips circuit breaker."""
+    record = MasterAdminConsole.scan_and_trip_circuit_breaker(
+        tenant_id=req.tenant_id,
+        anomaly_type=req.anomaly_type,
+        evidence_payload=req.evidence,
+    )
+    return {"status": "SUCCESS", "circuit_breaker": record}
+
+
+@app.get("/api/v1/admin/fleet/benchmark/{tenant_id}")
+def get_tenant_peer_benchmark(tenant_id: str):
+    """Computes neighborhood and domain percentile rank benchmark."""
+    try:
+        bench = MasterAdminConsole.get_peer_benchmark(tenant_id)
+        return bench
+    except ValueError as e:
+        return JSONResponse(status_code=404, content={"error": str(e)})
+
 TEMPLATES_DIR = os.path.join(os.path.dirname(__file__), "templates")
 INDEX_HTML_PATH = os.path.join(TEMPLATES_DIR, "index.html")
 

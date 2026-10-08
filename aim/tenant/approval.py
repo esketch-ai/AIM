@@ -224,3 +224,31 @@ class ApprovalDesk:
             raise ValueError(f"Campaign '{campaign_id}' not found")
         camp.status = "REJECTED"
         return camp
+
+    @classmethod
+    def reject_with_feedback(
+        cls, campaign_id: str, reason_code: str, note: str = ""
+    ) -> Dict[str, Any]:
+        """Dismisses staged campaign and records constraint for autonomous adaptation."""
+        cls._initialize_defaults()
+        camp = cls._staged_campaigns.get(campaign_id)
+        if not camp:
+            raise ValueError(f"Campaign '{campaign_id}' not found")
+        camp.status = "REJECTED"
+
+        from aim.core.feedback_learner import FeedbackLearner
+
+        constraint = FeedbackLearner.record_feedback(
+            tenant_id=camp.tenant_id,
+            reason_code=reason_code,
+            note=note,
+        )
+
+        return {
+            "status": "REJECTED",
+            "campaign_id": campaign_id,
+            "tenant_id": camp.tenant_id,
+            "feedback_recorded": constraint.model_dump(),
+            "applied_rule": constraint.applied_rule,
+            "message": f"캠페인이 반려되었으며, 차기 기안 자율 학습 규칙('{constraint.applied_rule}')이 적용되었습니다.",
+        }
