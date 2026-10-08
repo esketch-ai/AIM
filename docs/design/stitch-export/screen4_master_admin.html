@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Stitch - Screen 4: 플랫폼 총괄 관제 & 플릿 FinOps 워룸 | AIM Marketing OS</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="../tokens.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font-family-sans); }
+    body { background-color: var(--surface-canvas); color: var(--text-primary); min-height: 100vh; padding: 24px; }
+    .stitch-header {
+      display: flex; justify-content: space-between; align-items: center;
+      background: var(--surface-panel); border: 1px solid var(--surface-border);
+      border-radius: var(--radius-lg); padding: 14px 20px; margin-bottom: 20px;
+    }
+    .stitch-badge {
+      background: var(--color-primary-subtle); border: 1px solid var(--surface-border-primary);
+      color: var(--color-primary); font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: var(--radius-full);
+    }
+    .stitch-nav-back {
+      color: var(--text-muted); font-size: 12px; text-decoration: none; font-weight: 700;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .stitch-nav-back:hover { color: #FFF; }
+    .card {
+      background: var(--surface-card); border: 1px solid var(--surface-border);
+      border-radius: var(--radius-lg); padding: 20px; margin-bottom: 16px;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+      color: #FFF; border: none; padding: 12px 20px; border-radius: var(--radius-md);
+      font-size: 13px; font-weight: 800; cursor: pointer; transition: all 0.2s;
+    }
+    .btn-primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .btn-secondary {
+      background: var(--surface-card-elevated); border: 1px solid var(--surface-border);
+      color: var(--text-secondary); padding: 10px 16px; border-radius: var(--radius-md);
+      font-size: 12px; font-weight: 700; cursor: pointer;
+    }
+    .btn-secondary:hover { background: #334155; color: #FFF; }
+    .tabular { font-variant-numeric: var(--font-tabular); }
+  </style>
+</head>
+<body>
+  <div style="max-width: 1400px; margin: 0 auto;">
+    <header class="stitch-header">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span class="stitch-badge">Google Stitch Screen 4</span>
+        <h1 style="font-size: 18px; font-weight: 800; color: #FFF;">플랫폼 총괄 관제 & 플릿 FinOps 워룸</h1>
+      </div>
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <a href="index.html" class="stitch-nav-back">📑 Stitch 갤러리 목록</a>
+        <a href="../../../index.html" class="stitch-nav-back" style="color: var(--color-primary);">🌐 통합 포털 열기 ➔</a>
+      </div>
+    </header>
+
+    
+<div>
+  <!-- Executive KPIs -->
+  <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 20px;">
+    <div class="card">
+      <div style="font-size: 11px; color: var(--text-muted);">전사 활성 테넌트 플릿</div>
+      <div class="tabular" style="font-size: 26px; font-weight: 900; color: var(--color-success);">5 / 5 개사</div>
+      <div style="font-size: 10px; color: var(--text-muted);">가동률 100% · 이탈률 0%</div>
+    </div>
+    <div class="card">
+      <div style="font-size: 11px; color: var(--text-muted);">플랫폼 총 MRR (월 반복 매출)</div>
+      <div class="tabular" style="font-size: 26px; font-weight: 900; color: #818CF8;">₩545,000</div>
+      <div style="font-size: 10px; color: var(--text-muted);">ARR 환산: ₩6,540,000</div>
+    </div>
+    <div class="card">
+      <div style="font-size: 11px; color: var(--text-muted);">전사 누적 창출 가치 (GMV)</div>
+      <div class="tabular" style="font-size: 26px; font-weight: 900; color: #FCD34D;">+₩145.5M</div>
+      <div style="font-size: 10px; color: var(--text-muted);">전체 입점 매장 합산 실적</div>
+    </div>
+    <div class="card">
+      <div style="font-size: 11px; color: var(--text-muted);">가입자 평균 ROI 배수</div>
+      <div class="tabular" style="font-size: 26px; font-weight: 900; color: var(--color-pink);">44.5배</div>
+      <div style="font-size: 10px; color: var(--color-success);">구독 연장 확률 98.4%</div>
+    </div>
+  </div>
+
+  <!-- Fleet Table -->
+  <div class="card">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+      <h3 style="font-size: 15px; font-weight: 800; color: #FFF;">📋 전사 5개 테넌트 플릿 관제</h3>
+      <button class="btn-secondary">+ 신규 테넌트 온보딩</button>
+    </div>
+    <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
+      <thead>
+        <tr style="border-bottom: 1px solid var(--surface-border); color: var(--text-muted); text-align: left;">
+          <th style="padding: 8px;">테넌트명</th>
+          <th style="padding: 8px;">도메인</th>
+          <th style="padding: 8px;">플랜</th>
+          <th style="padding: 8px;">월 이용료</th>
+          <th style="padding: 8px;">상태</th>
+          <th style="padding: 8px;">누적 창출액</th>
+          <th style="padding: 8px;">조치</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom: 1px solid var(--surface-border);">
+          <td style="padding: 10px 8px; font-weight: 800;">성수 아뜰리에 베이커리</td>
+          <td style="padding: 10px 8px;">F&B</td>
+          <td style="padding: 10px 8px;"><span style="color:#818CF8;">PRO</span></td>
+          <td class="tabular" style="padding: 10px 8px;">₩49,000</td>
+          <td style="padding: 10px 8px; color: var(--color-success);">ACTIVE</td>
+          <td class="tabular" style="padding: 10px 8px; font-weight: 800; color: #FCD34D;">+₩4,560,000</td>
+          <td style="padding: 10px 8px;"><button class="btn-secondary" style="padding: 4px 8px;">관리</button></td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--surface-border);">
+          <td style="padding: 10px 8px; font-weight: 800;">강남 리엔 피부과 의원</td>
+          <td style="padding: 10px 8px;">MEDICAL</td>
+          <td style="padding: 10px 8px;"><span style="color:#FCD34D;">ENTERPRISE</span></td>
+          <td class="tabular" style="padding: 10px 8px;">₩199,000</td>
+          <td style="padding: 10px 8px; color: var(--color-success);">ACTIVE</td>
+          <td class="tabular" style="padding: 10px 8px; font-weight: 800; color: #FCD34D;">+₩26,400,000</td>
+          <td style="padding: 10px 8px;"><button class="btn-secondary" style="padding: 4px 8px;">관리</button></td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--surface-border);">
+          <td style="padding: 10px 8px; font-weight: 800;">청담 아우라 헤어살롱</td>
+          <td style="padding: 10px 8px;">BEAUTY</td>
+          <td style="padding: 10px 8px;"><span style="color:#818CF8;">PRO</span></td>
+          <td class="tabular" style="padding: 10px 8px;">₩49,000</td>
+          <td style="padding: 10px 8px; color: var(--color-success);">ACTIVE</td>
+          <td class="tabular" style="padding: 10px 8px; font-weight: 800; color: #FCD34D;">+₩7,800,000</td>
+          <td style="padding: 10px 8px;"><button class="btn-secondary" style="padding: 4px 8px;">관리</button></td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--surface-border);">
+          <td style="padding: 10px 8px; font-weight: 800;">FlowDoc AI 협업 SaaS</td>
+          <td style="padding: 10px 8px;">B2B_SAAS</td>
+          <td style="padding: 10px 8px;"><span style="color:#818CF8;">PRO</span></td>
+          <td class="tabular" style="padding: 10px 8px;">₩49,000</td>
+          <td style="padding: 10px 8px; color: var(--color-success);">ACTIVE</td>
+          <td class="tabular" style="padding: 10px 8px; font-weight: 800; color: #FCD34D;">+₩16,800,000</td>
+          <td style="padding: 10px 8px;"><button class="btn-secondary" style="padding: 4px 8px;">관리</button></td>
+        </tr>
+        <tr>
+          <td style="padding: 10px 8px; font-weight: 800;">대진정밀공업 (주)</td>
+          <td style="padding: 10px 8px;">MANUFACTURING</td>
+          <td style="padding: 10px 8px;"><span style="color:#FCD34D;">ENTERPRISE</span></td>
+          <td class="tabular" style="padding: 10px 8px;">₩199,000</td>
+          <td style="padding: 10px 8px; color: var(--color-success);">ACTIVE</td>
+          <td class="tabular" style="padding: 10px 8px; font-weight: 800; color: #FCD34D;">+₩90,000,000</td>
+          <td style="padding: 10px 8px;"><button class="btn-secondary" style="padding: 4px 8px;">관리</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+  </div>
+</body>
+</html>

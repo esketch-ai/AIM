@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Stitch - Screen 6: 6D 하이퍼 컨텍스트 서비스 실행 콘솔 & 테스트베드 | AIM Marketing OS</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="../tokens.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font-family-sans); }
+    body { background-color: var(--surface-canvas); color: var(--text-primary); min-height: 100vh; padding: 24px; }
+    .stitch-header {
+      display: flex; justify-content: space-between; align-items: center;
+      background: var(--surface-panel); border: 1px solid var(--surface-border);
+      border-radius: var(--radius-lg); padding: 14px 20px; margin-bottom: 20px;
+    }
+    .stitch-badge {
+      background: var(--color-primary-subtle); border: 1px solid var(--surface-border-primary);
+      color: var(--color-primary); font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: var(--radius-full);
+    }
+    .stitch-nav-back {
+      color: var(--text-muted); font-size: 12px; text-decoration: none; font-weight: 700;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .stitch-nav-back:hover { color: #FFF; }
+    .card {
+      background: var(--surface-card); border: 1px solid var(--surface-border);
+      border-radius: var(--radius-lg); padding: 20px; margin-bottom: 16px;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+      color: #FFF; border: none; padding: 12px 20px; border-radius: var(--radius-md);
+      font-size: 13px; font-weight: 800; cursor: pointer; transition: all 0.2s;
+    }
+    .btn-primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .btn-secondary {
+      background: var(--surface-card-elevated); border: 1px solid var(--surface-border);
+      color: var(--text-secondary); padding: 10px 16px; border-radius: var(--radius-md);
+      font-size: 12px; font-weight: 700; cursor: pointer;
+    }
+    .btn-secondary:hover { background: #334155; color: #FFF; }
+    .tabular { font-variant-numeric: var(--font-tabular); }
+  </style>
+</head>
+<body>
+  <div style="max-width: 1400px; margin: 0 auto;">
+    <header class="stitch-header">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span class="stitch-badge">Google Stitch Screen 6</span>
+        <h1 style="font-size: 18px; font-weight: 800; color: #FFF;">6D 하이퍼 컨텍스트 서비스 실행 콘솔 & 테스트베드</h1>
+      </div>
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <a href="index.html" class="stitch-nav-back">📑 Stitch 갤러리 목록</a>
+        <a href="../../../index.html" class="stitch-nav-back" style="color: var(--color-primary);">🌐 통합 포털 열기 ➔</a>
+      </div>
+    </header>
+
+    
+<div>
+  <!-- Header -->
+  <div class="card" style="border-color: var(--color-cyan); background: linear-gradient(135deg, rgba(6,182,212,0.15) 0%, rgba(15,23,42,0.8) 100%);">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div>
+        <span style="font-size: 10px; color: var(--color-cyan); font-weight: 800;">KERNEL v0.6.0 · MULTI-DOMAIN KERNEL</span>
+        <h2 style="font-size: 18px; font-weight: 800; color: #FFF; margin-top: 4px;">
+          6D 하이퍼 컨텍스트 실시간 센싱 커널 & 다업종 테스트베드
+        </h2>
+        <p style="font-size: 12px; color: var(--text-muted);">
+          시대(Era) · 상황(Situation) · 계절(Season) · 세대(Gen) · 지역(Region) · 계기(Milestone) 6차원 환경 벡터 실시간 수집
+        </p>
+      </div>
+      <span style="font-size: 11px; color: var(--color-success); font-weight: 800;">● SENSING ONLINE (2.8ms)</span>
+    </div>
+  </div>
+
+  <!-- 6D Matrix -->
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 20px;">
+    <div class="card">
+      <div style="font-size: 11px; color: var(--text-muted); font-weight: 700;">📅 1. 시대 (Era)</div>
+      <div style="font-size: 14px; font-weight: 800; color: #FFF; margin-top: 4px;">2026 헬시플레저 & 초개인화 가치 소비</div>
+      <div style="font-size: 10px; color: var(--text-muted); margin-top: 2px;">성분 신뢰성 우선, 과장 광고 기피</div>
+    </div>
+    <div class="card">
+      <div style="font-size: 11px; color: var(--text-muted); font-weight: 700;">⚡ 2. 상황 (Situation)</div>
+      <div style="font-size: 14px; font-weight: 800; color: #FCD34D; margin-top: 4px;">수요일 15시 비 예보 (강수확률 88%)</div>
+      <div style="font-size: 10px; color: var(--text-muted); margin-top: 2px;">일몰 18:19 · 유휴 좌석 35% 발생</div>
+    </div>
+    <div class="card">
+      <div style="font-size: 11px; color: var(--text-muted); font-weight: 700;">🍂 3. 계절 (Season)</div>
+      <div style="font-size: 14px; font-weight: 800; color: #FCA5A5; margin-top: 4px;">늦가을 환절기 · 일교차 12도 건조 기후</div>
+      <div style="font-size: 10px; color: var(--text-muted); margin-top: 2px;">따뜻한 음료 및 피부 보습 니즈 급증</div>
+    </div>
+    <div class="card">
+      <div style="font-size: 11px; color: var(--text-muted); font-weight: 700;">👥 4. 세대 (Generation)</div>
+      <div style="font-size: 14px; font-weight: 800; color: #86EFAC; margin-top: 4px;">2030 MZ 실용주의 & 4050 프리미엄 솔로</div>
+      <div style="font-size: 10px; color: var(--text-muted); margin-top: 2px;">인스타 릴스 15초 바이럴 반응 최상위</div>
+    </div>
+    <div class="card">
+      <div style="font-size: 11px; color: var(--text-muted); font-weight: 700;">🗺️ 5. 지역 (Region)</div>
+      <div style="font-size: 14px; font-weight: 800; color: #93C5FD; margin-top: 4px;">서울 성수동 카페거리 반경 1km</div>
+      <div style="font-size: 10px; color: var(--text-muted); margin-top: 2px;">일일 유동인구 42,000명 밀집 상권</div>
+    </div>
+    <div class="card">
+      <div style="font-size: 11px; color: var(--text-muted); font-weight: 700;">🎯 6. 계기 (Milestone)</div>
+      <div style="font-size: 14px; font-weight: 800; color: #F472B6; margin-top: 4px;">비 오는 날 3시간 깜짝 번개 & 커플 100일</div>
+      <div style="font-size: 10px; color: var(--text-muted); margin-top: 2px;">단일 CTA 원클릭 쿠폰 바코드 지급</div>
+    </div>
+  </div>
+
+  <!-- Multi-Industry Testbed Simulator -->
+  <div class="card">
+    <h3 style="font-size: 15px; font-weight: 800; color: #FFF; margin-bottom: 12px;">🧪 5대 업종 시뮬레이션 테스트베드</h3>
+    <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+      <button class="btn-primary" style="padding: 6px 12px; font-size: 11px;">🥐 F&B 카페</button>
+      <button class="btn-secondary" style="padding: 6px 12px; font-size: 11px;">🏥 피부과</button>
+      <button class="btn-secondary" style="padding: 6px 12px; font-size: 11px;">✂️ 헤어살롱</button>
+      <button class="btn-secondary" style="padding: 6px 12px; font-size: 11px;">💻 B2B SaaS</button>
+      <button class="btn-secondary" style="padding: 6px 12px; font-size: 11px;">🏭 정밀가공</button>
+    </div>
+    <div style="background: var(--surface-input); border: 1px solid var(--surface-border); border-radius: 8px; padding: 14px; font-size: 12px;">
+      <div style="color: var(--color-success); font-weight: 800; margin-bottom: 4px;">시뮬레이션 출력 결과: [FNB_CAPACITY_RESCUE]</div>
+      <div style="color: #CBD5E1; line-height: 1.6;">
+        트리거 신호: 비 예보 (강수확률 88%) ➔ 15초 쇼츠 콘티 자동 생성 ➔ 예상 전환 10건 ➔ 증분 매출 +₩240,000 (ROI 4.9배)
+      </div>
+    </div>
+  </div>
+</div>
+
+  </div>
+</body>
+</html>

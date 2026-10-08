@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Stitch - Screen 1: 유료 가입자 매장 관제 총괄 작전실 (Tenant Cockpit) | AIM Marketing OS</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="../tokens.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font-family-sans); }
+    body { background-color: var(--surface-canvas); color: var(--text-primary); min-height: 100vh; padding: 24px; }
+    .stitch-header {
+      display: flex; justify-content: space-between; align-items: center;
+      background: var(--surface-panel); border: 1px solid var(--surface-border);
+      border-radius: var(--radius-lg); padding: 14px 20px; margin-bottom: 20px;
+    }
+    .stitch-badge {
+      background: var(--color-primary-subtle); border: 1px solid var(--surface-border-primary);
+      color: var(--color-primary); font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: var(--radius-full);
+    }
+    .stitch-nav-back {
+      color: var(--text-muted); font-size: 12px; text-decoration: none; font-weight: 700;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .stitch-nav-back:hover { color: #FFF; }
+    .card {
+      background: var(--surface-card); border: 1px solid var(--surface-border);
+      border-radius: var(--radius-lg); padding: 20px; margin-bottom: 16px;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+      color: #FFF; border: none; padding: 12px 20px; border-radius: var(--radius-md);
+      font-size: 13px; font-weight: 800; cursor: pointer; transition: all 0.2s;
+    }
+    .btn-primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .btn-secondary {
+      background: var(--surface-card-elevated); border: 1px solid var(--surface-border);
+      color: var(--text-secondary); padding: 10px 16px; border-radius: var(--radius-md);
+      font-size: 12px; font-weight: 700; cursor: pointer;
+    }
+    .btn-secondary:hover { background: #334155; color: #FFF; }
+    .tabular { font-variant-numeric: var(--font-tabular); }
+  </style>
+</head>
+<body>
+  <div style="max-width: 1400px; margin: 0 auto;">
+    <header class="stitch-header">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span class="stitch-badge">Google Stitch Screen 1</span>
+        <h1 style="font-size: 18px; font-weight: 800; color: #FFF;">유료 가입자 매장 관제 총괄 작전실 (Tenant Cockpit)</h1>
+      </div>
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <a href="index.html" class="stitch-nav-back">📑 Stitch 갤러리 목록</a>
+        <a href="../../../index.html" class="stitch-nav-back" style="color: var(--color-primary);">🌐 통합 포털 열기 ➔</a>
+      </div>
+    </header>
+
+    
+<div style="display: grid; grid-template-columns: 1fr 380px; gap: 20px;">
+  <div>
+    <!-- Fleet Tabs -->
+    <div style="display: flex; gap: 8px; margin-bottom: 16px; overflow-x: auto;">
+      <button class="btn-primary" style="padding: 8px 14px; font-size: 11px;">🥐 성수 아뜰리에 베이커리 (Active)</button>
+      <button class="btn-secondary">🏥 강남 리엔 피부과</button>
+      <button class="btn-secondary">✂️ 청담 아우라 헤어</button>
+      <button class="btn-secondary">💻 FlowDoc AI SaaS</button>
+      <button class="btn-secondary">🏭 대진정밀공업</button>
+    </div>
+
+    <!-- Financial Banner -->
+    <div class="card" style="border-color: var(--color-primary); background: linear-gradient(135deg, rgba(99,102,241,0.15) 0%, rgba(16,185,129,0.1) 100%);">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span style="font-size: 12px; font-weight: 800; color: #A5B4FC;">💰 WTP 가치 귀속 원장 (실시간 누적)</span>
+        <span style="background: var(--color-success-subtle); color: var(--color-success); font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 999px;">+34.2% MoM</span>
+      </div>
+      <div class="tabular" style="font-size: 34px; font-weight: 900; color: #FFF; margin: 8px 0;">+₩4,320,000</div>
+      <div style="font-size: 12px; color: #CBD5E1;">월 구독료 49,000원 대비 순이익 ROI <b>88.2배</b> 달성 (자동 기안 12회 집행)</div>
+    </div>
+
+    <!-- Alert Trigger Desk -->
+    <div class="card" style="border-color: var(--color-warning);">
+      <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+        <span style="color: var(--color-warning-text); font-size: 12px; font-weight: 800;">⚡ 실시간 상권 현안 감지</span>
+        <span style="font-size: 10px; background: rgba(245,158,11,0.2); color: #FCD34D; padding: 2px 6px; border-radius: 4px;">타임어택</span>
+      </div>
+      <div style="font-size: 14px; font-weight: 800; color: #FFF; margin-bottom: 6px;">
+        ☔ 오늘 15시 비 예보 + 사워도우 조기 품절 우려 ➔ 워크인 35% 급감 감지
+      </div>
+      <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">
+        처방: [비 오는 날 깜짝 번개] 포장 시 오트라떼 1+1 쿠폰 발송 · 예상 추가 매출 +₩240,000
+      </p>
+      <button class="btn-primary" style="width: 100%;">⚡ 원클릭 즉시 승인 및 3대 채널 동시 발송</button>
+    </div>
+
+    <!-- Attribution History -->
+    <div class="card">
+      <h3 style="font-size: 14px; font-weight: 800; color: #FFF; margin-bottom: 12px;">📊 최근 집행 캠페인 실적 타임라인</h3>
+      <div style="font-size: 12px; color: var(--text-secondary); line-height: 2;">
+        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--surface-border); padding: 6px 0;">
+          <span>가을비 사워도우 타임특가 (네이버/카톡)</span>
+          <span class="tabular" style="color: var(--color-success); font-weight: 800;">+₩240,000 (ROI 4.9x)</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--surface-border); padding: 6px 0;">
+          <span>주말 브런치 가족 예약 리콜 (인스타/카톡)</span>
+          <span class="tabular" style="color: var(--color-success); font-weight: 800;">+₩560,000 (ROI 11.4x)</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; padding: 6px 0;">
+          <span>바질 소금빵 론칭 번개 이벤트</span>
+          <span class="tabular" style="color: var(--color-success); font-weight: 800;">+₩360,000 (ROI 7.3x)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Side: Store Radar & Profile -->
+  <div>
+    <div class="card">
+      <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+        <span style="font-size: 12px; font-weight: 800; color: #FFF;">🏢 구독 매장 프로필</span>
+        <span style="font-size: 10px; color: var(--color-success);">● 정상 가동 중</span>
+      </div>
+      <div style="font-size: 15px; font-weight: 800; color: #A5B4FC; margin-bottom: 4px;">성수 아뜰리에 베이커리 & 카페</div>
+      <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 12px;">김성수 대표 · 서울 성수동 카페거리 반경 1km</div>
+      <div style="background: var(--surface-input); padding: 10px; border-radius: 8px; font-size: 11px;">
+        <div>플랜: <b>PRO 플랜 (월 49,000원)</b></div>
+        <div>다음 결제일: <b>2026-11-01</b></div>
+        <div>유휴 좌석 회수율: <b style="color: var(--color-success);">35% 방어</b></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 style="font-size: 13px; font-weight: 800; color: #FFF; margin-bottom: 10px;">🕵️ 반경 1km 경쟁 매장 레이더</h3>
+      <div style="font-size: 11px; color: var(--text-muted); line-height: 1.8;">
+        <div>• <b>A베이커리:</b> 웨이팅 과다 불만 감지 ➔ AIM 반사이익 유치</div>
+        <div>• <b>B카페:</b> 조기 품절 발생 ➔ 디저트 대안 캠페인 가동</div>
+        <div>• <b>C디저트:</b> 노쇼 발생 ➔ 성수 워크인 15초 릴스 사출</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </div>
+</body>
+</html>

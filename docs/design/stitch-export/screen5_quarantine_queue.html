@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Stitch - Screen 5: 고위험 광고 카피 인적 검토/격리 큐 (HITL) | AIM Marketing OS</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="../tokens.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font-family-sans); }
+    body { background-color: var(--surface-canvas); color: var(--text-primary); min-height: 100vh; padding: 24px; }
+    .stitch-header {
+      display: flex; justify-content: space-between; align-items: center;
+      background: var(--surface-panel); border: 1px solid var(--surface-border);
+      border-radius: var(--radius-lg); padding: 14px 20px; margin-bottom: 20px;
+    }
+    .stitch-badge {
+      background: var(--color-primary-subtle); border: 1px solid var(--surface-border-primary);
+      color: var(--color-primary); font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: var(--radius-full);
+    }
+    .stitch-nav-back {
+      color: var(--text-muted); font-size: 12px; text-decoration: none; font-weight: 700;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .stitch-nav-back:hover { color: #FFF; }
+    .card {
+      background: var(--surface-card); border: 1px solid var(--surface-border);
+      border-radius: var(--radius-lg); padding: 20px; margin-bottom: 16px;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+      color: #FFF; border: none; padding: 12px 20px; border-radius: var(--radius-md);
+      font-size: 13px; font-weight: 800; cursor: pointer; transition: all 0.2s;
+    }
+    .btn-primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .btn-secondary {
+      background: var(--surface-card-elevated); border: 1px solid var(--surface-border);
+      color: var(--text-secondary); padding: 10px 16px; border-radius: var(--radius-md);
+      font-size: 12px; font-weight: 700; cursor: pointer;
+    }
+    .btn-secondary:hover { background: #334155; color: #FFF; }
+    .tabular { font-variant-numeric: var(--font-tabular); }
+  </style>
+</head>
+<body>
+  <div style="max-width: 1400px; margin: 0 auto;">
+    <header class="stitch-header">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span class="stitch-badge">Google Stitch Screen 5</span>
+        <h1 style="font-size: 18px; font-weight: 800; color: #FFF;">고위험 광고 카피 인적 검토/격리 큐 (HITL)</h1>
+      </div>
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <a href="index.html" class="stitch-nav-back">📑 Stitch 갤러리 목록</a>
+        <a href="../../../index.html" class="stitch-nav-back" style="color: var(--color-primary);">🌐 통합 포털 열기 ➔</a>
+      </div>
+    </header>
+
+    
+<div>
+  <!-- Header Alert -->
+  <div class="card" style="border-color: var(--color-danger); background: linear-gradient(135deg, rgba(239,68,68,0.15) 0%, rgba(15,23,42,0.8) 100%);">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div>
+        <span style="background: var(--color-danger); color: #FFF; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 4px;">
+          ⚖️ 법무 격리 큐 (대기 2건)
+        </span>
+        <h2 style="font-size: 18px; font-weight: 800; color: #FFF; margin-top: 6px;">
+          의료법 제56조 및 표시광고법 위반 고위험 광고 카피 사전 격리/심의
+        </h2>
+        <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">
+          허위·과장 광고 송출을 원천 차단하여 가입 사업주의 행정처분 및 과징금 리스크를 100% 방어합니다.
+        </p>
+      </div>
+      <div style="text-align: right;">
+        <div style="font-size: 11px; color: var(--text-muted);">예방된 과징금 추산액</div>
+        <div class="tabular" style="font-size: 22px; font-weight: 900; color: var(--color-danger-text);">₩120,000,000</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quarantine Card 1: Medical -->
+  <div class="card">
+    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+      <b style="font-size: 14px; color: #FFF;">[Q_101] 강남 리엔 피부과 의원 (MEDICAL 도메인)</b>
+      <span style="background: rgba(239,68,68,0.2); color: #FCA5A5; font-size: 10px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">CRITICAL RISK</span>
+    </div>
+    <div style="font-size: 11px; color: #FCA5A5; margin-bottom: 12px;">
+      위반 근거: 의료법 제56조 제2항 (치료효과 보장 표현 및 부작용 누락 금지)
+    </div>
+
+    <!-- Side by Side Diff -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+      <div style="background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.3); border-radius: 8px; padding: 12px; font-size: 12px;">
+        <div style="color: var(--color-danger); font-weight: 800; margin-bottom: 4px;">❌ AI 생성 원문 (격리 차단됨)</div>
+        <div style="color: #F8FAFC; line-height: 1.6;">
+          "환절기 무너진 피부 장벽, <span style="background: rgba(239,68,68,0.3); text-decoration: underline;">부작용 전혀 없음</span> 및 <span style="background: rgba(239,68,68,0.3); text-decoration: underline;">100% 리프팅 완치 보장</span>으로 해결해 드립니다."
+        </div>
+      </div>
+      <div style="background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.3); border-radius: 8px; padding: 12px; font-size: 12px;">
+        <div style="color: var(--color-success); font-weight: 800; margin-bottom: 4px;">✨ 권고 수정안 (준법 필터 적용)</div>
+        <div style="color: #F8FAFC; line-height: 1.6;">
+          "개인 맞춤형 진단을 통해 안전성을 검증하고 시술 전 부작용 가능성을 사전 안내드립니다. (의료광고심의필 완료)"
+        </div>
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: flex-end; gap: 8px;">
+      <button class="btn-secondary" style="border-color: var(--color-danger); color: #FCA5A5;">🚫 영구 차단</button>
+      <button class="btn-primary" style="background: var(--color-success);">✅ 수정안 조건부 승인 (격리 해제)</button>
+    </div>
+  </div>
+
+  <!-- Quarantine Card 2: Fair Trade -->
+  <div class="card">
+    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+      <b style="font-size: 14px; color: #FFF;">[Q_102] 성수 아뜰리에 베이커리 (F&B 도메인)</b>
+      <span style="background: rgba(245,158,11,0.2); color: #FCD34D; font-size: 10px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">HIGH RISK</span>
+    </div>
+    <div style="font-size: 11px; color: #FCD34D; margin-bottom: 12px;">
+      위반 근거: 표시·광고의 공정화에 관한 법률 제3조 (객관적 근거 없는 '국내 1위' 최고급 단정 표현)
+    </div>
+
+    <!-- Side by Side Diff -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+      <div style="background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.3); border-radius: 8px; padding: 12px; font-size: 12px;">
+        <div style="color: var(--color-danger); font-weight: 800; margin-bottom: 4px;">❌ AI 생성 원문 (격리 차단됨)</div>
+        <div style="color: #F8FAFC; line-height: 1.6;">
+          "프랑스산 고메버터 사용, <span style="background: rgba(239,68,68,0.3); text-decoration: underline;">국내 1위 소금빵 빵지순례 성지</span>"
+        </div>
+      </div>
+      <div style="background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.3); border-radius: 8px; padding: 12px; font-size: 12px;">
+        <div style="color: var(--color-success); font-weight: 800; margin-bottom: 4px;">✨ 권고 수정안 (준법 필터 적용)</div>
+        <div style="color: #F8FAFC; line-height: 1.6;">
+          "프랑스 AOP 고메버터 48% 함유, 성수동 직장인들이 즐겨 찾는 시그니처 소금빵"
+        </div>
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: flex-end; gap: 8px;">
+      <button class="btn-secondary" style="border-color: var(--color-danger); color: #FCA5A5;">🚫 영구 차단</button>
+      <button class="btn-primary" style="background: var(--color-success);">✅ 수정안 조건부 승인 (격리 해제)</button>
+    </div>
+  </div>
+</div>
+
+  </div>
+</body>
+</html>

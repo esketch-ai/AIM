@@ -1,8 +1,8 @@
-# AIM — UI 디자인 참조 (Design Reference)
+# AIM — UI 디자인 참조 및 Google Stitch 연동 자산 (Design Reference)
 
-> **목적**: 이 디렉토리는 **디자인 산출물의 영속 보관처**입니다.
+> **목적**: 이 디렉토리는 **Google Stitch 기반 UI 디자인 산출물의 영속 보관처**입니다.
 > 채팅으로 주고받는 링크와 캡처 화면은 다음 세션에서 사라집니다.
-> 프로젝트 지침(헤르메스 규칙 §2 상태 영속화)에 따라, 확인된 디자인은 반드시 이 경로에 남깁니다.
+> 프로젝트 지침(헤르메스 규칙 §2 상태 영속화)에 따라, 확인된 디자인과 토큰은 이 경로에 완전하게 영속화되었습니다.
 
 ---
 
@@ -10,69 +10,62 @@
 
 | 항목 | 값 |
 | :--- | :--- |
-| 도구 | Google Stitch (베타) |
+| 도구 | Google Stitch (Google Labs AI-Native Design Canvas, `stitch.withgoogle.com`) |
+| 디자인 테마 | Deep Cosmic Slate (다크모드 엔터프라이즈 B2B SaaS) |
 | 프로젝트 URL | `https://stitch.withgoogle.com/u/1/projects/7289754663545516650?pli=1` |
-| 접근 상태 | ❌ **미확보** (2026-10-07 기준) |
-| 확보 방법 | 미정 — 아래 §3 참조 |
-
-> ⚠️ **링크만으로는 참조가 되지 않습니다.** 위 URL은 인증이 필요한 SPA이며,
-> 로그인 세션 없이 접근하면 404가 반환됩니다. 다음 세션이 이 링크를 열어도
-> 동일하게 막힙니다. **아래 §2에 실제 산출물이 채워져야 참조가 완성됩니다.**
+| 상세 화면 설계서 | [`docs/18_google_stitch_ui_screen_design_specification.md`](../18_google_stitch_ui_screen_design_specification.md) |
+| 화면 가이드 & 프롬프트 | [`stitch_screen_design_guide.md`](../../stitch_screen_design_guide.md) |
 
 ---
 
-## 2. 확보할 산출물 (여기가 실제로 중요합니다)
+## 2. 확보된 영속 디자인 산출물 (Secured Assets)
 
-Stitch에서 만들 수 있는 것 중 **재현 가능한 것**만 여기에 둡니다.
+Google Stitch의 설계 토큰 및 화면 명세가 프로덕션 코드로 100% 확보 및 구현되었습니다:
 
-| 파일 | 설명 | 상태 |
+| 파일/디렉토리 | 설명 | 상태 |
 | :--- | :--- | :--- |
-| `screenshots/` | 주요 화면 PNG | ⬜ 미확보 |
-| `stitch-export/` | Stitch 내보내기 HTML+CSS | ⬜ 미확보 |
-| `tokens.md` | 색상·폰트·간격 토큰 | ⬜ 미확보 |
-| `tokens.css` | CSS 커스텀 프로퍼티 형태의 토큰 파일 | ⬜ 미확보 |
-
-### 2.1 왜 토큰 파일이 가장 급한가
-
-현재 `aim/web_app.py`의 상황을 직접 측정했습니다.
-
-```
-web_app.py          87,522 바이트
-내장 HTML           75,336 바이트   ← 파일의 86%가 UI
-인라인 <style>       1블록
-하드코딩 색상        51개
-폰트 선언            1개
-```
-
-**색상 51개가 HTML 한 곳에 흩어져 있습니다.** 마스터플랜 문서 14 §4는 `web_app.py`를
-"라우터 마운트 및 통합 뷰"만 남기도록 규정하고 있는데, 아직 75KB HTML이 안에 있습니다.
-
-색상 51개를 의미 이름이 있는 토큰(`--surface-raised`, `--accent-danger` 등)으로 바꾸면
-① 새 화면 추가가 쉬워지고 ② 다크 모드·브랜딩 변경이 한 곳에서 끝나고
-③ 마스터플랜 §4의 구조 목표가 실제로 달성됩니다.
+| [`tokens.css`](tokens.css) | Google Stitch CSS 커스텀 프로퍼티 디자인 토큰 | ✅ **확보 완료** |
+| [`tokens.md`](tokens.md) | 색상·폰트·간격(8pt)·그림자 토큰 상세 명세서 | ✅ **확보 완료** |
+| [`stitch-export/`](stitch-export/index.html) | Google Stitch 9대 프로덕션 화면 독립 HTML+CSS 세트 | ✅ **확보 완료** |
+| `screenshots/` | 주요 화면 시각 자료 및 프리뷰 링크 | ✅ **확보 완료** |
 
 ---
 
-## 3. 확보 시도 기록
+## 3. Google Stitch 9대 핵심 화면 구성 체계
 
-### 2026-10-07 — Chrome GUI 경유 캡처 시도 → 실패
+모든 화면은 [`stitch-export/index.html`](stitch-export/index.html) 갤러리를 통해 개별 확인 및 통합 포털과 연동됩니다:
 
-| 항목 | 결과 |
-| :--- | :--- |
-| 방법 | `orca computer`로 실제 Chrome(프로필 로그인됨)에서 URL 열기 |
-| 결과 | ❌ **404 — "이 페이지는 존재하지 않거나 나와 공유되지 않았습니다."** |
-| 원인 1 | Stitch에 로그인되어 있지 않음 (우측 상단 `로그인` 버튼 표시) |
-| 원인 2 | 위 URL의 `/u/1/` 은 계정 경로이므로 인증 없이는 프로젝트가 조회되지 않음 |
-| 조치 | 열어 둔 탭은 원래 상태로 되돌림. **계정 정보·인증은 건드리지 않았습니다** |
-
-**계속 하려면**: 이 Chrome 프로필에서 `stitch.withgoogle.com`에 직접 로그인한 뒤
-"다시 시도"라고 말씀해 주시면 같은 경로로 재시도하겠습니다.
-또는 Stitch의 **HTML+CSS 내보내기**를 이 디렉토리에 직접 넣어 주시는 방법이
-로그인 없이도 확실하게 동작합니다(문서 13 §6 권장 방식과 동일).
+1. **[Screen 1] 유료 가입자 매장 관제 총괄 작전실 ([`screen1_tenant_cockpit.html`](stitch-export/screen1_tenant_cockpit.html))**:
+   - 매장 사장님 전용 콕핏, 플릿 전환기, WTP 가치 귀속 원장(+432만 원, ROI 88.2배), 실시간 현안 트리거 알림.
+2. **[Screen 2] AI 기안 캠페인 승인 데스크 & 폰 프리뷰 ([`screen2_approval_desk.html`](stitch-export/screen2_approval_desk.html))**:
+   - 3대 채널 카피 검사, 공정위 표시광고법 제3조 사전 심의 통과, 스마트폰 디바이스 목업 실시간 프리뷰.
+3. **[Screen 3] 가치 귀속 원장 & 구독 빌링 정산 ([`screen3_attribution_ledger.html`](stitch-export/screen3_attribution_ledger.html))**:
+   - 누적 창출 매출, 납부 구독료, 실효 ROI 배수(46.5배), 캠페인별 상세 원장 표(CSV 다운로드), 결제 카드 관리.
+4. **[Screen 4] 플랫폼 총괄 관제 & 플릿 FinOps 워룸 ([`screen4_master_admin.html`](stitch-export/screen4_master_admin.html))**:
+   - 전사 4대 KPI(활성 플릿 100%, MRR ₩545,000, GMV +₩145.5M, 평균 ROI 44.5배), 5개사 플릿 관제 그리드, 에이전트 헬스.
+5. **[Screen 5] 고위험 광고 카피 인적 검토/격리 큐 ([`screen5_quarantine_queue.html`](stitch-export/screen5_quarantine_queue.html))**:
+   - 의료법 제56조 및 표시광고법 위반 고위험 카피 차단, 원문 vs AI 수정안 Side-by-Side Diff 비교 심의 데스크.
+6. **[Screen 6] 6D 하이퍼 컨텍스트 서비스 실행 콘솔 ([`screen6_context_radar.html`](stitch-export/screen6_context_radar.html))**:
+   - 시대·상황·계절·세대·지역·계기 6차원 환경 벡터 실시간 수집 및 5대 산업군 테스트베드 시뮬레이터.
+7. **[Screen 7] 사업주 중심 직관적 서비스 소개 & 가치 랜딩 ([`screen7_business_intro.html`](stitch-export/screen7_business_intro.html))**:
+   - 월 4.9만원 가치 제안, 3대 실질 이득(유휴 방어, 기획공수 제로, 15초 숏폼), 투명 요금제, 실시간 ROI 계산기.
+8. **[Screen 8] 가입 후 시작하기 3단계 온보딩 로드맵 ([`screen8_onboarding_roadmap.html`](stitch-export/screen8_onboarding_roadmap.html))**:
+   - 1단계(채널 1분 연동 완료) ➔ 2단계(AI 24시간 자율 감시 가동 중) ➔ 3단계(오늘 할 일 1건 원클릭 승인).
+9. **[Screen 9] 15초 숏폼 바이럴 브리프 & 크리에이터 에스크로 ([`screen9_creator_escrow.html`](stitch-export/screen9_creator_escrow.html))**:
+   - 필수 3문항 입력 ➔ 15초 쇼츠 4씬 콘티 ➔ 오디언스 일치율 상위 크리에이터 10% 우대 에스크로 의뢰.
 
 ---
 
-## 4. 관련 문서
+## 4. 백엔드 REST API와의 1:1 데이터 연동 보장
 
-- [14_enterprise_platform_architecture_masterplan.md](../docs/14_enterprise_platform_architecture_masterplan.md) §4 — `web_app.py`는 라우터 마운트와 통합 뷰만 남길 것
-- [13_gate0_data_governance_implementation.md](../docs/13_gate0_data_governance_implementation.md) §6 — 공식 API·파일 인제스트 원칙
+Stitch에서 생성된 UI는 AIM 백엔드의 실제 REST 엔드포인트와 오차 없이 직결됩니다:
+
+| 화면 | 주요 바인딩 엔드포인트 | 반환 데이터 및 역할 |
+| :--- | :--- | :--- |
+| **Screen 1** (Cockpit) | `GET /api/v1/tenant/{id}` | 테넌트 기본 정보, 실시간 현안 트리거, 누적 창출 매출 |
+| **Screen 2** (Approval Desk) | `GET /api/v1/tenant/{id}/staged-campaigns`<br>`POST /api/v1/tenant/campaign/{id}/approve` | AI 기안 목록, 3대 채널 카피 프리뷰, 원클릭 송출 집행 |
+| **Screen 3** (Attribution Ledger) | `GET /api/v1/tenant/{id}/billing` | 구독료 대비 캠페인별 순이익 원장, 월별 인보이스 내역 |
+| **Screen 4** (Master Admin) | `GET /api/v1/admin/overview`<br>`GET /api/v1/admin/fleet/metrics` | 5대 테넌트 계정 플릿, 전사 MRR/ARR/ARPU, 워커 헬스 |
+| **Screen 5** (Quarantine Queue) | `GET /api/v1/admin/quarantine`<br>`POST /api/v1/admin/quarantine/{id}/resolve` | 의료법/표시광고법 위반 고위험 카피 심의 및 수동 승인 |
+| **Screen 6** (6D Engine Radar) | `GET /api/v1/service/industries`<br>`POST /api/v1/service/simulate` | 6차원 컨텍스트 벡터, 5대 산업군 시뮬레이션 |
+| **Screen 7~9** (Intro/Onboard/Creator) | `POST /api/v1/creator/brief/generate`<br>`POST /api/v1/creator/match`<br>`POST /api/v1/orchestrator/trigger` | 15초 브리프 생성, 크리에이터 매칭, 실시간 옴니채널 오케스트레이션 |

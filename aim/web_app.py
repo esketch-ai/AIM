@@ -29,6 +29,8 @@ from aim.admin.quarantine import ComplianceQuarantineQueue
 from aim.tenant.billing import BillingService
 from aim.api import service_router, tenant_router, admin_router, creator_router, orchestrator_router
 
+from fastapi.staticfiles import StaticFiles
+
 app = FastAPI(title="AIM Marketing OS", version="0.6.0")
 
 # Mount Enterprise Decoupled Solution API Routers
@@ -37,6 +39,11 @@ app.include_router(tenant_router, prefix="/api/v1/tenant", tags=["Solution 2: Su
 app.include_router(admin_router, prefix="/api/v1/admin", tags=["Solution 3: Master Admin Control Plane"])
 app.include_router(creator_router, tags=["Solution 4: Creator Marketplace & Escrow"])
 app.include_router(orchestrator_router, tags=["Solution 5: Dynamic Organic Orchestrator"])
+
+# Mount Google Stitch Design Assets & Screen Gallery
+DOCS_DESIGN_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "docs", "design")
+if os.path.exists(DOCS_DESIGN_DIR):
+    app.mount("/docs/design", StaticFiles(directory=DOCS_DESIGN_DIR, html=True), name="stitch_design")
 
 
 @app.get("/health")

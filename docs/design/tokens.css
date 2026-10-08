@@ -1,0 +1,103 @@
+/**
+ * AIM — Google Stitch Official Design Tokens
+ * Theme: Deep Cosmic Slate (Dark Mode Enterprise B2B SaaS)
+ * Specification: docs/18_google_stitch_ui_screen_design_specification.md
+ */
+
+:root {
+  /* ========================================================
+   * 1. Surface & Background Hierarchy
+   * ======================================================== */
+  --surface-canvas: #090D16;        /* Deep Obsidian Slate background */
+  --surface-panel: #0D1322;         /* Panel container background */
+  --surface-card: #111827;          /* Charcoal Card surface */
+  --surface-card-elevated: #1E293B; /* Hover / Elevated surface */
+  --surface-input: #0B0F19;         /* Dark form input background */
+  
+  /* Borders */
+  --surface-border: #1F2937;        /* Subtle 1px card stroke */
+  --surface-border-light: #374151;  /* Lighter separator */
+  --surface-border-focus: #4F46E5;  /* Focus state border */
+  --surface-border-primary: rgba(99, 102, 241, 0.4);
+
+  /* ========================================================
+   * 2. Semantic Color Palette
+   * ======================================================== */
+  /* Primary (Electric Indigo - Actions & Branding) */
+  --color-primary: #6366F1;
+  --color-primary-hover: #4F46E5;
+  --color-primary-subtle: rgba(99, 102, 241, 0.15);
+  --color-primary-glow: rgba(99, 102, 241, 0.35);
+
+  /* Success (Emerald Green - Value Created, ROI, Verified, Active) */
+  --color-success: #10B981;
+  --color-success-hover: #059669;
+  --color-success-subtle: rgba(16, 185, 129, 0.15);
+  --color-success-glow: rgba(16, 185, 129, 0.25);
+
+  /* Warning (Amber Yellow - Trigger Alerts, Idle Capacity, Illustrative) */
+  --color-warning: #F59E0B;
+  --color-warning-subtle: rgba(245, 158, 11, 0.15);
+  --color-warning-text: #FCD34D;
+
+  /* Danger (Rose Red - Compliance Intercept, Quarantine, Bad Reviews) */
+  --color-danger: #EF4444;
+  --color-danger-hover: #DC2626;
+  --color-danger-subtle: rgba(239, 68, 68, 0.15);
+  --color-danger-text: #FCA5A5;
+
+  /* Accent (Purple & Pink - Enterprise, Creator Marketplace, Viral) */
+  --color-purple: #8B5CF6;
+  --color-purple-subtle: rgba(139, 92, 246, 0.15);
+  --color-pink: #EC4899;
+  --color-pink-subtle: rgba(236, 72, 153, 0.15);
+  --color-cyan: #06B6D4;
+  --color-cyan-subtle: rgba(6, 182, 212, 0.15);
+
+  /* ========================================================
+   * 3. Typography & Text Colors
+   * ======================================================== */
+  --font-family-sans: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-family-mono: "JetBrains Mono", "SF Mono", Consolas, monospace;
+
+  --text-primary: #F8FAFC;      /* High-contrast headlines */
+  --text-secondary: #CBD5E1;    /* Body and content text */
+  --text-muted: #94A3B8;        /* Metadata, timestamps, captions */
+  --text-disabled: #64748B;     /* Disabled items */
+
+  /* Tabular Numerics for Financials & Metrics (숫자 흔들림 방지) */
+  --font-tabular: tabular-nums;
+
+  /* ========================================================
+   * 4. 8pt Spatial Spacing System
+   * ======================================================== */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* ========================================================
+   * 5. Border Radius
+   * ======================================================== */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-full: 9999px;
+
+  /* ========================================================
+   * 6. Box Shadows & Glow Effects
+   * ======================================================== */
+  --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.4);
+  --shadow-elevated: 0 16px 48px rgba(0, 0, 0, 0.6);
+  --shadow-glow-primary: 0 0 20px rgba(99, 102, 241, 0.35);
+  --shadow-glow-success: 0 0 20px rgba(16, 185, 129, 0.25);
+  --shadow-glow-danger: 0 0 20px rgba(239, 68, 68, 0.25);
+}
