@@ -1119,6 +1119,99 @@
             🚀 15초 AI 표준 브리프 & 크리에이터 매칭 데스크 열기 ➔
           </button>
         </div>
+      <!-- 5-Method Attribution & Clearing Cockpit (실시간 성과 인정 & 정산 콕핏) -->
+        <div class="glass-card" style="margin-top:14px; border:1.5px solid rgba(16, 185, 129, 0.45); background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(15, 23, 42, 0.8) 100%);">
+          <div class="card-title-row">
+            <span style="color:#34D399; font-weight:800; font-size:13px;">🎟️ 5대 성과 인정 & 실시간 정산 콕핏 (Attribution & Clearing)</span>
+            <span id="badgeAttributionTier" style="background:#10B981; color:#FFF; font-size:10px; font-weight:800; padding:2px 8px; border-radius:999px;">A_MEASURED 실측 공인</span>
+          </div>
+          <div style="font-size:11px; color:#CBD5E1; margin-bottom:12px; line-height:1.5;">
+            쿠폰 POS 스캔·영수증 OCR 사진 인증·타임어택 증분 매출 등 <b>5대 채널별 실적</b>을 다각도로 자동 인정하고, 플랫폼 수수료(8%)와 크리에이터 보너스(30%)를 즉시 정산합니다.
+          </div>
+
+          <!-- Quick Metrics Bar -->
+          <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:8px; margin-bottom:12px;">
+            <div style="background:#0F172A; padding:8px; border-radius:8px; border:1px solid var(--card-border);">
+              <div style="font-size:10px; color:var(--text-muted);">총 인정 매출 (GMV)</div>
+              <div id="attrTotalGmv" style="font-size:13px; font-weight:800; color:#34D399;">+₩427,000</div>
+              <div style="font-size:9px; color:#10B981;">실측: ₩107,000</div>
+            </div>
+            <div style="background:#0F172A; padding:8px; border-radius:8px; border:1px solid var(--card-border);">
+              <div style="font-size:10px; color:var(--text-muted);">사업주 순증 이익</div>
+              <div id="attrMerchantNet" style="font-size:13px; font-weight:800; color:#F8FAFC;">₩380,030</div>
+              <div style="font-size:9px; color:#94A3B8;">마진율 89%</div>
+            </div>
+            <div style="background:#0F172A; padding:8px; border-radius:8px; border:1px solid var(--card-border);">
+              <div style="font-size:10px; color:var(--text-muted);">플랫폼 수수료 (8%)</div>
+              <div id="attrPlatformFee" style="font-size:13px; font-weight:800; color:#818CF8;">₩34,160</div>
+              <div style="font-size:9px; color:#818CF8;">Take-Rate</div>
+            </div>
+            <div style="background:#0F172A; padding:8px; border-radius:8px; border:1px solid var(--card-border);">
+              <div style="font-size:10px; color:var(--text-muted);">크리에이터 보너스</div>
+              <div id="attrCreatorBonus" style="font-size:13px; font-weight:800; color:#F472B6;">₩12,810</div>
+              <div style="font-size:9px; color:#F472B6;">성과 30% 언락</div>
+            </div>
+          </div>
+
+          <!-- 5 Attribution Methods List -->
+          <div style="background:rgba(0,0,0,0.3); border:1px solid var(--card-border); border-radius:8px; padding:10px; margin-bottom:12px;">
+            <div style="font-size:11px; font-weight:800; color:#A5B4FC; margin-bottom:6px;">📌 5대 성과 인정 방식별 실시간 현황</div>
+            <div style="display:flex; flex-direction:column; gap:6px; font-size:11px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; background:#0F172A; padding:6px 10px; border-radius:6px;">
+                <div>
+                  <span style="color:#FEF08A; font-weight:800;">① 동적 쿠폰 POS 스캔:</span>
+                  <code id="activeCouponCodeDisplay" style="color:#38BDF8; font-size:10px; margin-left:4px;">AIM-SEONGSU-CR02-RAIN24K</code>
+                </div>
+                <span style="background:rgba(16,185,129,0.2); color:#34D399; font-size:9px; padding:2px 6px; border-radius:4px;">100% 실측 (A_MEASURED)</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; background:#0F172A; padding:6px 10px; border-radius:6px;">
+                <div>
+                  <span style="color:#F472B6; font-weight:800;">② 고객 영수증 AI OCR:</span>
+                  <span style="color:#CBD5E1; margin-left:4px;">구매 영수증 사진 판독 인증 (고객 +1,000P 캐시백)</span>
+                </div>
+                <span style="background:rgba(16,185,129,0.2); color:#34D399; font-size:9px; padding:2px 6px; border-radius:4px;">98% 판독 (A_MEASURED)</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; background:#0F172A; padding:6px 10px; border-radius:6px;">
+                <div>
+                  <span style="color:#38BDF8; font-weight:800;">③ 타임윈도우 증분 매출:</span>
+                  <span style="color:#CBD5E1; margin-left:4px;">비 예보 3시간 타임어택 평시 베이스라인 대비 순증분</span>
+                </div>
+                <span style="background:rgba(245,158,11,0.2); color:#FCD34D; font-size:9px; padding:2px 6px; border-radius:4px;">통계 귀속 (C_ILLUSTRATIVE)</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; background:#0F172A; padding:6px 10px; border-radius:6px;">
+                <div>
+                  <span style="color:#A78BFA; font-weight:800;">④ UTM 단축 링크:</span>
+                  <span style="color:#CBD5E1; margin-left:4px;">유튜브 쇼츠 / 인스타 프로필 전용 단축 링크 (aim.link/c/cr02)</span>
+                </div>
+                <span style="background:rgba(16,185,129,0.2); color:#34D399; font-size:9px; padding:2px 6px; border-radius:4px;">95% 추적 (A_MEASURED)</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; background:#0F172A; padding:6px 10px; border-radius:6px;">
+                <div>
+                  <span style="color:#34D399; font-weight:800;">⑤ 050 가상번호 & 스마트콜:</span>
+                  <span style="color:#CBD5E1; margin-left:4px;">네이버 플레이스 스마트콜 통화 인입 및 예약 확정 연동</span>
+                </div>
+                <span style="background:rgba(16,185,129,0.2); color:#34D399; font-size:9px; padding:2px 6px; border-radius:4px;">전화/예약 (A_MEASURED)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Trigger Simulation Buttons -->
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button class="btn-approve" style="background:#0284C7; font-size:11px; padding:8px 12px;" onclick="redeemCouponSim()">
+              ⚡ 1. POS 쿠폰 바코드 스캔 결제 (₩24,000)
+            </button>
+            <button class="btn-approve" style="background:#0D9488; font-size:11px; padding:8px 12px;" onclick="verifyReceiptSim()">
+              🧾 2. 영수증 OCR 촬영 인증 (₩36,000)
+            </button>
+            <button class="btn-approve" style="background:#7C3AED; font-size:11px; padding:8px 12px;" onclick="simulateLiftPromotion()">
+              🌧️ 3. 타임어택 증분 매출 정산 (+₩150k)
+            </button>
+            <button class="btn-hero-primary" style="font-size:11px; padding:8px 14px;" onclick="runFullAttributionSim()">
+              🚀 5대 채널 종합 성과 정산 파이프라인 가동
+            </button>
+          </div>
+          <div id="attributionActionResult" style="margin-top:8px; font-size:11px; color:#34D399; display:none;"></div>
+        </div>
       <!-- Value Attribution Ledger & Billing Invoices -->
         <div class="glass-card" style="margin-top:14px;">
           <div class="card-title-row">
@@ -1562,6 +1655,43 @@
           <div class="kpi-stat-box">
             <div class="kpi-stat-lbl">📈 가입자 평균 ROI</div>
             <div id="admKpiRoi" class="kpi-stat-val" style="color:#F472B6;">44.5배</div>
+          </div>
+        </div>
+
+        <!-- 4-Stream Platform Monetization & Take-Rate Clearing Console -->
+        <div class="glass-card" style="border: 1.5px solid rgba(99, 102, 241, 0.4); margin-bottom:12px; background:linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(19, 27, 46, 0.9) 100%);">
+          <div class="card-title-row">
+            <span style="color:#818CF8; font-weight:800;">💎 플랫폼 4대 수익화 파이프라인 & 다각화 정산 (Monetization Streams)</span>
+            <span style="font-size:10px; color:#34D399;">실시간 정산 가동 중</span>
+          </div>
+          <div style="font-size:11px; color:#CBD5E1; margin-bottom:10px;">
+            AIM Marketing OS는 단순 SaaS 구독료 외에 검증된 <b>성과 거래 수수료(Take-Rate), 숏폼 에스크로 중개료, 초과 성과 공유 보수</b>의 4대 파이프라인으로 지속 수익을 창출합니다.
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:8px; margin-bottom:8px;">
+            <div style="background:#0F172A; padding:8px; border-radius:8px; border:1px solid var(--card-border);">
+              <div style="font-size:10px; color:var(--text-muted);">1. 성과 거래 수수료 (8%)</div>
+              <div id="admStreamTakeRate" style="font-size:13px; font-weight:800; color:#34D399;">+₩34,160</div>
+              <div style="font-size:9px; color:#10B981;">쿠폰/OCR 결제액 연동</div>
+            </div>
+            <div style="background:#0F172A; padding:8px; border-radius:8px; border:1px solid var(--card-border);">
+              <div style="font-size:10px; color:var(--text-muted);">2. 에스크로 중개료 (10%)</div>
+              <div id="admStreamEscrow" style="font-size:13px; font-weight:800; color:#F472B6;">+₩45,000</div>
+              <div style="font-size:9px; color:#F472B6;">15초 숏폼 제작 수수료</div>
+            </div>
+            <div style="background:#0F172A; padding:8px; border-radius:8px; border:1px solid var(--card-border);">
+              <div style="font-size:10px; color:var(--text-muted);">3. SaaS 월 구독료 (MRR)</div>
+              <div id="admStreamMrr" style="font-size:13px; font-weight:800; color:#818CF8;">₩545,000</div>
+              <div style="font-size:9px; color:#818CF8;">5개 테넌트 플릿</div>
+            </div>
+            <div style="background:#0F172A; padding:8px; border-radius:8px; border:1px solid var(--card-border);">
+              <div style="font-size:10px; color:var(--text-muted);">4. 순증 성과 보수 (5%)</div>
+              <div id="admStreamSuccessFee" style="font-size:13px; font-weight:800; color:#FBBF24;">+₩16,000</div>
+              <div style="font-size:9px; color:#FBBF24;">기준선 초과 이익 공유</div>
+            </div>
+          </div>
+          <div style="font-size:10px; color:#94A3B8; background:rgba(0,0,0,0.25); padding:6px 10px; border-radius:6px; display:flex; justify-content:space-between;">
+            <span>전사 성과 인정 방식 점유율: 쿠폰 POS (42%) · 영수증 OCR (28%) · 타임어택 (18%) · UTM 링크 (12%)</span>
+            <span style="color:#34D399; font-weight:800;">100% 정산 투명성</span>
           </div>
         </div>
 
@@ -2331,6 +2461,95 @@
           }
         };
       }
+      if (url === '/api/v1/monetization/methods') {
+        return {
+          status: 'success',
+          methods: [
+            { method: 'COUPON_CODE', name: '동적 쿠폰/바코드 POS 스캔', evidence_tier: 'A_MEASURED' },
+            { method: 'UTM_LINK', name: 'UTM 스마트 단축 링크', evidence_tier: 'A_MEASURED' },
+            { method: 'RECEIPT_OCR', name: '영수증 사진 AI OCR 인증', evidence_tier: 'A_MEASURED' },
+            { method: 'TIME_WINDOW_LIFT', name: '타임윈도우 증분 매출 대조', evidence_tier: 'C_ILLUSTRATIVE' },
+            { method: 'VIRTUAL_NUMBER', name: '050 가상 안심번호 및 다이렉트 예약', evidence_tier: 'A_MEASURED' }
+          ]
+        };
+      }
+      if (url.startsWith('/api/v1/monetization/streams/summary/')) {
+        const tid = url.split('/')[5] || currentTenantId;
+        const t = MOCK_DB.tenants[tid] || MOCK_DB.tenants['TENANT_001'];
+        const gmv = t.tenant.cumulative_revenue_generated_krw;
+        const takeRate = Math.round(gmv * 0.08);
+        const escrowFee = 45000;
+        const mrr = 49000;
+        const successFee = 16000;
+        return {
+          status: 'success',
+          tenant_id: tid,
+          platform_revenue_streams: {
+            total_platform_revenue_krw: takeRate + escrowFee + mrr + successFee,
+            stream_1_take_rate_commission: { amount_krw: takeRate, basis_gmv_krw: gmv, evidence_tier: 'A_MEASURED' },
+            stream_2_escrow_marketplace_fee: { amount_krw: escrowFee, evidence_tier: 'A_MEASURED' },
+            stream_3_saas_subscription_mrr: { amount_krw: mrr, evidence_tier: 'A_MEASURED' },
+            stream_4_incremental_success_fee: { amount_krw: successFee, basis_lift_krw: 320000, evidence_tier: 'C_ILLUSTRATIVE' }
+          },
+          attribution_breakdown: {
+            total_attributed_revenue_krw: gmv,
+            measured_revenue_krw: Math.round(gmv * 0.72),
+            illustrative_revenue_krw: Math.round(gmv * 0.28)
+          }
+        };
+      }
+      if (url === '/api/v1/monetization/coupon/redeem') {
+        const body = JSON.parse(options.body || '{}');
+        const amt = body.order_amount_krw || 24000;
+        const disc = 3000;
+        const t = MOCK_DB.tenants[currentTenantId] || MOCK_DB.tenants['TENANT_001'];
+        t.tenant.cumulative_revenue_generated_krw += amt;
+        return {
+          success: true,
+          message: 'POS 쿠폰 스캔 검증 성공: 실적으로 공인되었으며 가치 원장에 실측(A_MEASURED)으로 기록되었습니다.',
+          coupon_code: body.coupon_code || 'AIM-SEONGSU-CR02-RAIN24K',
+          tenant_id: currentTenantId,
+          discount_applied_krw: disc,
+          final_paid_amount_krw: amt - disc,
+          revenue_split: {
+            transaction_amount_krw: amt,
+            take_rate_pct: 8.0,
+            platform_commission_krw: Math.round(amt * 0.08),
+            creator_bonus_pct: 3.0,
+            creator_bonus_krw: Math.round(amt * 0.03),
+            merchant_net_revenue_krw: Math.round(amt * 0.89)
+          },
+          evidence_tier: 'A_MEASURED',
+          redeemed_at: new Date().toISOString().replace('T', ' ').slice(0, 19)
+        };
+      }
+      if (url === '/api/v1/monetization/receipt/verify') {
+        const body = JSON.parse(options.body || '{}');
+        const amt = 36000;
+        const t = MOCK_DB.tenants[currentTenantId] || MOCK_DB.tenants['TENANT_001'];
+        t.tenant.cumulative_revenue_generated_krw += amt;
+        return {
+          success: true,
+          receipt_no: 'REC-20261008-8841',
+          store_name: t.tenant.business_name,
+          order_amount_krw: amt,
+          cashback_reward_krw: 1000,
+          message: '영수증 AI OCR 판독 완료: 결제금액 및 일시가 확인되어 실측(A_MEASURED)으로 공인되었습니다.',
+          evidence_tier: 'A_MEASURED',
+          verified_at: new Date().toISOString().replace('T', ' ').slice(0, 19)
+        };
+      }
+      if (url === '/api/v1/monetization/simulate/all') {
+        const t = MOCK_DB.tenants[currentTenantId] || MOCK_DB.tenants['TENANT_001'];
+        t.tenant.cumulative_revenue_generated_krw += (27000 + 42000 + 150000);
+        return {
+          status: 'success',
+          message: '다각화된 5대 성과 인정 및 수익화 시뮬레이션 파이프라인이 정상 실행되었습니다.',
+          coupon_redeemed: { success: true, discount_applied_krw: 3000, final_paid_amount_krw: 24000 },
+          receipt_verified: { success: true, order_amount_krw: 42000, cashback_reward_krw: 1000 },
+          lift_attributed_krw: 150000
+        };
+      }
       return {};
     }
 
@@ -2484,6 +2703,9 @@
       // Render Ledger & Invoices
       renderAttributionLedger(data.recent_attributions || []);
       renderInvoices(data.recent_invoices || []);
+
+      // Load 5-Method Monetization & Attribution Cockpit
+      loadMonetizationCockpit(t.tenant_id);
     }
 
     /* Render Staged Campaigns in Pillar 2 */
@@ -2611,6 +2833,123 @@
         });
       }
       document.getElementById('tenantInvoiceMiniList').innerHTML = html;
+    }
+
+    /* Load 5-Method Attribution & Monetization Streams */
+    async function loadMonetizationCockpit(tenantId) {
+      try {
+        const data = await apiFetch(`/api/v1/monetization/streams/summary/${tenantId}`);
+        if (!data || !data.platform_revenue_streams) return;
+        
+        const streams = data.platform_revenue_streams;
+        const breakdown = data.attribution_breakdown || {};
+        
+        const gmv = breakdown.total_attributed_revenue_krw || currentTenantData?.tenant?.cumulative_revenue_generated_krw || 4320000;
+        const measured = breakdown.measured_revenue_krw || Math.round(gmv * 0.72);
+        const fee = streams.stream_1_take_rate_commission?.amount_krw || Math.round(gmv * 0.08);
+        const bonus = Math.round(fee * 0.35);
+        const net = gmv - fee - bonus;
+
+        const elGmv = document.getElementById('attrTotalGmv');
+        if (elGmv) elGmv.innerText = `+₩${gmv.toLocaleString()}`;
+        const elNet = document.getElementById('attrMerchantNet');
+        if (elNet) elNet.innerText = `+₩${net.toLocaleString()}`;
+        const elFee = document.getElementById('attrPlatformFee');
+        if (elFee) elFee.innerText = `+₩${fee.toLocaleString()}`;
+        const elBonus = document.getElementById('attrCreatorBonus');
+        if (elBonus) elBonus.innerText = `+₩${bonus.toLocaleString()}`;
+
+        // Master Admin Console Sync
+        const elAdmTakeRate = document.getElementById('admStreamTakeRate');
+        if (elAdmTakeRate) elAdmTakeRate.innerText = `+₩${fee.toLocaleString()}`;
+        const elAdmEscrow = document.getElementById('admStreamEscrow');
+        if (elAdmEscrow) elAdmEscrow.innerText = `+₩${(streams.stream_2_escrow_marketplace_fee?.amount_krw || 45000).toLocaleString()}`;
+        const elAdmMrr = document.getElementById('admStreamMrr');
+        if (elAdmMrr) elAdmMrr.innerText = `₩${(streams.stream_3_saas_subscription_mrr?.amount_krw || 545000).toLocaleString()}`;
+        const elAdmSuccess = document.getElementById('admStreamSuccessFee');
+        if (elAdmSuccess) elAdmSuccess.innerText = `+₩${(streams.stream_4_incremental_success_fee?.amount_krw || 16000).toLocaleString()}`;
+      } catch (e) {
+        console.error('Error loading monetization cockpit:', e);
+      }
+    }
+
+    async function redeemCouponSim() {
+      try {
+        const code = document.getElementById('activeCouponCodeDisplay')?.innerText.trim() || 'AIM-SEONGSU-CR02-RAIN24K';
+        const res = await apiFetch('/api/v1/monetization/coupon/redeem', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ coupon_code: code, order_amount_krw: 24000 })
+        });
+        showToast(`🎟️ [POS 쿠폰 결제 실측 인증] 코드: ${code} (₩24,000 결제, 실측 A_MEASURED 인정)`);
+        const box = document.getElementById('attributionActionResult');
+        if (box) {
+          box.style.display = 'block';
+          box.innerHTML = `✅ <b>POS 쿠폰 스캔 검증 성공:</b> 주문 24,000원 결제 승인 · 플랫폼 수수료 8%(1,920원) · 크리에이터 보너스 30% 언락 · 순증 이익 22,080원 가치 원장 반영 완료!`;
+        }
+        await switchTenant(currentTenantId);
+        await loadMonetizationCockpit(currentTenantId);
+      } catch (e) {
+        alert('쿠폰 사용 오류: ' + e.message);
+      }
+    }
+
+    async function verifyReceiptSim() {
+      try {
+        const res = await apiFetch('/api/v1/monetization/receipt/verify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            tenant_id: currentTenantId,
+            receipt_ocr_text: `[영수증] ${currentTenantData?.tenant?.business_name || '성수 베이커리'} 결제금액: 36,000원 승인번호: 884129`,
+          })
+        });
+        showToast(`🧾 [영수증 AI OCR 인증 완료] ₩36,000 결제 판독! 고객 +1,000P 캐시백 지급 & A_MEASURED 공인`);
+        const box = document.getElementById('attributionActionResult');
+        if (box) {
+          box.style.display = 'block';
+          box.innerHTML = `✅ <b>영수증 AI OCR 판독 완료:</b> [${res.receipt_no}] 36,000원 영수증 확인 · 고객 1,000P 캐시백 지급 · 실측(A_MEASURED) 매출 기여 인정!`;
+        }
+        await switchTenant(currentTenantId);
+        await loadMonetizationCockpit(currentTenantId);
+      } catch (e) {
+        alert('영수증 검증 오류: ' + e.message);
+      }
+    }
+
+    async function simulateLiftPromotion() {
+      try {
+        showToast(`🌧️ [비 예보 타임어택 증분 매출] 평시 베이스라인 대비 순증분 +₩150,000원 기여 인정!`);
+        const box = document.getElementById('attributionActionResult');
+        if (box) {
+          box.style.display = 'block';
+          box.innerHTML = `✅ <b>타임윈도우 증분 매출 대조:</b> 비 예보 3시간 동안 POS 평시 대비 순증분 +150,000원 집계 (C_ILLUSTRATIVE 등급 승인) · 성과 보수 5%(7,500원) 정산 원장 반영!`;
+        }
+        await switchTenant(currentTenantId);
+        await loadMonetizationCockpit(currentTenantId);
+      } catch (e) {
+        alert('증분 매출 오류: ' + e.message);
+      }
+    }
+
+    async function runFullAttributionSim() {
+      try {
+        const res = await apiFetch('/api/v1/monetization/simulate/all', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ tenant_id: currentTenantId })
+        });
+        showToast(`🚀 [5대 채널 종합 정산 가동] 쿠폰·영수증·타임어택 증분 총 +₩219,000 매출 인정 완료!`);
+        const box = document.getElementById('attributionActionResult');
+        if (box) {
+          box.style.display = 'block';
+          box.innerHTML = `🎉 <b>5대 성과 인정 & 정산 파이프라인 가동 완료:</b> POS 쿠폰(24k) + 영수증 OCR(42k) + 비 예보 증분(150k) = 총 +219,000원 일괄 가치 귀속 원장 반영 완료!`;
+        }
+        await switchTenant(currentTenantId);
+        await loadMonetizationCockpit(currentTenantId);
+      } catch (e) {
+        alert('종합 시뮬레이션 오류: ' + e.message);
+      }
     }
 
     /* Update Service Matrix based on selected tenant */

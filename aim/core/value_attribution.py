@@ -18,7 +18,7 @@ from pydantic import BaseModel, Field
 class AttributionEntry(BaseModel):
     entry_id: str
     tenant_id: str
-    source_type: str  # CAMPAIGN_DISPATCH, CREATOR_ESCROW, RADAR_ABSORPTION, RANK_LIFT
+    source_type: str  # CAMPAIGN_DISPATCH, CREATOR_ESCROW, RADAR_ABSORPTION, RANK_LIFT, COUPON_REDEMPTION, RECEIPT_OCR_VERIFICATION
     title: str
     units_generated: int
     unit_price: int
@@ -26,6 +26,10 @@ class AttributionEntry(BaseModel):
     cost_incurred_krw: int
     net_value_krw: int
     evidence_tier: str = "C_ILLUSTRATIVE"
+    attribution_method: Optional[str] = None
+    tracking_code: Optional[str] = None
+    platform_commission_krw: int = 0
+    creator_bonus_krw: int = 0
     recorded_at: str = Field(default_factory=lambda: datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
 
@@ -101,6 +105,10 @@ class ValueAttributionLedger:
         unit_price: int,
         cost_incurred_krw: int = 0,
         evidence_tier: str = "C_ILLUSTRATIVE",
+        attribution_method: Optional[str] = None,
+        tracking_code: Optional[str] = None,
+        platform_commission_krw: int = 0,
+        creator_bonus_krw: int = 0,
     ) -> AttributionEntry:
         gross = units_generated * unit_price
         net = gross - cost_incurred_krw
@@ -116,6 +124,10 @@ class ValueAttributionLedger:
             cost_incurred_krw=cost_incurred_krw,
             net_value_krw=net,
             evidence_tier=evidence_tier,
+            attribution_method=attribution_method,
+            tracking_code=tracking_code,
+            platform_commission_krw=platform_commission_krw,
+            creator_bonus_krw=creator_bonus_krw,
         )
 
         if tenant_id not in self.ledger:

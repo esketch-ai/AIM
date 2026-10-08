@@ -9,5 +9,6 @@ from aim.api.tenant_router import tenant_router
 from aim.api.admin_router import admin_router
 from aim.api.creator_router import router as creator_router
 from aim.api.orchestrator_router import router as orchestrator_router
+from aim.api.monetization_router import router as monetization_router
 
-__all__ = ["service_router", "tenant_router", "admin_router", "creator_router", "orchestrator_router"]
+__all__ = ["service_router", "tenant_router", "admin_router", "creator_router", "orchestrator_router", "monetization_router"]
