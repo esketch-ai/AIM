@@ -309,3 +309,100 @@ def test_rendered_html_consulting_desk_and_domain_conquest():
     assert "pubTabBtn_creator" in html
     assert "pubTabBtn_kakao" in html
     assert "pubNaverTitle" in html
+
+    # 6. 3-Step Master Closed-Loop Flywheel Elements
+    assert "AIM 3단계 자율 선순환 (3-Step Closed-Loop Flywheel)" in html
+    assert "step1ProposeSection" in html
+    assert "step2PublishBridge" in html
+    assert "step3ResultsSection" in html
+    assert "🚀 채널 발행 및 3단계 결과 원장 기록" in html
+
+
+# -----------------------------------------------------------------------------
+# 7. End-to-End 3-Step Closed-Loop Flywheel Integration Test
+# -----------------------------------------------------------------------------
+def test_end_to_end_3step_flywheel_loop():
+    """Validates the complete 3-step closed-loop flywheel:
+    Step 1: AI infrastructure diagnosis & prescriptive advice proposal
+    Step 2: Merchant one-click adoption & multi-channel automated publishing
+    Step 3: Real-time customer action, POS scan redemption & revenue proof
+    """
+    tenant_id = "TENANT_001"
+    tenant_before = TenantManager.get_tenant(tenant_id)
+    assert tenant_before is not None
+    rev_before = tenant_before.cumulative_revenue_generated_krw
+    campaigns_before = tenant_before.total_campaigns_executed
+
+    # --- STEP 1: AI Sensing & Prescriptions (Propose) ---
+    infra_res = client.get("/api/v1/consulting/infrastructure-signals?location=서울 성수동")
+    assert infra_res.status_code == 200
+    infra_data = infra_res.json()
+    assert infra_data["weather"]["condition_korean"] != ""
+    assert len(infra_data["active_local_events"]) >= 1
+
+    presc_res = client.get(f"/api/v1/consulting/prescriptions/{tenant_id}")
+    assert presc_res.status_code == 200
+    presc_data = presc_res.json()
+    prescriptions = presc_data["prescriptions"]
+    assert len(prescriptions) == 4
+    target_prescription = prescriptions[0]
+    advice_id = target_prescription["advice_id"]
+
+    # --- STEP 2: Selection & Automated Multi-Channel Publishing (Publish) ---
+    gen_res = client.post(
+        "/api/v1/consulting/select-and-generate",
+        json={"tenant_id": tenant_id, "advice_id": advice_id},
+    )
+    assert gen_res.status_code == 200
+    bundle = gen_res.json()
+    assert bundle["bundle_id"].startswith("PUB_")
+    # Strict Naver Place title spec <= 40 chars
+    assert len(bundle["naver_place"]["title_max40"]) <= 40
+    assert len(bundle["instagram"]["hashtags"]) >= 5
+    assert "hook_0_3s" in bundle["creator_pitch"]["storyboard_15s"]
+
+    # Merchant executes one-click channel publication
+    pub_res = client.post(
+        "/api/v1/consulting/mark-published",
+        json={
+            "tenant_id": tenant_id,
+            "advice_id": advice_id,
+            "channel": "NAVER_PLACE",
+            "headline": bundle["naver_place"]["title_max40"],
+            "gain_krw": target_prescription["expected_revenue_gain_krw"],
+        },
+    )
+    assert pub_res.status_code == 200
+    pub_record = pub_res.json()
+    assert pub_record["tenant_id"] == tenant_id
+    assert pub_record["status"] == "LIVE"
+
+    # Verify tenant state synchronized
+    tenant_after_pub = TenantManager.get_tenant(tenant_id)
+    assert tenant_after_pub.total_campaigns_executed == campaigns_before + 1
+    assert tenant_after_pub.cumulative_revenue_generated_krw == rev_before + target_prescription["expected_revenue_gain_krw"]
+
+    # --- STEP 3: Real-Time Results & Revenue Proof (Prove / Closed-Loop) ---
+    # 3-1: Publication history ledger reflects new entry
+    history_res = client.get(f"/api/v1/consulting/publishing-history/{tenant_id}")
+    assert history_res.status_code == 200
+    history = history_res.json()
+    assert any(h["record_id"] == pub_record["record_id"] for h in history)
+
+    # 3-2: Customer in-store mobile barcode scan via POS
+    redeem_res = client.post(
+        "/api/v1/monetization/coupon/redeem",
+        json={
+            "coupon_code": "AIM-SEONGSU-CR02-RAIN24K",
+            "order_amount_krw": 24000,
+        },
+    )
+    assert redeem_res.status_code == 200
+    redeem_data = redeem_res.json()
+    assert redeem_data["success"] is True
+    assert redeem_data["discount_applied_krw"] == 3000
+    assert redeem_data["final_paid_amount_krw"] == 21000  # 24,000 - 3,000 discount
+    assert redeem_data["revenue_split"]["platform_commission_krw"] > 0
+    assert redeem_data["revenue_split"]["creator_bonus_krw"] > 0
+    assert redeem_data["evidence_tier"] == "A_MEASURED"
+

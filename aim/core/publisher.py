@@ -268,7 +268,12 @@ class ContentPublisher:
     ) -> PublicationRecord:
         cls._initialize_defaults()
         tenant = TenantManager.get_tenant(tenant_id)
-        b_name = tenant.business_name if tenant else "매장"
+        if tenant:
+            b_name = tenant.business_name
+            tenant.cumulative_revenue_generated_krw += gain_krw
+            tenant.total_campaigns_executed += 1
+        else:
+            b_name = "매장"
 
         ch_map = {
             "NAVER_PLACE": "네이버 스마트플레이스 새소식",
