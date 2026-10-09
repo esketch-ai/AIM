@@ -2611,6 +2611,15 @@
           <button id="pubTabBtn_kakao" class="pub-tab-btn" onclick="switchModalTab('kakao')">
             💬 카카오톡 알림톡/채널
           </button>
+          <button id="pubTabBtn_youtube" class="pub-tab-btn" onclick="switchModalTab('youtube')">
+            🎥 유튜브 쇼츠 (30초 대본)
+          </button>
+          <button id="pubTabBtn_commerce" class="pub-tab-btn" onclick="switchModalTab('commerce')">
+            🛒 커머스 상세페이지 (FAQ)
+          </button>
+          <button id="pubTabBtn_geo" class="pub-tab-btn" onclick="switchModalTab('geo')">
+            🌐 AEO/GEO Schema (AI 검색)
+          </button>
         </div>
 
         <!-- Tab Body Content -->
@@ -2718,6 +2727,53 @@
               <button onclick="window.open('https://esketch-ai.github.io/AIM/c/AIM-SEONGSU-CR02-RAIN24K', '_blank')" style="background: #334155; color: #FFF; border: none; padding: 6px 12px; border-radius: 6px; font-size: 11px; cursor: pointer;">
                 링크 미리보기 ↗
               </button>
+            </div>
+          </div>
+
+          <!-- Tab 5: YouTube Shorts -->
+          <div id="pubTabPanel_youtube" class="pub-tab-panel" style="display: none;">
+            <div style="background: #1E293B; border: 1px solid #334155; border-radius: 14px; padding: 18px; margin-bottom: 16px;">
+              <div style="font-size: 12px; font-weight: 800; color: #EF4444; margin-bottom: 6px;">유튜브 쇼츠 헤드라인 & 썸네일 후킹 카피</div>
+              <input id="pubYoutubeHeadline" type="text" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 10px 14px; color: #FFFFFF; font-size: 13px; font-weight: 800;" />
+            </div>
+
+            <div style="background: #1E293B; border: 1px solid #334155; border-radius: 14px; padding: 18px; margin-bottom: 16px;">
+              <div style="font-size: 12px; font-weight: 800; color: #38BDF8; margin-bottom: 6px;">30초 내레이션 타임스탬프 스크립트 (오프닝-전개-USP-CTA)</div>
+              <textarea id="pubYoutubeBody" rows="7" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 12px 14px; color: #F1F5F9; font-size: 12px; line-height: 1.6; resize: none;"></textarea>
+            </div>
+
+            <div style="background: #090D18; border: 1px solid #1E293B; border-radius: 10px; padding: 12px;">
+              <div style="font-size: 11px; color: #94A3B8;">비주얼 에셋 사양</div>
+              <div id="pubYoutubeSpec" style="font-size: 12px; font-weight: 800; color: #F43F5E; margin-top: 4px;">9:16 (1080x1920px 세로형 숏폼 영상) + 상단 자막 바</div>
+            </div>
+          </div>
+
+          <!-- Tab 6: Commerce Detail Page -->
+          <div id="pubTabPanel_commerce" class="pub-tab-panel" style="display: none;">
+            <div style="background: #1E293B; border: 1px solid #334155; border-radius: 14px; padding: 18px; margin-bottom: 16px;">
+              <div style="font-size: 12px; font-weight: 800; color: #10B981; margin-bottom: 6px;">스마트스토어/쿠팡 모바일 상품명 & 헤드라인</div>
+              <input id="pubCommerceHeadline" type="text" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 10px 14px; color: #FFFFFF; font-size: 13px; font-weight: 800;" />
+            </div>
+
+            <div style="background: #1E293B; border: 1px solid #334155; border-radius: 14px; padding: 18px; margin-bottom: 16px;">
+              <div style="font-size: 12px; font-weight: 800; color: #818CF8; margin-bottom: 6px;">소구점 중심 상세페이지 본문 & 우려 해소 고객 FAQ 3선</div>
+              <textarea id="pubCommerceBody" rows="7" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 12px 14px; color: #F1F5F9; font-size: 12px; line-height: 1.6; resize: none;"></textarea>
+            </div>
+
+            <div style="background: #090D18; border: 1px solid #1E293B; border-radius: 10px; padding: 12px;">
+              <div style="font-size: 11px; color: #94A3B8;">이미지 레이아웃 규격</div>
+              <div id="pubCommerceSpec" style="font-size: 12px; font-weight: 800; color: #34D399; margin-top: 4px;">가로 860px 모바일 최적화 세로형 상세 블록</div>
+            </div>
+          </div>
+
+          <!-- Tab 7: AEO / GEO Schema.org JSON-LD -->
+          <div id="pubTabPanel_geo" class="pub-tab-panel" style="display: none;">
+            <div style="background: #1E293B; border: 1px solid #334155; border-radius: 14px; padding: 18px; margin-bottom: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <div style="font-size: 12px; font-weight: 800; color: #A855F7;">🌐 생성형 AI 검색(ChatGPT, Perplexity, Naver AI) 인용용 Schema.org JSON-LD</div>
+                <span style="font-size: 10px; background: rgba(168,85,247,0.2); color: #C084FC; padding: 2px 8px; border-radius: 4px; font-weight: 800;">AEO/GEO 표준 규격</span>
+              </div>
+              <textarea id="pubGeoSchemaJson" rows="10" readonly style="width: 100%; font-family: monospace; background: #0A0F1D; border: 1px solid #6B21A8; border-radius: 8px; padding: 12px 14px; color: #E9D5FF; font-size: 11px; line-height: 1.5; resize: none;"></textarea>
             </div>
           </div>
         </div>
@@ -4079,11 +4135,37 @@
         const kBtn = document.getElementById('pubKakaoButtonLabel');
         if (kBtn) kBtn.innerText = bundle.kakao_channel.action_button_label;
       }
+
+      // YouTube Shorts
+      if (bundle.youtube_shorts) {
+        const yHead = document.getElementById('pubYoutubeHeadline');
+        if (yHead) yHead.value = bundle.youtube_shorts.headline;
+        const yBody = document.getElementById('pubYoutubeBody');
+        if (yBody) yBody.value = bundle.youtube_shorts.script_30s;
+        const ySpec = document.getElementById('pubYoutubeSpec');
+        if (ySpec) ySpec.innerText = bundle.youtube_shorts.image_asset_spec;
+      }
+
+      // Commerce Detail
+      if (bundle.commerce_detail) {
+        const cHead = document.getElementById('pubCommerceHeadline');
+        if (cHead) cHead.value = bundle.commerce_detail.headline;
+        const cBody = document.getElementById('pubCommerceBody');
+        if (cBody) cBody.value = bundle.commerce_detail.benefit_body + '\n\n' + bundle.commerce_detail.faq_section;
+        const cSpec = document.getElementById('pubCommerceSpec');
+        if (cSpec) cSpec.innerText = bundle.commerce_detail.image_asset_spec;
+      }
+
+      // GEO Schema.org
+      if (bundle.geo_schema) {
+        const gJson = document.getElementById('pubGeoSchemaJson');
+        if (gJson) gJson.value = JSON.stringify(bundle.geo_schema, null, 2);
+      }
     }
 
     function switchModalTab(tabKey) {
       activeModalTab = tabKey;
-      ['naver', 'instagram', 'creator', 'kakao'].forEach(t => {
+      ['naver', 'instagram', 'creator', 'kakao', 'youtube', 'commerce', 'geo'].forEach(t => {
         const btn = document.getElementById('pubTabBtn_' + t);
         if (btn) btn.classList.toggle('active', t === tabKey);
         const panel = document.getElementById('pubTabPanel_' + t);
@@ -4102,6 +4184,12 @@
         textToCopy = currentConsultingBundle.creator_pitch.clipboard_text;
       } else if (activeModalTab === 'kakao') {
         textToCopy = currentConsultingBundle.kakao_channel.clipboard_text;
+      } else if (activeModalTab === 'youtube') {
+        textToCopy = currentConsultingBundle.youtube_shorts?.clipboard_text || '';
+      } else if (activeModalTab === 'commerce') {
+        textToCopy = currentConsultingBundle.commerce_detail?.clipboard_text || '';
+      } else if (activeModalTab === 'geo') {
+        textToCopy = JSON.stringify(currentConsultingBundle.geo_schema || {}, null, 2);
       }
 
       if (navigator.clipboard && navigator.clipboard.writeText) {

@@ -54,6 +54,22 @@ class KakaoMessagePayload(BaseModel):
     clipboard_text: str
 
 
+class YouTubeShortsPayload(BaseModel):
+    headline: str
+    script_30s: str
+    thumbnail_hook: str
+    image_asset_spec: str
+    clipboard_text: str
+
+
+class CommerceDetailPayload(BaseModel):
+    headline: str
+    benefit_body: str
+    faq_section: str
+    image_asset_spec: str
+    clipboard_text: str
+
+
 class FinalizedPublishingBundle(BaseModel):
     bundle_id: str
     tenant_id: str
@@ -65,6 +81,9 @@ class FinalizedPublishingBundle(BaseModel):
     instagram: InstagramContentPayload
     creator_pitch: CreatorPitchPayload
     kakao_channel: KakaoMessagePayload
+    youtube_shorts: Optional[YouTubeShortsPayload] = None
+    commerce_detail: Optional[CommerceDetailPayload] = None
+    geo_schema: Optional[Dict[str, Any]] = None
     compliance_summary: str = "✅ 표시광고법·의료법 100% 사전 검수 완료 (안전)"
 
 
@@ -244,6 +263,56 @@ class ContentPublisher:
             clipboard_text=kakao_clip,
         )
 
+        # 5. YouTube Shorts Payload (AIM_Base.md §2.④)
+        yt_script = (
+            f"【30초 내레이션 타임스탬프 스크립트】\n"
+            f"[00:00 - 00:03 오프닝 후킹] \"성수동에서 오후 2시만 되면 싹 쓸려나가는 이 빵, 대체 정체가 뭘까요?\"\n"
+            f"[00:03 - 00:10 매장 소개] \"매일 오픈 전부터 줄 선다는 '{b_name}'! 3시간 번개 특가 소식에 오픈런 뛰어봤습니다.\"\n"
+            f"[00:10 - 00:22 메뉴 묘사] \"겉은 파사삭 부서지는데, 속은 갓 구운 {short_hero}로 촉촉 쫀득함 그 자체! 버터 풍미가 입안 가득 터져나옵니다.\"\n"
+            f"[00:22 - 00:30 행동 촉구] \"오후 6시 전 매장 방문해서 쿠폰 보여주면 즉시 1+1 적용! 소진 시 마감이니 지금 바로 달려가세요 🏃💨\""
+        )
+        yt_payload = YouTubeShortsPayload(
+            headline=f"오후 2시 품절 실화?! 성수동 오픈런 {short_hero} 1+1 타임특가 ({b_name}) 🥐",
+            script_30s=yt_script,
+            thumbnail_hook=f"비 오는 날 3시간 한정! {short_hero} 1+1 번개 혜택",
+            image_asset_spec="9:16 (1080x1920px 세로형 숏폼 영상) + 상단 텍스트 오버레이",
+            clipboard_text=f"【유튜브 쇼츠 30초 대본】\n{yt_script}"
+        )
+
+        # 6. Commerce Detail Payload (AIM_Base.md §2.⑤)
+        comm_faq = (
+            f"Q1. 보관 및 섭취 방법: 수령 당일 권장, 에어프라이어 180℃ 3분 데우기\n"
+            f"Q2. 당일 생산 여부: 100% 당일 새벽 반죽 및 당일 출고 원칙\n"
+            f"Q3. 배송 안전: 전용 항온 아이스박스 에어캡 완충 포장 특송"
+        )
+        comm_body = (
+            f"# 【{b_name}】 {short_hero} 프리미엄 수제 모바일 상세페이지\n\n"
+            f"■ 핵심 소구점: 프랑스 AOP 고메버터 사용, 겉바속촉 시그니처\n"
+            f"■ 당일 생산 당일 출고로 갓 구운 풍미 보장\n"
+            f"■ 이벤트: 비 오는 날 한정 모바일 번개 쿠폰 연동"
+        )
+        comm_payload = CommerceDetailPayload(
+            headline=f"[스마트스토어/쿠팡] {b_name} 수제 {short_hero} 모바일 상세페이지",
+            benefit_body=comm_body,
+            faq_section=comm_faq,
+            image_asset_spec="가로 860px 모바일 최적화 세로형 상세 블록",
+            clipboard_text=f"【이커머스 상세페이지】\n{comm_body}\n\n{comm_faq}"
+        )
+
+        # 7. AEO / GEO Schema.org Payload (docs/03 §1.①)
+        geo_payload = {
+            "@context": "https://schema.org",
+            "@type": "Bakery",
+            "name": b_name,
+            "address": loc,
+            "servesCuisine": "Bakery, Specialty Coffee",
+            "specialAnnouncement": {
+                "@type": "SpecialAnnouncement",
+                "name": naver_title,
+                "text": "비 오는 날 3시간 한정 1+1 번개 특가 프로모션"
+            }
+        }
+
         return FinalizedPublishingBundle(
             bundle_id=f"PUB_BDL_{now_dt.strftime('%Y%m%d%H%M%S')}",
             tenant_id=tenant_id,
@@ -255,6 +324,9 @@ class ContentPublisher:
             instagram=insta_payload,
             creator_pitch=creator_payload,
             kakao_channel=kakao_payload,
+            youtube_shorts=yt_payload,
+            commerce_detail=comm_payload,
+            geo_schema=geo_payload,
         )
 
     @classmethod

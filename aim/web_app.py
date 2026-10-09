@@ -284,19 +284,37 @@ def switch_tone(req: ToneSwitchRequest):
     profile = LAST_PROFILE
     tone = req.tone
 
-    blog = MultiChannelGenerator.generate_naver_blog(profile, tone=tone)
-    insta = MultiChannelGenerator.generate_instagram(profile, tone=tone)
-    kakao = MultiChannelGenerator.generate_kakaotalk(profile, tone=tone)
+    channels = MultiChannelGenerator.generate_all_5channels(profile, tone=tone)
+    geo_schema = MultiChannelGenerator.generate_geo_schema_jsonld(profile)
 
     return {
         "status": "success",
         "tone": tone,
         "store_profile": profile.model_dump(),
-        "channels": {
-            "naver_blog": blog.model_dump(),
-            "instagram": insta.model_dump(),
-            "kakaotalk": kakao.model_dump(),
-        },
+        "channels": {k: v.model_dump() for k, v in channels.items()},
+        "geo_schema_jsonld": geo_schema,
+    }
+
+
+@app.get("/api/v1/generator/5channels")
+def get_all_5channels_api(tone: str = Query("MZ_TREND")):
+    """Returns 5-channel atomized marketing payloads (Blog, Kakao, Instagram, YouTube Shorts, Commerce)."""
+    pipeline = AIMPipeline(SAMPLE_DATA_PATH)
+    package = pipeline.run(tone=tone)
+    return package.model_dump()
+
+
+@app.get("/api/v1/generator/geo-schema")
+def get_geo_schema_api():
+    """Returns Schema.org JSON-LD structured data for Generative Engine Optimization (GEO)."""
+    with open(SAMPLE_DATA_PATH, "r", encoding="utf-8") as f:
+        raw_dict = json.load(f)
+    profile = StoreDataNormalizer.normalize(RawStoreData(**raw_dict))
+    schema = MultiChannelGenerator.generate_geo_schema_jsonld(profile)
+    return {
+        "status": "SUCCESS",
+        "store_name": profile.store_name,
+        "geo_schema_jsonld": schema,
     }
 
 

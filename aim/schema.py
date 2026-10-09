@@ -253,6 +253,7 @@ class MarketingPackage(BaseModel):
     tone: str = "MZ_TREND"
     channels: Dict[str, ChannelContent]
     all_compliant: bool
+    geo_schema_jsonld: Optional[Dict[str, Any]] = None
 
 
 # --- Multi-Industry 6D Contextual Testbed Models ---

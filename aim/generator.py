@@ -6,7 +6,7 @@ Supports targeted audience tones:
 """
 
 import re
-from typing import Dict
+from typing import Dict, Any
 from aim.schema import (
     UnifiedBusinessProfile,
     ChannelContent,
@@ -304,3 +304,241 @@ class MultiChannelGenerator:
             visual_spec=visual_spec,
             compliance_report=audit,
         )
+
+    # =========================================================================
+    # 4. YOUTUBE SHORTS GENERATOR (By Tone) - docs/AIM_Base.md §2.④
+    # =========================================================================
+    @classmethod
+    def generate_youtube_shorts(cls, profile: UnifiedBusinessProfile, tone: str = "MZ_TREND") -> ChannelContent:
+        hero = profile.hero_products[0] if profile.hero_products else None
+        hero_name = hero.name if hero else "시그니처 바질 소금빵"
+        store = profile.store_name
+        usp1 = profile.core_usps[0] if profile.core_usps else "프랑스 AOP 고메버터 48% 함유"
+        pain = profile.pain_points[0] if profile.pain_points else "오후 2시 전량 품절 주의"
+
+        if tone == "MZ_TREND":
+            headline = f"오후 2시 품절 실화?! 성수동 빵순이 오픈런 솔직 리뷰 ({store}) 🥐💥"
+            body = f"""【30초 내레이션 타임스탬프 스크립트】
+[00:00 - 00:03 오프닝 후킹]
+"성수동에서 오후 2시만 되면 싹 쓸려나가는 이 빵, 대체 정체가 뭘까요?"
+
+[00:03 - 00:10 문제 제기 & 현장 분위기]
+"매일 오픈 전부터 줄 선다는 {store}! 버터 냄새에 홀려서 저도 오픈런 뛰어봤습니다."
+
+[00:10 - 00:22 핵심 USP & 감각적 묘사]
+"바로 이 {hero_name}! 겉은 파사삭 부서지는데, 속은 {usp1}로 촉촉 쫀득함 그 자체! 한 입 베어 물면 버터 풍미가 입안 가득 터져나옵니다."
+
+[00:22 - 00:30 결론 & 방문 CTA]
+"단, {pain}! 고소한 버터 폭탄 맞고 싶다면 지금 바로 성수동으로 달려가세요!"
+"""
+            cta = "고정 댓글 링크 클릭하고 오늘 남은 수량 & 할인 쿠폰 확인 👆"
+            hashtags = ["#쇼츠", "#성수동핫플", "#빵지순례", "#오픈런", "#바질소금빵", "#디저트맛집"]
+        elif tone == "WORKER_HEALING":
+            headline = f"퇴근길 30초 힐링 : 지친 나를 위로하는 갓 구운 {hero_name} ({store}) ☕"
+            body = f"""【30초 내레이션 타임스탬프 스크립트】
+[00:00 - 00:03 오프닝 후킹]
+"오늘 하루도 야근에 치여 방전되셨나요? 30초만 눈 감고 버터 향을 맡아보세요."
+
+[00:03 - 00:10 공감 & 공간 소개]
+"성수동 골목 안 조용한 쉼터, {store}. 문을 열자마자 퍼지는 고소한 온기."
+
+[00:10 - 00:22 메뉴 힐링 포인트]
+"속 편한 천연발효 사워도우와 {hero_name}. 따뜻한 라떼 한 모금과 곁들이면 오늘 쌓인 피로가 사르르 녹아내립니다."
+
+[00:22 - 00:30 행동 촉구]
+"수고한 나를 위한 작은 보상, 오늘 퇴근길에 들러보세요."
+"""
+            cta = "퇴근길 매장 위치 및 실시간 길찾기 👆"
+            hashtags = ["#성수직장인", "#퇴근길소확행", "#힐링디저트", "#성수카페", "#베이커리쇼츠"]
+        else:  # LOCAL_FAMILY
+            headline = f"아이와 함께 안심하고 먹는 우리 동네 건강한 빵집 ({store}) 🏡🍞"
+            body = f"""【30초 내레이션 타임스탬프 스크립트】
+[00:00 - 00:03 오프닝 후킹]
+"매일 아침 아이 식탁에 올리는 빵, 어떤 원재료로 만들어졌는지 확인해보셨나요?"
+
+[00:03 - 00:10 정직한 생산 과정]
+"성수동 이웃들의 건강을 생각하는 {store}. 매일 새벽 정직하게 반죽합니다."
+
+[00:10 - 00:22 건강한 식재료]
+"인공첨가물 없이 {usp1}. 어린아이부터 부모님까지 속 편안하게 즐길 수 있는 {hero_name}입니다."
+
+[00:22 - 00:30 이웃 방문 안내]
+"이번 주말, 온 가족이 함께 따뜻한 테라스로 나들이 오세요."
+"""
+            cta = "동네 사랑방 매장 위치 & 가족 테이블 예약 👆"
+            hashtags = ["#동네빵집", "#속편한빵", "#가족나들이", "#성수동베이커리", "#건강한간식"]
+
+        full_text = f"{headline}\n\n{body}\n\n{cta}"
+        audit = ComplianceGuard.audit_text(full_text)
+
+        visual_spec = VisualAssetSpec(
+            ratio="9:16 (1080x1920px 세로형 숏폼)",
+            format_type="유튜브 쇼츠 & 틱톡 타임라인 템플릿",
+            layout_description="상단 고CTR 자막 바 + 중앙 빵 커팅 3초 모션 슬로우 줌인 + 하단 15초 바코드 오버레이",
+            recommended_copy_overlay=f"오후 2시 품절각?! {hero_name} 솔직 후기"
+        )
+
+        return ChannelContent(
+            channel="youtube_shorts",
+            tone=tone,
+            headline=headline,
+            body=audit.sanitized_text,
+            call_to_action=cta,
+            hashtags=hashtags,
+            visual_spec=visual_spec,
+            compliance_report=audit,
+        )
+
+    # =========================================================================
+    # 5. COMMERCE DETAIL PAGE GENERATOR (By Tone) - docs/AIM_Base.md §2.⑤
+    # =========================================================================
+    @classmethod
+    def generate_commerce_detail(cls, profile: UnifiedBusinessProfile, tone: str = "MZ_TREND") -> ChannelContent:
+        hero = profile.hero_products[0] if profile.hero_products else None
+        hero_name = hero.name if hero else "시그니처 바질 소금빵"
+        price_str = f"{hero.unit_price:,}원" if hero else "4,500원"
+        store = profile.store_name
+        usp1 = profile.core_usps[0] if profile.core_usps else "프랑스 AOP 고메버터 48% 함유"
+        usp2 = profile.core_usps[1] if len(profile.core_usps) > 1 else "당일 새벽 반죽 당일 출고 원칙"
+
+        headline = f"[스마트스토어/쿠팡] {store} 프리미엄 수제 {hero_name} ({price_str}) 모바일 상세페이지"
+        body = f"""# 【{store}】 프리미엄 {hero_name}
+
+## 🌟 1. 왜 {store}의 {hero_name}인가요? (핵심 소구점)
+- **독보적 원재료** : {usp1}로 겉은 바삭하고 속은 쫀득 고소한 프리미엄 풍미.
+- **철저한 원칙** : {usp2}으로 신선함이 살아있는 살아 숨 쉬는 식감.
+- **검증된 만족도** : 매장 방문 고객 평점 4.9점 / 2만 개 누적 리뷰 입증!
+
+---
+
+## 📦 2. 구매 전 가장 많이 묻는 질문 FAQ (우려 해소)
+**Q1. 보관 및 가장 맛있게 먹는 방법은 무엇인가요?**
+A. 수령 당일 드시는 것이 가장 맛있으며, 남은 제품은 밀폐 후 냉동 보관(최대 30일)하세요. 에어프라이어 180℃에서 3분간 데우면 갓 구운 바삭함을 그대로 즐기실 수 있습니다.
+
+**Q2. 당일 생산 제품이 맞나요?**
+A. 네, 100% 당일 새벽 반죽 및 당일 구운 제품만 엄선하여 발송합니다. 재고 판매는 절대 하지 않습니다.
+
+**Q3. 배송 중 파손이나 신선도 저하 우려는 없나요?**
+A. 친환경 전용 항온 아이스박스와 에어캡 완충 포장으로 매장에서 갓 나온 신선도 그대로 안전하게 문 앞까지 배송됩니다.
+
+---
+
+## 🏷️ 3. 제품 사양 및 인증 정보
+- **내용량** : 개당 85g ± 5g
+- **보관방법** : 실온 2일 / 냉동 30일
+- **원산지** : 프랑스산 고메버터, 국산 유기농 밀가루
+"""
+        cta = "지금 바로 구매하기 (당일 오후 2시 이전 주문 시 당일 발송) ➔"
+        full_text = f"{headline}\n\n{body}\n\n{cta}"
+        audit = ComplianceGuard.audit_text(full_text)
+
+        visual_spec = VisualAssetSpec(
+            ratio="모바일 최적화 (가로 860px 세로형 상세 블록)",
+            format_type="이커머스 상세페이지 블록 & 스펙 비교표",
+            layout_description="블록 1: 원물 버터 단면 스팀 컷 / 블록 2: 3대 안심 보증 배지 / 블록 3: 에어프라이어 3분 꿀팁",
+            recommended_copy_overlay=f"당일 구워 당일 출발! {store} {hero_name}"
+        )
+
+        return ChannelContent(
+            channel="commerce_detail",
+            tone=tone,
+            headline=headline,
+            body=audit.sanitized_text,
+            call_to_action=cta,
+            hashtags=["#스마트스토어", "#산지직송", "#수제베이커리", "#홈카페"],
+            visual_spec=visual_spec,
+            compliance_report=audit,
+        )
+
+    # =========================================================================
+    # 6. AEO / GEO SCHEMA.ORG JSON-LD GENERATOR - docs/03 §1.①
+    # =========================================================================
+    @classmethod
+    def generate_geo_schema_jsonld(cls, profile: UnifiedBusinessProfile, target_engine: str = "ALL") -> Dict[str, Any]:
+        """Generates Schema.org compliant JSON-LD structured data for Generative Engine Optimization (GEO).
+
+        Enables ChatGPT, Perplexity, Google SGE, and Naver Cue to reliably cite store data,
+        USPs, menus, operating hours, and promotions in AI generated answers.
+        """
+        hero = profile.hero_products[0] if profile.hero_products else None
+        hero_name = hero.name if hero else "시그니처 메뉴"
+        price_val = hero.unit_price if hero else 4500
+
+        schema = {
+            "@context": "https://schema.org",
+            "@type": "Bakery",
+            "name": profile.store_name,
+            "description": f"{profile.store_name} - {profile.core_usps[0] if profile.core_usps else '정통 수제 베이커리'}",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": profile.address,
+                "addressLocality": "Seoul",
+                "addressCountry": "KR",
+            },
+            "openingHours": profile.business_hours,
+            "servesCuisine": "Bakery, Specialty Coffee, French Pastry",
+            "priceRange": "₩₩",
+            "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "시그니처 메뉴 라인업",
+                "itemListElement": [
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "MenuItem",
+                            "name": p.name,
+                            "description": f"인기 메뉴 {p.name}",
+                        },
+                        "price": p.unit_price,
+                        "priceCurrency": "KRW",
+                    }
+                    for p in profile.hero_products
+                ],
+            },
+            "faqPage": {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": f"{profile.store_name}의 대표 시그니처 메뉴는 무엇인가요?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": f"대표 메뉴는 {hero_name}이며, 가격은 {price_val:,}원입니다. {profile.core_usps[0] if profile.core_usps else '당일 생산'}",
+                        },
+                    },
+                    {
+                        "@type": "Question",
+                        "name": f"{profile.store_name}의 영업 시간 및 웨이팅 안내는 어떻게 되나요?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": f"영업 시간은 {profile.business_hours}이며, {profile.pain_points[0] if profile.pain_points else '오후 조기 품절될 수 있습니다.'}",
+                        },
+                    },
+                ],
+            },
+        }
+
+        if profile.active_promotion:
+            schema["specialAnnouncement"] = {
+                "@type": "SpecialAnnouncement",
+                "name": profile.active_promotion.get("title", "특별 프로모션"),
+                "text": profile.active_promotion.get("benefit", "할인 혜택"),
+                "expires": profile.active_promotion.get("valid_until", "2026-12-31"),
+            }
+
+        return schema
+
+    # =========================================================================
+    # 7. 5-CHANNEL ATOMIZATION BUNDLER - docs/AIM_Base.md §2
+    # =========================================================================
+    @classmethod
+    def generate_all_5channels(cls, profile: UnifiedBusinessProfile, tone: str = "MZ_TREND") -> Dict[str, ChannelContent]:
+        """Atomizes Single Source of Truth into all 5 canonical marketing channels."""
+        return {
+            "naver_blog": cls.generate_naver_blog(profile, tone=tone),
+            "kakaotalk": cls.generate_kakaotalk(profile, tone=tone),
+            "instagram": cls.generate_instagram(profile, tone=tone),
+            "youtube_shorts": cls.generate_youtube_shorts(profile, tone=tone),
+            "commerce_detail": cls.generate_commerce_detail(profile, tone=tone),
+        }
+

@@ -24,17 +24,11 @@ class AIMPipeline:
         # 2. Normalize to Single Source of Truth Profile
         profile = StoreDataNormalizer.normalize(raw_data)
 
-        # 3. Generate copies for 3 core channels with specified audience tone
-        blog_content = MultiChannelGenerator.generate_naver_blog(profile, tone=tone)
-        insta_content = MultiChannelGenerator.generate_instagram(profile, tone=tone)
-        kakao_content = MultiChannelGenerator.generate_kakaotalk(profile, tone=tone)
+        # 3. Generate copies for all 5 canonical channels with specified audience tone
+        channels = MultiChannelGenerator.generate_all_5channels(profile, tone=tone)
 
-        # 4. Aggregate channels
-        channels = {
-            "naver_blog": blog_content,
-            "instagram": insta_content,
-            "kakaotalk": kakao_content,
-        }
+        # 4. Generate AEO/GEO Schema.org JSON-LD
+        geo_schema = MultiChannelGenerator.generate_geo_schema_jsonld(profile)
 
         all_compliant = all(
             c.compliance_report.is_compliant
@@ -48,6 +42,7 @@ class AIMPipeline:
             tone=tone,
             channels=channels,
             all_compliant=all_compliant,
+            geo_schema_jsonld=geo_schema,
         )
 
         return package
