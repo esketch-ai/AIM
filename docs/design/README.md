@@ -25,6 +25,7 @@ Google Stitch의 설계 토큰 및 화면 명세가 프로덕션 코드로 100% 
 | 파일/디렉토리 | 설명 | 상태 |
 | :--- | :--- | :--- |
 | [`21_design_brief_and_rfp.md`](21_design_brief_and_rfp.md) | **디자인 전문팀 의뢰서 및 RFP (플랫폼 개요 & UI/UX 브리프)** | ✅ **작성 완료** |
+| [`22_google_stitch_prompt_and_mobile_layout_spec.md`](22_google_stitch_prompt_and_mobile_layout_spec.md) | **Google Stitch 정밀 프롬프트 팩 & 핵심 모바일 레이아웃 명세** | ✅ **작성 완료** |
 | [`tokens.css`](tokens.css) | Google Stitch CSS 커스텀 프로퍼티 디자인 토큰 | ✅ **확보 완료** |
 | [`tokens.md`](tokens.md) | 색상·폰트·간격(8pt)·그림자 토큰 상세 명세서 | ✅ **확보 완료** |
 | [`stitch-export/`](stitch-export/index.html) | Google Stitch 9대 프로덕션 화면 독립 HTML+CSS 세트 | ✅ **확보 완료** |
