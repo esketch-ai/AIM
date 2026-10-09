@@ -29,7 +29,7 @@ from aim.core.platform import AIMPlatform
 from aim.admin.quarantine import ComplianceQuarantineQueue
 from aim.tenant.billing import BillingService
 from aim.core.coupon_vault import coupon_vault
-from aim.api import service_router, tenant_router, admin_router, creator_router, orchestrator_router, monetization_router
+from aim.api import service_router, tenant_router, admin_router, creator_router, orchestrator_router, monetization_router, consulting_router
 
 from fastapi.staticfiles import StaticFiles
 
@@ -42,6 +42,7 @@ app.include_router(admin_router, prefix="/api/v1/admin", tags=["Solution 3: Mast
 app.include_router(creator_router, tags=["Solution 4: Creator Marketplace & Escrow"])
 app.include_router(orchestrator_router, tags=["Solution 5: Dynamic Organic Orchestrator"])
 app.include_router(monetization_router, tags=["Solution 6: Multi-Channel Attribution & Monetization"])
+app.include_router(consulting_router, tags=["Solution 7: AI Consulting & Publishing"])
 
 # Mount Google Stitch Design Assets & Screen Gallery
 DOCS_DESIGN_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "docs", "design")

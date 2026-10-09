@@ -162,6 +162,25 @@
       font-weight: 900;
       box-shadow: 0 0 12px rgba(99, 102, 241, 0.4);
     }
+    .pub-tab-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: #94A3B8;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+    .pub-tab-btn:hover { color: #FFFFFF; background: rgba(255,255,255,0.05); }
+    .pub-tab-btn.active {
+      background: #4F46E5;
+      color: #FFFFFF;
+      font-weight: 800;
+      border-color: #818CF8;
+    }
 
     /* View Panels */
     .view-panel { width: 100%; margin-bottom: 24px; }
@@ -731,8 +750,29 @@
         <button id="sBtn_TENANT_005" class="simple-tenant-btn" onclick="switchTenant('TENANT_005')">🏭 B2B 제조 (대진정밀공업)</button>
       </div>
 
+      <!-- Domain Conquest Strategy Banner (1차 로컬 F&B 외식·카페 완전 정복 전략) -->
+      <div style="background: linear-gradient(135deg, rgba(30, 27, 75, 0.85) 0%, rgba(49, 46, 129, 0.7) 100%); border: 1.5px solid #6366F1; border-radius: 14px; padding: 14px 18px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; box-shadow: 0 4px 20px rgba(99,102,241,0.2);">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <span style="font-size: 26px;">🎯</span>
+          <div>
+            <div style="font-size: 14px; font-weight: 900; color: #FFFFFF; display: flex; align-items: center; gap: 8px;">
+              <span>[도메인 정복 전략] 1차 플래그십: <strong style="color: #FCD34D;">로컬 F&B 외식·카페</strong> 100% 완전 정복</span>
+              <span style="font-size: 11px; background: #10B981; color: #FFFFFF; padding: 2px 8px; border-radius: 999px; font-weight: 800;">플래그십 가동 중</span>
+            </div>
+            <div style="font-size: 12px; color: #C7D2FE; margin-top: 2px;">
+              모든 업종을 한 번에 다 하지 않고, <strong>가장 절박한 로컬 외식·소상공인 분야부터 완벽히 해결</strong>한 후 의료·뷰티·B2B로 순차 확장합니다.
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 6px; font-size: 11px; color: #94A3B8;">
+          <span style="background: rgba(99,102,241,0.25); color: #A5B4FC; border: 1px solid #6366F1; padding: 4px 10px; border-radius: 6px; font-weight: 800;">1단계: F&B 외식 (집중 정복)</span>
+          <span style="background: rgba(255,255,255,0.05); border: 1px solid #334155; padding: 4px 10px; border-radius: 6px;">2단계: 의료·병원 ➔</span>
+          <span style="background: rgba(255,255,255,0.05); border: 1px solid #334155; padding: 4px 10px; border-radius: 6px;">3단계: 뷰티·살롱 ➔</span>
+        </div>
+      </div>
+
       <!-- Store Selector Pill -->
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid #1E293B;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid #1E293B;">
         <div style="display: flex; align-items: center; gap: 10px;">
           <span style="font-size: 22px;">🏪</span>
           <div>
@@ -744,6 +784,50 @@
         <div style="text-align: right;">
           <div style="font-size: 11px; color: #94A3B8;">월 구독 요금제</div>
           <div id="simpleStorePlan" style="font-size: 14px; font-weight: 800; color: #818CF8;">₩49,000 / 월 (PRO)</div>
+        </div>
+      </div>
+
+      <!-- 4-Pillar Environmental Infrastructure Live Sensing Bar -->
+      <div style="background: #090D18; border: 1.5px solid #1E293B; border-radius: 16px; padding: 18px 20px; margin-bottom: 24px; box-shadow: 0 4px 16px rgba(0,0,0,0.25);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 18px;">📡</span>
+            <div>
+              <span style="font-size: 11px; font-weight: 800; color: #818CF8; letter-spacing: 0.5px;">LIVE MARKETING INFRASTRUCTURE</span>
+              <h3 style="font-size: 15px; font-weight: 900; color: #FFFFFF;">4대 마케팅 환경 인프라 실시간 센싱 (날씨 · 상권 · 기념일 · 축제)</h3>
+            </div>
+          </div>
+          <span style="font-size: 11px; color: #10B981; background: rgba(16,185,129,0.12); padding: 4px 10px; border-radius: 999px; font-weight: 800;">● 24시간 실시간 인프라 동기화 중</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+          <!-- Infra 1: Weather -->
+          <div id="infraWeatherCard" style="background: #0F172A; border: 1px solid #334155; border-radius: 12px; padding: 12px; border-left: 3px solid #38BDF8;">
+            <div style="font-size: 10px; color: #38BDF8; font-weight: 800; margin-bottom: 2px;">🌦️ 날씨/기상 인프라</div>
+            <div id="infraWeatherVal" style="font-size: 13px; font-weight: 900; color: #FFFFFF; margin-bottom: 4px;">🌧️ 비 내림 (5.2mm)</div>
+            <div id="infraWeatherSub" style="font-size: 10px; color: #94A3B8; line-height: 1.4;">실내 아늑 소비 탄력도 +35% 급증</div>
+          </div>
+
+          <!-- Infra 2: Geography -->
+          <div id="infraGeoCard" style="background: #0F172A; border: 1px solid #334155; border-radius: 12px; padding: 12px; border-left: 3px solid #818CF8;">
+            <div style="font-size: 10px; color: #818CF8; font-weight: 800; margin-bottom: 2px;">📍 지역/상권 인프라</div>
+            <div id="infraGeoVal" style="font-size: 13px; font-weight: 900; color: #FFFFFF; margin-bottom: 4px;">📍 성수 연무장길 카페거리</div>
+            <div id="infraGeoSub" style="font-size: 10px; color: #94A3B8; line-height: 1.4;">유동인구 14,200명/h · 2030 62%</div>
+          </div>
+
+          <!-- Infra 3: Anniversary -->
+          <div id="infraAnnivCard" style="background: #0F172A; border: 1px solid #334155; border-radius: 12px; padding: 12px; border-left: 3px solid #F59E0B;">
+            <div style="font-size: 10px; color: #F59E0B; font-weight: 800; margin-bottom: 2px;">🗓️ 기념일/절기 인프라</div>
+            <div id="infraAnnivVal" style="font-size: 13px; font-weight: 900; color: #FFFFFF; margin-bottom: 4px;">🗓️ 할로윈 데이 (D-22)</div>
+            <div id="infraAnnivSub" style="font-size: 10px; color: #94A3B8; line-height: 1.4;">선예약 준비 단계 · 검색량 급증</div>
+          </div>
+
+          <!-- Infra 4: Events/Festivals -->
+          <div id="infraEventCard" style="background: #0F172A; border: 1px solid #334155; border-radius: 12px; padding: 12px; border-left: 3px solid #EC4899;">
+            <div style="font-size: 10px; color: #EC4899; font-weight: 800; margin-bottom: 2px;">🎪 축제/행사 인프라</div>
+            <div id="infraEventVal" style="font-size: 13px; font-weight: 900; color: #FFFFFF; margin-bottom: 4px;">🎪 서울숲 스프링 피크닉</div>
+            <div id="infraEventSub" style="font-size: 10px; color: #94A3B8; line-height: 1.4;">인파 +35% 급증 (반경 500m)</div>
+          </div>
         </div>
       </div>
 
@@ -764,6 +848,32 @@
           <span id="simpleHeroBtnText">⚡ 1초 만에 3대 채널 동시 발송</span>
           <span id="simpleHeroBtnSub" style="font-size: 13px; background: rgba(0,0,0,0.25); padding: 4px 10px; border-radius: 8px;">예상 순이익 +21만 원 ➔</span>
         </button>
+      </div>
+
+      <!-- AI Marketing Consulting Advisor Prescriptions Desk -->
+      <div style="background: #0F172A; border: 1.5px solid #334155; border-radius: 18px; padding: 22px 24px; margin-bottom: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.25);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 18px;">🧠</span>
+              <span style="font-size: 11px; font-weight: 800; color: #818CF8; letter-spacing: 0.5px;">AI MARKETING CONSULTING DESK</span>
+            </div>
+            <h3 style="font-size: 18px; font-weight: 900; color: #FFFFFF; margin-top: 4px;">
+              매출 부진 시 수백만원 컨설팅비 대신, AI가 실시간 무료 처방을 내립니다
+            </h3>
+            <p style="font-size: 12px; color: #94A3B8; margin-top: 2px;">
+              날씨·지역·기념일·축제 인프라를 분석해 맞춤 처방을 추천합니다. 선택하면 네이버 정보지·인스타·크리에이터 섭외 콘텐츠가 자동 완성됩니다.
+            </p>
+          </div>
+          <span style="font-size: 11px; color: #FCD34D; background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3); padding: 4px 10px; border-radius: 999px; font-weight: 800;">
+            ⚡ 4대 즉시 처방 활성화
+          </span>
+        </div>
+
+        <!-- 4 Prescriptions Grid Container -->
+        <div id="consultingPrescriptionsGrid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;">
+          <!-- Dynamically populated by loadConsultingDesk() -->
+        </div>
       </div>
 
       <!-- 2. AIM_Base.md 4-Step Autonomous Marketing OS Cyclical Engine -->
@@ -857,6 +967,31 @@
           <button onclick="simulatePosRedeem('AIM-SEONGSU-CR02-RAIN24K')" style="background: #10B981; color: #FFFFFF; font-size: 12px; font-weight: 800; border: none; padding: 11px 18px; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 12px rgba(16,185,129,0.3);">
             ⚡ POS 스캔 결제 체험 (+2.4만 원)
           </button>
+        </div>
+      </div>
+
+      <!-- Real-Time Publication & History Ledger -->
+      <div style="background: #0F172A; border: 1.5px solid #334155; border-radius: 18px; padding: 22px 24px; margin-top: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.25);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 18px;">📋</span>
+              <span style="font-size: 11px; font-weight: 800; color: #818CF8; letter-spacing: 0.5px;">PUBLICATION & CHANNEL MANAGEMENT LEDGER</span>
+            </div>
+            <h3 style="font-size: 17px; font-weight: 900; color: #FFFFFF; margin-top: 4px;">
+              실시간 발행 및 채널 관리 히스토리 원장
+            </h3>
+            <p style="font-size: 12px; color: #94A3B8; margin-top: 2px;">
+              선택한 AI 처방이 네이버 플레이스·인스타그램·크리에이터 망에 배포 및 실행 관리되는 투명한 내역입니다.
+            </p>
+          </div>
+          <span style="font-size: 11px; color: #10B981; background: rgba(16,185,129,0.12); padding: 4px 10px; border-radius: 999px; font-weight: 800;">
+            ● 실시간 연동 원장
+          </span>
+        </div>
+
+        <div id="publicationHistoryList" style="display: flex; flex-direction: column; gap: 10px;">
+          <!-- Dynamically populated by loadPublishingHistory() -->
         </div>
       </div>
 
@@ -2324,6 +2459,174 @@
     </section>
     </div> <!-- End of advancedContainer -->
 
+    <!-- ======================================================== -->
+    <!-- MODAL: AI 컨설팅 처방 채택 및 옴니채널 원클릭 발행 모달 -->
+    <!-- ======================================================== -->
+    <div id="publishingModal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(8px); z-index: 9999; justify-content: center; align-items: center; padding: 20px;">
+      <div style="background: #0F172A; border: 2px solid #6366F1; border-radius: 20px; width: 100%; max-width: 840px; max-height: 90vh; overflow-y: auto; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); display: flex; flex-direction: column;">
+        <!-- Modal Header -->
+        <div style="padding: 20px 24px; border-bottom: 1px solid #1E293B; display: flex; justify-content: space-between; align-items: flex-start;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+              <span id="pubModalCategoryBadge" style="font-size: 11px; background: rgba(99,102,241,0.2); color: #A5B4FC; border: 1px solid #6366F1; padding: 3px 10px; border-radius: 999px; font-weight: 800;">
+                🌧️ 날씨/유휴 긴급 매출 방어
+              </span>
+              <span id="pubModalComplianceBadge" style="font-size: 11px; background: rgba(16,185,129,0.15); color: #10B981; border: 1px solid rgba(16,185,129,0.4); padding: 3px 10px; border-radius: 999px; font-weight: 800;">
+                ✅ 표시광고법·의료법 100% 사전 검수 완료 (안심)
+              </span>
+            </div>
+            <h3 id="pubModalTitle" style="font-size: 19px; font-weight: 900; color: #FFFFFF; line-height: 1.4;">
+              [비 오는 날 한정] 따뜻한 바질소금빵과 핫초코 세트
+            </h3>
+            <p id="pubModalExpectedGain" style="font-size: 12px; color: #38BDF8; font-weight: 700; margin-top: 2px;">
+              💰 예상 추가 창출 매출: +₩240,000 (ROI 12.0배 달성 전망)
+            </p>
+          </div>
+          <button onclick="closePublishingModal()" style="background: transparent; border: none; color: #94A3B8; font-size: 24px; cursor: pointer; padding: 4px 8px; border-radius: 8px; line-height: 1;">✕</button>
+        </div>
+
+        <!-- Channel Selection Tabs -->
+        <div style="display: flex; gap: 6px; padding: 12px 24px; background: #0A0F1D; border-bottom: 1px solid #1E293B; overflow-x: auto;">
+          <button id="pubTabBtn_naver" class="pub-tab-btn active" onclick="switchModalTab('naver')">
+            📗 네이버 플레이스 새소식 (40자 규격)
+          </button>
+          <button id="pubTabBtn_instagram" class="pub-tab-btn" onclick="switchModalTab('instagram')">
+            📸 인스타그램 피드 & 릴스
+          </button>
+          <button id="pubTabBtn_creator" class="pub-tab-btn" onclick="switchModalTab('creator')">
+            🎬 크리에이터 섭외 (15초 콘티)
+          </button>
+          <button id="pubTabBtn_kakao" class="pub-tab-btn" onclick="switchModalTab('kakao')">
+            💬 카카오톡 알림톡/채널
+          </button>
+        </div>
+
+        <!-- Tab Body Content -->
+        <div style="padding: 24px; flex: 1;">
+          <!-- Tab 1: Naver Place -->
+          <div id="pubTabPanel_naver" class="pub-tab-panel" style="display: block;">
+            <div style="background: #1E293B; border: 1px solid #334155; border-radius: 14px; padding: 18px; margin-bottom: 16px;">
+              <div style="font-size: 12px; font-weight: 800; color: #38BDF8; margin-bottom: 6px;">네이버 스마트플레이스 소식 제목 (공백 포함 40자 엄수 규격)</div>
+              <input id="pubNaverTitle" type="text" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 10px 14px; color: #FFFFFF; font-size: 14px; font-weight: 800;" />
+              <div style="display: flex; justify-content: space-between; font-size: 11px; color: #94A3B8; margin-top: 4px;">
+                <span>네이버 스마트플레이스 공식 노출 규격</span>
+                <span id="pubNaverTitleLen" style="color: #10B981; font-weight: 700;">28자 / 40자 (적합)</span>
+              </div>
+            </div>
+
+            <div style="background: #1E293B; border: 1px solid #334155; border-radius: 14px; padding: 18px; margin-bottom: 16px;">
+              <div style="font-size: 12px; font-weight: 800; color: #818CF8; margin-bottom: 6px;">매장 소식 본문 (네이버 플레이스 정보지 최적화)</div>
+              <textarea id="pubNaverBody" rows="6" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 12px 14px; color: #F1F5F9; font-size: 13px; line-height: 1.6; resize: none;"></textarea>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <div style="background: #090D18; border: 1px solid #1E293B; border-radius: 10px; padding: 12px;">
+                <div style="font-size: 11px; color: #94A3B8;">연동 혜택 쿠폰</div>
+                <div id="pubNaverCoupon" style="font-size: 13px; font-weight: 800; color: #34D399; margin-top: 4px;">비 오는 날 3,000원 즉시 할인 쿠폰</div>
+              </div>
+              <div style="background: #090D18; border: 1px solid #1E293B; border-radius: 10px; padding: 12px;">
+                <div style="font-size: 11px; color: #94A3B8;">권장 이미지 규격</div>
+                <div id="pubNaverImageSpec" style="font-size: 13px; font-weight: 800; color: #FCD34D; margin-top: 4px;">1080x1080px (1:1 정방형)</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 2: Instagram -->
+          <div id="pubTabPanel_instagram" class="pub-tab-panel" style="display: none;">
+            <div style="background: #1E293B; border: 1px solid #334155; border-radius: 14px; padding: 18px; margin-bottom: 16px;">
+              <div style="font-size: 12px; font-weight: 800; color: #F472B6; margin-bottom: 6px;">인스타그램 피드 & 릴스 캡션 (감성 문안)</div>
+              <textarea id="pubInstaBody" rows="6" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 12px 14px; color: #F1F5F9; font-size: 13px; line-height: 1.6; resize: none;"></textarea>
+            </div>
+
+            <div style="background: #1E293B; border: 1px solid #334155; border-radius: 14px; padding: 18px; margin-bottom: 16px;">
+              <div style="font-size: 12px; font-weight: 800; color: #38BDF8; margin-bottom: 6px;">행동 유도 문구 (Call To Action)</div>
+              <input id="pubInstaCta" type="text" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 10px 14px; color: #FFFFFF; font-size: 13px; font-weight: 700;" />
+            </div>
+
+            <div style="background: #1E293B; border: 1px solid #334155; border-radius: 14px; padding: 18px;">
+              <div style="font-size: 12px; font-weight: 800; color: #A5B4FC; margin-bottom: 6px;">AI 추천 상권 타겟 해시태그 (15선)</div>
+              <div id="pubInstaHashtags" style="font-size: 12px; color: #818CF8; line-height: 1.6; word-break: break-all; background: #0F172A; padding: 10px 14px; border-radius: 8px;"></div>
+            </div>
+          </div>
+
+          <!-- Tab 3: Creator Pitch -->
+          <div id="pubTabPanel_creator" class="pub-tab-panel" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; background: #1E1B4B; border: 1px solid #6366F1; border-radius: 12px; padding: 12px 16px; margin-bottom: 16px;">
+              <div>
+                <span style="font-size: 11px; color: #A5B4FC;">추천 매칭 크리에이터</span>
+                <div id="pubCreatorName" style="font-size: 14px; font-weight: 900; color: #FFFFFF; margin-top: 2px;">디저트탐험가 은지 (@eunji_dessert)</div>
+              </div>
+              <div style="text-align: right;">
+                <span style="font-size: 11px; color: #94A3B8;">에스크로 보증 제작비</span>
+                <div id="pubCreatorFee" style="font-size: 14px; font-weight: 900; color: #34D399;">₩150,000 (10% 할인)</div>
+              </div>
+            </div>
+
+            <div style="background: #1E293B; border: 1px solid #334155; border-radius: 14px; padding: 18px; margin-bottom: 16px;">
+              <div style="font-size: 12px; font-weight: 800; color: #FCD34D; margin-bottom: 6px;">15초 숏폼 스토리보드 (후킹 ➔ 본문 ➔ 전환)</div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; font-size: 12px;">
+                <div style="background: #0F172A; padding: 10px; border-radius: 8px; border-left: 3px solid #EF4444;">
+                  <strong style="color: #F87171;">0~3초 Hook:</strong>
+                  <div id="pubStoryboardHook" style="color: #E2E8F0; margin-top: 4px; line-height: 1.4;"></div>
+                </div>
+                <div style="background: #0F172A; padding: 10px; border-radius: 8px; border-left: 3px solid #F59E0B;">
+                  <strong style="color: #FBBF24;">3~10초 Body:</strong>
+                  <div id="pubStoryboardBody" style="color: #E2E8F0; margin-top: 4px; line-height: 1.4;"></div>
+                </div>
+                <div style="background: #0F172A; padding: 10px; border-radius: 8px; border-left: 3px solid #10B981;">
+                  <strong style="color: #34D399;">10~15초 CTA:</strong>
+                  <div id="pubStoryboardCta" style="color: #E2E8F0; margin-top: 4px; line-height: 1.4;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div style="background: #1E293B; border: 1px solid #334155; border-radius: 14px; padding: 18px;">
+              <div style="font-size: 12px; font-weight: 800; color: #38BDF8; margin-bottom: 6px;">크리에이터 DM / 이메일 협찬 제안 전문</div>
+              <textarea id="pubCreatorProposal" rows="5" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 12px 14px; color: #F1F5F9; font-size: 12px; line-height: 1.6; resize: none;"></textarea>
+            </div>
+          </div>
+
+          <!-- Tab 4: Kakao Channel -->
+          <div id="pubTabPanel_kakao" class="pub-tab-panel" style="display: none;">
+            <div style="background: #1E293B; border: 1px solid #334155; border-radius: 14px; padding: 18px; margin-bottom: 16px;">
+              <div style="font-size: 12px; font-weight: 800; color: #FBBF24; margin-bottom: 6px;">카카오 알림톡 배너 헤드라인</div>
+              <input id="pubKakaoHeadline" type="text" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 10px 14px; color: #FFFFFF; font-size: 13px; font-weight: 800;" />
+            </div>
+
+            <div style="background: #1E293B; border: 1px solid #334155; border-radius: 14px; padding: 18px; margin-bottom: 16px;">
+              <div style="font-size: 12px; font-weight: 800; color: #38BDF8; margin-bottom: 6px;">메시지 본문</div>
+              <textarea id="pubKakaoBody" rows="5" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 12px 14px; color: #F1F5F9; font-size: 13px; line-height: 1.6; resize: none;"></textarea>
+            </div>
+
+            <div style="background: #090D18; border: 1px solid #1E293B; border-radius: 10px; padding: 12px; display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <div style="font-size: 11px; color: #94A3B8;">연동 액션 버튼</div>
+                <div id="pubKakaoButtonLabel" style="font-size: 13px; font-weight: 800; color: #FBBF24;">모바일 번개 티켓 받기</div>
+              </div>
+              <button onclick="window.open('https://esketch-ai.github.io/AIM/c/AIM-SEONGSU-CR02-RAIN24K', '_blank')" style="background: #334155; color: #FFF; border: none; padding: 6px 12px; border-radius: 6px; font-size: 11px; cursor: pointer;">
+                링크 미리보기 ↗
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Footer Actions -->
+        <div style="padding: 16px 24px; border-top: 1px solid #1E293B; background: #0A0F1D; display: flex; justify-content: space-between; align-items: center; border-radius: 0 0 20px 20px; flex-wrap: wrap; gap: 10px;">
+          <button onclick="closePublishingModal()" style="background: #1E293B; color: #94A3B8; border: 1px solid #334155; font-size: 13px; font-weight: 700; padding: 10px 18px; border-radius: 10px; cursor: pointer;">
+            닫기
+          </button>
+          <div style="display: flex; gap: 10px;">
+            <button onclick="copyCurrentModalText()" style="background: #334155; color: #FFFFFF; border: 1px solid #475569; font-size: 13px; font-weight: 800; padding: 10px 18px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; gap: 6px;">
+              📋 현재 탭 내용 복사하기
+            </button>
+            <button onclick="markModalPublished()" style="background: linear-gradient(135deg, #10B981 0%, #059669 100%); color: #FFFFFF; border: none; font-size: 13px; font-weight: 900; padding: 10px 22px; border-radius: 10px; cursor: pointer; box-shadow: 0 4px 15px rgba(16,185,129,0.4); display: flex; align-items: center; gap: 6px;">
+              🚀 채널 발행 및 원장 기록
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Global Toast Notification Container -->
     <div id="globalToast" class="toast-box"></div>
   </div>
@@ -3272,6 +3575,158 @@
           growth_rate_vs_peers: 72.8
         };
       }
+      if (url.includes('/consulting/infrastructure-signals')) {
+        return {
+          weather: { condition_korean: '비 내림 (5.2mm / 강수확률 85%)', impact_description: '우천으로 실내 아늑·따뜻한 메뉴/음료 소비 탄력도 +35% 급증' },
+          geography: { district_name: '성수동 연무장길 카페거리', subway_station: '성수역 3번 출구', estimated_hourly_foot_traffic: 14200, primary_demographics: '2030 MZ세대 (여성 62%)' },
+          active_anniversary: { name: '할로윈 데이', d_day: 22, is_golden_time: false, commercial_theme: '오싹 달콤한 파티 디저트' },
+          active_local_events: [{ name: '서울숲 스프링 피크닉 & 재즈 버스킹', period: '이번 주말 13:00~20:00', expected_foot_traffic_surge_pct: 35 }]
+        };
+      }
+      if (url.includes('/consulting/prescriptions/')) {
+        return {
+          prescriptions: [
+            {
+              advice_id: 'ADV_TENANT_001_WEATHER',
+              category: 'WEATHER_SALVAGE',
+              category_korean: '🌧️ 날씨/유휴 긴급 매출 방어',
+              icon: '🌧️',
+              headline: '비 오는 날 손님이 끊길 때, 네이버 플레이스 소식으로 퇴근길 포장 손님 부르기',
+              diagnosis: '현재 서울 성동구 성수동 핫플레이스 상권에 비 내림 (5.2mm / 강수확률 85%) 상황입니다. 일반 도보 유동인구는 28% 감소하지만, 퇴근길 따뜻한 빵/디저트 포장 수요는 35% 급증하는 패턴이 확인됩니다.',
+              recommended_action: "'성수 아뜰리에 베이커리 & 카페' 네이버 스마트플레이스에 [3시간 한정 비 오는 날 깜짝 타임특가] 소식을 즉시 등록하고, 방문 포장 고객 대상 3,000원 할인 쿠폰을 자동 연동합니다.",
+              primary_channel: 'naver_place',
+              primary_channel_korean: '네이버 스마트플레이스 새소식',
+              expected_revenue_gain_krw: 240000,
+              expected_roi_ratio: 12.0,
+              urgency_badge: '⚡ 골든타임 3시간'
+            },
+            {
+              advice_id: 'ADV_TENANT_001_EVENT',
+              category: 'LOCAL_EVENT_SURGE',
+              category_korean: '🎪 지역 축제/팝업 인파 포획',
+              icon: '🎉',
+              headline: "인근 '서울숲 스프링 피크닉 & 재즈 버스킹' 인파를 내 매장으로 유입시키는 인스타 릴스·피드 발행",
+              diagnosis: '매장 반경 500m 내에서 서울숲 스프링 피크닉이 진행 중이며 유동인구가 +35% 급증하고 있습니다. 나들이 인파가 인근 쉴 곳과 맛집을 검색하고 있습니다.',
+              recommended_action: "인스타그램 피드 및 릴스에 '피크닉용 바질 소금빵 + 콜드브루 콤보 세트 집중 판매' 혜택을 알리는 감성 숏폼 카피를 발행하고 상권 필수 해시태그 15종을 자동 부착합니다.",
+              primary_channel: 'instagram',
+              primary_channel_korean: '인스타그램 피드 & 릴스',
+              expected_revenue_gain_krw: 480000,
+              expected_roi_ratio: 16.5,
+              urgency_badge: '🔥 인파 +35% 급증'
+            },
+            {
+              advice_id: 'ADV_TENANT_001_CREATOR',
+              category: 'CREATOR_COLLAB',
+              category_korean: '🎬 유튜버/블로거 15초 콘티 협찬 섭외',
+              icon: '🤝',
+              headline: '연락하기 막막했던 빵지순례 전문 숏폼 크리에이터에게 15초 콘티 자동 제안',
+              diagnosis: '유튜버나 맛집 블로거에게 개별 연락하려 해도 단가 파악과 기획안 작성이 어려워 포기하기 일쑤입니다. 검증된 로컬 푸드 크리에이터를 10% 우대 수수료로 즉시 매칭합니다.',
+              recommended_action: "AI가 작성한 '15초 쇼츠 스토리보드(오프닝 3초 후킹 ➔ 버터 특장점 ➔ 방문 쿠폰 안내)'를 바탕으로 유튜브 쇼츠 크리에이터에게 원클릭 협찬 제안서를 발송합니다.",
+              primary_channel: 'creator_shorts',
+              primary_channel_korean: '유튜브 쇼츠 & 인스타 릴스 크리에이터',
+              expected_revenue_gain_krw: 850000,
+              expected_roi_ratio: 5.6,
+              urgency_badge: '💎 섭외 공수 90% 감축'
+            },
+            {
+              advice_id: 'ADV_TENANT_001_ANNIVERSARY',
+              category: 'ANNIVERSARY_EARLY',
+              category_korean: '🗓️ 다가오는 기념일 선제 공략',
+              icon: '🎁',
+              headline: "'할로윈 데이' D-22 골든타임! 단골 고객 대상 선물 세트 선예약 알림톡 발송",
+              diagnosis: '할로윈 데이까지 D-22일 남았습니다. 기념일 선물 및 외식 예약의 70%는 D-7일에서 D-3일 사이에 일어납니다. 선제 공략으로 조기 완판을 달성합니다.',
+              recommended_action: "카카오톡 채널 단골 고객에게 '호박 타르트 & 할로윈 쿠키 패키지 선예약 15% 특별 혜택' 알림톡을 전송하고 네이버 예약 링크를 연동합니다.",
+              primary_channel: 'kakao_alert',
+              primary_channel_korean: '카카오톡 단골 채널 알림톡',
+              expected_revenue_gain_krw: 620000,
+              expected_roi_ratio: 18.2,
+              urgency_badge: '⏰ D-22 선예약 골든타임'
+            }
+          ]
+        };
+      }
+      if (url.includes('/consulting/select-and-generate')) {
+        return {
+          naver_place: {
+            headline: '[비 오는 날 3시간 한정] 갓 구운 바질소금빵 1+1 번개 혜택',
+            content_body: '비 내리는 성수동 연무장길, 따뜻한 온기가 필요하신가요?\n\n빗속을 뚫고 아뜰리에를 찾아주신 분들을 위해 오늘 오후 3시~6시 딱 3시간 동안 프랑스 고메버터 48% 바질소금빵 1+1 혜택을 드립니다.\n\n매장 방문 시 아래 모바일 쿠폰을 보여주시면 즉시 적용됩니다.',
+            coupon_link_label: '비 오는 날 3,000원 즉시 할인 쿠폰',
+            recommended_image_spec: '1080x1080px (1:1 정방형)',
+            clipboard_text: '【네이버 스마트플레이스 새소식】\n제목: [비 오는 날 3시간 한정] 갓 구운 바질소금빵 1+1 번개 혜택\n본문: 비 내리는 성수동 연무장길, 따뜻한 온기가 필요하신가요?\n\n빗속을 뚫고 찾아주신 분들을 위해 바질소금빵 1+1 혜택을 드립니다!'
+          },
+          instagram: {
+            caption_body: '🌧️ 빗소리와 함께 퍼지는 진한 버터 향기... 비 오는 날 성수동 골목길의 따뜻한 피난처가 되어드릴게요.\n\n비 오는 날 방문 고객님께는 갓 구워낸 바질 소금빵 1+1 선물과 함께 따뜻한 아메리카노를 페어링해 드립니다.',
+            call_to_action: '프로필 링크에서 3,000원 할인 쿠폰을 다운받고 오늘 바로 방문해보세요!',
+            hashtags: ['#성수카페', '#성수베이커리', '#비오는날카페', '#성수데이트', '#소금빵맛집', '#연무장길카페'],
+            recommended_format: 'Instagram Reels (9:16) & Feed Carousel',
+            clipboard_text: '【인스타그램 피드 & 릴스 캡션】\n🌧️ 빗소리와 함께 퍼지는 진한 버터 향기...\n#성수카페 #성수베이커리 #비오는날카페 #성수데이트 #소금빵맛집'
+          },
+          creator_pitch: {
+            matched_creator_name: '디저트탐험가 은지',
+            matched_creator_handle: '@eunji_dessert',
+            channel_format: 'YouTube Shorts & Instagram Reels',
+            storyboard_15s: {
+              hook_0_3s: '성수동 빵순이들 사이에서 소문난 버터 동굴 실물 영접 🥐🔥',
+              body_3_10s: "프랑스산 고메버터 48%로 구워 바삭바삭 소리 ASMR 터지는 '프랑스 AOP 사워도우' 단면 클로즈업!",
+              cta_10_15s: '영상 하단 링크에서 3,000원 쿠폰 받고 오늘 바로 성수동으로 달려가세요!'
+            },
+            proposal_message_text: "안녕하세요, 은지님! 성수동에서 '성수 아뜰리에 베이커리 & 카페'를 운영하는 김성수 대표입니다.\n은지님의 빵지순례 숏폼을 감명 깊게 보고 정중히 협찬 제안을 드립니다.",
+            escrow_fee_krw: 150000,
+            clipboard_text: '【크리에이터 섭외 제안서】\n안녕하세요, 은지님! 성수 아뜰리에 베이커리 김성수 대표입니다...'
+          },
+          kakao_channel: {
+            banner_headline: '📢 [실시간 번개 혜택] 성수 아뜰리에 베이커리 비 오는 날 1+1 쿠폰 도착!',
+            message_body: '성수 아뜰리에 베이커리 단골 고객님께만 드리는 오늘 3시간 한정 번개 혜택입니다.',
+            action_button_label: '모바일 번개 티켓 받기',
+            action_url: 'https://esketch-ai.github.io/AIM/c/AIM-SEONGSU-CR02-RAIN24K',
+            clipboard_text: '【카카오 알림톡】\n헤드라인: [실시간 번개 혜택] 비 오는 날 1+1 쿠폰 도착!'
+          },
+          compliance_summary: '✅ 표시광고법·의료법 100% 사전 검수 완료 (안심)'
+        };
+      }
+      if (url.includes('/consulting/publishing-history/')) {
+        return [
+          {
+            record_id: 'PUB_REC_001',
+            tenant_id: 'TENANT_001',
+            business_name: '성수 아뜰리에 베이커리 & 카페',
+            channel: 'NAVER_PLACE',
+            channel_korean: '네이버 스마트플레이스 새소식',
+            headline: '[비 오는 날 3시간 한정] 갓 구운 바질소금빵 1+1 번개 혜택',
+            trigger_type: '🌧️ 기상 강수(5.2mm) 인프라 감지',
+            status: 'LIVE',
+            published_at: '오늘 14:10',
+            attributed_revenue_gain_krw: 240000
+          },
+          {
+            record_id: 'PUB_REC_002',
+            tenant_id: 'TENANT_001',
+            business_name: '성수 아뜰리에 베이커리 & 카페',
+            channel: 'INSTAGRAM',
+            channel_korean: '인스타그램 피드 & 릴스',
+            headline: '연무장길 팝업 돌고 어디 감? 🥐 프랑스 고메버터 소금빵 핫플',
+            trigger_type: '🎪 성수 패션 팝업 축제 인프라 연동',
+            status: 'LIVE',
+            published_at: '어제 16:30',
+            attributed_revenue_gain_krw: 480000
+          },
+          {
+            record_id: 'PUB_REC_003',
+            tenant_id: 'TENANT_001',
+            business_name: '성수 아뜰리에 베이커리 & 카페',
+            channel: 'CREATOR',
+            channel_korean: '유튜브 쇼츠 15초 콘티 협찬 섭외',
+            headline: '크리에이터 @디저트탐험가 은지(18만) 15초 숏폼 에스크로 체결',
+            trigger_type: '🤝 로컬 인플루언서 제휴 네트워크',
+            status: 'DISPATCHED',
+            published_at: '3일 전',
+            attributed_revenue_gain_krw: 850000
+          }
+        ];
+      }
+      if (url.includes('/consulting/mark-published')) {
+        return { status: 'SUCCESS', message: '발행 완료 및 원장 등록 성공' };
+      }
       return {};
     }
 
@@ -3311,6 +3766,279 @@
         switchViewMode(currentMode || 'tenant');
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* ======================================================== */
+    /* AI Marketing Consulting & Publishing Management Engine   */
+    /* ======================================================== */
+    let currentConsultingBundle = null;
+    let activeModalTab = 'naver';
+    let currentAdviceId = null;
+
+    async function loadConsultingDesk(tenantId) {
+      try {
+        const infraData = await apiFetch('/api/v1/consulting/infrastructure-signals');
+        renderInfraCards(infraData);
+
+        const presData = await apiFetch(`/api/v1/consulting/prescriptions/${tenantId}`);
+        renderPrescriptions(presData.prescriptions || []);
+      } catch (e) {
+        console.warn('Consulting Desk API fetch failed:', e);
+      }
+    }
+
+    function renderInfraCards(infra) {
+      if (!infra) return;
+      if (infra.weather) {
+        const wEl = document.getElementById('infraWeatherVal');
+        const wSub = document.getElementById('infraWeatherSub');
+        if (wEl) wEl.innerText = `🌧️ ${infra.weather.condition_korean}`;
+        if (wSub) wSub.innerText = infra.weather.impact_description || '실내 소비 탄력도 +35%';
+      }
+      if (infra.geography) {
+        const gEl = document.getElementById('infraGeoVal');
+        const gSub = document.getElementById('infraGeoSub');
+        if (gEl) gEl.innerText = `📍 ${infra.geography.district_name}`;
+        if (gSub) gSub.innerText = `유동인구 ${infra.geography.estimated_hourly_foot_traffic.toLocaleString()}명/h · ${infra.geography.primary_demographics}`;
+      }
+      if (infra.active_anniversary) {
+        const aEl = document.getElementById('infraAnnivVal');
+        const aSub = document.getElementById('infraAnnivSub');
+        if (aEl) aEl.innerText = `🗓️ ${infra.active_anniversary.name} (D-${infra.active_anniversary.d_day})`;
+        if (aSub) aSub.innerText = `테마: ${infra.active_anniversary.commercial_theme} (선예약 준비)`;
+      }
+      if (infra.active_local_events && infra.active_local_events.length > 0) {
+        const ev = infra.active_local_events[0];
+        const eEl = document.getElementById('infraEventVal');
+        const eSub = document.getElementById('infraEventSub');
+        if (eEl) eEl.innerText = `🎪 ${ev.name}`;
+        if (eSub) eSub.innerText = `인파 +${ev.expected_foot_traffic_surge_pct}% 급증 피크 (${ev.period})`;
+      }
+    }
+
+    function renderPrescriptions(prescriptions) {
+      const container = document.getElementById('consultingPrescriptionsGrid');
+      if (!container) return;
+      if (!prescriptions || prescriptions.length === 0) {
+        container.innerHTML = '<div style="color:#94A3B8; font-size:12px; padding:12px; grid-column: span 2;">처방 데이터를 불러오는 중입니다...</div>';
+        return;
+      }
+      container.innerHTML = prescriptions.map(p => `
+        <div style="background: #0F172A; border: 1.5px solid #334155; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.2s; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+              <span style="font-size: 11px; background: rgba(99,102,241,0.2); color: #A5B4FC; border: 1px solid #6366F1; padding: 2px 8px; border-radius: 6px; font-weight: 800;">
+                ${p.icon} ${p.category_korean}
+              </span>
+              <span style="font-size: 11px; color: #F59E0B; font-weight: 800;">
+                ${p.urgency_badge}
+              </span>
+            </div>
+            <h4 style="font-size: 15px; font-weight: 900; color: #FFFFFF; line-height: 1.4; margin-bottom: 8px;">
+              ${p.headline}
+            </h4>
+            <p style="font-size: 12px; color: #94A3B8; line-height: 1.5; margin-bottom: 12px;">
+              ${p.diagnosis}
+            </p>
+            <div style="background: #1E293B; border-radius: 8px; padding: 10px; font-size: 11px; color: #C7D2FE; line-height: 1.4; margin-bottom: 14px;">
+              <strong style="color: #38BDF8;">💡 처방 행동:</strong> ${p.recommended_action}
+            </div>
+          </div>
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-top: 8px; border-top: 1px solid #1E293B;">
+              <span style="font-size: 11px; color: #64748B;">채널: <strong style="color: #F8FAFC;">${p.primary_channel_korean}</strong></span>
+              <span style="font-size: 13px; font-weight: 900; color: #34D399;">+₩${p.expected_revenue_gain_krw.toLocaleString()}</span>
+            </div>
+            <button onclick="openPublishingModal('${p.advice_id}')" style="width: 100%; background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%); color: #FFFFFF; font-size: 13px; font-weight: 900; border: none; padding: 12px; border-radius: 10px; cursor: pointer; box-shadow: 0 4px 12px rgba(99,102,241,0.3); transition: transform 0.1s;">
+              ⚡ 처방 채택 및 원클릭 콘텐츠 제작 ➔
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    async function openPublishingModal(adviceId) {
+      currentAdviceId = adviceId;
+      showToast('🤖 AI가 4대 인프라 기반 채널 맞춤 콘텐츠를 실시간 생성 중입니다...');
+      try {
+        const bundle = await apiFetch('/api/v1/consulting/select-and-generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ tenant_id: currentTenantId, advice_id: adviceId })
+        });
+        currentConsultingBundle = bundle;
+        populateModalData(bundle);
+        const modal = document.getElementById('publishingModal');
+        if (modal) {
+          modal.style.display = 'flex';
+          switchModalTab('naver');
+        }
+      } catch (e) {
+        console.error('Select and generate error:', e);
+        showToast('콘텐츠 생성 중 오류가 발생했습니다.');
+      }
+    }
+
+    function closePublishingModal() {
+      const modal = document.getElementById('publishingModal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function populateModalData(bundle) {
+      if (!bundle) return;
+      const bTitle = document.getElementById('pubModalTitle');
+      if (bTitle) bTitle.innerText = bundle.naver_place ? bundle.naver_place.headline : 'AI 처방 콘텐츠';
+
+      // Naver Place
+      if (bundle.naver_place) {
+        const nTitle = document.getElementById('pubNaverTitle');
+        if (nTitle) nTitle.value = bundle.naver_place.headline;
+        const nLen = document.getElementById('pubNaverTitleLen');
+        if (nLen) nLen.innerText = `${bundle.naver_place.headline.length}자 / 40자 (적합)`;
+        const nBody = document.getElementById('pubNaverBody');
+        if (nBody) nBody.value = bundle.naver_place.content_body;
+        const nCoup = document.getElementById('pubNaverCoupon');
+        if (nCoup) nCoup.innerText = bundle.naver_place.coupon_link_label;
+        const nImg = document.getElementById('pubNaverImageSpec');
+        if (nImg) nImg.innerText = bundle.naver_place.recommended_image_spec;
+      }
+
+      // Instagram
+      if (bundle.instagram) {
+        const iBody = document.getElementById('pubInstaBody');
+        if (iBody) iBody.value = bundle.instagram.caption_body;
+        const iCta = document.getElementById('pubInstaCta');
+        if (iCta) iCta.value = bundle.instagram.call_to_action;
+        const iTags = document.getElementById('pubInstaHashtags');
+        if (iTags) iTags.innerText = (bundle.instagram.hashtags || []).join(' ');
+      }
+
+      // Creator Pitch
+      if (bundle.creator_pitch) {
+        const cp = bundle.creator_pitch;
+        const cName = document.getElementById('pubCreatorName');
+        if (cName) cName.innerText = `${cp.matched_creator_name} (${cp.matched_creator_handle})`;
+        const cFee = document.getElementById('pubCreatorFee');
+        if (cFee) cFee.innerText = `₩${cp.escrow_fee_krw.toLocaleString()} (10% 할인)`;
+
+        const sHook = document.getElementById('pubStoryboardHook');
+        if (sHook) sHook.innerText = cp.storyboard_15s.hook_0_3s;
+        const sBody = document.getElementById('pubStoryboardBody');
+        if (sBody) sBody.innerText = cp.storyboard_15s.body_3_10s;
+        const sCta = document.getElementById('pubStoryboardCta');
+        if (sCta) sCta.innerText = cp.storyboard_15s.cta_10_15s;
+
+        const cProp = document.getElementById('pubCreatorProposal');
+        if (cProp) cProp.value = cp.proposal_message_text;
+      }
+
+      // Kakao
+      if (bundle.kakao_channel) {
+        const kHead = document.getElementById('pubKakaoHeadline');
+        if (kHead) kHead.value = bundle.kakao_channel.banner_headline;
+        const kBody = document.getElementById('pubKakaoBody');
+        if (kBody) kBody.value = bundle.kakao_channel.message_body;
+        const kBtn = document.getElementById('pubKakaoButtonLabel');
+        if (kBtn) kBtn.innerText = bundle.kakao_channel.action_button_label;
+      }
+    }
+
+    function switchModalTab(tabKey) {
+      activeModalTab = tabKey;
+      ['naver', 'instagram', 'creator', 'kakao'].forEach(t => {
+        const btn = document.getElementById('pubTabBtn_' + t);
+        if (btn) btn.classList.toggle('active', t === tabKey);
+        const panel = document.getElementById('pubTabPanel_' + t);
+        if (panel) panel.style.display = (t === tabKey) ? 'block' : 'none';
+      });
+    }
+
+    function copyCurrentModalText() {
+      if (!currentConsultingBundle) return;
+      let textToCopy = '';
+      if (activeModalTab === 'naver') {
+        textToCopy = currentConsultingBundle.naver_place.clipboard_text;
+      } else if (activeModalTab === 'instagram') {
+        textToCopy = currentConsultingBundle.instagram.clipboard_text;
+      } else if (activeModalTab === 'creator') {
+        textToCopy = currentConsultingBundle.creator_pitch.clipboard_text;
+      } else if (activeModalTab === 'kakao') {
+        textToCopy = currentConsultingBundle.kakao_channel.clipboard_text;
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          showToast('📋 [원클릭 복사 완료] 클립보드에 복사되었습니다! 네이버 플레이스나 인스타그램에 바로 붙여넣으세요.');
+        }).catch(() => {
+          showToast('클립보드 복사 실패 (권한 확인 필요)');
+        });
+      } else {
+        showToast('클립보드 복사가 지원되지 않는 환경입니다.');
+      }
+    }
+
+    async function markModalPublished() {
+      if (!currentAdviceId) return;
+      const chMap = { 'naver': 'NAVER_PLACE', 'instagram': 'INSTAGRAM', 'creator': 'CREATOR', 'kakao': 'KAKAO_CHANNEL' };
+      const selectedChannel = chMap[activeModalTab] || 'NAVER_PLACE';
+      try {
+        await apiFetch('/api/v1/consulting/mark-published', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            tenant_id: currentTenantId,
+            advice_id: currentAdviceId,
+            channels: [selectedChannel]
+          })
+        });
+        showToast(`🚀 [발행 완료] '${selectedChannel}' 채널에 배포 및 실시간 원장 등록이 완료되었습니다!`);
+        closePublishingModal();
+        loadPublishingHistory(currentTenantId);
+      } catch (e) {
+        console.error('Mark published error:', e);
+        showToast('발행 처리 중 오류가 발생했습니다.');
+      }
+    }
+
+    async function loadPublishingHistory(tenantId) {
+      try {
+        const history = await apiFetch(`/api/v1/consulting/publishing-history/${tenantId}`);
+        renderPublishingHistory(history);
+      } catch (e) {
+        console.warn('Publishing history fetch error:', e);
+      }
+    }
+
+    function renderPublishingHistory(records) {
+      const listEl = document.getElementById('publicationHistoryList');
+      if (!listEl) return;
+      if (!records || records.length === 0) {
+        listEl.innerHTML = '<div style="color:#64748B; font-size:12px; padding:12px; text-align:center;">아직 발행된 마케팅 이력이 없습니다.</div>';
+        return;
+      }
+      listEl.innerHTML = records.map(r => `
+        <div style="background: #090D18; border: 1px solid #1E293B; border-radius: 12px; padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="font-size: 11px; font-weight: 800; background: rgba(99,102,241,0.15); color: #818CF8; border: 1px solid rgba(99,102,241,0.3); padding: 3px 8px; border-radius: 6px;">
+              ${r.channel_korean || r.channel}
+            </span>
+            <div>
+              <div style="font-size: 13px; font-weight: 800; color: #FFFFFF;">${r.headline}</div>
+              <div style="font-size: 11px; color: #64748B; margin-top: 2px;">
+                ${r.trigger_type} · ${r.published_at}
+              </div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="font-size: 11px; background: rgba(16,185,129,0.15); color: #10B981; font-weight: 800; padding: 3px 8px; border-radius: 999px;">
+              ● 발행 정상 가동
+            </span>
+            <span style="font-size: 13px; font-weight: 900; color: #34D399;">
+              +₩${r.attributed_revenue_gain_krw.toLocaleString()}
+            </span>
+          </div>
+        </div>
+      `).join('');
     }
 
     /* View Mode Switching */
@@ -3604,6 +4332,8 @@
         updateSimpleViewForTenant(currentTenantData);
         updateServiceMatrixForTenant(currentTenantData.tenant);
         updateOnboardingForTenant(currentTenantData.tenant);
+        loadConsultingDesk(tenantId);
+        loadPublishingHistory(tenantId);
         const domMap = { 'fnb': 'FNB', 'medical': 'MEDICAL', 'beauty': 'BEAUTY', 'saas': 'SAAS', 'manufacturing': 'MANUFACTURING' };
         if (domMap[currentTenantData.tenant.domain]) setCalcCategory(domMap[currentTenantData.tenant.domain]);
         if (currentMode === 'creator') triggerCreatorWorkflow();
