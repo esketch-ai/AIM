@@ -8,23 +8,23 @@
   <link rel="stylesheet" href="docs/design/tokens.css" />
   <style>
     :root {
-      /* Calm Ergonomic Dark System (눈이 편안한 인체공학적 다크 테마) */
-      --bg: #121417;        /* Deep Charcoal Slate (트루 블랙 배제, 빛 번짐/Halation 완화) */
-      --panel: #161A20;     /* Intermediate Panel Container */
-      --card: #1C2026;      /* Surface / Card: 1단계 컨테이너 (Muted Charcoal) */
+      /* Toss Signature Blue & Deep Slate (토스 시그니처 블루 & 딥 슬레이트 테마) */
+      --bg: #0B0F19;        /* Deep Obsidian Slate Canvas (신뢰감 넘치는 딥 슬레이트) */
+      --panel: #111827;     /* Intermediate Panel Container */
+      --card: #161F30;      /* Surface / Card: Clean Bento Container */
       --card-border: rgba(255, 255, 255, 0.08); /* 1px 은은한 반투명 경계선 */
-      --card-elevated: #262B33; /* Surface Elevated: 2단계 컨테이너 */
-      --border-focus: #D96B27; /* Muted Terracotta Focus */
-      --primary: #D96B27;   /* Muted Terracotta Orange (채도 낮춘 웜 액센트) */
-      --primary-hover: #C25B1D;
-      --success: #4E9F86;   /* Soft Sage Green (안정감 있는 성공/실측 사실) */
-      --success-glow: rgba(78, 159, 134, 0.22);
-      --warning: #E5A84B;   /* Muted Amber */
-      --danger: #E05D5D;    /* Soft Muted Coral Red */
-      --text-main: #E6E8EC; /* Off-White Soft Pearl (순백색 #FFFFFF 눈부심 배제) */
-      --text-muted: #9CA3AF; /* Muted Cool Grey */
-      --accent: #8B7ED8;   /* Calm Purple */
-      --cyan: #4EA3B8;     /* Calm Cyan */
+      --card-elevated: #1E293B; /* Surface Elevated: 2단계 컨테이너 */
+      --border-focus: #3182F6; /* Toss Electric Blue Focus */
+      --primary: #3182F6;   /* Toss Signature Electric Blue (1-Click 주요 CTA 및 브랜드) */
+      --primary-hover: #1B64DA;
+      --success: #00C48C;   /* Toss Mint / Emerald (실측 매출 및 ROI 지표) */
+      --success-glow: rgba(0, 196, 140, 0.28);
+      --warning: #F59E0B;   /* Vibrant Amber */
+      --danger: #EF4444;    /* Vibrant Coral Red */
+      --text-main: #FFFFFF; /* Crisp Pure White (또렷한 가독성) */
+      --text-muted: #94A3B8; /* Cool Slate Grey */
+      --accent: #8B5CF6;   /* Modern Purple */
+      --cyan: #06B6D4;     /* Electric Cyan */
     }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     body { background-color: var(--bg); color: var(--text-main); min-height: 100vh; padding: 16px 20px 40px; }
@@ -48,14 +48,14 @@
     }
     .brand-title { display: flex; align-items: center; gap: 12px; }
     .brand-logo-badge {
-      background: linear-gradient(135deg, #D96B27 0%, #C25B1D 100%);
+      background: linear-gradient(135deg, #3182F6 0%, #1B64DA 100%);
       color: #FFF;
       font-weight: 900;
       font-size: 15px;
       padding: 8px 14px;
       border-radius: 10px;
       letter-spacing: 0.5px;
-      box-shadow: 0 0 20px rgba(217, 107, 39, 0.35);
+      box-shadow: 0 0 20px rgba(49, 130, 246, 0.4);
     }
     .brand-text h1 { font-size: 20px; font-weight: 800; color: #FFF; letter-spacing: -0.3px; }
     .brand-text p { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
@@ -73,7 +73,7 @@
       gap: 6px;
       color: var(--text-main);
     }
-    .pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: #4E9F86; box-shadow: 0 0 8px #4E9F86; animation: pulse 2s infinite; }
+    .pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: #00C48C; box-shadow: 0 0 8px #00C48C; animation: pulse 2s infinite; }
     @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; transform: scale(1.1); } 100% { opacity: 0.5; } }
 
     /* View Mode & Tenant Selector Bar */
@@ -112,7 +112,7 @@
     .mode-tab-btn.active {
       background: var(--primary);
       color: #FFF;
-      box-shadow: 0 4px 14px rgba(217, 107, 39, 0.4);
+      box-shadow: 0 4px 14px rgba(49, 130, 246, 0.4);
     }
 
     .tenant-quick-bar {
@@ -135,11 +135,11 @@
     }
     .tenant-quick-btn:hover { border-color: var(--primary); color: #FFF; }
     .tenant-quick-btn.active {
-      background: rgba(217, 107, 39, 0.18);
+      background: rgba(49, 130, 246, 0.18);
       border-color: var(--primary);
       color: var(--primary);
       font-weight: 800;
-      box-shadow: 0 0 10px rgba(217, 107, 39, 0.3);
+      box-shadow: 0 0 10px rgba(49, 130, 246, 0.3);
     }
     .simple-tenant-btn {
       background: var(--card);
@@ -163,7 +163,7 @@
       border-color: var(--primary-hover);
       color: #FFFFFF;
       font-weight: 900;
-      box-shadow: 0 0 12px rgba(217, 107, 39, 0.4);
+      box-shadow: 0 0 12px rgba(49, 130, 246, 0.4);
     }
     .pub-tab-btn {
       background: transparent;
@@ -203,7 +203,7 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(217, 107, 39, 0.15);
+      background: rgba(49, 130, 246, 0.15);
       border: 1px solid var(--primary);
       color: var(--primary);
       padding: 6px 16px;
@@ -243,7 +243,7 @@
       font-size: 13px;
       font-weight: 800;
       cursor: pointer;
-      box-shadow: 0 4px 20px rgba(217, 107, 39, 0.4);
+      box-shadow: 0 4px 20px rgba(49, 130, 246, 0.4);
       transition: all 0.2s;
     }
     .btn-hero-primary:hover { transform: translateY(-2px); filter: brightness(1.1); }
@@ -299,7 +299,7 @@
     .benefit-title { font-size: 16px; font-weight: 800; color: #FFF; margin-bottom: 8px; }
     .benefit-desc { font-size: 12px; color: var(--text-muted); line-height: 1.6; margin-bottom: 14px; }
     .benefit-outcome {
-      background: rgba(78, 159, 134, 0.12);
+      background: rgba(0, 196, 140, 0.12);
       border: 1px solid var(--success);
       border-radius: 8px;
       padding: 8px 12px;
@@ -329,7 +329,7 @@
     .pricing-card.featured {
       border: 2px solid var(--primary);
       background: var(--card-elevated);
-      box-shadow: 0 8px 30px rgba(217, 107, 39, 0.25);
+      box-shadow: 0 8px 30px rgba(49, 130, 246, 0.25);
     }
     .pricing-featured-badge {
       position: absolute;
@@ -408,8 +408,8 @@
     .step-body { flex: 1; }
     .step-header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
     .step-title { font-size: 15px; font-weight: 800; color: #FFF; }
-    .step-badge-done { background: rgba(78, 159, 134, 0.15); color: var(--success); padding: 3px 8px; border-radius: 999px; font-size: 10px; font-weight: 800; }
-    .step-badge-active { background: rgba(217, 107, 39, 0.15); color: var(--primary); padding: 3px 8px; border-radius: 999px; font-size: 10px; font-weight: 800; }
+    .step-badge-done { background: rgba(0, 196, 140, 0.15); color: var(--success); padding: 3px 8px; border-radius: 999px; font-size: 10px; font-weight: 800; }
+    .step-badge-active { background: rgba(49, 130, 246, 0.15); color: var(--primary); padding: 3px 8px; border-radius: 999px; font-size: 10px; font-weight: 800; }
     .step-badge-pending { background: rgba(229, 168, 75, 0.15); color: var(--warning); padding: 3px 8px; border-radius: 999px; font-size: 10px; font-weight: 800; }
 
     /* Tenant Cockpit 2-Column Grid */
@@ -727,14 +727,14 @@
         </div>
       </div>
       <div style="display: flex; align-items: center; gap: 8px;">
-        <div style="display: flex; gap: 4px; background: #1C2026; padding: 4px; border-radius: 10px; border: 1.5px solid rgba(255, 255, 255, 0.08);">
-          <button id="btnModeSimple" onclick="toggleUIMode('simple')" style="padding: 7px 16px; font-size: 13px; font-weight: 800; border-radius: 7px; border: none; cursor: pointer; background: #D96B27; color: #FFFFFF; transition: all 0.2s;">
+        <div style="display: flex; gap: 4px; background: var(--card); padding: 4px; border-radius: 10px; border: 1.5px solid var(--card-border);">
+          <button id="btnModeSimple" onclick="toggleUIMode('simple')" style="padding: 7px 16px; font-size: 13px; font-weight: 800; border-radius: 7px; border: none; cursor: pointer; background: var(--primary); color: #FFFFFF; transition: all 0.2s;">
             ✨ 심플 모드
           </button>
-          <button id="btnModeMobile" onclick="toggleUIMode('mobile')" style="padding: 7px 16px; font-size: 13px; font-weight: 700; border-radius: 7px; border: none; cursor: pointer; background: transparent; color: #9CA3AF; transition: all 0.2s;">
+          <button id="btnModeMobile" onclick="toggleUIMode('mobile')" style="padding: 7px 16px; font-size: 13px; font-weight: 700; border-radius: 7px; border: none; cursor: pointer; background: transparent; color: var(--text-muted); transition: all 0.2s;">
             📱 390px 모바일 콕핏
           </button>
-          <button id="btnModeAdvanced" onclick="toggleUIMode('advanced')" style="padding: 7px 16px; font-size: 13px; font-weight: 700; border-radius: 7px; border: none; cursor: pointer; background: transparent; color: #9CA3AF; transition: all 0.2s;">
+          <button id="btnModeAdvanced" onclick="toggleUIMode('advanced')" style="padding: 7px 16px; font-size: 13px; font-weight: 700; border-radius: 7px; border: none; cursor: pointer; background: transparent; color: var(--text-muted); transition: all 0.2s;">
             📊 전문가 모드
           </button>
         </div>
@@ -748,7 +748,7 @@
       
       <!-- Industry / Tenant Switcher Bar for Clean Mode -->
       <div style="margin-bottom: 20px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-        <span style="font-size: 12px; font-weight: 800; color: #D96B27;">🏢 내 사업장 업종 선택:</span>
+        <span style="font-size: 12px; font-weight: 800; color: var(--primary);">🏢 내 사업장 업종 선택:</span>
         <button id="sBtn_TENANT_001" class="simple-tenant-btn active" onclick="switchTenant('TENANT_001')">🥐 F&B 외식 (성수 베이커리)</button>
         <button id="sBtn_TENANT_002" class="simple-tenant-btn" onclick="switchTenant('TENANT_002')">🏥 의료 병원 (강남 리엔 피부과)</button>
         <button id="sBtn_TENANT_003" class="simple-tenant-btn" onclick="switchTenant('TENANT_003')">✂️ 뷰티 살롱 (청담 헤어살롱)</button>
@@ -757,21 +757,21 @@
       </div>
 
       <!-- Domain Conquest Strategy Banner (1차 로컬 F&B 외식·카페 완전 정복 전략) -->
-      <div style="background: linear-gradient(135deg, rgba(38, 43, 51, 0.95) 0%, rgba(28, 32, 38, 0.9) 100%); border: 1.5px solid #D96B27; border-radius: 14px; padding: 14px 18px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; box-shadow: 0 4px 20px rgba(217,107,39,0.18);">
+      <div style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(22, 31, 48, 0.9) 100%); border: 1.5px solid var(--primary); border-radius: 14px; padding: 14px 18px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; box-shadow: 0 4px 20px rgba(49, 130, 246, 0.2);">
         <div style="display: flex; align-items: center; gap: 12px;">
           <span style="font-size: 26px;">🎯</span>
           <div>
             <div style="font-size: 14px; font-weight: 900; color: #FFFFFF; display: flex; align-items: center; gap: 8px;">
-              <span>[도메인 정복 전략] 1차 플래그십: <strong style="color: #FAD17E;">로컬 F&B 외식·카페</strong> 100% 완전 정복</span>
-              <span style="font-size: 11px; background: #4E9F86; color: #FFFFFF; padding: 2px 8px; border-radius: 999px; font-weight: 800;">플래그십 가동 중</span>
+              <span>[도메인 정복 전략] 1차 플래그십: <strong style="color: #60A5FA;">로컬 F&B 외식·카페</strong> 100% 완전 정복</span>
+              <span style="font-size: 11px; background: var(--success); color: #FFFFFF; padding: 2px 8px; border-radius: 999px; font-weight: 800;">플래그십 가동 중</span>
             </div>
-            <div style="font-size: 12px; color: #E6E8EC; margin-top: 2px;">
+            <div style="font-size: 12px; color: var(--text-main); margin-top: 2px;">
               모든 업종을 한 번에 다 하지 않고, <strong>가장 절박한 로컬 외식·소상공인 분야부터 완벽히 해결</strong>한 후 의료·뷰티·B2B로 순차 확장합니다.
             </div>
           </div>
         </div>
-        <div style="display: flex; gap: 6px; font-size: 11px; color: #9CA3AF;">
-          <span style="background: rgba(217,107,39,0.2); color: #F0A06D; border: 1px solid #D96B27; padding: 4px 10px; border-radius: 6px; font-weight: 800;">1단계: F&B 외식 (집중 정복)</span>
+        <div style="display: flex; gap: 6px; font-size: 11px; color: var(--text-muted);">
+          <span style="background: rgba(49, 130, 246, 0.2); color: #93C5FD; border: 1px solid var(--primary); padding: 4px 10px; border-radius: 6px; font-weight: 800;">1단계: F&B 외식 (집중 정복)</span>
           <span style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 6px;">2단계: 의료·병원 ➔</span>
           <span style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 6px;">3단계: 뷰티·살롱 ➔</span>
         </div>
@@ -794,7 +794,7 @@
       </div>
 
       <!-- AIM 3-Step Autonomous Closed-Loop Flywheel Master Banner -->
-      <div style="background: linear-gradient(135deg, rgba(28, 32, 38, 0.95) 0%, rgba(38, 43, 51, 0.9) 100%); border: 2px solid #D96B27; border-radius: 18px; padding: 18px 22px; margin-bottom: 24px; box-shadow: 0 8px 30px rgba(217,107,39,0.2);">
+      <div style="background: linear-gradient(135deg, rgba(22, 31, 48, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%); border: 2px solid var(--primary); border-radius: 18px; padding: 18px 22px; margin-bottom: 24px; box-shadow: 0 8px 30px rgba(49, 130, 246, 0.2);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px;">
           <div style="display: flex; align-items: center; gap: 10px;">
             <span style="font-size: 24px;">🔄</span>
@@ -802,33 +802,33 @@
               <div style="font-size: 15px; font-weight: 900; color: #FFFFFF;">
                 AIM 3단계 자율 선순환 (3-Step Closed-Loop Flywheel)
               </div>
-              <div style="font-size: 12px; color: #F0A06D; margin-top: 2px;">
+              <div style="font-size: 12px; color: #93C5FD; margin-top: 2px;">
                 복잡한 글과 메뉴 없이: <strong>1) AI 상황 진단 제시 ➔ 2) 사장님 선택 & 업무 자동화 게시 ➔ 3) 실시간 결과 확인 & 매출 증명</strong>
               </div>
             </div>
           </div>
-          <span style="font-size: 11px; background: rgba(78,159,134,0.2); color: #4E9F86; border: 1px solid #4E9F86; padding: 4px 12px; border-radius: 999px; font-weight: 800;">
+          <span style="font-size: 11px; background: rgba(0, 196, 140, 0.2); color: var(--success); border: 1px solid var(--success); padding: 4px 12px; border-radius: 999px; font-weight: 800;">
             ● 24시간 실시간 자율 선순환
           </span>
         </div>
         <!-- 3-Step Indicator Bar -->
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
-          <a href="#step1ProposeSection" style="text-decoration: none; background: rgba(217,107,39,0.18); border: 1.5px solid #D96B27; border-radius: 12px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; transition: transform 0.15s;">
-            <span style="background: #D96B27; color: #FFFFFF; font-weight: 900; font-size: 13px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</span>
+          <a href="#step1ProposeSection" style="text-decoration: none; background: rgba(49, 130, 246, 0.18); border: 1.5px solid var(--primary); border-radius: 12px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; transition: transform 0.15s;">
+            <span style="background: var(--primary); color: #FFFFFF; font-weight: 900; font-size: 13px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</span>
             <div>
               <div style="font-size: 12px; font-weight: 900; color: #FFFFFF;">AI 진단 & 할 일 제시</div>
-              <div style="font-size: 10px; color: #F0A06D;">4대 인프라 센싱 + 처방 4선</div>
+              <div style="font-size: 10px; color: #93C5FD;">4대 인프라 센싱 + 처방 4선</div>
             </div>
           </a>
-          <div onclick="openPublishingModal(currentAdviceId || 'ADV_TENANT_001_WEATHER')" style="cursor: pointer; background: rgba(78,159,134,0.18); border: 1.5px solid #4E9F86; border-radius: 12px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; transition: transform 0.15s;">
-            <span style="background: #4E9F86; color: #FFFFFF; font-weight: 900; font-size: 13px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</span>
+          <div onclick="openPublishingModal(currentAdviceId || 'ADV_TENANT_001_WEATHER')" style="cursor: pointer; background: rgba(0, 196, 140, 0.18); border: 1.5px solid var(--success); border-radius: 12px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; transition: transform 0.15s;">
+            <span style="background: var(--success); color: #FFFFFF; font-weight: 900; font-size: 13px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</span>
             <div>
               <div style="font-size: 12px; font-weight: 900; color: #FFFFFF;">사장님 선택 & 자동 게시</div>
               <div style="font-size: 10px; color: #A7F3D0;">네이버·인스타·크리에이터</div>
             </div>
           </div>
-          <a href="#step3ResultsSection" style="text-decoration: none; background: rgba(78,163,184,0.18); border: 1.5px solid #4EA3B8; border-radius: 12px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; transition: transform 0.15s;">
-            <span style="background: #4EA3B8; color: #121417; font-weight: 900; font-size: 13px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</span>
+          <a href="#step3ResultsSection" style="text-decoration: none; background: rgba(6, 182, 212, 0.18); border: 1.5px solid var(--cyan); border-radius: 12px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; transition: transform 0.15s;">
+            <span style="background: var(--cyan); color: #0B0F19; font-weight: 900; font-size: 13px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</span>
             <div>
               <div style="font-size: 12px; font-weight: 900; color: #FFFFFF;">실시간 결과 & 매출 증명</div>
               <div style="font-size: 10px; color: #BAE6FD;">POS 실측 결제 + 성과 원장</div>
@@ -842,9 +842,9 @@
       <!-- ======================================================== -->
       <div id="step1ProposeSection" style="margin-bottom: 28px;">
         <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-          <span style="background: #D96B27; color: #FFFFFF; font-weight: 900; font-size: 13px; padding: 4px 12px; border-radius: 8px;">STEP 1</span>
+          <span style="background: var(--primary); color: #FFFFFF; font-weight: 900; font-size: 13px; padding: 4px 12px; border-radius: 8px;">STEP 1</span>
           <h3 style="font-size: 18px; font-weight: 900; color: #FFFFFF; margin: 0;">AI 상황 진단 & 오늘의 할 일 제시</h3>
-          <span style="font-size: 11px; color: #F0A06D; margin-left: auto;">인프라 센싱 ➔ 무료 처방 4선</span>
+          <span style="font-size: 11px; color: #93C5FD; margin-left: auto;">인프라 센싱 ➔ 무료 처방 4선</span>
         </div>
 
         <!-- 4-Pillar Environmental Infrastructure Live Sensing Bar -->
@@ -857,12 +857,12 @@
                 <h3 style="font-size: 15px; font-weight: 900; color: var(--text-main);">4대 마케팅 환경 인프라 실시간 센싱 (날씨 · 상권 · 기념일 · 축제)</h3>
               </div>
             </div>
-            <span style="font-size: 11px; color: var(--success); background: rgba(78,159,134,0.15); border: 1px solid var(--success); padding: 4px 10px; border-radius: 999px; font-weight: 800;">● 24시간 실시간 인프라 동기화 중</span>
+            <span style="font-size: 11px; color: var(--success); background: rgba(0,196,140,0.15); border: 1px solid var(--success); padding: 4px 10px; border-radius: 999px; font-weight: 800;">● 24시간 실시간 인프라 동기화 중</span>
           </div>
 
           <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;">
             <!-- Infra 1: Weather -->
-            <div id="infraWeatherCard" style="background: var(--card); border: 1.5px solid var(--cyan); border-radius: 14px; padding: 14px; box-shadow: 0 4px 14px rgba(78,163,184,0.12);">
+            <div id="infraWeatherCard" style="background: var(--card); border: 1.5px solid var(--cyan); border-radius: 14px; padding: 14px; box-shadow: 0 4px 14px rgba(6,182,212,0.12);">
               <div style="font-size: 11px; color: var(--cyan); font-weight: 800; margin-bottom: 4px; display: flex; align-items: center; gap: 4px;"><span>🌦️</span> <span>날씨/기상 인프라</span></div>
               <div id="infraWeatherVal" style="font-size: 14px; font-weight: 900; color: var(--text-main); margin-bottom: 4px;">🌧️ 비 내림 (5.2mm)</div>
               <div id="infraWeatherSub" style="font-size: 11px; color: var(--text-muted); line-height: 1.4;">실내 아늑 소비 탄력도 +35% 급증</div>
@@ -892,7 +892,7 @@
         </div>
 
         <!-- 1. Hero 1-Action Card (오늘 내가 할 일) -->
-        <div style="background: linear-gradient(135deg, var(--card) 0%, var(--card-elevated) 100%); border: 2px solid var(--primary); border-radius: 20px; padding: 26px 28px; margin-bottom: 24px; box-shadow: 0 10px 32px rgba(217,107,39,0.25); text-align: center;">
+        <div style="background: linear-gradient(135deg, var(--card) 0%, var(--card-elevated) 100%); border: 2px solid var(--primary); border-radius: 20px; padding: 26px 28px; margin-bottom: 24px; box-shadow: 0 10px 32px rgba(49, 130, 246, 0.25); text-align: center;">
           
           <!-- Visual Hero Graphic Banner -->
           <div style="width: 100%; border-radius: 14px; overflow: hidden; margin-bottom: 18px; box-shadow: 0 8px 25px rgba(0,0,0,0.4); border: 1.5px solid var(--card-border);">
@@ -910,7 +910,7 @@
           </p>
 
           <!-- Big Primary CTA Button -->
-          <button onclick="triggerMerchantQuickApprove()" style="width: 100%; max-width: 540px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%); color: #FFFFFF; font-size: 18px; font-weight: 900; border: none; padding: 19px 32px; border-radius: 16px; cursor: pointer; box-shadow: 0 8px 25px rgba(217,107,39,0.45); display: inline-flex; align-items: center; justify-content: center; gap: 12px; transition: transform 0.1s;">
+          <button onclick="triggerMerchantQuickApprove()" style="width: 100%; max-width: 540px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%); color: #FFFFFF; font-size: 18px; font-weight: 900; border: none; padding: 19px 32px; border-radius: 16px; cursor: pointer; box-shadow: 0 8px 25px rgba(49, 130, 246, 0.45); display: inline-flex; align-items: center; justify-content: center; gap: 12px; transition: transform 0.1s;">
             <span id="simpleHeroBtnText">⚡ 1초 만에 3대 채널 동시 발송</span>
             <span id="simpleHeroBtnSub" style="font-size: 13px; background: rgba(0,0,0,0.25); padding: 4px 10px; border-radius: 8px;">예상 순이익 +21만 원 ➔</span>
           </button>
@@ -946,7 +946,7 @@
       <!-- ======================================================== -->
       <!-- STEP 2 Bridge Card: 사장님 선택 & 업무 자동화 게시 -->
       <!-- ======================================================== -->
-      <div id="step2PublishBridge" style="background: rgba(78, 159, 134, 0.1); border: 1.5px dashed var(--success); border-radius: 16px; padding: 18px 22px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+      <div id="step2PublishBridge" style="background: rgba(0, 196, 140, 0.1); border: 1.5px dashed var(--success); border-radius: 16px; padding: 18px 22px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
         <div style="display: flex; align-items: center; gap: 12px;">
           <span style="background: var(--success); color: #FFFFFF; font-weight: 900; font-size: 13px; padding: 4px 12px; border-radius: 8px;">STEP 2</span>
           <div>
@@ -956,7 +956,7 @@
             </p>
           </div>
         </div>
-        <button onclick="openPublishingModal(currentAdviceId || 'ADV_TENANT_001_WEATHER')" style="background: var(--success); color: #FFFFFF; font-size: 13px; font-weight: 900; border: none; padding: 11px 20px; border-radius: 10px; cursor: pointer; box-shadow: 0 4px 15px rgba(78,159,134,0.35); display: flex; align-items: center; gap: 6px;">
+        <button onclick="openPublishingModal(currentAdviceId || 'ADV_TENANT_001_WEATHER')" style="background: var(--success); color: #FFFFFF; font-size: 13px; font-weight: 900; border: none; padding: 11px 20px; border-radius: 10px; cursor: pointer; box-shadow: 0 4px 15px rgba(0, 196, 140, 0.35); display: flex; align-items: center; gap: 6px;">
           <span>⚡ 2단계 자동 생성·게시 데스크 열기 ➔</span>
         </button>
       </div>
@@ -1025,15 +1025,15 @@
 
         <!-- 3. Clean 3-Number Metric Row (내가 얻는 효과) -->
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 24px;">
-          <div style="background: var(--card); border: 1.5px solid var(--cyan); border-radius: 18px; padding: 22px 18px; text-align: center; box-shadow: 0 4px 20px rgba(78,163,184,0.12);">
+          <div style="background: var(--card); border: 1.5px solid var(--cyan); border-radius: 18px; padding: 22px 18px; text-align: center; box-shadow: 0 4px 20px rgba(6,182,212,0.12);">
             <div style="display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 13px; color: var(--text-muted); font-weight: 800; margin-bottom: 8px;">
               <span>💰</span> <span>오늘 유발 매출</span>
             </div>
             <div id="simpleAttributedRev" style="font-size: 32px; font-weight: 900; color: var(--cyan); letter-spacing: -0.5px; font-variant-numeric: tabular-nums;">₩240,000</div>
-            <div style="font-size: 11px; color: var(--cyan); background: rgba(78,163,184,0.12); padding: 3px 8px; border-radius: 999px; display: inline-block; margin-top: 6px; font-weight: 800;">실시간 매출 귀속 기준</div>
+            <div style="font-size: 11px; color: var(--cyan); background: rgba(6,182,212,0.12); padding: 3px 8px; border-radius: 999px; display: inline-block; margin-top: 6px; font-weight: 800;">실시간 매출 귀속 기준</div>
           </div>
 
-          <div style="background: var(--card); border: 2px solid var(--success); border-radius: 18px; padding: 22px 18px; text-align: center; box-shadow: 0 8px 25px rgba(78,159,134,0.2);">
+          <div style="background: var(--card); border: 2px solid var(--success); border-radius: 18px; padding: 22px 18px; text-align: center; box-shadow: 0 8px 25px rgba(0,196,140,0.2);">
             <div style="display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 13px; color: var(--success); font-weight: 800; margin-bottom: 8px;">
               <span>📈</span> <span>이번 달 순이익 창출</span>
             </div>
@@ -1041,12 +1041,12 @@
             <div style="font-size: 11px; color: var(--warning); background: rgba(229,168,75,0.15); padding: 3px 10px; border-radius: 999px; display: inline-block; margin-top: 6px; font-weight: 900;">ROI 가치 입증 완료</div>
           </div>
 
-          <div style="background: var(--card); border: 1.5px solid var(--primary); border-radius: 18px; padding: 22px 18px; text-align: center; box-shadow: 0 4px 20px rgba(217,107,39,0.15);">
+          <div style="background: var(--card); border: 1.5px solid var(--primary); border-radius: 18px; padding: 22px 18px; text-align: center; box-shadow: 0 4px 20px rgba(49,130,246,0.15);">
             <div style="display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 13px; color: var(--primary); font-weight: 800; margin-bottom: 8px;">
               <span>👥</span> <span>방문·전환 고객</span>
             </div>
             <div id="simpleCustomerCount" style="font-size: 32px; font-weight: 900; color: var(--primary); letter-spacing: -0.5px; font-variant-numeric: tabular-nums;">14명</div>
-            <div style="font-size: 11px; color: var(--primary); background: rgba(217,107,39,0.15); padding: 3px 8px; border-radius: 999px; display: inline-block; margin-top: 6px; font-weight: 800;">실제 행동 유발 지표</div>
+            <div style="font-size: 11px; color: var(--primary); background: rgba(49,130,246,0.15); padding: 3px 8px; border-radius: 999px; display: inline-block; margin-top: 6px; font-weight: 800;">실제 행동 유발 지표</div>
           </div>
         </div>
 
@@ -1076,7 +1076,7 @@
               <button onclick="window.open('/c/AIM-SEONGSU-CR02-RAIN24K', '_blank')" style="background: var(--card-elevated); color: var(--text-main); font-size: 12px; font-weight: 800; border: 1px solid var(--card-border); padding: 11px 16px; border-radius: 8px; cursor: pointer;">
                 🔗 손님 화면 열기
               </button>
-              <button onclick="simulatePosRedeem('AIM-SEONGSU-CR02-RAIN24K')" style="background: var(--success); color: #FFFFFF; font-size: 12px; font-weight: 800; border: none; padding: 11px 18px; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 12px rgba(78,159,134,0.35);">
+              <button onclick="simulatePosRedeem('AIM-SEONGSU-CR02-RAIN24K')" style="background: var(--success); color: #FFFFFF; font-size: 12px; font-weight: 800; border: none; padding: 11px 18px; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,196,140,0.35);">
                 ⚡ POS 스캔 결제 체험 (+2.4만 원)
               </button>
             </div>
@@ -1098,7 +1098,7 @@
                 선택한 AI 처방이 네이버 플레이스·인스타그램·크리에이터 망에 배포 및 실행 관리되는 투명한 내역입니다.
               </p>
             </div>
-            <span style="font-size: 11px; color: var(--success); background: rgba(78,159,134,0.15); border: 1px solid var(--success); padding: 4px 10px; border-radius: 999px; font-weight: 800;">
+            <span style="font-size: 11px; color: var(--success); background: rgba(0,196,140,0.15); border: 1px solid var(--success); padding: 4px 10px; border-radius: 999px; font-weight: 800;">
               ● 실시간 연동 원장
             </span>
           </div>
@@ -2586,7 +2586,7 @@
               <span id="pubModalCategoryBadge" style="font-size: 11px; background: rgba(229,168,75,0.15); color: var(--warning); border: 1px solid var(--warning); padding: 3px 10px; border-radius: 999px; font-weight: 800;">
                 🌧️ 날씨/유휴 긴급 매출 방어
               </span>
-              <span id="pubModalComplianceBadge" style="font-size: 11px; background: rgba(78,159,134,0.15); color: var(--success); border: 1px solid var(--success); padding: 3px 10px; border-radius: 999px; font-weight: 800;">
+              <span id="pubModalComplianceBadge" style="font-size: 11px; background: rgba(0,196,140,0.15); color: var(--success); border: 1px solid var(--success); padding: 3px 10px; border-radius: 999px; font-weight: 800;">
                 ✅ 표시광고법·의료법 100% 사전 검수 완료 (안심)
               </span>
             </div>
@@ -2793,7 +2793,7 @@
             <button onclick="copyCurrentModalText()" style="background: var(--card-elevated); color: var(--text-main); border: 1px solid var(--card-border); font-size: 13px; font-weight: 800; padding: 10px 18px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; gap: 6px;">
               📋 현재 탭 내용 복사하기
             </button>
-            <button onclick="markModalPublished()" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%); color: #FFFFFF; border: none; font-size: 13px; font-weight: 900; padding: 10px 22px; border-radius: 10px; cursor: pointer; box-shadow: 0 4px 15px rgba(217,107,39,0.4); display: flex; align-items: center; gap: 6px;">
+            <button onclick="markModalPublished()" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%); color: #FFFFFF; border: none; font-size: 13px; font-weight: 900; padding: 10px 22px; border-radius: 10px; cursor: pointer; box-shadow: 0 4px 15px rgba(49,130,246,0.4); display: flex; align-items: center; gap: 6px;">
               🚀 채널 발행 및 3단계 결과 원장 기록
             </button>
           </div>
@@ -3943,18 +3943,18 @@
       if (advContainer) advContainer.style.display = (mode === 'advanced') ? 'block' : 'none';
 
       if (btnSimple) {
-        btnSimple.style.background = (mode === 'simple') ? '#D96B27' : 'transparent';
-        btnSimple.style.color = (mode === 'simple') ? '#FFFFFF' : '#9CA3AF';
+        btnSimple.style.background = (mode === 'simple') ? '#3182F6' : 'transparent';
+        btnSimple.style.color = (mode === 'simple') ? '#FFFFFF' : '#94A3B8';
         btnSimple.style.fontWeight = (mode === 'simple') ? '800' : '700';
       }
       if (btnMobile) {
-        btnMobile.style.background = isMobile ? '#D96B27' : 'transparent';
-        btnMobile.style.color = isMobile ? '#FFFFFF' : '#9CA3AF';
+        btnMobile.style.background = isMobile ? '#3182F6' : 'transparent';
+        btnMobile.style.color = isMobile ? '#FFFFFF' : '#94A3B8';
         btnMobile.style.fontWeight = isMobile ? '800' : '700';
       }
       if (btnAdv) {
-        btnAdv.style.background = (mode === 'advanced') ? '#D96B27' : 'transparent';
-        btnAdv.style.color = (mode === 'advanced') ? '#FFFFFF' : '#9CA3AF';
+        btnAdv.style.background = (mode === 'advanced') ? '#3182F6' : 'transparent';
+        btnAdv.style.color = (mode === 'advanced') ? '#FFFFFF' : '#94A3B8';
         btnAdv.style.fontWeight = (mode === 'advanced') ? '800' : '700';
       }
 
@@ -4035,12 +4035,12 @@
           <div style="position: relative; width: 100%; height: 130px; background: var(--bg); overflow: hidden; border-bottom: 1px solid var(--card-border);">
             <img src="${bannerImg}" alt="${p.category_korean}" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
             <div style="position: absolute; top: 10px; left: 10px; display: flex; gap: 6px;">
-              <span style="font-size: 11px; background: rgba(22, 26, 32, 0.9); backdrop-filter: blur(4px); color: var(--primary); border: 1px solid var(--primary); padding: 3px 8px; border-radius: 6px; font-weight: 800;">
+              <span style="font-size: 11px; background: rgba(22, 31, 48, 0.9); backdrop-filter: blur(4px); color: var(--primary); border: 1px solid var(--primary); padding: 3px 8px; border-radius: 6px; font-weight: 800;">
                 ${p.icon} ${p.category_korean}
               </span>
             </div>
             <div style="position: absolute; top: 10px; right: 10px;">
-              <span style="font-size: 11px; background: rgba(229, 168, 75, 0.95); color: #121417; padding: 3px 9px; border-radius: 6px; font-weight: 900; box-shadow: 0 2px 8px rgba(0,0,0,0.4);">
+              <span style="font-size: 11px; background: rgba(229, 168, 75, 0.95); color: #0B0F19; padding: 3px 9px; border-radius: 6px; font-weight: 900; box-shadow: 0 2px 8px rgba(0,0,0,0.4);">
                 ${p.urgency_badge}
               </span>
             </div>
@@ -4065,7 +4065,7 @@
                 <span style="font-size: 14px; font-weight: 900; color: var(--success); font-variant-numeric: tabular-nums;">+₩${p.expected_revenue_gain_krw.toLocaleString()}</span>
               </div>
               <div style="display: flex; gap: 8px;">
-                <button onclick="quickPublishPrescription('${p.advice_id}', '${p.primary_channel}', ${p.expected_revenue_gain_krw}, '${encodeURIComponent(p.headline)}')" style="flex: 1; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%); color: #FFFFFF; font-size: 13px; font-weight: 900; border: none; padding: 11px; border-radius: 10px; cursor: pointer; box-shadow: 0 4px 14px rgba(217, 107, 39, 0.35); display: flex; align-items: center; justify-content: center; gap: 4px; transition: transform 0.1s;">
+                <button onclick="quickPublishPrescription('${p.advice_id}', '${p.primary_channel}', ${p.expected_revenue_gain_krw}, '${encodeURIComponent(p.headline)}')" style="flex: 1; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%); color: #FFFFFF; font-size: 13px; font-weight: 900; border: none; padding: 11px; border-radius: 10px; cursor: pointer; box-shadow: 0 4px 14px rgba(49, 130, 246, 0.35); display: flex; align-items: center; justify-content: center; gap: 4px; transition: transform 0.1s;">
                   ⚡ 1클릭 즉시 발송
                 </button>
                 <button onclick="openPublishingModal('${p.advice_id}')" style="background: var(--card-elevated); border: 1px solid var(--card-border); color: var(--text-main); font-size: 12px; font-weight: 800; padding: 11px 13px; border-radius: 10px; cursor: pointer; transition: background 0.15s;" title="카피 문구 확인 및 세부 편집">
@@ -4304,7 +4304,7 @@
       listEl.innerHTML = records.map(r => `
         <div style="background: var(--card); border: 1px solid var(--card-border); border-radius: 12px; padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;">
           <div style="display: flex; align-items: center; gap: 12px;">
-            <span style="font-size: 11px; font-weight: 800; background: rgba(217,107,39,0.15); color: var(--primary); border: 1px solid var(--primary); padding: 3px 8px; border-radius: 6px;">
+            <span style="font-size: 11px; font-weight: 800; background: rgba(49,130,246,0.15); color: var(--primary); border: 1px solid var(--primary); padding: 3px 8px; border-radius: 6px;">
               ${r.channel_korean || r.channel}
             </span>
             <div>
@@ -4315,7 +4315,7 @@
             </div>
           </div>
           <div style="display: flex; align-items: center; gap: 12px;">
-            <span style="font-size: 11px; background: rgba(78,159,134,0.15); color: var(--success); font-weight: 800; padding: 3px 8px; border-radius: 999px;">
+            <span style="font-size: 11px; background: rgba(0,196,140,0.15); color: var(--success); font-weight: 800; padding: 3px 8px; border-radius: 999px;">
               ● 발행 정상 가동
             </span>
             <span style="font-size: 13px; font-weight: 900; color: var(--success); font-variant-numeric: tabular-nums;">

@@ -3,7 +3,7 @@
 > **문서 버전**: v1.0  
 > **수신**: 전문 UI/UX 디자인 에이전시 / 프로덕트 디자인팀  
 > **발신**: AIM (AI Platform Initiative) 총괄 기획 & 엔지니어링 팀  
-> **기준 테마**: Calm Ergonomic Dark System (2026 APCA 인체공학 테마)  
+> **기준 테마**: Toss Signature Blue & Deep Slate (토스 스타일 시그니처 블루 & 딥 슬레이트 테마)  
 > **목적**: 동네 자영업 사장님을 위한 1-Click 자율 운영 & 마케팅 인프라 플랫폼의 프로덕션 수준 모바일 앱/웹 및 어드민 UI/UX 디자인 의뢰  
 
 ---
@@ -50,12 +50,11 @@ AIM은 사장님이 공부하거나 고민할 필요가 없도록 **도시 인�
 4. **속도를 높여 주기를 단축하라**: 사장님이 스마트폰을 켜서 조언을 확인하고 실행하기까지 **3초~5초 이내**에 끝나야 합니다.
 5. **자동화하라**: 사장님이 디자인 툴을 만지거나 글을 타이핑하지 않도록, AI 생성 미리보기를 제시하고 승인 즉시 자동 배포합니다.
 
-### ② Calm Ergonomic Dark System (2026 APCA 인체공학 테마)
-- **Zero Halation & Zero Glare**: 순수 블랙(`#000000`)과 순수 화이트(`#FFFFFF`)를 완전히 배제하여, 어두운 매장 카운터나 야간 마감 시에도 눈이 부시지 않고 피로감이 없습니다.
-- **Deep Charcoal Slate Canvas**: 메인 배경은 깊고 편안한 딥 차콜 슬레이트(`rgb(18, 20, 23)` / `#121417`)를 사용합니다.
-- **Muted Terracotta Accent**: 눈을 찌르는 형광색 대신 차분하고 따뜻한 테라코타 오렌지(`rgb(217, 107, 39)` / `#D96B27`)를 메인 액션 및 브랜드 포인트로 사용합니다.
-- **Soft Sage Green Status**: 매출 상승 및 긍정 지표는 편안한 세이지 그린(`rgb(78, 159, 134)` / `#4E9F86`)으로 표현합니다.
-- **Off-white Soft Pearl Text**: 본문과 제목은 눈부심이 없는 부드러운 오프화이트(`rgb(230, 232, 236)` / `#E6E8EC`)와 뮤트 쿨 그레이(`rgb(156, 163, 175)` / `#9CA3AF`)를 적용합니다.
+### ② Toss Signature Blue & Deep Slate (토스 스타일 핀테크 표준 다크 테마)
+- **Extreme Visibility & High Trust**: 금융·핀테크 앱 수준의 최고 수준 신뢰감과 선명도를 제공하는 토스 시그니처 일렉트릭 블루(`rgb(49, 130, 246)` / `#3182F6`)를 메인 액션 및 1-Click CTA 버튼에 적용합니다.
+- **Deep Obsidian Slate Canvas**: 메인 배경은 깊이감 있고 세련된 딥 옵시디언 슬레이트(`rgb(11, 15, 25)` / `#0B0F19`) 및 벤토 카드 컨테이너(`rgb(22, 31, 48)` / `#161F30`)를 사용합니다.
+- **Toss Mint Status & Revenue**: 창출된 매출액 및 ROI 순이익은 시원하고 청량한 토스 민트(`rgb(0, 196, 140)` / `#00C48C`)로 시각적 직관성을 극대화합니다.
+- **Crisp Pure White & Cool Slate Text**: 복잡한 그래프나 텍스트 벽 없이 한눈에 들어오도록 선명한 순백색(`#FFFFFF`)과 쿨 슬레이트 그레이(`#94A3B8`)를 적용합니다.
 
 ---
 
@@ -81,7 +80,7 @@ AIM은 사장님이 공부하거나 고민할 필요가 없도록 **도시 인�
   - 상단: 오늘 날씨/상권 인프라 뱃지 ("오후 3시 비 예보 🌧️", "성수동 팝업 축제 주간 🎪")
   - 중앙 히어로 카드: **오늘의 1-Click 추천 조언** ("비 오는 날엔 얼큰 국물 파전 세트! 플레이스와 인스타에 지금 홍보할까요?")
   - 하단 요약 카드: **이번 주 번 돈 요약** ("AIM 자동 홍보로 +38만 원 더 벌었어요", 영수증 룩앤필)
-  - CTA 버튼: `[추천 내용 확인하기]` (눈에 띄는 Terracotta Button)
+  - CTA 버튼: `[추천 내용 확인하기]` (선명한 Toss Electric Blue Button)
 
 #### 2. [Screen 2] 1-Click 캠페인 확인 및 자동 배포 시트 (1-Click Approval Sheet)
 - **목적**: AI가 만든 홍보 콘텐츠를 검토하고 단 1번의 탭으로 배포.
@@ -141,28 +140,28 @@ AIM은 사장님이 공부하거나 고민할 필요가 없도록 **도시 인�
 
 ## 5. 디자인 시스템 및 기술 제약 조건 (Design Tokens & Constraints)
 
-### 5.1 색상 및 표면 토큰 (Calm Ergonomic Dark System)
+### 5.1 색상 및 표면 토큰 (Toss Signature Blue & Deep Slate)
 프로젝트에 이미 정의된 CSS 디자인 토큰([`docs/design/tokens.css`](tokens.css))을 100% 반영해 주셔야 합니다:
 
 ```css
 /* Surface Hierarchy */
---surface-canvas: #121417;        /* Deep Charcoal Slate (기본 캔버스) */
---surface-panel: #161A20;         /* 사이드바 & 상단 네비게이션 */
---surface-card: #1C2026;          /* Muted Charcoal Container (기본 카드) */
---surface-card-elevated: #262B33; /* 모달, 플로팅 시트, 호버 카드 */
+--surface-canvas: #0B0F19;        /* Deep Obsidian Slate (기본 캔버스) */
+--surface-panel: #111827;         /* 사이드바 & 상단 네비게이션 */
+--surface-card: #161F30;          /* Clean Bento Container (기본 카드) */
+--surface-card-elevated: #1E293B; /* 모달, 플로팅 시트, 호버 카드 */
 --surface-border: rgba(255, 255, 255, 0.08); /* 1px 미세 테두리 */
 
 /* Brand & Semantic Accents */
---color-primary: #D96B27;         /* Muted Terracotta Orange (주요 CTA 버튼, 브랜드 로고) */
---color-primary-hover: #C25B1D;   /* 버튼 호버/프레스 */
---color-success: #4E9F86;         /* Soft Sage Green (창출 매출, ROI 순이익, 성공 배지) */
---color-warning: #E5A84B;         /* Muted Amber (현안 트리거 알림, 주의) */
---color-danger: #E05D5D;          /* Soft Muted Coral Red (법률 위반 경고, 차단) */
+--color-primary: #3182F6;         /* Toss Signature Electric Blue (주요 CTA 버튼, 브랜드 로고) */
+--color-primary-hover: #1B64DA;   /* 버튼 호버/프레스 */
+--color-success: #00C48C;         /* Toss Mint / Emerald (창출 매출, ROI 순이익, 성공 배지) */
+--color-warning: #F59E0B;         /* Amber (현안 트리거 알림, 주의) */
+--color-danger: #EF4444;          /* Coral Red (법률 위반 경고, 차단) */
 
 /* Typography */
---text-primary: #E6E8EC;          /* Off-white Soft Pearl (눈부심 방지 본문 및 헤드라인) */
---text-secondary: #9CA3AF;        /* Muted Cool Grey (보조 텍스트, 설명) */
---text-muted: #6B7280;            /* 캡션, 메타 정보 */
+--text-primary: #FFFFFF;          /* Crisp Pure White (본문 및 헤드라인) */
+--text-secondary: #94A3B8;        /* Cool Slate Grey (보조 텍스트, 설명) */
+--text-muted: #64748B;            /* 캡션, 메타 정보 */
 ```
 
 ### 5.2 타이포그래피 & 숫자 규칙
@@ -183,11 +182,11 @@ AIM은 사장님이 공부하거나 고민할 필요가 없도록 **도시 인�
 디자인팀은 프로젝트 완료 시 아래 산출물을 Figma 및 관련 규격으로 전달해야 합니다:
 
 1. **Figma UI Kit & 디자인 시스템 라이브러리**:
-   - Color / Typography Styles (Calm Ergonomic Dark System 토큰 등록)
+   - Color / Typography Styles (Toss Signature Blue & Deep Slate 토큰 등록)
    - Components & Variants (Button, Card, Badge, Modal Sheet, Bottom Navigation 등)
    - Auto Layout 5.0 100% 적용 (반응형 대응)
 2. **화면별 UI 디자인 파일 (Light & Dark 대응)**:
-   - Primary: Dark Theme (Calm Ergonomic Dark System)
+   - Primary: Dark Theme (Toss Signature Blue & Deep Slate)
    - Secondary: Light Theme (대비되는 편안한 오프화이트/슬레이트 라이트 모드)
    - 모바일 화면 5종 (390px 폭 기준, iOS Safe Area 가이드 준수)
    - 데스크톱/태블릿 관리자 화면 3종 (1440px 폭 기준)

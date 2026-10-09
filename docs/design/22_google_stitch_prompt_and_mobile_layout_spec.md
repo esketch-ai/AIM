@@ -1,9 +1,9 @@
 # AIM — Google Stitch 프롬프트 팩 & 핵심 모바일 컴포넌트 레이아웃 명세서
 
 > **문서 번호**: 22  
-> **테마 표준**: Calm Ergonomic Dark System (2026 APCA 인체공학 테마)  
+> **테마 표준**: Toss Signature Blue & Deep Slate (토스 스타일 핀테크 표준 다크 테마)  
 > **대상 사용자**: 40~60대 골목상권 자영업 사장님 (요식업, 카페, 뷰티, 소매업)  
-> **디자인 목표**: 눈부심/피로감 제로, 3초 인지, 1-Click 의사결정 끝장 UI  
+> **디자인 목표**: 극도의 시인성과 신뢰도, 3초 인지, 1-Click 의사결정 끝장 UI  
 > **연관 파일**: [`tokens.css`](tokens.css), [`tokens.md`](tokens.md), [`21_design_brief_and_rfp.md`](21_design_brief_and_rfp.md)  
 
 ---
@@ -18,14 +18,14 @@ Google Stitch(`stitch.withgoogle.com`) 캔버스에 그대로 입력하여 고�
 Design a hyper-focused mobile screen (width: 390px) for a local small business owner (restaurant/cafe) called "AIM Daily Action Cockpit".
 
 [Design Theme & Visual Vibe]:
-- Calm Ergonomic Dark System (2026 APCA standard).
-- No pure black (#000000) and no pure white (#FFFFFF). Prevent halation and glare.
-- Main Canvas: Deep Charcoal Slate (#121417).
-- Containers & Cards: Muted Charcoal (#1C2026) with subtle border rgba(255, 255, 255, 0.08).
-- Primary Accent & CTA: Muted Terracotta Orange (#D96B27, hover #C25B1D).
-- Success & Revenue Accent: Soft Sage Green (#4E9F86).
-- Warning & Trigger Badge: Muted Amber (#E5A84B).
-- Typography: Pretendard, Off-white Pearl text (#E6E8EC) for headlines, Muted Cool Grey (#9CA3AF) for subtext. Tabular numbers enabled.
+- Toss Signature Blue & Deep Slate (Fintech high-trust standard).
+- Main Canvas: Deep Obsidian Slate (#0B0F19).
+- Containers & Cards: Clean Bento Container (#161F30) with subtle border rgba(255, 255, 255, 0.08).
+- Elevated Container: #1E293B.
+- Primary Accent & CTA: Toss Electric Blue (#3182F6, hover #1B64DA).
+- Success & Revenue Accent: Toss Mint / Emerald (#00C48C).
+- Warning & Trigger Badge: Vibrant Amber (#F59E0B).
+- Typography: Pretendard, Pure White text (#FFFFFF) for headlines, Cool Slate Grey (#94A3B8) for subtext. Tabular numbers enabled.
 - Grid: 8pt Bento Grid system, card corner radius 16px, button radius 12px. Minimum touch target 48x48px.
 
 [Header Section]:
@@ -38,12 +38,12 @@ Design a hyper-focused mobile screen (width: 390px) for a local small business o
 - Top badge: "💡 오늘 AI 추천 행동 (단 1개)"
 - Big Bold Headline (20px, Off-white): "비 오는 오후 3시, '해물파전 + 막걸리 세트' 네이버·인스타에 홍보할까요?"
 - Rationale callout (14px, Grey): "비 올 때 전 메뉴 검색량 3.8배 상승 중! 주변 오피스 직장인 타겟 추천."
-- Primary Action Button (Terracotta Orange, 52px height, full width):
+- Primary Action Button (Toss Electric Blue #3182F6, 52px height, full width):
   "👉 1초 만에 내용 확인하고 올리기"
 
 [Secondary Card - Revenue & Proof Summary]:
 - Card title: "이번 주 AIM이 벌어다 준 돈"
-- Big metric in Soft Sage Green (28px, Bold, Tabular): "+₩380,000"
+- Big metric in Toss Mint (28px, Bold, Tabular): "+₩380,000"
 - Subtext: "네이버 쿠폰 손님 16명 방문 · 실효 ROI 32.4배"
 
 [Bottom Bar]:
@@ -58,16 +58,16 @@ Design a hyper-focused mobile screen (width: 390px) for a local small business o
 Design an intuitive mobile bottom-sheet modal screen (width: 390px) for "AIM 1-Click Multi-Channel Multi-Publishing Preview".
 
 [Design Theme & Visual Vibe]:
-- Background modal overlay: rgba(18, 20, 23, 0.75) with backdrop-blur.
-- Elevated Sheet Container: #262B33 (Surface Card Elevated), top rounded corners 24px, 1px border rgba(255, 255, 255, 0.12).
-- Primary Button: Muted Terracotta Orange (#D96B27) with subtle warm glow.
-- Compliance Verified Badge: Soft Sage Green (#4E9F86).
-- Text: Off-white Pearl (#E6E8EC) and Muted Cool Grey (#9CA3AF).
+- Background modal overlay: rgba(11, 15, 25, 0.8) with backdrop-blur.
+- Elevated Sheet Container: #1E293B (Surface Card Elevated), top rounded corners 24px, 1px border rgba(255, 255, 255, 0.12).
+- Primary Button: Toss Signature Electric Blue (#3182F6) with subtle bright glow.
+- Compliance Verified Badge: Toss Mint (#00C48C).
+- Text: Crisp Pure White (#FFFFFF) and Cool Slate Grey (#94A3B8).
 
 [Header]:
 - Drag handle bar at top center.
 - Title: "AI가 작성한 오늘 홍보 콘텐츠"
-- Verified Badge: "✓ 공정위 광고 심의 통과 (표시광고법 준수)" in Sage Green pill.
+- Verified Badge: "✓ 공정위 광고 심의 통과 (표시광고법 준수)" in Toss Mint pill.
 
 [Channel Selector Tabs]:
 - Segmented control pills: [🟢 네이버 스마트플레이스 (Active)] | [🟣 인스타그램 피드] | [🥕 당근 비즈프로필]
@@ -80,7 +80,7 @@ Design an intuitive mobile bottom-sheet modal screen (width: 390px) for "AIM 1-C
 - Tags: #성수동맛집 #비오는날파전 #성수역막걸리
 
 [Bottom Sticky Action Area]:
-- Single massive primary CTA button (Height: 56px, Radius: 14px, Terracotta #D96B27):
+- Single massive primary CTA button (Height: 56px, Radius: 14px, Toss Blue #3182F6):
   "🚀 [지금 1초 만에 세 곳 동시 올리기]"
 - Helper caption below button (12px, Muted Grey): "클릭 즉시 네이버, 인스타, 당근마켓에 동시 배포됩니다."
 ```
@@ -93,10 +93,10 @@ Design an intuitive mobile bottom-sheet modal screen (width: 390px) for "AIM 1-C
 Design a paper-receipt inspired mobile report screen (width: 390px) called "AIM Value Proof Ledger".
 
 [Design Theme & Visual Vibe]:
-- Calm Ergonomic Dark System. Canvas: #121417.
-- Receipt Container: #1C2026 with jagged/torn paper top and bottom edges (perforated receipt visual motif), subtle border rgba(255, 255, 255, 0.08).
+- Toss Signature Blue & Deep Slate. Canvas: #0B0F19.
+- Receipt Container: #161F30 with jagged/torn paper top and bottom edges (perforated receipt visual motif), subtle border rgba(255, 255, 255, 0.08).
 - Font: Pretendard with monospaced tabular numerals (font-variant-numeric: tabular-nums).
-- Accents: Soft Sage Green (#4E9F86) for positive ROI, Terracotta (#D96B27) for subscription comparison.
+- Accents: Toss Mint (#00C48C) for positive ROI, Toss Blue (#3182F6) for subscription comparison.
 
 [Receipt Header]:
 - Title: "🧾 이번 달 AIM 투자 & 실적 영수증"
@@ -104,7 +104,7 @@ Design a paper-receipt inspired mobile report screen (width: 390px) called "AIM 
 
 [Core Comparison Block]:
 - "월 구독료 투자": ₩49,000 (Muted Grey)
-- "AIM 창출 실매출": "+₩4,320,000" (Bold 28px Sage Green #4E9F86)
+- "AIM 창출 실매출": "+₩4,320,000" (Bold 28px Toss Mint #00C48C)
 - "실효 수익 배수": "88.2배 (순수익 427만 원 창출)"
 
 [Breakdown List]:
@@ -312,5 +312,5 @@ Design a paper-receipt inspired mobile report screen (width: 390px) called "AIM 
 ## 3. 디자인팀 및 프론트엔드 연동 체크리스트
 
 1. **Stitch 캔버스 렌더링**: 위 [Prompt 1], [Prompt 2], [Prompt 3] 텍스트를 `stitch.withgoogle.com`에 입력하여 AI 원형 컴포넌트 생성.
-2. **토큰 검증**: `--surface-canvas: #121417`, `--color-primary: #D96B27`, `--color-success: #4E9F86`이 올바르게 맵핑되었는지 점검.
+2. **토큰 검증**: `--surface-canvas: #0B0F19`, `--color-primary: #3182F6`, `--color-success: #00C48C`이 올바르게 맵핑되었는지 점검.
 3. **가독성 점검 (APCA)**: 40~60대 점주 기준 본문 글자 크기가 최소 15px 이상인지, 터치 영역이 48px 이상인지 확인.

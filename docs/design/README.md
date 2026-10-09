@@ -11,7 +11,7 @@
 | 항목 | 값 |
 | :--- | :--- |
 | 도구 | Google Stitch (Google Labs AI-Native Design Canvas, `stitch.withgoogle.com`) |
-| 디자인 테마 | Calm Ergonomic Dark System (눈이 편안한 인체공학적 다크 테마) |
+| 디자인 테마 | Toss Signature Blue & Deep Slate (토스 스타일 핀테크 표준 다크 테마) |
 | 프로젝트 URL | `https://stitch.withgoogle.com/u/1/projects/7289754663545516650?pli=1` |
 | 상세 화면 설계서 | [`docs/18_google_stitch_ui_screen_design_specification.md`](../18_google_stitch_ui_screen_design_specification.md) |
 | 화면 가이드 & 프롬프트 | [`stitch_screen_design_guide.md`](../../stitch_screen_design_guide.md) |

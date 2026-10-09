@@ -1,71 +1,71 @@
 /**
- * AIM — Google Stitch Official Design Tokens
- * Theme: Calm Ergonomic Dark System (눈이 편안한 인체공학적 다크 테마)
- * Specification: docs/18_google_stitch_ui_screen_design_specification.md
- * Standard: 2026 Ergonomic Dark UI & APCA (Advanced Perceptual Contrast Algorithm) Readability Guidelines
+ * AIM — Official Design Tokens
+ * Theme: Toss Signature Blue & Deep Slate (토스 시그니처 블루 & 딥 슬레이트 테마)
+ * Standard: Toss / Fintech Visual-First Design Standard & APCA Readability
+ * Reference: docs/design/tokens.md
  */
 
 :root {
   /* ========================================================
-   * 1. Surface & Background Hierarchy (Calm Ergonomic Dark)
+   * 1. Surface & Background Hierarchy (Toss Deep Slate)
    * ======================================================== */
-  --surface-canvas: #121417;        /* Main Base Background: Deep Charcoal Slate (트루 블랙 배제, 빛 번짐/Halation 완화) */
-  --surface-panel: #161A20;         /* Intermediate Panel Container */
-  --surface-card: #1C2026;          /* Surface / Card: 1단계 컨테이너 (Muted Charcoal) */
-  --surface-card-elevated: #262B33; /* Surface Elevated: 2단계 컨테이너 (호버, 모달, 상위 플로팅) */
-  --surface-input: #121417;         /* Form input & selectbox background */
+  --surface-canvas: #0B0F19;        /* Main Base Canvas: Deep Obsidian Slate */
+  --surface-panel: #111827;         /* Intermediate Navigation & Panel Container */
+  --surface-card: #161F30;          /* Surface / Card: Clean Bento Container */
+  --surface-card-elevated: #1E293B; /* Surface Elevated: Floating Sheets, Modals, Hover */
+  --surface-input: #0B0F19;         /* Form input & selectbox background */
   
   /* Borders & Dividers */
-  --surface-border: rgba(255, 255, 255, 0.08); /* 1px 은은한 반투명 경계선 (자극 없는 구획 분리) */
-  --surface-border-solid: #262B33;             /* Fallback solid border */
+  --surface-border: rgba(255, 255, 255, 0.08); /* 1px subtle crisp divider */
+  --surface-border-solid: #1E293B;             /* Fallback solid border */
   --surface-border-light: rgba(255, 255, 255, 0.12); /* Lighter separator */
-  --surface-border-focus: #D96B27;             /* Focus state border (Terracotta) */
-  --surface-border-primary: rgba(217, 107, 39, 0.4);
+  --surface-border-focus: #3182F6;             /* Focus state border (Toss Blue) */
+  --surface-border-primary: rgba(49, 130, 246, 0.4);
 
   /* ========================================================
-   * 2. Semantic Color Palette (Desaturated Warm & Calm Tones)
+   * 2. Semantic Color Palette (Toss High-Contrast Standard)
    * ======================================================== */
-  /* Primary (Muted Terracotta Orange - 주요 CTA, 브랜드, 액션) */
-  --color-primary: #D96B27;
-  --color-primary-hover: #C25B1D;
-  --color-primary-subtle: rgba(217, 107, 39, 0.15);
-  --color-primary-glow: rgba(217, 107, 39, 0.28);
+  /* Primary (Toss Signature Electric Blue - 1-Click CTA, Brand, Trust) */
+  --color-primary: #3182F6;
+  --color-primary-hover: #1B64DA;
+  --color-primary-subtle: rgba(49, 130, 246, 0.15);
+  --color-primary-glow: rgba(49, 130, 246, 0.35);
 
-  /* Success & Active Status (Soft Sage Green - 실측 사실, ROI 순이익, 완료) */
-  --color-success: #4E9F86;
-  --color-success-hover: #3E846F;
-  --color-success-subtle: rgba(78, 159, 134, 0.15);
-  --color-success-glow: rgba(78, 159, 134, 0.25);
+  /* Success & Revenue Status (Toss Mint / Emerald - POS 실측 매출, ROI) */
+  --color-success: #00C48C;
+  --color-success-hover: #00A876;
+  --color-success-subtle: rgba(0, 196, 140, 0.15);
+  --color-success-glow: rgba(0, 196, 140, 0.28);
 
-  /* Warning & Caution (Muted Amber - 현안 트리거, 유휴 자원 알림) */
-  --color-warning: #E5A84B;
-  --color-warning-subtle: rgba(229, 168, 75, 0.15);
-  --color-warning-text: #FAD17E;
+  /* Warning & Caution (Vibrant Amber - 날씨/유휴 긴급 트리거) */
+  --color-warning: #F59E0B;
+  --color-warning-subtle: rgba(245, 158, 11, 0.15);
+  --color-warning-text: #FCD34D;
 
-  /* Danger & Alert (Soft Muted Coral Red - 법률 차단, 격리 심의, 악성 리뷰) */
-  --color-danger: #E05D5D;
-  --color-danger-hover: #C94C4C;
-  --color-danger-subtle: rgba(224, 93, 93, 0.15);
+  /* Danger & Alert (Coral Red - 법률 위반 차단, 격리 심의) */
+  --color-danger: #EF4444;
+  --color-danger-hover: #DC2626;
+  --color-danger-subtle: rgba(239, 68, 68, 0.15);
   --color-danger-text: #FCA5A5;
 
-  /* Accent (Calm Purple, Pink, Cyan) */
-  --color-purple: #8B7ED8;
-  --color-purple-subtle: rgba(139, 126, 216, 0.15);
-  --color-pink: #D9658B;
-  --color-pink-subtle: rgba(217, 101, 139, 0.15);
-  --color-cyan: #4EA3B8;
-  --color-cyan-subtle: rgba(78, 163, 184, 0.15);
+  /* Accent Tones */
+  --color-purple: #8B5CF6;
+  --color-purple-subtle: rgba(139, 92, 246, 0.15);
+  --color-pink: #EC4899;
+  --color-pink-subtle: rgba(236, 72, 153, 0.15);
+  --color-cyan: #06B6D4;
+  --color-cyan-subtle: rgba(6, 182, 212, 0.15);
 
   /* ========================================================
-   * 3. Typography & Text Colors (APCA Eye Comfort)
+   * 3. Typography & Text Colors (Crisp White & Slate Readability)
    * ======================================================== */
   --font-family-sans: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-family-mono: "JetBrains Mono", "SF Mono", Consolas, monospace;
 
-  --text-primary: #E6E8EC;      /* Off-White Soft Pearl (순백색 #FFFFFF 눈부심 배제) */
-  --text-secondary: #9CA3AF;    /* Muted Cool Grey (본문 및 설명) */
-  --text-muted: #6B7280;        /* 타임스탬프, 캡션, 보조 메타데이터 */
-  --text-disabled: #4B5563;     /* 비활성 텍스트 */
+  --text-primary: #FFFFFF;      /* Crisp Pure White (시각적 또렷함 극대화) */
+  --text-secondary: #94A3B8;    /* Cool Slate Grey (본문 및 서브 라벨) */
+  --text-muted: #64748B;        /* 타임스탬프, 캡션, 보조 메타데이터 */
+  --text-disabled: #475569;     /* 비활성 텍스트 */
 
   /* Tabular Numerics for Financials & Metrics (숫자 자릿수 흔들림 방지) */
   --font-tabular: tabular-nums;
@@ -94,12 +94,12 @@
   --radius-full: 9999px;
 
   /* ========================================================
-   * 6. Box Shadows & Subtle Glow Effects
+   * 6. Box Shadows & Glow Effects
    * ======================================================== */
-  --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.25);
-  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.4);
   --shadow-elevated: 0 16px 40px rgba(0, 0, 0, 0.5);
-  --shadow-glow-primary: 0 0 20px rgba(217, 107, 39, 0.28);
-  --shadow-glow-success: 0 0 20px rgba(78, 159, 134, 0.22);
-  --shadow-glow-danger: 0 0 20px rgba(224, 93, 93, 0.22);
+  --shadow-glow-primary: 0 0 24px rgba(49, 130, 246, 0.35);
+  --shadow-glow-success: 0 0 24px rgba(0, 196, 140, 0.3);
+  --shadow-glow-danger: 0 0 24px rgba(239, 68, 68, 0.3);
 }
