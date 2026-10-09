@@ -8,21 +8,23 @@
   <link rel="stylesheet" href="docs/design/tokens.css" />
   <style>
     :root {
-      --bg: #070A12;
-      --panel: #0D1322;
-      --card: #131B2E;
-      --card-border: #1E293B;
-      --border-focus: #4F46E5;
-      --primary: #6366F1;
-      --primary-hover: #4F46E5;
-      --success: #10B981;
-      --success-glow: rgba(16, 185, 129, 0.2);
-      --warning: #F59E0B;
-      --danger: #EF4444;
-      --text-main: #F8FAFC;
-      --text-muted: #94A3B8;
-      --accent: #8B5CF6;
-      --cyan: #06B6D4;
+      /* Calm Ergonomic Dark System (눈이 편안한 인체공학적 다크 테마) */
+      --bg: #121417;        /* Deep Charcoal Slate (트루 블랙 배제, 빛 번짐/Halation 완화) */
+      --panel: #161A20;     /* Intermediate Panel Container */
+      --card: #1C2026;      /* Surface / Card: 1단계 컨테이너 (Muted Charcoal) */
+      --card-border: rgba(255, 255, 255, 0.08); /* 1px 은은한 반투명 경계선 */
+      --card-elevated: #262B33; /* Surface Elevated: 2단계 컨테이너 */
+      --border-focus: #D96B27; /* Muted Terracotta Focus */
+      --primary: #D96B27;   /* Muted Terracotta Orange (채도 낮춘 웜 액센트) */
+      --primary-hover: #C25B1D;
+      --success: #4E9F86;   /* Soft Sage Green (안정감 있는 성공/실측 사실) */
+      --success-glow: rgba(78, 159, 134, 0.22);
+      --warning: #E5A84B;   /* Muted Amber */
+      --danger: #E05D5D;    /* Soft Muted Coral Red */
+      --text-main: #E6E8EC; /* Off-White Soft Pearl (순백색 #FFFFFF 눈부심 배제) */
+      --text-muted: #9CA3AF; /* Muted Cool Grey */
+      --accent: #8B7ED8;   /* Calm Purple */
+      --cyan: #4EA3B8;     /* Calm Cyan */
     }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     body { background-color: var(--bg); color: var(--text-main); min-height: 100vh; padding: 16px 20px 40px; }
@@ -46,14 +48,14 @@
     }
     .brand-title { display: flex; align-items: center; gap: 12px; }
     .brand-logo-badge {
-      background: linear-gradient(135deg, #6366F1 0%, #3B82F6 100%);
+      background: linear-gradient(135deg, #D96B27 0%, #C25B1D 100%);
       color: #FFF;
       font-weight: 900;
       font-size: 15px;
       padding: 8px 14px;
       border-radius: 10px;
       letter-spacing: 0.5px;
-      box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+      box-shadow: 0 0 20px rgba(217, 107, 39, 0.35);
     }
     .brand-text h1 { font-size: 20px; font-weight: 800; color: #FFF; letter-spacing: -0.3px; }
     .brand-text p { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
@@ -70,7 +72,7 @@
       align-items: center;
       gap: 6px;
     }
-    .pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: #10B981; box-shadow: 0 0 8px #10B981; animation: pulse 2s infinite; }
+    .pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: #4E9F86; box-shadow: 0 0 8px #4E9F86; animation: pulse 2s infinite; }
     @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; transform: scale(1.1); } 100% { opacity: 0.5; } }
 
     /* View Mode & Tenant Selector Bar */
@@ -84,7 +86,7 @@
     }
     .mode-tabs {
       display: flex;
-      background: #0A0F1D;
+      background: #121417;
       padding: 4px;
       border-radius: 12px;
       border: 1px solid var(--card-border);
@@ -724,11 +726,11 @@
         </div>
       </div>
       <div style="display: flex; align-items: center; gap: 8px;">
-        <div style="display: flex; gap: 4px; background: #0F172A; padding: 4px; border-radius: 10px; border: 1.5px solid #334155;">
-          <button id="btnModeSimple" onclick="toggleUIMode('simple')" style="padding: 7px 16px; font-size: 13px; font-weight: 800; border-radius: 7px; border: none; cursor: pointer; background: #6366F1; color: #FFFFFF; transition: all 0.2s;">
+        <div style="display: flex; gap: 4px; background: #1C2026; padding: 4px; border-radius: 10px; border: 1.5px solid rgba(255, 255, 255, 0.08);">
+          <button id="btnModeSimple" onclick="toggleUIMode('simple')" style="padding: 7px 16px; font-size: 13px; font-weight: 800; border-radius: 7px; border: none; cursor: pointer; background: #D96B27; color: #FFFFFF; transition: all 0.2s;">
             ✨ 심플 모드
           </button>
-          <button id="btnModeAdvanced" onclick="toggleUIMode('advanced')" style="padding: 7px 16px; font-size: 13px; font-weight: 700; border-radius: 7px; border: none; cursor: pointer; background: transparent; color: #94A3B8; transition: all 0.2s;">
+          <button id="btnModeAdvanced" onclick="toggleUIMode('advanced')" style="padding: 7px 16px; font-size: 13px; font-weight: 700; border-radius: 7px; border: none; cursor: pointer; background: transparent; color: #9CA3AF; transition: all 0.2s;">
             📊 전문가 모드
           </button>
         </div>
@@ -742,7 +744,7 @@
       
       <!-- Industry / Tenant Switcher Bar for Clean Mode -->
       <div style="margin-bottom: 20px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-        <span style="font-size: 12px; font-weight: 800; color: #818CF8;">🏢 내 사업장 업종 선택:</span>
+        <span style="font-size: 12px; font-weight: 800; color: #D96B27;">🏢 내 사업장 업종 선택:</span>
         <button id="sBtn_TENANT_001" class="simple-tenant-btn active" onclick="switchTenant('TENANT_001')">🥐 F&B 외식 (성수 베이커리)</button>
         <button id="sBtn_TENANT_002" class="simple-tenant-btn" onclick="switchTenant('TENANT_002')">🏥 의료 병원 (강남 리엔 피부과)</button>
         <button id="sBtn_TENANT_003" class="simple-tenant-btn" onclick="switchTenant('TENANT_003')">✂️ 뷰티 살롱 (청담 헤어살롱)</button>
@@ -751,23 +753,23 @@
       </div>
 
       <!-- Domain Conquest Strategy Banner (1차 로컬 F&B 외식·카페 완전 정복 전략) -->
-      <div style="background: linear-gradient(135deg, rgba(30, 27, 75, 0.85) 0%, rgba(49, 46, 129, 0.7) 100%); border: 1.5px solid #6366F1; border-radius: 14px; padding: 14px 18px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; box-shadow: 0 4px 20px rgba(99,102,241,0.2);">
+      <div style="background: linear-gradient(135deg, rgba(38, 43, 51, 0.95) 0%, rgba(28, 32, 38, 0.9) 100%); border: 1.5px solid #D96B27; border-radius: 14px; padding: 14px 18px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; box-shadow: 0 4px 20px rgba(217,107,39,0.18);">
         <div style="display: flex; align-items: center; gap: 12px;">
           <span style="font-size: 26px;">🎯</span>
           <div>
             <div style="font-size: 14px; font-weight: 900; color: #FFFFFF; display: flex; align-items: center; gap: 8px;">
-              <span>[도메인 정복 전략] 1차 플래그십: <strong style="color: #FCD34D;">로컬 F&B 외식·카페</strong> 100% 완전 정복</span>
-              <span style="font-size: 11px; background: #10B981; color: #FFFFFF; padding: 2px 8px; border-radius: 999px; font-weight: 800;">플래그십 가동 중</span>
+              <span>[도메인 정복 전략] 1차 플래그십: <strong style="color: #FAD17E;">로컬 F&B 외식·카페</strong> 100% 완전 정복</span>
+              <span style="font-size: 11px; background: #4E9F86; color: #FFFFFF; padding: 2px 8px; border-radius: 999px; font-weight: 800;">플래그십 가동 중</span>
             </div>
-            <div style="font-size: 12px; color: #C7D2FE; margin-top: 2px;">
+            <div style="font-size: 12px; color: #E6E8EC; margin-top: 2px;">
               모든 업종을 한 번에 다 하지 않고, <strong>가장 절박한 로컬 외식·소상공인 분야부터 완벽히 해결</strong>한 후 의료·뷰티·B2B로 순차 확장합니다.
             </div>
           </div>
         </div>
-        <div style="display: flex; gap: 6px; font-size: 11px; color: #94A3B8;">
-          <span style="background: rgba(99,102,241,0.25); color: #A5B4FC; border: 1px solid #6366F1; padding: 4px 10px; border-radius: 6px; font-weight: 800;">1단계: F&B 외식 (집중 정복)</span>
-          <span style="background: rgba(255,255,255,0.05); border: 1px solid #334155; padding: 4px 10px; border-radius: 6px;">2단계: 의료·병원 ➔</span>
-          <span style="background: rgba(255,255,255,0.05); border: 1px solid #334155; padding: 4px 10px; border-radius: 6px;">3단계: 뷰티·살롱 ➔</span>
+        <div style="display: flex; gap: 6px; font-size: 11px; color: #9CA3AF;">
+          <span style="background: rgba(217,107,39,0.2); color: #F0A06D; border: 1px solid #D96B27; padding: 4px 10px; border-radius: 6px; font-weight: 800;">1단계: F&B 외식 (집중 정복)</span>
+          <span style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 6px;">2단계: 의료·병원 ➔</span>
+          <span style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 6px;">3단계: 뷰티·살롱 ➔</span>
         </div>
       </div>
 
@@ -788,7 +790,7 @@
       </div>
 
       <!-- AIM 3-Step Autonomous Closed-Loop Flywheel Master Banner -->
-      <div style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 27, 75, 0.9) 100%); border: 2px solid #6366F1; border-radius: 18px; padding: 18px 22px; margin-bottom: 24px; box-shadow: 0 8px 30px rgba(99,102,241,0.25);">
+      <div style="background: linear-gradient(135deg, rgba(28, 32, 38, 0.95) 0%, rgba(38, 43, 51, 0.9) 100%); border: 2px solid #D96B27; border-radius: 18px; padding: 18px 22px; margin-bottom: 24px; box-shadow: 0 8px 30px rgba(217,107,39,0.2);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px;">
           <div style="display: flex; align-items: center; gap: 10px;">
             <span style="font-size: 24px;">🔄</span>
@@ -796,33 +798,33 @@
               <div style="font-size: 15px; font-weight: 900; color: #FFFFFF;">
                 AIM 3단계 자율 선순환 (3-Step Closed-Loop Flywheel)
               </div>
-              <div style="font-size: 12px; color: #A5B4FC; margin-top: 2px;">
+              <div style="font-size: 12px; color: #F0A06D; margin-top: 2px;">
                 복잡한 글과 메뉴 없이: <strong>1) AI 상황 진단 제시 ➔ 2) 사장님 선택 & 업무 자동화 게시 ➔ 3) 실시간 결과 확인 & 매출 증명</strong>
               </div>
             </div>
           </div>
-          <span style="font-size: 11px; background: rgba(16,185,129,0.2); color: #34D399; border: 1px solid #10B981; padding: 4px 12px; border-radius: 999px; font-weight: 800;">
+          <span style="font-size: 11px; background: rgba(78,159,134,0.2); color: #4E9F86; border: 1px solid #4E9F86; padding: 4px 12px; border-radius: 999px; font-weight: 800;">
             ● 24시간 실시간 자율 선순환
           </span>
         </div>
         <!-- 3-Step Indicator Bar -->
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
-          <a href="#step1ProposeSection" style="text-decoration: none; background: rgba(99,102,241,0.18); border: 1.5px solid #6366F1; border-radius: 12px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; transition: transform 0.15s;">
-            <span style="background: #6366F1; color: #FFFFFF; font-weight: 900; font-size: 13px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</span>
+          <a href="#step1ProposeSection" style="text-decoration: none; background: rgba(217,107,39,0.18); border: 1.5px solid #D96B27; border-radius: 12px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; transition: transform 0.15s;">
+            <span style="background: #D96B27; color: #FFFFFF; font-weight: 900; font-size: 13px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</span>
             <div>
               <div style="font-size: 12px; font-weight: 900; color: #FFFFFF;">AI 진단 & 할 일 제시</div>
-              <div style="font-size: 10px; color: #C7D2FE;">4대 인프라 센싱 + 처방 4선</div>
+              <div style="font-size: 10px; color: #F0A06D;">4대 인프라 센싱 + 처방 4선</div>
             </div>
           </a>
-          <div onclick="openPublishingModal(currentAdviceId || 'ADV_TENANT_001_WEATHER')" style="cursor: pointer; background: rgba(16,185,129,0.15); border: 1.5px solid #10B981; border-radius: 12px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; transition: transform 0.15s;">
-            <span style="background: #10B981; color: #FFFFFF; font-weight: 900; font-size: 13px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</span>
+          <div onclick="openPublishingModal(currentAdviceId || 'ADV_TENANT_001_WEATHER')" style="cursor: pointer; background: rgba(78,159,134,0.18); border: 1.5px solid #4E9F86; border-radius: 12px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; transition: transform 0.15s;">
+            <span style="background: #4E9F86; color: #FFFFFF; font-weight: 900; font-size: 13px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</span>
             <div>
               <div style="font-size: 12px; font-weight: 900; color: #FFFFFF;">사장님 선택 & 자동 게시</div>
               <div style="font-size: 10px; color: #A7F3D0;">네이버·인스타·크리에이터</div>
             </div>
           </div>
-          <a href="#step3ResultsSection" style="text-decoration: none; background: rgba(56,189,248,0.15); border: 1.5px solid #38BDF8; border-radius: 12px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; transition: transform 0.15s;">
-            <span style="background: #38BDF8; color: #0F172A; font-weight: 900; font-size: 13px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</span>
+          <a href="#step3ResultsSection" style="text-decoration: none; background: rgba(78,163,184,0.18); border: 1.5px solid #4EA3B8; border-radius: 12px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; transition: transform 0.15s;">
+            <span style="background: #4EA3B8; color: #121417; font-weight: 900; font-size: 13px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</span>
             <div>
               <div style="font-size: 12px; font-weight: 900; color: #FFFFFF;">실시간 결과 & 매출 증명</div>
               <div style="font-size: 10px; color: #BAE6FD;">POS 실측 결제 + 성과 원장</div>
@@ -836,9 +838,9 @@
       <!-- ======================================================== -->
       <div id="step1ProposeSection" style="margin-bottom: 28px;">
         <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-          <span style="background: #6366F1; color: #FFFFFF; font-weight: 900; font-size: 13px; padding: 4px 12px; border-radius: 8px;">STEP 1</span>
+          <span style="background: #D96B27; color: #FFFFFF; font-weight: 900; font-size: 13px; padding: 4px 12px; border-radius: 8px;">STEP 1</span>
           <h3 style="font-size: 18px; font-weight: 900; color: #FFFFFF; margin: 0;">AI 상황 진단 & 오늘의 할 일 제시</h3>
-          <span style="font-size: 11px; color: #A5B4FC; margin-left: auto;">인프라 센싱 ➔ 무료 처방 4선</span>
+          <span style="font-size: 11px; color: #F0A06D; margin-left: auto;">인프라 센싱 ➔ 무료 처방 4선</span>
         </div>
 
         <!-- 4-Pillar Environmental Infrastructure Live Sensing Bar -->
@@ -3920,13 +3922,13 @@
       if (advContainer) advContainer.style.display = isSimple ? 'none' : 'block';
 
       if (btnSimple) {
-        btnSimple.style.background = isSimple ? '#6366F1' : 'transparent';
-        btnSimple.style.color = isSimple ? '#FFFFFF' : '#94A3B8';
+        btnSimple.style.background = isSimple ? '#D96B27' : 'transparent';
+        btnSimple.style.color = isSimple ? '#FFFFFF' : '#9CA3AF';
         btnSimple.style.fontWeight = isSimple ? '800' : '700';
       }
       if (btnAdv) {
-        btnAdv.style.background = isSimple ? 'transparent' : '#6366F1';
-        btnAdv.style.color = isSimple ? '#94A3B8' : '#FFFFFF';
+        btnAdv.style.background = isSimple ? 'transparent' : '#D96B27';
+        btnAdv.style.color = isSimple ? '#9CA3AF' : '#FFFFFF';
         btnAdv.style.fontWeight = isSimple ? '700' : '800';
       }
 

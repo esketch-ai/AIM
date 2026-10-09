@@ -1,75 +1,77 @@
 /**
  * AIM — Google Stitch Official Design Tokens
- * Theme: Deep Cosmic Slate (Dark Mode Enterprise B2B SaaS)
+ * Theme: Calm Ergonomic Dark System (눈이 편안한 인체공학적 다크 테마)
  * Specification: docs/18_google_stitch_ui_screen_design_specification.md
+ * Standard: 2026 Ergonomic Dark UI & APCA (Advanced Perceptual Contrast Algorithm) Readability Guidelines
  */
 
 :root {
   /* ========================================================
-   * 1. Surface & Background Hierarchy
+   * 1. Surface & Background Hierarchy (Calm Ergonomic Dark)
    * ======================================================== */
-  --surface-canvas: #090D16;        /* Deep Obsidian Slate background */
-  --surface-panel: #0D1322;         /* Panel container background */
-  --surface-card: #111827;          /* Charcoal Card surface */
-  --surface-card-elevated: #1E293B; /* Hover / Elevated surface */
-  --surface-input: #0B0F19;         /* Dark form input background */
+  --surface-canvas: #121417;        /* Main Base Background: Deep Charcoal Slate (트루 블랙 배제, 빛 번짐/Halation 완화) */
+  --surface-panel: #161A20;         /* Intermediate Panel Container */
+  --surface-card: #1C2026;          /* Surface / Card: 1단계 컨테이너 (Muted Charcoal) */
+  --surface-card-elevated: #262B33; /* Surface Elevated: 2단계 컨테이너 (호버, 모달, 상위 플로팅) */
+  --surface-input: #121417;         /* Form input & selectbox background */
   
-  /* Borders */
-  --surface-border: #1F2937;        /* Subtle 1px card stroke */
-  --surface-border-light: #374151;  /* Lighter separator */
-  --surface-border-focus: #4F46E5;  /* Focus state border */
-  --surface-border-primary: rgba(99, 102, 241, 0.4);
+  /* Borders & Dividers */
+  --surface-border: rgba(255, 255, 255, 0.08); /* 1px 은은한 반투명 경계선 (자극 없는 구획 분리) */
+  --surface-border-solid: #262B33;             /* Fallback solid border */
+  --surface-border-light: rgba(255, 255, 255, 0.12); /* Lighter separator */
+  --surface-border-focus: #D96B27;             /* Focus state border (Terracotta) */
+  --surface-border-primary: rgba(217, 107, 39, 0.4);
 
   /* ========================================================
-   * 2. Semantic Color Palette
+   * 2. Semantic Color Palette (Desaturated Warm & Calm Tones)
    * ======================================================== */
-  /* Primary (Electric Indigo - Actions & Branding) */
-  --color-primary: #6366F1;
-  --color-primary-hover: #4F46E5;
-  --color-primary-subtle: rgba(99, 102, 241, 0.15);
-  --color-primary-glow: rgba(99, 102, 241, 0.35);
+  /* Primary (Muted Terracotta Orange - 주요 CTA, 브랜드, 액션) */
+  --color-primary: #D96B27;
+  --color-primary-hover: #C25B1D;
+  --color-primary-subtle: rgba(217, 107, 39, 0.15);
+  --color-primary-glow: rgba(217, 107, 39, 0.28);
 
-  /* Success (Emerald Green - Value Created, ROI, Verified, Active) */
-  --color-success: #10B981;
-  --color-success-hover: #059669;
-  --color-success-subtle: rgba(16, 185, 129, 0.15);
-  --color-success-glow: rgba(16, 185, 129, 0.25);
+  /* Success & Active Status (Soft Sage Green - 실측 사실, ROI 순이익, 완료) */
+  --color-success: #4E9F86;
+  --color-success-hover: #3E846F;
+  --color-success-subtle: rgba(78, 159, 134, 0.15);
+  --color-success-glow: rgba(78, 159, 134, 0.25);
 
-  /* Warning (Amber Yellow - Trigger Alerts, Idle Capacity, Illustrative) */
-  --color-warning: #F59E0B;
-  --color-warning-subtle: rgba(245, 158, 11, 0.15);
-  --color-warning-text: #FCD34D;
+  /* Warning & Caution (Muted Amber - 현안 트리거, 유휴 자원 알림) */
+  --color-warning: #E5A84B;
+  --color-warning-subtle: rgba(229, 168, 75, 0.15);
+  --color-warning-text: #FAD17E;
 
-  /* Danger (Rose Red - Compliance Intercept, Quarantine, Bad Reviews) */
-  --color-danger: #EF4444;
-  --color-danger-hover: #DC2626;
-  --color-danger-subtle: rgba(239, 68, 68, 0.15);
+  /* Danger & Alert (Soft Muted Coral Red - 법률 차단, 격리 심의, 악성 리뷰) */
+  --color-danger: #E05D5D;
+  --color-danger-hover: #C94C4C;
+  --color-danger-subtle: rgba(224, 93, 93, 0.15);
   --color-danger-text: #FCA5A5;
 
-  /* Accent (Purple & Pink - Enterprise, Creator Marketplace, Viral) */
-  --color-purple: #8B5CF6;
-  --color-purple-subtle: rgba(139, 92, 246, 0.15);
-  --color-pink: #EC4899;
-  --color-pink-subtle: rgba(236, 72, 153, 0.15);
-  --color-cyan: #06B6D4;
-  --color-cyan-subtle: rgba(6, 182, 212, 0.15);
+  /* Accent (Calm Purple, Pink, Cyan) */
+  --color-purple: #8B7ED8;
+  --color-purple-subtle: rgba(139, 126, 216, 0.15);
+  --color-pink: #D9658B;
+  --color-pink-subtle: rgba(217, 101, 139, 0.15);
+  --color-cyan: #4EA3B8;
+  --color-cyan-subtle: rgba(78, 163, 184, 0.15);
 
   /* ========================================================
-   * 3. Typography & Text Colors
+   * 3. Typography & Text Colors (APCA Eye Comfort)
    * ======================================================== */
   --font-family-sans: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-family-mono: "JetBrains Mono", "SF Mono", Consolas, monospace;
 
-  --text-primary: #F8FAFC;      /* High-contrast headlines */
-  --text-secondary: #CBD5E1;    /* Body and content text */
-  --text-muted: #94A3B8;        /* Metadata, timestamps, captions */
-  --text-disabled: #64748B;     /* Disabled items */
+  --text-primary: #E6E8EC;      /* Off-White Soft Pearl (순백색 #FFFFFF 눈부심 배제) */
+  --text-secondary: #9CA3AF;    /* Muted Cool Grey (본문 및 설명) */
+  --text-muted: #6B7280;        /* 타임스탬프, 캡션, 보조 메타데이터 */
+  --text-disabled: #4B5563;     /* 비활성 텍스트 */
 
-  /* Tabular Numerics for Financials & Metrics (숫자 흔들림 방지) */
+  /* Tabular Numerics for Financials & Metrics (숫자 자릿수 흔들림 방지) */
   --font-tabular: tabular-nums;
 
   /* ========================================================
-   * 4. 8pt Spatial Spacing System
+   * 4. 8pt Spatial Spacing System (Bento Grid)
    * ======================================================== */
   --space-1: 4px;
   --space-2: 8px;
@@ -92,12 +94,12 @@
   --radius-full: 9999px;
 
   /* ========================================================
-   * 6. Box Shadows & Glow Effects
+   * 6. Box Shadows & Subtle Glow Effects
    * ======================================================== */
-  --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.3);
-  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.4);
-  --shadow-elevated: 0 16px 48px rgba(0, 0, 0, 0.6);
-  --shadow-glow-primary: 0 0 20px rgba(99, 102, 241, 0.35);
-  --shadow-glow-success: 0 0 20px rgba(16, 185, 129, 0.25);
-  --shadow-glow-danger: 0 0 20px rgba(239, 68, 68, 0.25);
+  --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.25);
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-elevated: 0 16px 40px rgba(0, 0, 0, 0.5);
+  --shadow-glow-primary: 0 0 20px rgba(217, 107, 39, 0.28);
+  --shadow-glow-success: 0 0 20px rgba(78, 159, 134, 0.22);
+  --shadow-glow-danger: 0 0 20px rgba(224, 93, 93, 0.22);
 }

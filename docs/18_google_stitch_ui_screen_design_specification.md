@@ -23,24 +23,26 @@
 ## 1. AIM 전사 디자인 시스템 (Design Tokens & UI Kit)
 
 ### 1.1 Visual Vibe & Aesthetics
-* **Theme**: Deep Cosmic Slate (다크모드 엔터프라이즈 사령탑)
-* **Tone**: 절제된 전문성, 무결성, 군사용 작전 관제실(Tactical Cockpit)의 정밀함
+* **Theme**: Calm Ergonomic Dark System (눈이 편안한 인체공학적 다크 테마)
+* **Standard**: 2026 Ergonomic Dark UI & APCA(Advanced Perceptual Contrast Algorithm) 가독성 가이드라인
+* **Tone**: 인체공학적 안정감, 눈부심 제로(Zero Glare), 절제된 전문성과 신뢰감
 * **Surface Hierarchy**:
-  - `Canvas (배경)`: `#090D16` (Deep Obsidian Slate)
-  - `Card (컨테이너)`: `#111827` (Charcoal Surface)
-  - `Card Border (경계)`: `#1F2937` (Subtle 1px Stroke)
-  - `Card Elevated (호버/활성)`: `#1E293B`
+  - `Canvas (배경)`: `#121417` (Deep Charcoal Slate - 트루 블랙 배제, 빛 번짐/Halation 완화)
+  - `Panel (중간 패널)`: `#161A20`
+  - `Card (1단계 컨테이너)`: `#1C2026` (Muted Charcoal Container)
+  - `Card Elevated (호버/모달)`: `#262B33` (Surface Elevated)
+  - `Card Border (경계)`: `rgba(255, 255, 255, 0.08)` (1px 은은한 반투명 구분선)
 
 ### 1.2 Color Semantics
 | 구분 | 토큰명 | Hex Code | 용도 |
 | :--- | :--- | :--- | :--- |
-| **Primary** | `indigo-500` | `#6366F1` | 주 액션 버튼, 플랫폼 브랜드, AI 기안 강조 |
-| **Success** | `emerald-500` | `#10B981` | 매출 창출액, ROI 배수, 실측 사실(`A_MEASURED`), 정상 구독 |
-| **Warning** | `amber-500` | `#F59E0B` | 실시간 현안 트리거(비 예보/노쇼), 시연값(`C_ILLUSTRATIVE`) |
-| **Danger** | `rose-500` | `#EF4444` | 컴플라이언스 차단어, 고위험 격리 카피(`CRITICAL`), 악성 리뷰 |
-| **Accent** | `purple-500` | `#8B5CF6` | Enterprise 플랜 뱃지, 글로벌 무역 RFQ, VIP 환자 리콜 |
-| **Text Primary** | `slate-50` | `#F8FAFC` | 메인 헤드라인, 핵심 수치 |
-| **Text Secondary**| `slate-400`| `#94A3B8` | 부가 설명, 타임스탬프, 근거 법령 라벨 |
+| **Primary** | `terracotta-500` | `#D96B27` | 주 액션 버튼(CTA), 플랫폼 브랜드, AI 기안 강조 (Muted Terracotta) |
+| **Success** | `sage-500` | `#4E9F86` | 매출 창출액, ROI 순이익 배수, 실측 사실(`A_MEASURED`), 정상 구독 (Soft Sage Green) |
+| **Warning** | `amber-500` | `#E5A84B` | 실시간 현안 트리거(비 예보/유휴), 시연값(`C_ILLUSTRATIVE`) (Muted Amber) |
+| **Danger** | `coral-500` | `#E05D5D` | 컴플라이언스 차단어, 고위험 격리 카피(`CRITICAL`), 악성 리뷰 (Soft Muted Coral) |
+| **Accent** | `purple-500` | `#8B7ED8` | Enterprise 플랜 뱃지, 글로벌 무역 RFQ, VIP 환자 리콜 |
+| **Text Primary** | `pearl-offwhite` | `#E6E8EC` | 메인 헤드라인, 핵심 수치 (순백색 #FFFFFF 눈부심 배제) |
+| **Text Secondary**| `cool-grey-400`| `#9CA3AF` | 부가 설명, 타임스탬프, 근거 법령 라벨 (Muted Cool Grey) |
 
 ### 1.3 Typography & Tabular Layout
 * **Primary Font**: `Pretendard`, `Inter`, System Sans
