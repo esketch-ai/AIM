@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AIM Marketing OS - 자율 마케팅 플랫폼 포털</title>
+  <title>AIM Marketing OS — 사업장 데이터 기반 자율 마케팅 운영체제</title>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <link rel="stylesheet" href="docs/design/tokens.css" />
   <style>
@@ -137,6 +137,30 @@
       color: #A5B4FC;
       font-weight: 800;
       box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+    }
+    .simple-tenant-btn {
+      background: #0F172A;
+      border: 1.5px solid #334155;
+      color: #94A3B8;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 8px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+    .simple-tenant-btn:hover {
+      border-color: #6366F1;
+      color: #FFFFFF;
+      background: #1E293B;
+    }
+    .simple-tenant-btn.active {
+      background: #4F46E5;
+      border-color: #818CF8;
+      color: #FFFFFF;
+      font-weight: 900;
+      box-shadow: 0 0 12px rgba(99, 102, 241, 0.4);
     }
 
     /* View Panels */
@@ -674,10 +698,10 @@
     <!-- Top Global Command Header -->
     <header class="top-header">
       <div class="brand-title">
-        <div class="brand-logo-badge">AIM OS</div>
+        <div class="brand-logo-badge">AIM · 자율 마케팅 OS</div>
         <div class="brand-text">
-          <h1>AIM Autonomous Marketing Platform</h1>
-          <p>월 4.9만원으로 24시간 일하는 소상공인 AI 마케터 · Karpathy 자율 추론 & 헤르메스 프로토콜 v0.6.0</p>
+          <h1>내 사업장 데이터만 연결하면, AI가 5대 채널 마케팅을 알아서 끝냅니다.</h1>
+          <p>리뷰·매출·상황 데이터 자동 분석 ➔ 블로그·인스타·알림톡 5대 채널 자동 제작 ➔ 법적 검수 ➔ 원클릭 배포까지</p>
         </div>
       </div>
       <div style="display: flex; align-items: center; gap: 8px;">
@@ -697,74 +721,130 @@
     <!-- ======================================================== -->
     <section id="viewSimple" class="view-panel" style="display: block; max-width: 900px; margin: 0 auto; padding: 20px 16px 48px;">
       
+      <!-- Industry / Tenant Switcher Bar for Clean Mode -->
+      <div style="margin-bottom: 20px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <span style="font-size: 12px; font-weight: 800; color: #818CF8;">🏢 내 사업장 업종 선택:</span>
+        <button id="sBtn_TENANT_001" class="simple-tenant-btn active" onclick="switchTenant('TENANT_001')">🥐 F&B 외식 (성수 베이커리)</button>
+        <button id="sBtn_TENANT_002" class="simple-tenant-btn" onclick="switchTenant('TENANT_002')">🏥 의료 병원 (강남 리엔 피부과)</button>
+        <button id="sBtn_TENANT_003" class="simple-tenant-btn" onclick="switchTenant('TENANT_003')">✂️ 뷰티 살롱 (청담 헤어살롱)</button>
+        <button id="sBtn_TENANT_004" class="simple-tenant-btn" onclick="switchTenant('TENANT_004')">💻 B2B SaaS (플로우독 IT)</button>
+        <button id="sBtn_TENANT_005" class="simple-tenant-btn" onclick="switchTenant('TENANT_005')">🏭 B2B 제조 (대진정밀공업)</button>
+      </div>
+
       <!-- Store Selector Pill -->
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid #1E293B;">
         <div style="display: flex; align-items: center; gap: 10px;">
           <span style="font-size: 22px;">🏪</span>
           <div>
             <div id="simpleStoreName" style="font-size: 17px; font-weight: 900; color: #FFFFFF;">성수 아뜰리에 베이커리 & 카페</div>
-            <div style="font-size: 11px; color: #94A3B8;">김성수 대표 · 서울 성수동 상권</div>
+            <div id="simpleStoreSub" style="font-size: 11px; color: #94A3B8;">김성수 대표 · 서울 성수동 상권</div>
           </div>
           <span style="font-size: 11px; color: #10B981; background: rgba(16,185,129,0.15); padding: 3px 10px; border-radius: 999px; font-weight: 800; margin-left: 6px;">● 정상 운영 중</span>
         </div>
         <div style="text-align: right;">
           <div style="font-size: 11px; color: #94A3B8;">월 구독 요금제</div>
-          <div style="font-size: 14px; font-weight: 800; color: #818CF8;">₩49,000 / 월 (PRO)</div>
+          <div id="simpleStorePlan" style="font-size: 14px; font-weight: 800; color: #818CF8;">₩49,000 / 월 (PRO)</div>
         </div>
       </div>
 
       <!-- 1. Hero 1-Action Card (오늘 내가 할 일) -->
       <div style="background: linear-gradient(135deg, #1E1B4B 0%, #312E81 50%, #4338CA 100%); border: 2px solid #6366F1; border-radius: 20px; padding: 32px 28px; margin-bottom: 24px; box-shadow: 0 10px 30px -5px rgba(99,102,241,0.3); text-align: center;">
-        <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.12); padding: 5px 14px; border-radius: 999px; margin-bottom: 14px;">
-          <span style="font-size: 14px;">🌧️</span>
-          <span style="font-size: 12px; font-weight: 800; color: #FCD34D;">실시간 날씨 감지: 지금 성수동에 비가 내려요 (5.2mm)</span>
+        <div id="simpleHeroBadge" style="display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.12); padding: 5px 14px; border-radius: 999px; margin-bottom: 14px; font-size: 12px; font-weight: 800; color: #FCD34D;">
+          🌧️ 실시간 날씨 감지: 지금 성수동에 비가 내려요 (5.2mm)
         </div>
-        <h2 style="font-size: 26px; font-weight: 900; color: #FFFFFF; line-height: 1.4; margin-bottom: 10px;">
-          손님이 뜸할 때, <span style="color: #FCD34D;">3시간 한정 번개 쿠폰</span>을 보낼까요?
+        <h2 id="simpleHeroTitle" style="font-size: 25px; font-weight: 900; color: #FFFFFF; line-height: 1.4; margin-bottom: 10px;">
+          비 오는 날 손님이 뜸할 때, <span style="color: #FCD34D;">3시간 한정 타임특가</span>를 보낼까요?
         </h2>
-        <p style="font-size: 14px; color: #C7D2FE; margin-bottom: 26px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.5;">
-          카카오톡 단골손님·인스타그램·네이버 플레이스로 즉시 알려 빈 테이블 15석을 채웁니다.
+        <p id="simpleHeroDesc" style="font-size: 14px; color: #C7D2FE; margin-bottom: 26px; max-width: 620px; margin-left: auto; margin-right: auto; line-height: 1.5;">
+          카카오톡 단골·인스타그램·네이버 플레이스로 즉시 알려 빈 테이블 15석을 채우고 당일 손실을 방어합니다.
         </p>
 
         <!-- Big Primary CTA Button -->
-        <button onclick="triggerMerchantQuickApprove()" style="width: 100%; max-width: 520px; background: linear-gradient(135deg, #10B981 0%, #059669 100%); color: #FFFFFF; font-size: 19px; font-weight: 900; border: none; padding: 20px 32px; border-radius: 16px; cursor: pointer; box-shadow: 0 8px 25px rgba(16,185,129,0.5); display: inline-flex; align-items: center; justify-content: center; gap: 12px; transition: transform 0.1s;">
-          <span>⚡ 지금 1초 만에 손님 부르기</span>
-          <span style="font-size: 13px; background: rgba(0,0,0,0.25); padding: 4px 10px; border-radius: 8px;">예상 순이익 +21만 원 ➔</span>
+        <button onclick="triggerMerchantQuickApprove()" style="width: 100%; max-width: 540px; background: linear-gradient(135deg, #10B981 0%, #059669 100%); color: #FFFFFF; font-size: 18px; font-weight: 900; border: none; padding: 19px 32px; border-radius: 16px; cursor: pointer; box-shadow: 0 8px 25px rgba(16,185,129,0.5); display: inline-flex; align-items: center; justify-content: center; gap: 12px; transition: transform 0.1s;">
+          <span id="simpleHeroBtnText">⚡ 1초 만에 3대 채널 동시 발송</span>
+          <span id="simpleHeroBtnSub" style="font-size: 13px; background: rgba(0,0,0,0.25); padding: 4px 10px; border-radius: 8px;">예상 순이익 +21만 원 ➔</span>
         </button>
       </div>
 
-      <!-- 2. Clean 3-Number Metric Row (내가 얻는 효과) -->
+      <!-- 2. AIM_Base.md 4-Step Autonomous Marketing OS Cyclical Engine -->
+      <div style="background: #0F172A; border: 1.5px solid #334155; border-radius: 18px; padding: 22px 24px; margin-bottom: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.25);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px;">
+          <div>
+            <span style="font-size: 11px; font-weight: 800; color: #818CF8; letter-spacing: 0.5px;">AIM 4-STEP AUTONOMOUS ENGINE</span>
+            <h3 style="font-size: 18px; font-weight: 900; color: #FFFFFF; margin-top: 2px;">
+              내 사업장 데이터만 연결하면, AI가 24시간 이렇게 자율 구동합니다
+            </h3>
+          </div>
+          <span style="font-size: 11px; color: #94A3B8;">AIM_Base.md 4단계 선순환 구조</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;">
+          <div style="background: #1E293B; border: 1px solid #334155; border-radius: 12px; padding: 14px; border-top: 3px solid #38BDF8;">
+            <div style="font-size: 11px; font-weight: 800; color: #38BDF8; margin-bottom: 4px;">1단계: 데이터 자동 연결</div>
+            <div style="font-size: 13px; font-weight: 900; color: #FFFFFF; margin-bottom: 6px;">🔌 온·오프라인 수집</div>
+            <p style="font-size: 11px; color: #94A3B8; line-height: 1.5;">
+              POS 결제·영수증 리뷰·네이버 플레이스·고객 피드백을 실시간 수집해 단일 원천 데이터(Single Source)로 정규화
+            </p>
+          </div>
+
+          <div style="background: #1E293B; border: 1px solid #334155; border-radius: 12px; padding: 14px; border-top: 3px solid #818CF8;">
+            <div style="font-size: 11px; font-weight: 800; color: #818CF8; margin-bottom: 4px;">2단계: 5대 채널 자동 분기</div>
+            <div style="font-size: 13px; font-weight: 900; color: #FFFFFF; margin-bottom: 6px;">✍️ 채널별 맞춤 제작</div>
+            <p style="font-size: 11px; color: #94A3B8; line-height: 1.5;">
+              블로그 롱폼(SEO)·인스타 피드·카카오톡 단문·쇼츠 대본·상세페이지를 채널별 소비 문법에 맞춰 멀티 에이전트가 자동 생성
+            </p>
+          </div>
+
+          <div style="background: #1E293B; border: 1px solid #334155; border-radius: 12px; padding: 14px; border-top: 3px solid #10B981;">
+            <div style="font-size: 11px; font-weight: 800; color: #10B981; margin-bottom: 4px;">3단계: 법적 검수·원클릭 승인</div>
+            <div style="font-size: 13px; font-weight: 900; color: #FFFFFF; margin-bottom: 6px;">🛡️ 표시광고·의료법 안심</div>
+            <p style="font-size: 11px; color: #94A3B8; line-height: 1.5;">
+              과대광고·의료법 제56조·저작권을 AI가 100% 사전 검수하고, 사장님은 스마트폰에서 1초 만에 확인 후 원클릭 승인
+            </p>
+          </div>
+
+          <div style="background: #1E293B; border: 1px solid #334155; border-radius: 12px; padding: 14px; border-top: 3px solid #F59E0B;">
+            <div style="font-size: 11px; font-weight: 800; color: #F59E0B; margin-bottom: 4px;">4단계: 매출 증명·자율 학습</div>
+            <div style="font-size: 13px; font-weight: 900; color: #FFFFFF; margin-bottom: 6px;">📈 Closed-Loop 매출 증명</div>
+            <p style="font-size: 11px; color: #94A3B8; line-height: 1.5;">
+              POS 실측 결제와 쿠폰 사용을 역추적하여 창출된 순이익(ROI)을 투명하게 입증하고 반응 좋은 카피를 AI가 자율 피드백 학습
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Clean 3-Number Metric Row (내가 얻는 효과) -->
       <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px;">
         <div style="background: #0F172A; border: 1px solid #1E293B; border-radius: 16px; padding: 22px 18px; text-align: center;">
           <div style="font-size: 12px; color: #94A3B8; font-weight: 700; margin-bottom: 6px;">오늘 유발 매출</div>
           <div id="simpleAttributedRev" style="font-size: 28px; font-weight: 900; color: #38BDF8;">₩240,000</div>
-          <div style="font-size: 11px; color: #64748B; margin-top: 4px;">POS 바코드 실측 기준</div>
+          <div style="font-size: 11px; color: #64748B; margin-top: 4px;">실시간 매출 귀속 기준</div>
         </div>
 
         <div style="background: #0F172A; border: 1.5px solid rgba(16,185,129,0.4); border-radius: 16px; padding: 22px 18px; text-align: center;">
           <div style="font-size: 12px; color: #34D399; font-weight: 700; margin-bottom: 6px;">이번 달 순이익 창출</div>
           <div id="simpleNetProfit" style="font-size: 28px; font-weight: 900; color: #34D399;">+₩1,199,000</div>
-          <div style="font-size: 11px; color: #FCD34D; font-weight: 800; margin-top: 4px;">ROI +2,446% 입증</div>
+          <div style="font-size: 11px; color: #FCD34D; font-weight: 800; margin-top: 4px;">ROI 가치 입증 완료</div>
         </div>
 
         <div style="background: #0F172A; border: 1px solid #1E293B; border-radius: 16px; padding: 22px 18px; text-align: center;">
-          <div style="font-size: 12px; color: #A5B4FC; font-weight: 700; margin-bottom: 6px;">방문 결제 손님</div>
+          <div style="font-size: 12px; color: #A5B4FC; font-weight: 700; margin-bottom: 6px;">방문·전환 고객</div>
           <div id="simpleCustomerCount" style="font-size: 28px; font-weight: 900; color: #A5B4FC;">14명</div>
-          <div style="font-size: 11px; color: #64748B; margin-top: 4px;">3,000원 할인 체감</div>
+          <div style="font-size: 11px; color: #64748B; margin-top: 4px;">실제 행동 유발 지표</div>
         </div>
       </div>
 
-      <!-- 3. Customer Voucher Preview Card (손님이 가져올 바코드) -->
-      <div style="background: #090D18; border: 1px solid #334155; border-radius: 18px; padding: 22px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+      <!-- 4. Customer Voucher / Action Preview Card -->
+      <div id="simpleVoucherRow" style="background: #090D18; border: 1px solid #334155; border-radius: 18px; padding: 22px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
         <div style="display: flex; align-items: center; gap: 16px;">
           <div style="background: #1E1B4B; border: 1px solid #6366F1; border-radius: 12px; padding: 12px 16px; text-align: center; min-width: 120px;">
-            <div style="font-size: 10px; color: #A5B4FC; font-weight: 800;">손님 모바일 티켓</div>
-            <div style="font-size: 20px; font-weight: 900; color: #38BDF8; margin: 2px 0;">₩3,000</div>
-            <div style="font-size: 9px; color: #FCD34D; font-weight: 800;">⏱️ 02:49:15 남음</div>
+            <div style="font-size: 10px; color: #A5B4FC; font-weight: 800;">마케팅 전환 에셋</div>
+            <div id="simpleVoucherAmount" style="font-size: 20px; font-weight: 900; color: #38BDF8; margin: 2px 0;">₩3,000</div>
+            <div id="simpleVoucherTime" style="font-size: 9px; color: #FCD34D; font-weight: 800;">⏱️ 02:49:15 남음</div>
           </div>
           <div>
-            <div style="font-size: 15px; font-weight: 900; color: #FFFFFF;">손님이 스마트폰에 들고 올 모바일 바코드</div>
-            <div style="font-size: 12px; color: #94A3B8; margin-top: 4px; line-height: 1.4;">
+            <div id="simpleVoucherTitle" style="font-size: 15px; font-weight: 900; color: #FFFFFF;">손님이 스마트폰에 들고 올 모바일 바코드</div>
+            <div id="simpleVoucherDesc" style="font-size: 12px; color: #94A3B8; margin-top: 4px; line-height: 1.4;">
               손님이 카운터에서 바코드를 제시하면 POS에서 1초 만에 스캔하여 3,000원 할인 결제됩니다.
             </div>
           </div>
@@ -826,17 +906,16 @@
       <!-- Hero Section -->
       <div class="hero-section">
         <div class="hero-badge-pill">
-          <span>⚡ 국내 최초 실시간 자율 추론형 AI 마케팅 OS</span>
+          <span>⚡ 옴니채널 자율 마케팅 OS (Autonomous Marketing OS)</span>
         </div>
         <h1 class="hero-title">
-          월 49,000원으로 24시간 일하는<br>
+          내 사업장 데이터만 연결하면,<br>
           <span style="background: linear-gradient(135deg, #818CF8 0%, #C084FC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-            전담 AI 마케터를 내 매장에 고용하세요
+            AI가 5대 채널 마케팅을 알아서 끝냅니다
           </span>
         </h1>
         <p class="hero-sub">
-          마케팅 대행사에 월 수백만 원 쓰지 마세요. 비 오는 날 유휴 좌석 방어부터 15초 숏폼 바이럴까지 —<br>
-          사업주는 복잡한 세팅 없이 스마트폰에서 <b>[하루 1분 원클릭 승인]</b>만 누르면 끝납니다.
+          마케터가 없어도, 복잡한 지식이 없어도 괜찮습니다. 리뷰·매출·상황 데이터 자동 분석부터 블로그·인스타·알림톡 5대 채널 제작, 표시광고법·의료법 사전 검수, 원클릭 배포 및 매출 추적까지 전 과정을 자율 구동합니다.
         </p>
         <div class="hero-cta-group">
           <button class="btn-hero-primary" onclick="switchViewMode('tenant')">
@@ -3368,12 +3447,139 @@
       }
     }
 
+    /* Update Clean Mode (View 0) Dynamically For Selected Tenant */
+    function updateSimpleViewForTenant(data) {
+      if (!data || !data.tenant) return;
+      const t = data.tenant;
+      const ana = data.analytics || {};
+
+      const nameEl = document.getElementById('simpleStoreName');
+      if (nameEl) nameEl.innerText = t.business_name;
+
+      const subEl = document.getElementById('simpleStoreSub');
+      if (subEl) subEl.innerText = `${t.owner_name} · ${t.business_state?.location || '상권 연동'}`;
+
+      const planEl = document.getElementById('simpleStorePlan');
+      if (planEl) planEl.innerText = `₩${(t.monthly_fee_krw || 49000).toLocaleString()} / 월 (${t.subscription_tier})`;
+
+      const heroBadge = document.getElementById('simpleHeroBadge');
+      const heroTitle = document.getElementById('simpleHeroTitle');
+      const heroDesc = document.getElementById('simpleHeroDesc');
+      const heroBtnText = document.getElementById('simpleHeroBtnText');
+      const heroBtnSub = document.getElementById('simpleHeroBtnSub');
+
+      const actionMap = {
+        'TENANT_001': {
+          badge: '🌧️ 실시간 날씨 감지: 지금 성수동에 비가 내려요 (5.2mm)',
+          title: '비 오는 날 손님이 뜸할 때, <span style="color: #FCD34D;">3시간 한정 타임특가</span>를 보낼까요?',
+          desc: '카카오톡 단골·인스타그램·네이버 플레이스로 즉시 알려 빈 테이블 15석을 채우고 당일 손실을 방어합니다.',
+          btnText: '⚡ 1초 만에 3대 채널 동시 발송',
+          btnSub: '예상 순이익 +21만 원 ➔',
+          rev: '₩240,000',
+          net: '+₩1,199,000',
+          customers: '14명',
+          voucherTitle: '손님이 스마트폰에 들고 올 모바일 바코드',
+          voucherDesc: '손님이 카운터에서 바코드를 제시하면 POS에서 1초 만에 스캔하여 3,000원 할인 결제됩니다.',
+          voucherCode: 'AIM-SEONGSU-CR02-RAIN24K',
+          voucherAmount: '₩3,000',
+          voucherTime: '⏱️ 02:49:15 남음'
+        },
+        'TENANT_002': {
+          badge: '🏥 환절기 속건조 & 리프팅 90일 주기 감지: 재방문 골든타임 24명',
+          title: '<span style="color: #FCD34D;">의료법 제56조 100% 안심 방어</span> 맞춤 리콜 알림톡을 보낼까요?',
+          desc: '과대광고·부작용 금칙어를 자동 필터링하여, 법적 리스크 없이 시술 주기 도래 환자 예약율을 45% 끌어올립니다.',
+          btnText: '⚡ 의료법 안심 원클릭 알림톡 발송',
+          btnSub: '예상 진료매출 +180만 원 ➔',
+          rev: '₩1,800,000',
+          net: '+₩4,850,000',
+          customers: '8명',
+          voucherTitle: '의료법 사전 심의필 인증 맞춤 안내장',
+          voucherDesc: '환자가 카톡으로 수신하는 부작용 고지 포함 정품·정량 안심 시술 예약 알림톡입니다.',
+          voucherCode: 'AIM-GANGNAM-MED-RECALL90',
+          voucherAmount: '안심케어',
+          voucherTime: '골든타임 D-3'
+        },
+        'TENANT_003': {
+          badge: '✂️ 내일 목요일 13:00~16:00 유휴 슬롯 감지: 빈 의자 6석',
+          title: '평일 낮 한산한 시간에, <span style="color: #FCD34D;">다이내믹 해피아워 예약</span>을 오픈할까요?',
+          desc: '디자이너 유휴 시간에 프리미엄 두피 스파 업그레이드 혜택을 네이버 예약과 카톡으로 자동 노출합니다.',
+          btnText: '⚡ 유휴 타임슬롯 예약 오픈',
+          btnSub: '예상 시술매출 +42만 원 ➔',
+          rev: '₩420,000',
+          net: '+₩1,680,000',
+          customers: '6명',
+          voucherTitle: '해피아워 네이버 스마트예약 티켓',
+          voucherDesc: '평일 오후 방문 고객 전용 프리미엄 클리닉 업그레이드 모바일 예약 바우처입니다.',
+          voucherCode: 'AIM-CHEONGDAM-HAPPYHOUR',
+          voucherAmount: '클리닉UP',
+          voucherTime: '내일 14:00~17:00'
+        },
+        'TENANT_004': {
+          badge: '💻 깃허브 v2.4 신기능 릴리즈 감지: 실시간 문서 협업 배포',
+          title: '새 기능 릴리즈를 <span style="color: #FCD34D;">글로벌 4대 채널(X·ProductHunt·LinkedIn)</span>에 알릴까요?',
+          desc: '기술 릴리즈 노트를 실무자 언어로 자동 번역하여 마케터 없이 글로벌 쇼케이스 바이럴을 완료합니다.',
+          btnText: '⚡ 글로벌 채널 자동 쇼케이스',
+          btnSub: '예상 신규 가입 +120명 ➔',
+          rev: '₩1,450,000',
+          net: '+₩3,200,000',
+          customers: '480명',
+          voucherTitle: 'Product Hunt & X 스레드 배포 에셋',
+          voucherDesc: '글로벌 엔지니어·기획자 타깃 기능 비교표 및 오픈소스 쇼케이스 랜딩 카드입니다.',
+          voucherCode: 'AIM-FLOWDOC-V24-LAUNCH',
+          voucherAmount: 'PRO 14일',
+          voucherTime: '실시간 가동 중'
+        },
+        'TENANT_005': {
+          badge: '🏭 CNC 3호기 2주 뒤 유휴 감지 & LME 알루미늄 국제 시세 7% 인하',
+          title: '유휴 설비 방어를 위해 <span style="color: #FCD34D;">핵심 바이어 30개 사 사전 발주 오퍼</span>를 보낼까요?',
+          desc: '원자재 단가 인하 혜택을 담은 기술 견적 제안서를 즉시 전송하여 공장 가동률 100%를 유지합니다.',
+          btnText: '⚡ 바이어 기술 제안서 발송',
+          btnSub: '예상 수주액 +1,500만 원 ➔',
+          rev: '₩15,000,000',
+          net: '+₩12,400,000',
+          customers: '4개사',
+          voucherTitle: '글로벌 바이어 영문 기술 제안서 (TDS)',
+          voucherDesc: '공차 0.01mm 초정밀 가공 스펙과 사전 발주 단가 5% 네고 조건이 포함된 B2B 오퍼입니다.',
+          voucherCode: 'AIM-DAEJIN-CNC-OFFER2026',
+          voucherAmount: '5% 네고',
+          voucherTime: '견적 유효 7일'
+        }
+      };
+
+      const a = actionMap[t.tenant_id] || actionMap['TENANT_001'];
+      if (heroBadge) heroBadge.innerHTML = a.badge;
+      if (heroTitle) heroTitle.innerHTML = a.title;
+      if (heroDesc) heroDesc.innerHTML = a.desc;
+      if (heroBtnText) heroBtnText.innerText = a.btnText;
+      if (heroBtnSub) heroBtnSub.innerText = a.btnSub;
+
+      const revEl = document.getElementById('simpleAttributedRev');
+      if (revEl) revEl.innerText = a.rev;
+      const netEl = document.getElementById('simpleNetProfit');
+      if (netEl) netEl.innerText = a.net;
+      const countEl = document.getElementById('simpleCustomerCount');
+      if (countEl) countEl.innerText = a.customers;
+
+      const vTitle = document.getElementById('simpleVoucherTitle');
+      if (vTitle) vTitle.innerText = a.voucherTitle;
+      const vDesc = document.getElementById('simpleVoucherDesc');
+      if (vDesc) vDesc.innerText = a.voucherDesc;
+      const vAmt = document.getElementById('simpleVoucherAmount');
+      if (vAmt) vAmt.innerText = a.voucherAmount;
+      const vTime = document.getElementById('simpleVoucherTime');
+      if (vTime) vTime.innerText = a.voucherTime;
+    }
+
     /* Switch Active Tenant Across All Pillars */
     async function switchTenant(tenantId) {
       currentTenantId = tenantId;
       document.querySelectorAll('.tenant-quick-btn').forEach(b => b.classList.remove('active'));
       const activeBtn = document.getElementById('qBtn_' + tenantId);
       if (activeBtn) activeBtn.classList.add('active');
+
+      document.querySelectorAll('.simple-tenant-btn').forEach(b => b.classList.remove('active'));
+      const activeSimpleBtn = document.getElementById('sBtn_' + tenantId);
+      if (activeSimpleBtn) activeSimpleBtn.classList.add('active');
 
       const tenantPresets = {
         'TENANT_001': { q1: '시그니처 바질 소금빵', q2: '프랑스산 고메버터 48%로 구워내 풍미가 진하고 바삭함', q3: '2030 성수동 직장인 및 디저트 러버' },
@@ -3395,6 +3601,7 @@
       try {
         currentTenantData = await apiFetch(`/api/tenant/${tenantId}`);
         renderTenantColumn(currentTenantData);
+        updateSimpleViewForTenant(currentTenantData);
         updateServiceMatrixForTenant(currentTenantData.tenant);
         updateOnboardingForTenant(currentTenantData.tenant);
         const domMap = { 'fnb': 'FNB', 'medical': 'MEDICAL', 'beauty': 'BEAUTY', 'saas': 'SAAS', 'manufacturing': 'MANUFACTURING' };
@@ -3702,15 +3909,17 @@
 
     async function triggerMerchantQuickApprove() {
       const tId = currentTenantData?.tenant?.tenant_id || 'TENANT_001';
+      const bName = currentTenantData?.tenant?.business_name || '매장';
+      const trig = currentTenantData?.tenant?.business_state?.trigger_event || '비 예보 3시간 타임어택 (사장님 1초 퀵 승인)';
       try {
         const res = await fetch(`/api/v1/tenant/${tId}/quick-action/approve`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ custom_trigger: '비 예보 3시간 타임어택 (사장님 1초 퀵 승인)' })
+          body: JSON.stringify({ custom_trigger: trig })
         });
         const data = await res.json();
         if (res.ok) {
-          showToast(data.message || '🎉 [사장님 3초 퀵 승인 완료] 카카오·인스타·블로그 동시 송출되었습니다!');
+          showToast(data.message || `🎉 [사장님 1초 퀵 승인 완료] '${bName}' 추천 캠페인이 카카오·인스타·블로그로 동시 송출되었습니다!`);
           switchDeviceChannel('voucher');
           const deskBadge = document.getElementById('stagedDeskBadge');
           if (deskBadge) {
@@ -3721,7 +3930,7 @@
           showToast('⚠️ 승인 요청 실패: ' + (data.detail || '알 수 없는 오류'));
         }
       } catch (err) {
-        showToast('🎉 [사장님 3초 퀵 모드] 비 오는 날 3,000원 타임어택 쿠폰이 전 채널로 즉시 송출되었습니다!');
+        showToast(`🎉 [사장님 1초 퀵 모드] '${bName}' 추천 캠페인이 전 채널로 즉시 송출되었습니다!`);
         switchDeviceChannel('voucher');
       }
     }

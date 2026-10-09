@@ -289,7 +289,8 @@ def quick_action_approve(tenant_id: str, req: Optional[QuickActionApproveRequest
     if not tenant:
         raise HTTPException(status_code=404, detail=f"Tenant '{tenant_id}' not found")
 
-    trigger = req.custom_trigger if req and req.custom_trigger else "비 예보 3시간 타임어택 (사장님 1초 퀵 승인)"
+    default_trig = tenant.business_state.trigger_event if tenant.business_state and tenant.business_state.trigger_event else "비 예보 3시간 타임어택 (사장님 1초 퀵 승인)"
+    trigger = req.custom_trigger if req and req.custom_trigger else default_trig
     staged = ApprovalDesk.stage_new_campaign(tenant_id, custom_trigger=trigger)
     dispatch_res = ApprovalDesk.approve_and_dispatch(staged.campaign_id, ["kakao", "instagram", "blog"])
 
