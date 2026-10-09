@@ -27,7 +27,7 @@
       --cyan: #06B6D4;     /* Electric Cyan */
     }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-    body { background-color: var(--bg); color: var(--text-main); min-height: 100vh; padding: 16px 20px 40px; }
+    body { background-color: var(--bg); color: var(--text-main); min-height: 100vh; padding: 16px 20px 40px; font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
     
     /* Global Container */
     .master-wrapper { max-width: 1780px; width: 100%; margin: 0 auto; }
@@ -37,7 +37,7 @@
       background: var(--panel);
       border: 1px solid var(--card-border);
       border-radius: 16px;
-      padding: 16px 24px;
+      padding: 18px 26px;
       margin-bottom: 16px;
       display: flex;
       justify-content: space-between;
@@ -46,27 +46,27 @@
       gap: 16px;
       box-shadow: 0 8px 32px rgba(0,0,0,0.4);
     }
-    .brand-title { display: flex; align-items: center; gap: 12px; }
+    .brand-title { display: flex; align-items: center; gap: 14px; }
     .brand-logo-badge {
       background: linear-gradient(135deg, #3182F6 0%, #1B64DA 100%);
       color: #FFF;
       font-weight: 900;
-      font-size: 15px;
-      padding: 8px 14px;
+      font-size: 16px;
+      padding: 9px 16px;
       border-radius: 10px;
       letter-spacing: 0.5px;
       box-shadow: 0 0 20px rgba(49, 130, 246, 0.4);
     }
-    .brand-text h1 { font-size: 20px; font-weight: 800; color: #FFF; letter-spacing: -0.3px; }
-    .brand-text p { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .brand-text h1 { font-size: 22px; font-weight: 800; color: #FFF; letter-spacing: -0.3px; line-height: 1.35; }
+    .brand-text p { font-size: 14px; color: var(--text-muted); margin-top: 3px; }
 
     .telemetry-bar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
     .telem-pill {
       background: var(--card);
       border: 1px solid var(--card-border);
-      padding: 6px 12px;
+      padding: 7px 14px;
       border-radius: 8px;
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 700;
       display: inline-flex;
       align-items: center;
@@ -98,15 +98,15 @@
       background: transparent;
       border: none;
       color: #94A3B8;
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 700;
-      padding: 9px 18px;
-      border-radius: 8px;
+      padding: 10px 18px;
+      border-radius: 9px;
       cursor: pointer;
       transition: all 0.2s;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
     }
     .mode-tab-btn:hover { color: #FFF; background: rgba(255,255,255,0.05); }
     .mode-tab-btn.active {
@@ -118,16 +118,16 @@
     .tenant-quick-bar {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
       overflow-x: auto;
     }
     .tenant-quick-btn {
       background: var(--card);
       border: 1px solid var(--card-border);
       color: var(--text-muted);
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 700;
-      padding: 7px 12px;
+      padding: 8px 14px;
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.15s;
@@ -145,9 +145,9 @@
       background: var(--card);
       border: 1.5px solid var(--card-border);
       color: var(--text-muted);
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 800;
-      padding: 8px 14px;
+      padding: 10px 16px;
       border-radius: 10px;
       cursor: pointer;
       transition: all 0.15s ease;
@@ -169,9 +169,9 @@
       background: transparent;
       border: 1px solid transparent;
       color: #94A3B8;
-      font-size: 12px;
-      font-weight: 700;
-      padding: 8px 14px;
+      font-size: 14px;
+      font-weight: 800;
+      padding: 10px 18px;
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.15s ease;
@@ -727,14 +727,14 @@
         </div>
       </div>
       <div style="display: flex; align-items: center; gap: 8px;">
-        <div style="display: flex; gap: 4px; background: var(--card); padding: 4px; border-radius: 10px; border: 1.5px solid var(--card-border);">
-          <button id="btnModeSimple" onclick="toggleUIMode('simple')" style="padding: 7px 16px; font-size: 13px; font-weight: 800; border-radius: 7px; border: none; cursor: pointer; background: var(--primary); color: #FFFFFF; transition: all 0.2s;">
+        <div style="display: flex; gap: 6px; background: var(--card); padding: 5px; border-radius: 12px; border: 1.5px solid var(--card-border);">
+          <button id="btnModeSimple" onclick="toggleUIMode('simple')" style="padding: 8px 18px; font-size: 15px; font-weight: 800; border-radius: 8px; border: none; cursor: pointer; background: var(--primary); color: #FFFFFF; transition: all 0.2s;">
             ✨ 심플 모드
           </button>
-          <button id="btnModeMobile" onclick="toggleUIMode('mobile')" style="padding: 7px 16px; font-size: 13px; font-weight: 700; border-radius: 7px; border: none; cursor: pointer; background: transparent; color: var(--text-muted); transition: all 0.2s;">
+          <button id="btnModeMobile" onclick="toggleUIMode('mobile')" style="padding: 8px 18px; font-size: 15px; font-weight: 700; border-radius: 8px; border: none; cursor: pointer; background: transparent; color: var(--text-muted); transition: all 0.2s;">
             📱 390px 모바일 콕핏
           </button>
-          <button id="btnModeAdvanced" onclick="toggleUIMode('advanced')" style="padding: 7px 16px; font-size: 13px; font-weight: 700; border-radius: 7px; border: none; cursor: pointer; background: transparent; color: var(--text-muted); transition: all 0.2s;">
+          <button id="btnModeAdvanced" onclick="toggleUIMode('advanced')" style="padding: 8px 18px; font-size: 15px; font-weight: 700; border-radius: 8px; border: none; cursor: pointer; background: transparent; color: var(--text-muted); transition: all 0.2s;">
             📊 전문가 모드
           </button>
         </div>
@@ -747,8 +747,8 @@
     <section id="viewSimple" class="view-panel" style="display: block; max-width: 900px; margin: 0 auto; padding: 20px 16px 48px;">
       
       <!-- Industry / Tenant Switcher Bar for Clean Mode -->
-      <div style="margin-bottom: 20px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-        <span style="font-size: 12px; font-weight: 800; color: var(--primary);">🏢 내 사업장 업종 선택:</span>
+      <div style="margin-bottom: 20px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+        <span style="font-size: 14px; font-weight: 800; color: var(--primary);">🏢 내 사업장 업종 선택:</span>
         <button id="sBtn_TENANT_001" class="simple-tenant-btn active" onclick="switchTenant('TENANT_001')">🥐 F&B 외식 (성수 베이커리)</button>
         <button id="sBtn_TENANT_002" class="simple-tenant-btn" onclick="switchTenant('TENANT_002')">🏥 의료 병원 (강남 리엔 피부과)</button>
         <button id="sBtn_TENANT_003" class="simple-tenant-btn" onclick="switchTenant('TENANT_003')">✂️ 뷰티 살롱 (청담 헤어살롱)</button>
@@ -757,81 +757,81 @@
       </div>
 
       <!-- Domain Conquest Strategy Banner (1차 로컬 F&B 외식·카페 완전 정복 전략) -->
-      <div style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(22, 31, 48, 0.9) 100%); border: 1.5px solid var(--primary); border-radius: 14px; padding: 14px 18px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; box-shadow: 0 4px 20px rgba(49, 130, 246, 0.2);">
-        <div style="display: flex; align-items: center; gap: 12px;">
-          <span style="font-size: 26px;">🎯</span>
+      <div style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(22, 31, 48, 0.9) 100%); border: 1.5px solid var(--primary); border-radius: 16px; padding: 16px 20px; margin-bottom: 22px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; box-shadow: 0 4px 20px rgba(49, 130, 246, 0.2);">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <span style="font-size: 30px;">🎯</span>
           <div>
-            <div style="font-size: 14px; font-weight: 900; color: #FFFFFF; display: flex; align-items: center; gap: 8px;">
+            <div style="font-size: 16px; font-weight: 900; color: #FFFFFF; display: flex; align-items: center; gap: 10px;">
               <span>[도메인 정복 전략] 1차 플래그십: <strong style="color: #60A5FA;">로컬 F&B 외식·카페</strong> 100% 완전 정복</span>
-              <span style="font-size: 11px; background: var(--success); color: #FFFFFF; padding: 2px 8px; border-radius: 999px; font-weight: 800;">플래그십 가동 중</span>
+              <span style="font-size: 13px; background: var(--success); color: #FFFFFF; padding: 3px 10px; border-radius: 999px; font-weight: 800;">플래그십 가동 중</span>
             </div>
-            <div style="font-size: 12px; color: var(--text-main); margin-top: 2px;">
+            <div style="font-size: 14px; color: var(--text-main); margin-top: 4px; line-height: 1.5;">
               모든 업종을 한 번에 다 하지 않고, <strong>가장 절박한 로컬 외식·소상공인 분야부터 완벽히 해결</strong>한 후 의료·뷰티·B2B로 순차 확장합니다.
             </div>
           </div>
         </div>
-        <div style="display: flex; gap: 6px; font-size: 11px; color: var(--text-muted);">
-          <span style="background: rgba(49, 130, 246, 0.2); color: #93C5FD; border: 1px solid var(--primary); padding: 4px 10px; border-radius: 6px; font-weight: 800;">1단계: F&B 외식 (집중 정복)</span>
-          <span style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 6px;">2단계: 의료·병원 ➔</span>
-          <span style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 6px;">3단계: 뷰티·살롱 ➔</span>
+        <div style="display: flex; gap: 8px; font-size: 13px; color: var(--text-muted);">
+          <span style="background: rgba(49, 130, 246, 0.2); color: #93C5FD; border: 1px solid var(--primary); padding: 5px 12px; border-radius: 8px; font-weight: 800;">1단계: F&B 외식 (집중 정복)</span>
+          <span style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); padding: 5px 12px; border-radius: 8px;">2단계: 의료·병원 ➔</span>
+          <span style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); padding: 5px 12px; border-radius: 8px;">3단계: 뷰티·살롱 ➔</span>
         </div>
       </div>
 
       <!-- Store Selector Pill -->
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid #1E293B;">
-        <div style="display: flex; align-items: center; gap: 10px;">
-          <span style="font-size: 22px;">🏪</span>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid #1E293B;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <span style="font-size: 26px;">🏪</span>
           <div>
-            <div id="simpleStoreName" style="font-size: 17px; font-weight: 900; color: #FFFFFF;">성수 아뜰리에 베이커리 & 카페</div>
-            <div id="simpleStoreSub" style="font-size: 11px; color: #94A3B8;">김성수 대표 · 서울 성수동 상권</div>
+            <div id="simpleStoreName" style="font-size: 22px; font-weight: 900; color: #FFFFFF;">성수 아뜰리에 베이커리 & 카페</div>
+            <div id="simpleStoreSub" style="font-size: 14px; color: #94A3B8; margin-top: 2px;">김성수 대표 · 서울 성수동 상권</div>
           </div>
-          <span style="font-size: 11px; color: #10B981; background: rgba(16,185,129,0.15); padding: 3px 10px; border-radius: 999px; font-weight: 800; margin-left: 6px;">● 정상 운영 중</span>
+          <span style="font-size: 13px; color: #10B981; background: rgba(16,185,129,0.15); padding: 4px 12px; border-radius: 999px; font-weight: 800; margin-left: 8px;">● 정상 운영 중</span>
         </div>
         <div style="text-align: right;">
-          <div style="font-size: 11px; color: #94A3B8;">월 구독 요금제</div>
-          <div id="simpleStorePlan" style="font-size: 14px; font-weight: 800; color: #818CF8;">₩49,000 / 월 (PRO)</div>
+          <div style="font-size: 13px; color: #94A3B8;">월 구독 요금제</div>
+          <div id="simpleStorePlan" style="font-size: 17px; font-weight: 800; color: #818CF8; margin-top: 2px;">₩49,000 / 월 (PRO)</div>
         </div>
       </div>
 
       <!-- AIM 3-Step Autonomous Closed-Loop Flywheel Master Banner -->
-      <div style="background: linear-gradient(135deg, rgba(22, 31, 48, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%); border: 2px solid var(--primary); border-radius: 18px; padding: 18px 22px; margin-bottom: 24px; box-shadow: 0 8px 30px rgba(49, 130, 246, 0.2);">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px;">
-          <div style="display: flex; align-items: center; gap: 10px;">
-            <span style="font-size: 24px;">🔄</span>
+      <div style="background: linear-gradient(135deg, rgba(22, 31, 48, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%); border: 2px solid var(--primary); border-radius: 18px; padding: 20px 24px; margin-bottom: 26px; box-shadow: 0 8px 30px rgba(49, 130, 246, 0.2);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="font-size: 28px;">🔄</span>
             <div>
-              <div style="font-size: 15px; font-weight: 900; color: #FFFFFF;">
+              <div style="font-size: 19px; font-weight: 900; color: #FFFFFF;">
                 AIM 3단계 자율 선순환 (3-Step Closed-Loop Flywheel)
               </div>
-              <div style="font-size: 12px; color: #93C5FD; margin-top: 2px;">
+              <div style="font-size: 14px; color: #93C5FD; margin-top: 3px;">
                 복잡한 글과 메뉴 없이: <strong>1) AI 상황 진단 제시 ➔ 2) 사장님 선택 & 업무 자동화 게시 ➔ 3) 실시간 결과 확인 & 매출 증명</strong>
               </div>
             </div>
           </div>
-          <span style="font-size: 11px; background: rgba(0, 196, 140, 0.2); color: var(--success); border: 1px solid var(--success); padding: 4px 12px; border-radius: 999px; font-weight: 800;">
+          <span style="font-size: 13px; background: rgba(0, 196, 140, 0.2); color: var(--success); border: 1px solid var(--success); padding: 5px 14px; border-radius: 999px; font-weight: 800;">
             ● 24시간 실시간 자율 선순환
           </span>
         </div>
         <!-- 3-Step Indicator Bar -->
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
-          <a href="#step1ProposeSection" style="text-decoration: none; background: rgba(49, 130, 246, 0.18); border: 1.5px solid var(--primary); border-radius: 12px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; transition: transform 0.15s;">
-            <span style="background: var(--primary); color: #FFFFFF; font-weight: 900; font-size: 13px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</span>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+          <a href="#step1ProposeSection" style="text-decoration: none; background: rgba(49, 130, 246, 0.18); border: 1.5px solid var(--primary); border-radius: 14px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; transition: transform 0.15s;">
+            <span style="background: var(--primary); color: #FFFFFF; font-weight: 900; font-size: 15px; width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</span>
             <div>
-              <div style="font-size: 12px; font-weight: 900; color: #FFFFFF;">AI 진단 & 할 일 제시</div>
-              <div style="font-size: 10px; color: #93C5FD;">4대 인프라 센싱 + 처방 4선</div>
+              <div style="font-size: 15px; font-weight: 900; color: #FFFFFF;">AI 진단 & 할 일 제시</div>
+              <div style="font-size: 13px; color: #93C5FD; margin-top: 2px;">4대 인프라 센싱 + 처방 4선</div>
             </div>
           </a>
-          <div onclick="openPublishingModal(currentAdviceId || 'ADV_TENANT_001_WEATHER')" style="cursor: pointer; background: rgba(0, 196, 140, 0.18); border: 1.5px solid var(--success); border-radius: 12px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; transition: transform 0.15s;">
-            <span style="background: var(--success); color: #FFFFFF; font-weight: 900; font-size: 13px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</span>
+          <div onclick="openPublishingModal(currentAdviceId || 'ADV_TENANT_001_WEATHER')" style="cursor: pointer; background: rgba(0, 196, 140, 0.18); border: 1.5px solid var(--success); border-radius: 14px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; transition: transform 0.15s;">
+            <span style="background: var(--success); color: #FFFFFF; font-weight: 900; font-size: 15px; width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</span>
             <div>
-              <div style="font-size: 12px; font-weight: 900; color: #FFFFFF;">사장님 선택 & 자동 게시</div>
-              <div style="font-size: 10px; color: #A7F3D0;">네이버·인스타·크리에이터</div>
+              <div style="font-size: 15px; font-weight: 900; color: #FFFFFF;">사장님 선택 & 자동 게시</div>
+              <div style="font-size: 13px; color: #A7F3D0; margin-top: 2px;">네이버·인스타·크리에이터</div>
             </div>
           </div>
-          <a href="#step3ResultsSection" style="text-decoration: none; background: rgba(6, 182, 212, 0.18); border: 1.5px solid var(--cyan); border-radius: 12px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; transition: transform 0.15s;">
-            <span style="background: var(--cyan); color: #0B0F19; font-weight: 900; font-size: 13px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</span>
+          <a href="#step3ResultsSection" style="text-decoration: none; background: rgba(6, 182, 212, 0.18); border: 1.5px solid var(--cyan); border-radius: 14px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; transition: transform 0.15s;">
+            <span style="background: var(--cyan); color: #0B0F19; font-weight: 900; font-size: 15px; width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</span>
             <div>
-              <div style="font-size: 12px; font-weight: 900; color: #FFFFFF;">실시간 결과 & 매출 증명</div>
-              <div style="font-size: 10px; color: #BAE6FD;">POS 실측 결제 + 성과 원장</div>
+              <div style="font-size: 15px; font-weight: 900; color: #FFFFFF;">실시간 결과 & 매출 증명</div>
+              <div style="font-size: 13px; color: #BAE6FD; margin-top: 2px;">POS 실측 결제 + 성과 원장</div>
             </div>
           </a>
         </div>
@@ -840,104 +840,104 @@
       <!-- ======================================================== -->
       <!-- STEP 1: AI 상황 진단 & 할 일 제시 (Propose) -->
       <!-- ======================================================== -->
-      <div id="step1ProposeSection" style="margin-bottom: 28px;">
-        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-          <span style="background: var(--primary); color: #FFFFFF; font-weight: 900; font-size: 13px; padding: 4px 12px; border-radius: 8px;">STEP 1</span>
-          <h3 style="font-size: 18px; font-weight: 900; color: #FFFFFF; margin: 0;">AI 상황 진단 & 오늘의 할 일 제시</h3>
-          <span style="font-size: 11px; color: #93C5FD; margin-left: auto;">인프라 센싱 ➔ 무료 처방 4선</span>
+      <div id="step1ProposeSection" style="margin-bottom: 30px;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+          <span style="background: var(--primary); color: #FFFFFF; font-weight: 900; font-size: 14px; padding: 5px 14px; border-radius: 8px;">STEP 1</span>
+          <h3 style="font-size: 22px; font-weight: 900; color: #FFFFFF; margin: 0;">AI 상황 진단 & 오늘의 할 일 제시</h3>
+          <span style="font-size: 14px; color: #93C5FD; margin-left: auto;">인프라 센싱 ➔ 무료 처방 4선</span>
         </div>
 
         <!-- 4-Pillar Environmental Infrastructure Live Sensing Bar -->
-        <div style="background: var(--panel); border: 1px solid var(--card-border); border-radius: 16px; padding: 18px 20px; margin-bottom: 24px; box-shadow: 0 4px 16px rgba(0,0,0,0.25);">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span style="font-size: 18px;">📡</span>
+        <div style="background: var(--panel); border: 1px solid var(--card-border); border-radius: 18px; padding: 20px 22px; margin-bottom: 26px; box-shadow: 0 4px 16px rgba(0,0,0,0.25);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 10px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="font-size: 22px;">📡</span>
               <div>
-                <span style="font-size: 11px; font-weight: 800; color: var(--primary); letter-spacing: 0.5px;">LIVE MARKETING INFRASTRUCTURE</span>
-                <h3 style="font-size: 15px; font-weight: 900; color: var(--text-main);">4대 마케팅 환경 인프라 실시간 센싱 (날씨 · 상권 · 기념일 · 축제)</h3>
+                <span style="font-size: 12px; font-weight: 800; color: var(--primary); letter-spacing: 0.8px;">LIVE MARKETING INFRASTRUCTURE</span>
+                <h3 style="font-size: 18px; font-weight: 900; color: var(--text-main); margin-top: 2px;">4대 마케팅 환경 인프라 실시간 센싱 (날씨 · 상권 · 기념일 · 축제)</h3>
               </div>
             </div>
-            <span style="font-size: 11px; color: var(--success); background: rgba(0,196,140,0.15); border: 1px solid var(--success); padding: 4px 10px; border-radius: 999px; font-weight: 800;">● 24시간 실시간 인프라 동기화 중</span>
+            <span style="font-size: 13px; color: var(--success); background: rgba(0,196,140,0.15); border: 1px solid var(--success); padding: 5px 12px; border-radius: 999px; font-weight: 800;">● 24시간 실시간 인프라 동기화 중</span>
           </div>
 
-          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;">
             <!-- Infra 1: Weather -->
-            <div id="infraWeatherCard" style="background: var(--card); border: 1.5px solid var(--cyan); border-radius: 14px; padding: 14px; box-shadow: 0 4px 14px rgba(6,182,212,0.12);">
-              <div style="font-size: 11px; color: var(--cyan); font-weight: 800; margin-bottom: 4px; display: flex; align-items: center; gap: 4px;"><span>🌦️</span> <span>날씨/기상 인프라</span></div>
-              <div id="infraWeatherVal" style="font-size: 14px; font-weight: 900; color: var(--text-main); margin-bottom: 4px;">🌧️ 비 내림 (5.2mm)</div>
-              <div id="infraWeatherSub" style="font-size: 11px; color: var(--text-muted); line-height: 1.4;">실내 아늑 소비 탄력도 +35% 급증</div>
+            <div id="infraWeatherCard" style="background: var(--card); border: 1.5px solid var(--cyan); border-radius: 14px; padding: 16px 14px; box-shadow: 0 4px 14px rgba(6,182,212,0.12);">
+              <div style="font-size: 13px; color: var(--cyan); font-weight: 800; margin-bottom: 6px; display: flex; align-items: center; gap: 4px;"><span>🌦️</span> <span>날씨/기상 인프라</span></div>
+              <div id="infraWeatherVal" style="font-size: 18px; font-weight: 900; color: var(--text-main); margin-bottom: 6px;">🌧️ 비 내림 (5.2mm)</div>
+              <div id="infraWeatherSub" style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">실내 아늑 소비 탄력도 +35% 급증</div>
             </div>
 
             <!-- Infra 2: Geography -->
-            <div id="infraGeoCard" style="background: var(--card); border: 1.5px solid var(--accent); border-radius: 14px; padding: 14px; box-shadow: 0 4px 14px rgba(139,126,216,0.12);">
-              <div style="font-size: 11px; color: var(--accent); font-weight: 800; margin-bottom: 4px; display: flex; align-items: center; gap: 4px;"><span>📍</span> <span>지역/상권 인프라</span></div>
-              <div id="infraGeoVal" style="font-size: 14px; font-weight: 900; color: var(--text-main); margin-bottom: 4px;">📍 성수 연무장길 카페거리</div>
-              <div id="infraGeoSub" style="font-size: 11px; color: var(--text-muted); line-height: 1.4;">유동인구 14,200명/h · 2030 62%</div>
+            <div id="infraGeoCard" style="background: var(--card); border: 1.5px solid var(--accent); border-radius: 14px; padding: 16px 14px; box-shadow: 0 4px 14px rgba(139,126,216,0.12);">
+              <div style="font-size: 13px; color: var(--accent); font-weight: 800; margin-bottom: 6px; display: flex; align-items: center; gap: 4px;"><span>📍</span> <span>지역/상권 인프라</span></div>
+              <div id="infraGeoVal" style="font-size: 18px; font-weight: 900; color: var(--text-main); margin-bottom: 6px;">📍 성수 연무장길 카페거리</div>
+              <div id="infraGeoSub" style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">유동인구 14,200명/h · 2030 62%</div>
             </div>
 
             <!-- Infra 3: Anniversary -->
-            <div id="infraAnnivCard" style="background: var(--card); border: 1.5px solid var(--warning); border-radius: 14px; padding: 14px; box-shadow: 0 4px 14px rgba(229,168,75,0.12);">
-              <div style="font-size: 11px; color: var(--warning); font-weight: 800; margin-bottom: 4px; display: flex; align-items: center; gap: 4px;"><span>🗓️</span> <span>기념일/절기 인프라</span></div>
-              <div id="infraAnnivVal" style="font-size: 14px; font-weight: 900; color: var(--text-main); margin-bottom: 4px;">🗓️ 할로윈 데이 (D-22)</div>
-              <div id="infraAnnivSub" style="font-size: 11px; color: var(--text-muted); line-height: 1.4;">선예약 준비 단계 · 검색량 급증</div>
+            <div id="infraAnnivCard" style="background: var(--card); border: 1.5px solid var(--warning); border-radius: 14px; padding: 16px 14px; box-shadow: 0 4px 14px rgba(229,168,75,0.12);">
+              <div style="font-size: 13px; color: var(--warning); font-weight: 800; margin-bottom: 6px; display: flex; align-items: center; gap: 4px;"><span>🗓️</span> <span>기념일/절기 인프라</span></div>
+              <div id="infraAnnivVal" style="font-size: 18px; font-weight: 900; color: var(--text-main); margin-bottom: 6px;">🗓️ 할로윈 데이 (D-22)</div>
+              <div id="infraAnnivSub" style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">선예약 준비 단계 · 검색량 급증</div>
             </div>
 
             <!-- Infra 4: Events/Festivals -->
-            <div id="infraEventCard" style="background: var(--card); border: 1.5px solid #D9658B; border-radius: 14px; padding: 14px; box-shadow: 0 4px 14px rgba(217,101,139,0.12);">
-              <div style="font-size: 11px; color: #D9658B; font-weight: 800; margin-bottom: 4px; display: flex; align-items: center; gap: 4px;"><span>🎪</span> <span>축제/행사 인프라</span></div>
-              <div id="infraEventVal" style="font-size: 14px; font-weight: 900; color: var(--text-main); margin-bottom: 4px;">🎪 서울숲 스프링 피크닉</div>
-              <div id="infraEventSub" style="font-size: 11px; color: var(--text-muted); line-height: 1.4;">인파 +35% 급증 (반경 500m)</div>
+            <div id="infraEventCard" style="background: var(--card); border: 1.5px solid #EC4899; border-radius: 14px; padding: 16px 14px; box-shadow: 0 4px 14px rgba(236,72,153,0.12);">
+              <div style="font-size: 13px; color: #EC4899; font-weight: 800; margin-bottom: 6px; display: flex; align-items: center; gap: 4px;"><span>🎪</span> <span>축제/행사 인프라</span></div>
+              <div id="infraEventVal" style="font-size: 18px; font-weight: 900; color: var(--text-main); margin-bottom: 6px;">🎪 서울숲 스프링 피크닉</div>
+              <div id="infraEventSub" style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">인파 +35% 급증 (반경 500m)</div>
             </div>
           </div>
         </div>
 
         <!-- 1. Hero 1-Action Card (오늘 내가 할 일) -->
-        <div style="background: linear-gradient(135deg, var(--card) 0%, var(--card-elevated) 100%); border: 2px solid var(--primary); border-radius: 20px; padding: 26px 28px; margin-bottom: 24px; box-shadow: 0 10px 32px rgba(49, 130, 246, 0.25); text-align: center;">
+        <div style="background: linear-gradient(135deg, var(--card) 0%, var(--card-elevated) 100%); border: 2px solid var(--primary); border-radius: 22px; padding: 28px 30px; margin-bottom: 26px; box-shadow: 0 10px 32px rgba(49, 130, 246, 0.25); text-align: center;">
           
           <!-- Visual Hero Graphic Banner -->
-          <div style="width: 100%; border-radius: 14px; overflow: hidden; margin-bottom: 18px; box-shadow: 0 8px 25px rgba(0,0,0,0.4); border: 1.5px solid var(--card-border);">
+          <div style="width: 100%; border-radius: 16px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.4); border: 1.5px solid var(--card-border);">
             <img src="docs/design/images/img_rain_bakery.svg" alt="비 오는 날 바질소금빵 세트 프로모션" style="width: 100%; height: auto; max-height: 250px; object-fit: cover; display: block;" />
           </div>
 
-          <div id="simpleHeroBadge" style="display: inline-flex; align-items: center; gap: 6px; background: rgba(229,168,75,0.15); border: 1px solid var(--warning); padding: 5px 14px; border-radius: 999px; margin-bottom: 14px; font-size: 12px; font-weight: 800; color: var(--warning);">
+          <div id="simpleHeroBadge" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(245,158,11,0.15); border: 1px solid var(--warning); padding: 7px 18px; border-radius: 999px; margin-bottom: 16px; font-size: 14px; font-weight: 800; color: var(--warning);">
             🌧️ 실시간 날씨 감지: 지금 성수동에 비가 내려요 (5.2mm)
           </div>
-          <h2 id="simpleHeroTitle" style="font-size: 25px; font-weight: 900; color: var(--text-main); line-height: 1.4; margin-bottom: 10px;">
+          <h2 id="simpleHeroTitle" style="font-size: 30px; font-weight: 900; color: var(--text-main); line-height: 1.35; margin-bottom: 12px; letter-spacing: -0.5px;">
             비 오는 날 손님이 뜸할 때, <span style="color: var(--primary);">3시간 한정 타임특가</span>를 보낼까요?
           </h2>
-          <p id="simpleHeroDesc" style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px; max-width: 620px; margin-left: auto; margin-right: auto; line-height: 1.5;">
+          <p id="simpleHeroDesc" style="font-size: 16px; color: var(--text-secondary); margin-bottom: 26px; max-width: 660px; margin-left: auto; margin-right: auto; line-height: 1.6;">
             카카오톡 단골·인스타그램·네이버 플레이스로 즉시 알려 빈 테이블 15석을 채우고 당일 손실을 방어합니다.
           </p>
 
           <!-- Big Primary CTA Button -->
-          <button onclick="triggerMerchantQuickApprove()" style="width: 100%; max-width: 540px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%); color: #FFFFFF; font-size: 18px; font-weight: 900; border: none; padding: 19px 32px; border-radius: 16px; cursor: pointer; box-shadow: 0 8px 25px rgba(49, 130, 246, 0.45); display: inline-flex; align-items: center; justify-content: center; gap: 12px; transition: transform 0.1s;">
+          <button onclick="triggerMerchantQuickApprove()" style="width: 100%; max-width: 560px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%); color: #FFFFFF; font-size: 20px; font-weight: 900; border: none; padding: 20px 34px; border-radius: 16px; cursor: pointer; box-shadow: 0 8px 25px rgba(49, 130, 246, 0.45); display: inline-flex; align-items: center; justify-content: center; gap: 12px; transition: transform 0.1s;">
             <span id="simpleHeroBtnText">⚡ 1초 만에 3대 채널 동시 발송</span>
-            <span id="simpleHeroBtnSub" style="font-size: 13px; background: rgba(0,0,0,0.25); padding: 4px 10px; border-radius: 8px;">예상 순이익 +21만 원 ➔</span>
+            <span id="simpleHeroBtnSub" style="font-size: 15px; background: rgba(0,0,0,0.25); padding: 5px 12px; border-radius: 8px;">예상 순이익 +21만 원 ➔</span>
           </button>
         </div>
 
         <!-- AI Marketing Consulting Advisor Prescriptions Desk -->
-        <div style="background: var(--panel); border: 1px solid var(--card-border); border-radius: 18px; padding: 22px 24px; margin-bottom: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.25);">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
+        <div style="background: var(--panel); border: 1px solid var(--card-border); border-radius: 18px; padding: 22px 24px; margin-bottom: 26px; box-shadow: 0 4px 20px rgba(0,0,0,0.25);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
             <div>
               <div style="display: flex; align-items: center; gap: 8px;">
-                <span style="font-size: 18px;">🧠</span>
-                <span style="font-size: 11px; font-weight: 800; color: var(--primary); letter-spacing: 0.5px;">AI MARKETING CONSULTING DESK</span>
+                <span style="font-size: 20px;">🧠</span>
+                <span style="font-size: 12px; font-weight: 800; color: var(--primary); letter-spacing: 0.8px;">AI MARKETING CONSULTING DESK</span>
               </div>
-              <h3 style="font-size: 18px; font-weight: 900; color: var(--text-main); margin-top: 4px;">
+              <h3 style="font-size: 21px; font-weight: 900; color: var(--text-main); margin-top: 4px; line-height: 1.35;">
                 매출 부진 시 수백만원 컨설팅비 대신, AI가 실시간 무료 처방을 내립니다
               </h3>
-              <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">
+              <p style="font-size: 14px; color: var(--text-muted); margin-top: 4px; line-height: 1.5;">
                 날씨·지역·기념일·축제 인프라를 분석해 맞춤 처방을 추천합니다. 선택하면 네이버 정보지·인스타·크리에이터 섭외 콘텐츠가 자동 완성됩니다.
               </p>
             </div>
-            <span style="font-size: 11px; color: var(--warning); background: rgba(229,168,75,0.15); border: 1px solid var(--warning); padding: 4px 10px; border-radius: 999px; font-weight: 800;">
+            <span style="font-size: 13px; color: var(--warning); background: rgba(245,158,11,0.15); border: 1px solid var(--warning); padding: 5px 12px; border-radius: 999px; font-weight: 800;">
               ⚡ 4대 즉시 처방 활성화
             </span>
           </div>
 
           <!-- 4 Prescriptions Grid Container -->
-          <div id="consultingPrescriptionsGrid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;">
+          <div id="consultingPrescriptionsGrid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
             <!-- Dynamically populated by loadConsultingDesk() -->
           </div>
         </div>
@@ -946,67 +946,67 @@
       <!-- ======================================================== -->
       <!-- STEP 2 Bridge Card: 사장님 선택 & 업무 자동화 게시 -->
       <!-- ======================================================== -->
-      <div id="step2PublishBridge" style="background: rgba(0, 196, 140, 0.1); border: 1.5px dashed var(--success); border-radius: 16px; padding: 18px 22px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
-        <div style="display: flex; align-items: center; gap: 12px;">
-          <span style="background: var(--success); color: #FFFFFF; font-weight: 900; font-size: 13px; padding: 4px 12px; border-radius: 8px;">STEP 2</span>
+      <div id="step2PublishBridge" style="background: rgba(0, 196, 140, 0.1); border: 1.5px dashed var(--success); border-radius: 18px; padding: 20px 24px; margin-bottom: 26px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <span style="background: var(--success); color: #FFFFFF; font-weight: 900; font-size: 14px; padding: 5px 14px; border-radius: 8px;">STEP 2</span>
           <div>
-            <h4 style="font-size: 15px; font-weight: 900; color: var(--text-main); margin: 0;">사장님 선택 & 옴니채널 자동화 게시 (Publish)</h4>
-            <p style="font-size: 12px; color: var(--text-muted); margin: 3px 0 0;">
+            <h4 style="font-size: 18px; font-weight: 900; color: var(--text-main); margin: 0;">사장님 선택 & 옴니채널 자동화 게시 (Publish)</h4>
+            <p style="font-size: 14px; color: var(--text-secondary); margin: 4px 0 0; line-height: 1.5;">
               AI 처방을 선택하면 <strong>네이버 스마트플레이스(40자)·인스타그램·크리에이터 콘티</strong>가 1초 만에 자동 완성되어 즉시 배포됩니다.
             </p>
           </div>
         </div>
-        <button onclick="openPublishingModal(currentAdviceId || 'ADV_TENANT_001_WEATHER')" style="background: var(--success); color: #FFFFFF; font-size: 13px; font-weight: 900; border: none; padding: 11px 20px; border-radius: 10px; cursor: pointer; box-shadow: 0 4px 15px rgba(0, 196, 140, 0.35); display: flex; align-items: center; gap: 6px;">
+        <button onclick="openPublishingModal(currentAdviceId || 'ADV_TENANT_001_WEATHER')" style="background: var(--success); color: #FFFFFF; font-size: 15px; font-weight: 900; border: none; padding: 13px 24px; border-radius: 12px; cursor: pointer; box-shadow: 0 4px 15px rgba(0, 196, 140, 0.35); display: flex; align-items: center; gap: 8px;">
           <span>⚡ 2단계 자동 생성·게시 데스크 열기 ➔</span>
         </button>
       </div>
 
       <!-- 2. AIM_Base.md 4-Step Autonomous Marketing OS Cyclical Engine (Collapsible for Maximum Merchant Focus) -->
-      <details style="background: #0F172A; border: 1.5px solid #1E293B; border-radius: 16px; padding: 14px 20px; margin-bottom: 24px; box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
+      <details style="background: #0F172A; border: 1.5px solid #1E293B; border-radius: 16px; padding: 16px 22px; margin-bottom: 26px; box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
         <summary style="display: flex; justify-content: space-between; align-items: center; cursor: pointer; list-style: none; user-select: none;">
-          <div style="display: flex; align-items: center; gap: 10px;">
-            <span style="font-size: 18px;">⚙️</span>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="font-size: 20px;">⚙️</span>
             <div>
-              <span style="font-size: 11px; font-weight: 800; color: #818CF8; letter-spacing: 0.5px;">AIM 4-STEP AUTONOMOUS ENGINE</span>
-              <h4 style="font-size: 14px; font-weight: 800; color: #E2E8F0; margin-top: 2px;">
+              <span style="font-size: 12px; font-weight: 800; color: #818CF8; letter-spacing: 0.8px;">AIM 4-STEP AUTONOMOUS ENGINE</span>
+              <h4 style="font-size: 15px; font-weight: 800; color: #E2E8F0; margin-top: 2px;">
                 내 사업장 데이터만 연결하면, AI가 24시간 이렇게 자율 구동합니다 (내부 원리)
               </h4>
             </div>
           </div>
-          <span style="font-size: 11px; color: #94A3B8; background: rgba(255,255,255,0.06); padding: 4px 10px; border-radius: 6px; font-weight: 700;">
+          <span style="font-size: 13px; color: #94A3B8; background: rgba(255,255,255,0.06); padding: 5px 12px; border-radius: 8px; font-weight: 700;">
             AIM_Base.md 4단계 선순환 구조 펼쳐보기 ▼
           </span>
         </summary>
 
-        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 16px; padding-top: 14px; border-top: 1px solid #1E293B;">
-          <div style="background: #1E293B; border: 1px solid #334155; border-radius: 12px; padding: 14px; border-top: 3px solid #38BDF8;">
-            <div style="font-size: 11px; font-weight: 800; color: var(--cyan); margin-bottom: 4px;">1단계: 데이터 자동 연결</div>
-            <div style="font-size: 13px; font-weight: 900; color: var(--text-main); margin-bottom: 6px;">🔌 온·오프라인 수집</div>
-            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 18px; padding-top: 16px; border-top: 1px solid #1E293B;">
+          <div style="background: #1E293B; border: 1px solid #334155; border-radius: 12px; padding: 16px; border-top: 3px solid #38BDF8;">
+            <div style="font-size: 13px; font-weight: 800; color: var(--cyan); margin-bottom: 5px;">1단계: 데이터 자동 연결</div>
+            <div style="font-size: 15px; font-weight: 900; color: var(--text-main); margin-bottom: 6px;">🔌 온·오프라인 수집</div>
+            <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">
               POS 결제·영수증 리뷰·네이버 플레이스·고객 피드백을 실시간 수집해 단일 원천 데이터(Single Source)로 정규화
             </p>
           </div>
 
-          <div style="background: var(--card); border: 1px solid var(--card-border); border-radius: 12px; padding: 14px; border-top: 3px solid var(--accent);">
-            <div style="font-size: 11px; font-weight: 800; color: var(--accent); margin-bottom: 4px;">2단계: 5대 채널 자동 분기</div>
-            <div style="font-size: 13px; font-weight: 900; color: var(--text-main); margin-bottom: 6px;">✍️ 채널별 맞춤 제작</div>
-            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+          <div style="background: var(--card); border: 1px solid var(--card-border); border-radius: 12px; padding: 16px; border-top: 3px solid var(--accent);">
+            <div style="font-size: 13px; font-weight: 800; color: var(--accent); margin-bottom: 5px;">2단계: 5대 채널 자동 분기</div>
+            <div style="font-size: 15px; font-weight: 900; color: var(--text-main); margin-bottom: 6px;">✍️ 채널별 맞춤 제작</div>
+            <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">
               블로그 롱폼(SEO)·인스타 피드·카카오톡 단문·쇼츠 대본·상세페이지를 채널별 소비 문법에 맞춰 멀티 에이전트가 자동 생성
             </p>
           </div>
 
-          <div style="background: var(--card); border: 1px solid var(--card-border); border-radius: 12px; padding: 14px; border-top: 3px solid var(--success);">
-            <div style="font-size: 11px; font-weight: 800; color: var(--success); margin-bottom: 4px;">3단계: 법적 검수·원클릭 승인</div>
-            <div style="font-size: 13px; font-weight: 900; color: var(--text-main); margin-bottom: 6px;">🛡️ 표시광고·의료법 안심</div>
-            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+          <div style="background: var(--card); border: 1px solid var(--card-border); border-radius: 12px; padding: 16px; border-top: 3px solid var(--success);">
+            <div style="font-size: 13px; font-weight: 800; color: var(--success); margin-bottom: 5px;">3단계: 법적 검수·원클릭 승인</div>
+            <div style="font-size: 15px; font-weight: 900; color: var(--text-main); margin-bottom: 6px;">🛡️ 표시광고·의료법 안심</div>
+            <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">
               과대광고·의료법 제56조·저작권을 AI가 100% 사전 검수하고, 사장님은 스마트폰에서 1초 만에 확인 후 원클릭 승인
             </p>
           </div>
 
-          <div style="background: var(--card); border: 1px solid var(--card-border); border-radius: 12px; padding: 14px; border-top: 3px solid var(--primary);">
-            <div style="font-size: 11px; font-weight: 800; color: var(--primary); margin-bottom: 4px;">4단계: 매출 증명·자율 학습</div>
-            <div style="font-size: 13px; font-weight: 900; color: var(--text-main); margin-bottom: 6px;">📈 Closed-Loop 매출 증명</div>
-            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+          <div style="background: var(--card); border: 1px solid var(--card-border); border-radius: 12px; padding: 16px; border-top: 3px solid var(--primary);">
+            <div style="font-size: 13px; font-weight: 800; color: var(--primary); margin-bottom: 5px;">4단계: 매출 증명·자율 학습</div>
+            <div style="font-size: 15px; font-weight: 900; color: var(--text-main); margin-bottom: 6px;">📈 Closed-Loop 매출 증명</div>
+            <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">
               POS 실측 결제와 쿠폰 사용을 역추적하여 창출된 순이익(ROI)을 투명하게 입증하고 반응 좋은 카피를 AI가 자율 피드백 학습
             </p>
           </div>
@@ -1018,35 +1018,35 @@
       <!-- ======================================================== -->
       <div id="step3ResultsSection" style="margin-top: 28px; scroll-margin-top: 80px;">
         <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-          <span style="background: var(--success); color: #FFFFFF; font-weight: 900; font-size: 13px; padding: 4px 12px; border-radius: 8px;">STEP 3</span>
-          <h3 style="font-size: 18px; font-weight: 900; color: var(--text-main); margin: 0;">실시간 결과 확인 & 매출 증명 (Closed-Loop)</h3>
-          <span style="font-size: 11px; color: var(--success); margin-left: auto;">POS 실측 결제 ➔ 통장에 찍히는 실익 입증</span>
+          <span style="background: var(--success); color: #FFFFFF; font-weight: 900; font-size: 14px; padding: 4px 12px; border-radius: 8px;">STEP 3</span>
+          <h3 style="font-size: 22px; font-weight: 900; color: var(--text-main); margin: 0;">실시간 결과 확인 & 매출 증명 (Closed-Loop)</h3>
+          <span style="font-size: 14px; color: var(--success); margin-left: auto;">POS 실측 결제 ➔ 통장에 찍히는 실익 입증</span>
         </div>
 
         <!-- 3. Clean 3-Number Metric Row (내가 얻는 효과) -->
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 24px;">
           <div style="background: var(--card); border: 1.5px solid var(--cyan); border-radius: 18px; padding: 22px 18px; text-align: center; box-shadow: 0 4px 20px rgba(6,182,212,0.12);">
-            <div style="display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 13px; color: var(--text-muted); font-weight: 800; margin-bottom: 8px;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 15px; color: var(--text-muted); font-weight: 800; margin-bottom: 8px;">
               <span>💰</span> <span>오늘 유발 매출</span>
             </div>
-            <div id="simpleAttributedRev" style="font-size: 32px; font-weight: 900; color: var(--cyan); letter-spacing: -0.5px; font-variant-numeric: tabular-nums;">₩240,000</div>
-            <div style="font-size: 11px; color: var(--cyan); background: rgba(6,182,212,0.12); padding: 3px 8px; border-radius: 999px; display: inline-block; margin-top: 6px; font-weight: 800;">실시간 매출 귀속 기준</div>
+            <div id="simpleAttributedRev" style="font-size: 38px; font-weight: 900; color: var(--cyan); letter-spacing: -0.5px; font-variant-numeric: tabular-nums;">₩240,000</div>
+            <div style="font-size: 13px; color: var(--cyan); background: rgba(6,182,212,0.12); padding: 4px 10px; border-radius: 999px; display: inline-block; margin-top: 6px; font-weight: 800;">실시간 매출 귀속 기준</div>
           </div>
 
           <div style="background: var(--card); border: 2px solid var(--success); border-radius: 18px; padding: 22px 18px; text-align: center; box-shadow: 0 8px 25px rgba(0,196,140,0.2);">
-            <div style="display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 13px; color: var(--success); font-weight: 800; margin-bottom: 8px;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 15px; color: var(--success); font-weight: 800; margin-bottom: 8px;">
               <span>📈</span> <span>이번 달 순이익 창출</span>
             </div>
-            <div id="simpleNetProfit" style="font-size: 32px; font-weight: 900; color: var(--success); letter-spacing: -0.5px; font-variant-numeric: tabular-nums;">+₩1,199,000</div>
-            <div style="font-size: 11px; color: var(--warning); background: rgba(229,168,75,0.15); padding: 3px 10px; border-radius: 999px; display: inline-block; margin-top: 6px; font-weight: 900;">ROI 가치 입증 완료</div>
+            <div id="simpleNetProfit" style="font-size: 38px; font-weight: 900; color: var(--success); letter-spacing: -0.5px; font-variant-numeric: tabular-nums;">+₩1,199,000</div>
+            <div style="font-size: 13px; color: var(--warning); background: rgba(229,168,75,0.15); padding: 4px 12px; border-radius: 999px; display: inline-block; margin-top: 6px; font-weight: 900;">ROI 가치 입증 완료</div>
           </div>
 
           <div style="background: var(--card); border: 1.5px solid var(--primary); border-radius: 18px; padding: 22px 18px; text-align: center; box-shadow: 0 4px 20px rgba(49,130,246,0.15);">
-            <div style="display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 13px; color: var(--primary); font-weight: 800; margin-bottom: 8px;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 15px; color: var(--primary); font-weight: 800; margin-bottom: 8px;">
               <span>👥</span> <span>방문·전환 고객</span>
             </div>
-            <div id="simpleCustomerCount" style="font-size: 32px; font-weight: 900; color: var(--primary); letter-spacing: -0.5px; font-variant-numeric: tabular-nums;">14명</div>
-            <div style="font-size: 11px; color: var(--primary); background: rgba(49,130,246,0.15); padding: 3px 8px; border-radius: 999px; display: inline-block; margin-top: 6px; font-weight: 800;">실제 행동 유발 지표</div>
+            <div id="simpleCustomerCount" style="font-size: 38px; font-weight: 900; color: var(--primary); letter-spacing: -0.5px; font-variant-numeric: tabular-nums;">14명</div>
+            <div style="font-size: 13px; color: var(--primary); background: rgba(49,130,246,0.15); padding: 4px 10px; border-radius: 999px; display: inline-block; margin-top: 6px; font-weight: 800;">실제 행동 유발 지표</div>
           </div>
         </div>
 
@@ -1059,24 +1059,24 @@
 
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
             <div style="display: flex; align-items: center; gap: 16px;">
-              <div style="background: var(--card-elevated); border: 1.5px solid var(--primary); border-radius: 12px; padding: 12px 16px; text-align: center; min-width: 120px;">
-                <div style="font-size: 10px; color: var(--primary); font-weight: 800;">마케팅 전환 에셋</div>
-                <div id="simpleVoucherAmount" style="font-size: 20px; font-weight: 900; color: var(--primary); margin: 2px 0; font-variant-numeric: tabular-nums;">₩3,000</div>
-                <div id="simpleVoucherTime" style="font-size: 9px; color: var(--warning); font-weight: 800;">⏱️ 02:49:15 남음</div>
+              <div style="background: var(--card-elevated); border: 1.5px solid var(--primary); border-radius: 12px; padding: 12px 16px; text-align: center; min-width: 130px;">
+                <div style="font-size: 12px; color: var(--primary); font-weight: 800;">마케팅 전환 에셋</div>
+                <div id="simpleVoucherAmount" style="font-size: 24px; font-weight: 900; color: var(--primary); margin: 2px 0; font-variant-numeric: tabular-nums;">₩3,000</div>
+                <div id="simpleVoucherTime" style="font-size: 12px; color: var(--warning); font-weight: 800;">⏱️ 02:49:15 남음</div>
               </div>
               <div>
-                <div id="simpleVoucherTitle" style="font-size: 15px; font-weight: 900; color: var(--text-main);">손님이 스마트폰에 들고 올 모바일 바코드</div>
-                <div id="simpleVoucherDesc" style="font-size: 12px; color: var(--text-muted); margin-top: 4px; line-height: 1.4;">
+                <div id="simpleVoucherTitle" style="font-size: 18px; font-weight: 900; color: var(--text-main);">손님이 스마트폰에 들고 올 모바일 바코드</div>
+                <div id="simpleVoucherDesc" style="font-size: 14px; color: var(--text-muted); margin-top: 4px; line-height: 1.5;">
                   손님이 카운터에서 바코드를 제시하면 POS에서 1초 만에 스캔하여 3,000원 할인 결제됩니다.
                 </div>
               </div>
             </div>
 
-            <div style="display: flex; gap: 8px;">
-              <button onclick="window.open('/c/AIM-SEONGSU-CR02-RAIN24K', '_blank')" style="background: var(--card-elevated); color: var(--text-main); font-size: 12px; font-weight: 800; border: 1px solid var(--card-border); padding: 11px 16px; border-radius: 8px; cursor: pointer;">
+            <div style="display: flex; gap: 10px;">
+              <button onclick="window.open('/c/AIM-SEONGSU-CR02-RAIN24K', '_blank')" style="background: var(--card-elevated); color: var(--text-main); font-size: 14px; font-weight: 800; border: 1px solid var(--card-border); padding: 12px 18px; border-radius: 10px; cursor: pointer;">
                 🔗 손님 화면 열기
               </button>
-              <button onclick="simulatePosRedeem('AIM-SEONGSU-CR02-RAIN24K')" style="background: var(--success); color: #FFFFFF; font-size: 12px; font-weight: 800; border: none; padding: 11px 18px; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,196,140,0.35);">
+              <button onclick="simulatePosRedeem('AIM-SEONGSU-CR02-RAIN24K')" style="background: var(--success); color: #FFFFFF; font-size: 14px; font-weight: 800; border: none; padding: 12px 20px; border-radius: 10px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,196,140,0.35);">
                 ⚡ POS 스캔 결제 체험 (+2.4만 원)
               </button>
             </div>
@@ -1088,17 +1088,17 @@
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
             <div>
               <div style="display: flex; align-items: center; gap: 8px;">
-                <span style="font-size: 18px;">📋</span>
-                <span style="font-size: 11px; font-weight: 800; color: var(--primary); letter-spacing: 0.5px;">PUBLICATION & CHANNEL MANAGEMENT LEDGER</span>
+                <span style="font-size: 20px;">📋</span>
+                <span style="font-size: 13px; font-weight: 800; color: var(--primary); letter-spacing: 0.5px;">PUBLICATION & CHANNEL MANAGEMENT LEDGER</span>
               </div>
-              <h3 style="font-size: 17px; font-weight: 900; color: var(--text-main); margin-top: 4px;">
+              <h3 style="font-size: 20px; font-weight: 900; color: var(--text-main); margin-top: 4px;">
                 실시간 발행 및 채널 관리 히스토리 원장
               </h3>
-              <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">
+              <p style="font-size: 14px; color: var(--text-muted); margin-top: 2px;">
                 선택한 AI 처방이 네이버 플레이스·인스타그램·크리에이터 망에 배포 및 실행 관리되는 투명한 내역입니다.
               </p>
             </div>
-            <span style="font-size: 11px; color: var(--success); background: rgba(0,196,140,0.15); border: 1px solid var(--success); padding: 4px 10px; border-radius: 999px; font-weight: 800;">
+            <span style="font-size: 13px; color: var(--success); background: rgba(0,196,140,0.15); border: 1px solid var(--success); padding: 5px 12px; border-radius: 999px; font-weight: 800;">
               ● 실시간 연동 원장
             </span>
           </div>
@@ -2577,30 +2577,30 @@
     <!-- MODAL: AI 컨설팅 처방 채택 및 옴니채널 원클릭 발행 모달 -->
     <!-- ======================================================== -->
     <div id="publishingModal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(18, 20, 23, 0.85); backdrop-filter: blur(8px); z-index: 9999; justify-content: center; align-items: center; padding: 20px;">
-      <div style="background: var(--card-elevated); border: 2px solid var(--primary); border-radius: 20px; width: 100%; max-width: 840px; max-height: 90vh; overflow-y: auto; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); display: flex; flex-direction: column;">
+      <div style="background: var(--card-elevated); border: 2px solid var(--primary); border-radius: 20px; width: 100%; max-width: 860px; max-height: 90vh; overflow-y: auto; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); display: flex; flex-direction: column;">
         <!-- Modal Header -->
-        <div style="padding: 20px 24px; border-bottom: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: flex-start;">
+        <div style="padding: 22px 26px; border-bottom: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: flex-start;">
           <div>
-            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
-              <span style="background: var(--primary); color: #FFFFFF; font-weight: 900; font-size: 11px; padding: 2px 8px; border-radius: 6px;">STEP 2</span>
-              <span id="pubModalCategoryBadge" style="font-size: 11px; background: rgba(229,168,75,0.15); color: var(--warning); border: 1px solid var(--warning); padding: 3px 10px; border-radius: 999px; font-weight: 800;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+              <span style="background: var(--primary); color: #FFFFFF; font-weight: 900; font-size: 13px; padding: 3px 10px; border-radius: 6px;">STEP 2</span>
+              <span id="pubModalCategoryBadge" style="font-size: 13px; background: rgba(229,168,75,0.15); color: var(--warning); border: 1px solid var(--warning); padding: 4px 12px; border-radius: 999px; font-weight: 800;">
                 🌧️ 날씨/유휴 긴급 매출 방어
               </span>
-              <span id="pubModalComplianceBadge" style="font-size: 11px; background: rgba(0,196,140,0.15); color: var(--success); border: 1px solid var(--success); padding: 3px 10px; border-radius: 999px; font-weight: 800;">
+              <span id="pubModalComplianceBadge" style="font-size: 13px; background: rgba(0,196,140,0.15); color: var(--success); border: 1px solid var(--success); padding: 4px 12px; border-radius: 999px; font-weight: 800;">
                 ✅ 표시광고법·의료법 100% 사전 검수 완료 (안심)
               </span>
             </div>
-            <div style="font-size: 12px; font-weight: 800; color: var(--primary); margin-bottom: 2px;">
+            <div style="font-size: 14px; font-weight: 800; color: var(--primary); margin-bottom: 3px;">
               [STEP 2: 옴니채널 자동 생성 및 원클릭 게시 데스크]
             </div>
-            <h3 id="pubModalTitle" style="font-size: 19px; font-weight: 900; color: var(--text-main); line-height: 1.4;">
+            <h3 id="pubModalTitle" style="font-size: 22px; font-weight: 900; color: var(--text-main); line-height: 1.4;">
               [비 오는 날 한정] 따뜻한 바질소금빵과 핫초코 세트
             </h3>
-            <p id="pubModalExpectedGain" style="font-size: 12px; color: var(--success); font-weight: 700; margin-top: 2px;">
+            <p id="pubModalExpectedGain" style="font-size: 15px; color: var(--success); font-weight: 800; margin-top: 4px;">
               💰 예상 추가 창출 매출: +₩240,000 (ROI 12.0배 달성 전망)
             </p>
           </div>
-          <button onclick="closePublishingModal()" style="background: transparent; border: none; color: #94A3B8; font-size: 24px; cursor: pointer; padding: 4px 8px; border-radius: 8px; line-height: 1;">✕</button>
+          <button onclick="closePublishingModal()" style="background: transparent; border: none; color: #94A3B8; font-size: 26px; cursor: pointer; padding: 4px 8px; border-radius: 8px; line-height: 1;">✕</button>
         </div>
 
         <!-- Channel Selection Tabs -->
@@ -2633,27 +2633,27 @@
           <!-- Tab 1: Naver Place -->
           <div id="pubTabPanel_naver" class="pub-tab-panel" style="display: block;">
             <div style="background: #1E293B; border: 1px solid #334155; border-radius: 14px; padding: 18px; margin-bottom: 16px;">
-              <div style="font-size: 12px; font-weight: 800; color: #38BDF8; margin-bottom: 6px;">네이버 스마트플레이스 소식 제목 (공백 포함 40자 엄수 규격)</div>
-              <input id="pubNaverTitle" type="text" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 10px 14px; color: #FFFFFF; font-size: 14px; font-weight: 800;" />
-              <div style="display: flex; justify-content: space-between; font-size: 11px; color: #94A3B8; margin-top: 4px;">
+              <div style="font-size: 14px; font-weight: 800; color: #38BDF8; margin-bottom: 8px;">네이버 스마트플레이스 소식 제목 (공백 포함 40자 엄수 규격)</div>
+              <input id="pubNaverTitle" type="text" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 12px 14px; color: #FFFFFF; font-size: 16px; font-weight: 800;" />
+              <div style="display: flex; justify-content: space-between; font-size: 13px; color: #94A3B8; margin-top: 6px;">
                 <span>네이버 스마트플레이스 공식 노출 규격</span>
-                <span id="pubNaverTitleLen" style="color: #10B981; font-weight: 700;">28자 / 40자 (적합)</span>
+                <span id="pubNaverTitleLen" style="color: #10B981; font-weight: 800;">28자 / 40자 (적합)</span>
               </div>
             </div>
 
             <div style="background: #1E293B; border: 1px solid #334155; border-radius: 14px; padding: 18px; margin-bottom: 16px;">
-              <div style="font-size: 12px; font-weight: 800; color: #818CF8; margin-bottom: 6px;">매장 소식 본문 (네이버 플레이스 정보지 최적화)</div>
-              <textarea id="pubNaverBody" rows="6" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 12px 14px; color: #F1F5F9; font-size: 13px; line-height: 1.6; resize: none;"></textarea>
+              <div style="font-size: 14px; font-weight: 800; color: #818CF8; margin-bottom: 8px;">매장 소식 본문 (네이버 플레이스 정보지 최적화)</div>
+              <textarea id="pubNaverBody" rows="6" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 12px 14px; color: #F1F5F9; font-size: 15px; line-height: 1.6; resize: none;"></textarea>
             </div>
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-              <div style="background: #090D18; border: 1px solid #1E293B; border-radius: 10px; padding: 12px;">
-                <div style="font-size: 11px; color: #94A3B8;">연동 혜택 쿠폰</div>
-                <div id="pubNaverCoupon" style="font-size: 13px; font-weight: 800; color: #34D399; margin-top: 4px;">비 오는 날 3,000원 즉시 할인 쿠폰</div>
+              <div style="background: #090D18; border: 1px solid #1E293B; border-radius: 10px; padding: 14px;">
+                <div style="font-size: 13px; color: #94A3B8;">연동 혜택 쿠폰</div>
+                <div id="pubNaverCoupon" style="font-size: 15px; font-weight: 800; color: #34D399; margin-top: 4px;">비 오는 날 3,000원 즉시 할인 쿠폰</div>
               </div>
-              <div style="background: #090D18; border: 1px solid #1E293B; border-radius: 10px; padding: 12px;">
-                <div style="font-size: 11px; color: #94A3B8;">권장 이미지 규격</div>
-                <div id="pubNaverImageSpec" style="font-size: 13px; font-weight: 800; color: #FCD34D; margin-top: 4px;">1080x1080px (1:1 정방형)</div>
+              <div style="background: #090D18; border: 1px solid #1E293B; border-radius: 10px; padding: 14px;">
+                <div style="font-size: 13px; color: #94A3B8;">권장 이미지 규격</div>
+                <div id="pubNaverImageSpec" style="font-size: 15px; font-weight: 800; color: #FCD34D; margin-top: 4px;">1080x1080px (1:1 정방형)</div>
               </div>
             </div>
           </div>
@@ -2661,76 +2661,76 @@
           <!-- Tab 2: Instagram -->
           <div id="pubTabPanel_instagram" class="pub-tab-panel" style="display: none;">
             <div style="background: #1E293B; border: 1px solid #334155; border-radius: 14px; padding: 18px; margin-bottom: 16px;">
-              <div style="font-size: 12px; font-weight: 800; color: #F472B6; margin-bottom: 6px;">인스타그램 피드 & 릴스 캡션 (감성 문안)</div>
-              <textarea id="pubInstaBody" rows="6" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 12px 14px; color: #F1F5F9; font-size: 13px; line-height: 1.6; resize: none;"></textarea>
+              <div style="font-size: 14px; font-weight: 800; color: #F472B6; margin-bottom: 8px;">인스타그램 피드 & 릴스 캡션 (감성 문안)</div>
+              <textarea id="pubInstaBody" rows="6" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 12px 14px; color: #F1F5F9; font-size: 15px; line-height: 1.6; resize: none;"></textarea>
             </div>
 
             <div style="background: #1E293B; border: 1px solid #334155; border-radius: 14px; padding: 18px; margin-bottom: 16px;">
-              <div style="font-size: 12px; font-weight: 800; color: #38BDF8; margin-bottom: 6px;">행동 유도 문구 (Call To Action)</div>
-              <input id="pubInstaCta" type="text" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 10px 14px; color: #FFFFFF; font-size: 13px; font-weight: 700;" />
+              <div style="font-size: 14px; font-weight: 800; color: #38BDF8; margin-bottom: 8px;">행동 유도 문구 (Call To Action)</div>
+              <input id="pubInstaCta" type="text" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 12px 14px; color: #FFFFFF; font-size: 15px; font-weight: 700;" />
             </div>
 
             <div style="background: #1E293B; border: 1px solid #334155; border-radius: 14px; padding: 18px;">
-              <div style="font-size: 12px; font-weight: 800; color: #A5B4FC; margin-bottom: 6px;">AI 추천 상권 타겟 해시태그 (15선)</div>
-              <div id="pubInstaHashtags" style="font-size: 12px; color: #818CF8; line-height: 1.6; word-break: break-all; background: #0F172A; padding: 10px 14px; border-radius: 8px;"></div>
+              <div style="font-size: 14px; font-weight: 800; color: #A5B4FC; margin-bottom: 8px;">AI 추천 상권 타겟 해시태그 (15선)</div>
+              <div id="pubInstaHashtags" style="font-size: 14px; color: #818CF8; line-height: 1.6; word-break: break-all; background: #0F172A; padding: 12px 14px; border-radius: 8px;"></div>
             </div>
           </div>
 
           <!-- Tab 3: Creator Pitch -->
           <div id="pubTabPanel_creator" class="pub-tab-panel" style="display: none;">
-            <div style="display: flex; justify-content: space-between; align-items: center; background: #1E1B4B; border: 1px solid #6366F1; border-radius: 12px; padding: 12px 16px; margin-bottom: 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; background: #1E1B4B; border: 1px solid #6366F1; border-radius: 12px; padding: 14px 18px; margin-bottom: 16px;">
               <div>
-                <span style="font-size: 11px; color: #A5B4FC;">추천 매칭 크리에이터</span>
-                <div id="pubCreatorName" style="font-size: 14px; font-weight: 900; color: #FFFFFF; margin-top: 2px;">디저트탐험가 은지 (@eunji_dessert)</div>
+                <span style="font-size: 13px; color: #A5B4FC;">추천 매칭 크리에이터</span>
+                <div id="pubCreatorName" style="font-size: 16px; font-weight: 900; color: #FFFFFF; margin-top: 2px;">디저트탐험가 은지 (@eunji_dessert)</div>
               </div>
               <div style="text-align: right;">
-                <span style="font-size: 11px; color: #94A3B8;">에스크로 보증 제작비</span>
-                <div id="pubCreatorFee" style="font-size: 14px; font-weight: 900; color: #34D399;">₩150,000 (10% 할인)</div>
+                <span style="font-size: 13px; color: #94A3B8;">에스크로 보증 제작비</span>
+                <div id="pubCreatorFee" style="font-size: 16px; font-weight: 900; color: #34D399;">₩150,000 (10% 할인)</div>
               </div>
             </div>
 
             <div style="background: #1E293B; border: 1px solid #334155; border-radius: 14px; padding: 18px; margin-bottom: 16px;">
-              <div style="font-size: 12px; font-weight: 800; color: #FCD34D; margin-bottom: 6px;">15초 숏폼 스토리보드 (후킹 ➔ 본문 ➔ 전환)</div>
-              <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; font-size: 12px;">
-                <div style="background: #0F172A; padding: 10px; border-radius: 8px; border-left: 3px solid #EF4444;">
+              <div style="font-size: 14px; font-weight: 800; color: #FCD34D; margin-bottom: 8px;">15초 숏폼 스토리보드 (후킹 ➔ 본문 ➔ 전환)</div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; font-size: 14px;">
+                <div style="background: #0F172A; padding: 12px; border-radius: 8px; border-left: 3px solid #EF4444;">
                   <strong style="color: #F87171;">0~3초 Hook:</strong>
-                  <div id="pubStoryboardHook" style="color: #E2E8F0; margin-top: 4px; line-height: 1.4;"></div>
+                  <div id="pubStoryboardHook" style="color: #E2E8F0; margin-top: 4px; line-height: 1.5;"></div>
                 </div>
-                <div style="background: #0F172A; padding: 10px; border-radius: 8px; border-left: 3px solid #F59E0B;">
+                <div style="background: #0F172A; padding: 12px; border-radius: 8px; border-left: 3px solid #F59E0B;">
                   <strong style="color: #FBBF24;">3~10초 Body:</strong>
-                  <div id="pubStoryboardBody" style="color: #E2E8F0; margin-top: 4px; line-height: 1.4;"></div>
+                  <div id="pubStoryboardBody" style="color: #E2E8F0; margin-top: 4px; line-height: 1.5;"></div>
                 </div>
-                <div style="background: #0F172A; padding: 10px; border-radius: 8px; border-left: 3px solid #10B981;">
+                <div style="background: #0F172A; padding: 12px; border-radius: 8px; border-left: 3px solid #10B981;">
                   <strong style="color: #34D399;">10~15초 CTA:</strong>
-                  <div id="pubStoryboardCta" style="color: #E2E8F0; margin-top: 4px; line-height: 1.4;"></div>
+                  <div id="pubStoryboardCta" style="color: #E2E8F0; margin-top: 4px; line-height: 1.5;"></div>
                 </div>
               </div>
             </div>
 
             <div style="background: #1E293B; border: 1px solid #334155; border-radius: 14px; padding: 18px;">
-              <div style="font-size: 12px; font-weight: 800; color: #38BDF8; margin-bottom: 6px;">크리에이터 DM / 이메일 협찬 제안 전문</div>
-              <textarea id="pubCreatorProposal" rows="5" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 12px 14px; color: #F1F5F9; font-size: 12px; line-height: 1.6; resize: none;"></textarea>
+              <div style="font-size: 14px; font-weight: 800; color: #38BDF8; margin-bottom: 8px;">크리에이터 DM / 이메일 협찬 제안 전문</div>
+              <textarea id="pubCreatorProposal" rows="5" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 12px 14px; color: #F1F5F9; font-size: 14px; line-height: 1.6; resize: none;"></textarea>
             </div>
           </div>
 
           <!-- Tab 4: Kakao Channel -->
           <div id="pubTabPanel_kakao" class="pub-tab-panel" style="display: none;">
             <div style="background: #1E293B; border: 1px solid #334155; border-radius: 14px; padding: 18px; margin-bottom: 16px;">
-              <div style="font-size: 12px; font-weight: 800; color: #FBBF24; margin-bottom: 6px;">카카오 알림톡 배너 헤드라인</div>
-              <input id="pubKakaoHeadline" type="text" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 10px 14px; color: #FFFFFF; font-size: 13px; font-weight: 800;" />
+              <div style="font-size: 14px; font-weight: 800; color: #FBBF24; margin-bottom: 8px;">카카오 알림톡 배너 헤드라인</div>
+              <input id="pubKakaoHeadline" type="text" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 12px 14px; color: #FFFFFF; font-size: 15px; font-weight: 800;" />
             </div>
 
             <div style="background: #1E293B; border: 1px solid #334155; border-radius: 14px; padding: 18px; margin-bottom: 16px;">
-              <div style="font-size: 12px; font-weight: 800; color: #38BDF8; margin-bottom: 6px;">메시지 본문</div>
-              <textarea id="pubKakaoBody" rows="5" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 12px 14px; color: #F1F5F9; font-size: 13px; line-height: 1.6; resize: none;"></textarea>
+              <div style="font-size: 14px; font-weight: 800; color: #38BDF8; margin-bottom: 8px;">메시지 본문</div>
+              <textarea id="pubKakaoBody" rows="5" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 12px 14px; color: #F1F5F9; font-size: 15px; line-height: 1.6; resize: none;"></textarea>
             </div>
 
-            <div style="background: #090D18; border: 1px solid #1E293B; border-radius: 10px; padding: 12px; display: flex; justify-content: space-between; align-items: center;">
+            <div style="background: #090D18; border: 1px solid #1E293B; border-radius: 10px; padding: 14px; display: flex; justify-content: space-between; align-items: center;">
               <div>
-                <div style="font-size: 11px; color: #94A3B8;">연동 액션 버튼</div>
-                <div id="pubKakaoButtonLabel" style="font-size: 13px; font-weight: 800; color: #FBBF24;">모바일 번개 티켓 받기</div>
+                <div style="font-size: 13px; color: #94A3B8;">연동 액션 버튼</div>
+                <div id="pubKakaoButtonLabel" style="font-size: 15px; font-weight: 800; color: #FBBF24;">모바일 번개 티켓 받기</div>
               </div>
-              <button onclick="window.open('https://esketch-ai.github.io/AIM/c/AIM-SEONGSU-CR02-RAIN24K', '_blank')" style="background: #334155; color: #FFF; border: none; padding: 6px 12px; border-radius: 6px; font-size: 11px; cursor: pointer;">
+              <button onclick="window.open('https://esketch-ai.github.io/AIM/c/AIM-SEONGSU-CR02-RAIN24K', '_blank')" style="background: #334155; color: #FFF; border: none; padding: 8px 14px; border-radius: 6px; font-size: 13px; cursor: pointer;">
                 링크 미리보기 ↗
               </button>
             </div>
@@ -2739,61 +2739,61 @@
           <!-- Tab 5: YouTube Shorts -->
           <div id="pubTabPanel_youtube" class="pub-tab-panel" style="display: none;">
             <div style="background: #1E293B; border: 1px solid #334155; border-radius: 14px; padding: 18px; margin-bottom: 16px;">
-              <div style="font-size: 12px; font-weight: 800; color: #EF4444; margin-bottom: 6px;">유튜브 쇼츠 헤드라인 & 썸네일 후킹 카피</div>
-              <input id="pubYoutubeHeadline" type="text" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 10px 14px; color: #FFFFFF; font-size: 13px; font-weight: 800;" />
+              <div style="font-size: 14px; font-weight: 800; color: #EF4444; margin-bottom: 8px;">유튜브 쇼츠 헤드라인 & 썸네일 후킹 카피</div>
+              <input id="pubYoutubeHeadline" type="text" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 12px 14px; color: #FFFFFF; font-size: 15px; font-weight: 800;" />
             </div>
 
             <div style="background: #1E293B; border: 1px solid #334155; border-radius: 14px; padding: 18px; margin-bottom: 16px;">
-              <div style="font-size: 12px; font-weight: 800; color: #38BDF8; margin-bottom: 6px;">30초 내레이션 타임스탬프 스크립트 (오프닝-전개-USP-CTA)</div>
-              <textarea id="pubYoutubeBody" rows="7" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 12px 14px; color: #F1F5F9; font-size: 12px; line-height: 1.6; resize: none;"></textarea>
+              <div style="font-size: 14px; font-weight: 800; color: #38BDF8; margin-bottom: 8px;">30초 내레이션 타임스탬프 스크립트 (오프닝-전개-USP-CTA)</div>
+              <textarea id="pubYoutubeBody" rows="7" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 12px 14px; color: #F1F5F9; font-size: 14px; line-height: 1.6; resize: none;"></textarea>
             </div>
 
-            <div style="background: #090D18; border: 1px solid #1E293B; border-radius: 10px; padding: 12px;">
-              <div style="font-size: 11px; color: #94A3B8;">비주얼 에셋 사양</div>
-              <div id="pubYoutubeSpec" style="font-size: 12px; font-weight: 800; color: #F43F5E; margin-top: 4px;">9:16 (1080x1920px 세로형 숏폼 영상) + 상단 자막 바</div>
+            <div style="background: #090D18; border: 1px solid #1E293B; border-radius: 10px; padding: 14px;">
+              <div style="font-size: 13px; color: #94A3B8;">비주얼 에셋 사양</div>
+              <div id="pubYoutubeSpec" style="font-size: 14px; font-weight: 800; color: #F43F5E; margin-top: 4px;">9:16 (1080x1920px 세로형 숏폼 영상) + 상단 자막 바</div>
             </div>
           </div>
 
           <!-- Tab 6: Commerce Detail Page -->
           <div id="pubTabPanel_commerce" class="pub-tab-panel" style="display: none;">
             <div style="background: #1E293B; border: 1px solid #334155; border-radius: 14px; padding: 18px; margin-bottom: 16px;">
-              <div style="font-size: 12px; font-weight: 800; color: #10B981; margin-bottom: 6px;">스마트스토어/쿠팡 모바일 상품명 & 헤드라인</div>
-              <input id="pubCommerceHeadline" type="text" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 10px 14px; color: #FFFFFF; font-size: 13px; font-weight: 800;" />
+              <div style="font-size: 14px; font-weight: 800; color: #10B981; margin-bottom: 8px;">스마트스토어/쿠팡 모바일 상품명 & 헤드라인</div>
+              <input id="pubCommerceHeadline" type="text" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 12px 14px; color: #FFFFFF; font-size: 15px; font-weight: 800;" />
             </div>
 
             <div style="background: #1E293B; border: 1px solid #334155; border-radius: 14px; padding: 18px; margin-bottom: 16px;">
-              <div style="font-size: 12px; font-weight: 800; color: #818CF8; margin-bottom: 6px;">소구점 중심 상세페이지 본문 & 우려 해소 고객 FAQ 3선</div>
-              <textarea id="pubCommerceBody" rows="7" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 12px 14px; color: #F1F5F9; font-size: 12px; line-height: 1.6; resize: none;"></textarea>
+              <div style="font-size: 14px; font-weight: 800; color: #818CF8; margin-bottom: 8px;">소구점 중심 상세페이지 본문 & 우려 해소 고객 FAQ 3선</div>
+              <textarea id="pubCommerceBody" rows="7" readonly style="width: 100%; background: #0F172A; border: 1px solid #475569; border-radius: 8px; padding: 12px 14px; color: #F1F5F9; font-size: 14px; line-height: 1.6; resize: none;"></textarea>
             </div>
 
-            <div style="background: #090D18; border: 1px solid #1E293B; border-radius: 10px; padding: 12px;">
-              <div style="font-size: 11px; color: #94A3B8;">이미지 레이아웃 규격</div>
-              <div id="pubCommerceSpec" style="font-size: 12px; font-weight: 800; color: #34D399; margin-top: 4px;">가로 860px 모바일 최적화 세로형 상세 블록</div>
+            <div style="background: #090D18; border: 1px solid #1E293B; border-radius: 10px; padding: 14px;">
+              <div style="font-size: 13px; color: #94A3B8;">이미지 레이아웃 규격</div>
+              <div id="pubCommerceSpec" style="font-size: 14px; font-weight: 800; color: #34D399; margin-top: 4px;">가로 860px 모바일 최적화 세로형 상세 블록</div>
             </div>
           </div>
 
           <!-- Tab 7: AEO / GEO Schema.org JSON-LD -->
           <div id="pubTabPanel_geo" class="pub-tab-panel" style="display: none;">
             <div style="background: #1E293B; border: 1px solid #334155; border-radius: 14px; padding: 18px; margin-bottom: 16px;">
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                <div style="font-size: 12px; font-weight: 800; color: #A855F7;">🌐 생성형 AI 검색(ChatGPT, Perplexity, Naver AI) 인용용 Schema.org JSON-LD</div>
-                <span style="font-size: 10px; background: rgba(168,85,247,0.2); color: #C084FC; padding: 2px 8px; border-radius: 4px; font-weight: 800;">AEO/GEO 표준 규격</span>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <div style="font-size: 14px; font-weight: 800; color: #A855F7;">🌐 생성형 AI 검색(ChatGPT, Perplexity, Naver AI) 인용용 Schema.org JSON-LD</div>
+                <span style="font-size: 12px; background: rgba(168,85,247,0.2); color: #C084FC; padding: 3px 8px; border-radius: 4px; font-weight: 800;">AEO/GEO 표준 규격</span>
               </div>
-              <textarea id="pubGeoSchemaJson" rows="10" readonly style="width: 100%; font-family: monospace; background: #0A0F1D; border: 1px solid #6B21A8; border-radius: 8px; padding: 12px 14px; color: #E9D5FF; font-size: 11px; line-height: 1.5; resize: none;"></textarea>
+              <textarea id="pubGeoSchemaJson" rows="10" readonly style="width: 100%; font-family: monospace; background: #0A0F1D; border: 1px solid #6B21A8; border-radius: 8px; padding: 12px 14px; color: #E9D5FF; font-size: 13px; line-height: 1.5; resize: none;"></textarea>
             </div>
           </div>
         </div>
 
         <!-- Modal Footer Actions -->
-        <div style="padding: 16px 24px; border-top: 1px solid var(--card-border); background: var(--panel); display: flex; justify-content: space-between; align-items: center; border-radius: 0 0 20px 20px; flex-wrap: wrap; gap: 10px;">
-          <button onclick="closePublishingModal()" style="background: var(--card); color: var(--text-muted); border: 1px solid var(--card-border); font-size: 13px; font-weight: 700; padding: 10px 18px; border-radius: 10px; cursor: pointer;">
+        <div style="padding: 18px 26px; border-top: 1px solid var(--card-border); background: var(--panel); display: flex; justify-content: space-between; align-items: center; border-radius: 0 0 20px 20px; flex-wrap: wrap; gap: 10px;">
+          <button onclick="closePublishingModal()" style="background: var(--card); color: var(--text-muted); border: 1px solid var(--card-border); font-size: 15px; font-weight: 700; padding: 12px 20px; border-radius: 10px; cursor: pointer;">
             닫기
           </button>
           <div style="display: flex; gap: 10px;">
-            <button onclick="copyCurrentModalText()" style="background: var(--card-elevated); color: var(--text-main); border: 1px solid var(--card-border); font-size: 13px; font-weight: 800; padding: 10px 18px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; gap: 6px;">
+            <button onclick="copyCurrentModalText()" style="background: var(--card-elevated); color: var(--text-main); border: 1px solid var(--card-border); font-size: 15px; font-weight: 800; padding: 12px 20px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; gap: 6px;">
               📋 현재 탭 내용 복사하기
             </button>
-            <button onclick="markModalPublished()" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%); color: #FFFFFF; border: none; font-size: 13px; font-weight: 900; padding: 10px 22px; border-radius: 10px; cursor: pointer; box-shadow: 0 4px 15px rgba(49,130,246,0.4); display: flex; align-items: center; gap: 6px;">
+            <button onclick="markModalPublished()" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%); color: #FFFFFF; border: none; font-size: 15px; font-weight: 900; padding: 12px 24px; border-radius: 10px; cursor: pointer; box-shadow: 0 4px 15px rgba(49,130,246,0.4); display: flex; align-items: center; gap: 6px;">
               🚀 채널 발행 및 3단계 결과 원장 기록
             </button>
           </div>
@@ -3943,18 +3943,18 @@
       if (advContainer) advContainer.style.display = (mode === 'advanced') ? 'block' : 'none';
 
       if (btnSimple) {
-        btnSimple.style.background = (mode === 'simple') ? '#3182F6' : 'transparent';
-        btnSimple.style.color = (mode === 'simple') ? '#FFFFFF' : '#94A3B8';
+        btnSimple.style.background = (mode === 'simple') ? 'var(--primary)' : 'transparent';
+        btnSimple.style.color = (mode === 'simple') ? '#FFFFFF' : 'var(--text-muted)';
         btnSimple.style.fontWeight = (mode === 'simple') ? '800' : '700';
       }
       if (btnMobile) {
-        btnMobile.style.background = isMobile ? '#3182F6' : 'transparent';
-        btnMobile.style.color = isMobile ? '#FFFFFF' : '#94A3B8';
+        btnMobile.style.background = isMobile ? 'var(--primary)' : 'transparent';
+        btnMobile.style.color = isMobile ? '#FFFFFF' : 'var(--text-muted)';
         btnMobile.style.fontWeight = isMobile ? '800' : '700';
       }
       if (btnAdv) {
-        btnAdv.style.background = (mode === 'advanced') ? '#3182F6' : 'transparent';
-        btnAdv.style.color = (mode === 'advanced') ? '#FFFFFF' : '#94A3B8';
+        btnAdv.style.background = (mode === 'advanced') ? 'var(--primary)' : 'transparent';
+        btnAdv.style.color = (mode === 'advanced') ? '#FFFFFF' : 'var(--text-muted)';
         btnAdv.style.fontWeight = (mode === 'advanced') ? '800' : '700';
       }
 
@@ -4035,40 +4035,40 @@
           <div style="position: relative; width: 100%; height: 130px; background: var(--bg); overflow: hidden; border-bottom: 1px solid var(--card-border);">
             <img src="${bannerImg}" alt="${p.category_korean}" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
             <div style="position: absolute; top: 10px; left: 10px; display: flex; gap: 6px;">
-              <span style="font-size: 11px; background: rgba(22, 31, 48, 0.9); backdrop-filter: blur(4px); color: var(--primary); border: 1px solid var(--primary); padding: 3px 8px; border-radius: 6px; font-weight: 800;">
+              <span style="font-size: 13px; background: rgba(22, 31, 48, 0.9); backdrop-filter: blur(4px); color: var(--primary); border: 1px solid var(--primary); padding: 4px 10px; border-radius: 8px; font-weight: 800;">
                 ${p.icon} ${p.category_korean}
               </span>
             </div>
             <div style="position: absolute; top: 10px; right: 10px;">
-              <span style="font-size: 11px; background: rgba(229, 168, 75, 0.95); color: #0B0F19; padding: 3px 9px; border-radius: 6px; font-weight: 900; box-shadow: 0 2px 8px rgba(0,0,0,0.4);">
+              <span style="font-size: 13px; background: rgba(229, 168, 75, 0.95); color: #0B0F19; padding: 4px 10px; border-radius: 8px; font-weight: 900; box-shadow: 0 2px 8px rgba(0,0,0,0.4);">
                 ${p.urgency_badge}
               </span>
             </div>
           </div>
 
           <!-- Card Body Content -->
-          <div style="padding: 16px 18px; display: flex; flex-direction: column; justify-content: space-between; flex: 1;">
+          <div style="padding: 18px 20px; display: flex; flex-direction: column; justify-content: space-between; flex: 1;">
             <div>
-              <h4 style="font-size: 16px; font-weight: 900; color: var(--text-main); line-height: 1.4; margin-bottom: 8px;">
+              <h4 style="font-size: 18px; font-weight: 900; color: var(--text-main); line-height: 1.4; margin-bottom: 8px;">
                 ${p.headline}
               </h4>
-              <p style="font-size: 12px; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px;">
+              <p style="font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">
                 ${p.diagnosis}
               </p>
-              <div style="background: var(--card-elevated); border-radius: 8px; padding: 10px; font-size: 11px; color: var(--text-main); line-height: 1.4; margin-bottom: 14px; border-left: 3px solid var(--primary);">
+              <div style="background: var(--card-elevated); border-radius: 10px; padding: 12px; font-size: 14px; color: var(--text-main); line-height: 1.5; margin-bottom: 14px; border-left: 3px solid var(--primary);">
                 <strong style="color: var(--primary);">💡 처방 행동:</strong> ${p.recommended_action}
               </div>
             </div>
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-top: 10px; border-top: 1px solid var(--card-border);">
-                <span style="font-size: 11px; color: var(--text-muted);">채널: <strong style="color: var(--text-main);">${p.primary_channel_korean}</strong></span>
-                <span style="font-size: 14px; font-weight: 900; color: var(--success); font-variant-numeric: tabular-nums;">+₩${p.expected_revenue_gain_krw.toLocaleString()}</span>
+                <span style="font-size: 13px; color: var(--text-muted);">채널: <strong style="color: var(--text-main);">${p.primary_channel_korean}</strong></span>
+                <span style="font-size: 16px; font-weight: 900; color: var(--success); font-variant-numeric: tabular-nums;">+₩${p.expected_revenue_gain_krw.toLocaleString()}</span>
               </div>
               <div style="display: flex; gap: 8px;">
-                <button onclick="quickPublishPrescription('${p.advice_id}', '${p.primary_channel}', ${p.expected_revenue_gain_krw}, '${encodeURIComponent(p.headline)}')" style="flex: 1; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%); color: #FFFFFF; font-size: 13px; font-weight: 900; border: none; padding: 11px; border-radius: 10px; cursor: pointer; box-shadow: 0 4px 14px rgba(49, 130, 246, 0.35); display: flex; align-items: center; justify-content: center; gap: 4px; transition: transform 0.1s;">
+                <button onclick="quickPublishPrescription('${p.advice_id}', '${p.primary_channel}', ${p.expected_revenue_gain_krw}, '${encodeURIComponent(p.headline)}')" style="flex: 1; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%); color: #FFFFFF; font-size: 15px; font-weight: 900; border: none; padding: 12px; border-radius: 10px; cursor: pointer; box-shadow: 0 4px 14px rgba(49, 130, 246, 0.35); display: flex; align-items: center; justify-content: center; gap: 4px; transition: transform 0.1s;">
                   ⚡ 1클릭 즉시 발송
                 </button>
-                <button onclick="openPublishingModal('${p.advice_id}')" style="background: var(--card-elevated); border: 1px solid var(--card-border); color: var(--text-main); font-size: 12px; font-weight: 800; padding: 11px 13px; border-radius: 10px; cursor: pointer; transition: background 0.15s;" title="카피 문구 확인 및 세부 편집">
+                <button onclick="openPublishingModal('${p.advice_id}')" style="background: var(--card-elevated); border: 1px solid var(--card-border); color: var(--text-main); font-size: 14px; font-weight: 800; padding: 12px 15px; border-radius: 10px; cursor: pointer; transition: background 0.15s;" title="카피 문구 확인 및 세부 편집">
                   ✏️ 카피 보기
                 </button>
               </div>
@@ -4298,27 +4298,27 @@
       const listEl = document.getElementById('publicationHistoryList');
       if (!listEl) return;
       if (!records || records.length === 0) {
-        listEl.innerHTML = '<div style="color:#64748B; font-size:12px; padding:12px; text-align:center;">아직 발행된 마케팅 이력이 없습니다.</div>';
+        listEl.innerHTML = '<div style="color:#64748B; font-size:14px; padding:16px; text-align:center;">아직 발행된 마케팅 이력이 없습니다.</div>';
         return;
       }
       listEl.innerHTML = records.map(r => `
         <div style="background: var(--card); border: 1px solid var(--card-border); border-radius: 12px; padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;">
           <div style="display: flex; align-items: center; gap: 12px;">
-            <span style="font-size: 11px; font-weight: 800; background: rgba(49,130,246,0.15); color: var(--primary); border: 1px solid var(--primary); padding: 3px 8px; border-radius: 6px;">
+            <span style="font-size: 13px; font-weight: 800; background: rgba(49,130,246,0.15); color: var(--primary); border: 1px solid var(--primary); padding: 4px 10px; border-radius: 8px;">
               ${r.channel_korean || r.channel}
             </span>
             <div>
-              <div style="font-size: 13px; font-weight: 800; color: var(--text-main);">${r.headline}</div>
-              <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">
+              <div style="font-size: 15px; font-weight: 800; color: var(--text-main);">${r.headline}</div>
+              <div style="font-size: 13px; color: var(--text-muted); margin-top: 3px;">
                 ${r.trigger_type} · ${r.published_at}
               </div>
             </div>
           </div>
           <div style="display: flex; align-items: center; gap: 12px;">
-            <span style="font-size: 11px; background: rgba(0,196,140,0.15); color: var(--success); font-weight: 800; padding: 3px 8px; border-radius: 999px;">
+            <span style="font-size: 13px; background: rgba(0,196,140,0.15); color: var(--success); font-weight: 800; padding: 4px 10px; border-radius: 999px;">
               ● 발행 정상 가동
             </span>
-            <span style="font-size: 13px; font-weight: 900; color: var(--success); font-variant-numeric: tabular-nums;">
+            <span style="font-size: 16px; font-weight: 900; color: var(--success); font-variant-numeric: tabular-nums;">
               +₩${r.attributed_revenue_gain_krw.toLocaleString()}
             </span>
           </div>
