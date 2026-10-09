@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="annivBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#451A03"/>
+      <stop offset="60%" stop-color="#1C1917"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="goldRibbon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE047"/>
+      <stop offset="50%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="400" height="200" rx="14" fill="url(#annivBg)"/>
+
+  <!-- Gift Box Illustration on Right -->
+  <g transform="translate(260, 45)">
+    <!-- Box Shadow -->
+    <ellipse cx="65" cy="120" rx="55" ry="12" fill="#000000" opacity="0.4"/>
+    <!-- Box Body -->
+    <rect x="15" y="45" width="100" height="70" rx="6" fill="#78350F" stroke="#92400E" stroke-width="1.5"/>
+    <!-- Box Lid -->
+    <rect x="10" y="30" width="110" height="20" rx="4" fill="#92400E" stroke="#B45309" stroke-width="1.5"/>
+    <!-- Vertical Ribbon -->
+    <rect x="58" y="30" width="14" height="85" fill="url(#goldRibbon)"/>
+    <!-- Horizontal Ribbon -->
+    <rect x="15" y="70" width="100" height="12" fill="url(#goldRibbon)"/>
+    <!-- Ribbon Bow Top -->
+    <ellipse cx="55" cy="22" rx="14" ry="9" fill="url(#goldRibbon)"/>
+    <ellipse cx="75" cy="22" rx="14" ry="9" fill="url(#goldRibbon)"/>
+    <circle cx="65" cy="26" r="6" fill="#FDE047"/>
+    <!-- Star Sparkles -->
+    <polygon points="120,20 123,26 129,29 123,32 120,38 117,32 111,29 117,26" fill="#FCD34D"/>
+    <polygon points="20,60 22,64 26,66 22,68 20,72 18,68 14,66 18,64" fill="#FCD34D"/>
+  </g>
+
+  <!-- Left Content -->
+  <g transform="translate(20, 20)">
+    <rect width="135" height="24" rx="6" fill="rgba(245, 158, 11, 0.2)" stroke="#F59E0B" stroke-width="1"/>
+    <text x="10" y="16" fill="#FBBF24" font-family="'Pretendard', sans-serif" font-weight="900" font-size="11">🗓️ 기념일 D-22 골든타임</text>
+
+    <text x="0" y="58" fill="#FFFFFF" font-family="'Pretendard', sans-serif" font-weight="900" font-size="16">할로윈 한정 선물 세트</text>
+    <text x="0" y="78" fill="#FCD34D" font-family="'Pretendard', sans-serif" font-weight="800" font-size="13">선착순 얼리버드 선예약 알림</text>
+
+    <!-- Pre-order Pill -->
+    <rect x="0" y="98" width="180" height="26" rx="6" fill="rgba(255, 255, 255, 0.08)" stroke="#475569" stroke-width="1"/>
+    <text x="8" y="115" fill="#E2E8F0" font-family="'Pretendard', sans-serif" font-weight="700" font-size="10">카카오 단골 1:1 선예약 알림톡</text>
+
+    <!-- Gain Button -->
+    <rect x="0" y="132" width="150" height="34" rx="8" fill="#D97706"/>
+    <text x="24" y="153" fill="#FFFFFF" font-family="'Pretendard', sans-serif" font-weight="900" font-size="12">회수 +62만 원 ➔</text>
+  </g>
+</svg>
