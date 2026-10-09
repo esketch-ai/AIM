@@ -2,6 +2,7 @@
 Enables Human-in-the-Loop review for marketing copies flagged with high regulatory risks (Medical Law, Fair Advertising).
 """
 
+import uuid
 from datetime import datetime
 from typing import List, Dict, Optional, Any
 from pydantic import BaseModel, Field
@@ -93,4 +94,38 @@ class ComplianceQuarantineQueue:
             item.admin_reviewer = reviewer
             item.review_notes = notes
             item.reviewed_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        return item
+
+    @classmethod
+    def enqueue_violation(
+        cls,
+        tenant_id: str,
+        business_name: str,
+        domain: str,
+        flagged_copy: str,
+        violations: List[Any],
+        recommended_sanitized: str = "",
+        risk_level: str = "HIGH",
+    ) -> QuarantinedItem:
+        """Enqueues a newly flagged marketing copy into the quarantine review queue."""
+        cls._initialize_defaults()
+        item_id = f"Q_{uuid.uuid4().hex[:6].upper()}"
+        reasons = [f"[{v.original_term}] {v.reason}" for v in violations]
+        authorities = list({v.rule_category for v in violations})
+        created_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        item = QuarantinedItem(
+            item_id=item_id,
+            tenant_id=tenant_id,
+            business_name=business_name,
+            domain=domain,
+            created_at=created_at,
+            risk_level=risk_level,
+            violation_reason="; ".join(reasons) if reasons else "규제 위반 위험 감지",
+            rule_authority=", ".join(authorities) if authorities else "산업별 법적 가드레일",
+            flagged_copy=flagged_copy,
+            recommended_sanitized=recommended_sanitized,
+            status="PENDING",
+        )
+        cls._queue[item_id] = item
         return item

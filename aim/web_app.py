@@ -10,9 +10,15 @@ FastAPI server serving:
 from fastapi import FastAPI, Request, Query
 from fastapi.responses import HTMLResponse, JSONResponse
 from pydantic import BaseModel, Field
-from typing import Optional
+from typing import Optional, List, Dict, Any
 import json
 import os
+
+from aim.core.compliance_engine import ComplianceEngine
+from aim.domains.medical import MedicalDomainPlugin
+from aim.domains.beauty import BeautyDomainPlugin
+from aim.domains.b2b_saas import B2BSaaSDomainPlugin
+from aim.domains.manufacturing import ManufacturingDomainPlugin
 
 from aim.schema import RawStoreData, EvidenceTier
 from aim.pipeline import AIMPipeline
@@ -709,6 +715,99 @@ def get_coupon_details(coupon_code: str):
         "store_name": tenant.business_name if tenant else "AIM 파트너 매장",
         "store_location": tenant.business_state.location if tenant else "서울 성동구 성수동",
     }
+
+
+
+class ComplianceAuditRequest(BaseModel):
+    text: str
+    domain: str = "fnb"
+    required_attribution: Optional[str] = None
+    tenant_id: Optional[str] = None
+    business_name: Optional[str] = None
+    auto_quarantine: bool = False
+
+
+@app.post("/api/v1/compliance/audit")
+def audit_copy_compliance(req: ComplianceAuditRequest):
+    """Audits copy against general Fair Advertising Act and domain-specific rules (Medical, Beauty, SaaS, Manufacturing)."""
+    report = ComplianceEngine.audit(
+        text=req.text,
+        domain=req.domain,
+        required_attribution=req.required_attribution,
+        tenant_id=req.tenant_id,
+        business_name=req.business_name,
+        auto_quarantine=req.auto_quarantine,
+    )
+    return report.model_dump()
+
+
+class MedicalRecallRequest(BaseModel):
+    procedure_type: str
+    days_since: int
+
+
+@app.post("/api/v1/domains/medical/recall-schedule")
+def get_medical_recall_schedule(req: MedicalRecallRequest):
+    """Calculates medical procedure golden-time recall status complying with Medical Law Art 56."""
+    return MedicalDomainPlugin.calculate_recall_schedule(req.procedure_type, req.days_since)
+
+
+class BeautyHappyHourRequest(BaseModel):
+    salon_name: str
+    idle_seats: int
+    target_hours: Optional[str] = "평일 14:00~17:00"
+    free_upgrade: Optional[str] = "프리미엄 두피 스파"
+
+
+@app.post("/api/v1/domains/beauty/happy-hour")
+def get_beauty_happy_hour(req: BeautyHappyHourRequest):
+    """Generates dynamic weekday off-peak slot filling promotion."""
+    return BeautyDomainPlugin.generate_happy_hour_booster(
+        salon_name=req.salon_name,
+        idle_seats=req.idle_seats,
+        target_hours=req.target_hours or "평일 14:00~17:00",
+        free_upgrade=req.free_upgrade or "프리미엄 두피 스파",
+    )
+
+
+class B2BReleaseViralRequest(BaseModel):
+    product_name: str
+    version: str
+    release_notes: str
+
+
+@app.post("/api/v1/domains/b2b-saas/github-viral")
+def get_b2b_release_viral(req: B2BReleaseViralRequest):
+    """Parses GitHub release notes into 4-channel viral GTM marketing payloads."""
+    return B2BSaaSDomainPlugin.parse_github_release_to_viral(
+        product_name=req.product_name,
+        version=req.version,
+        release_notes=req.release_notes,
+    )
+
+
+class ManufacturingRfqRequest(BaseModel):
+    company_name: str
+    buyer_country: str
+    part_name: str
+    tolerance_spec: Optional[str] = "±0.005mm"
+    certifications: Optional[List[str]] = None
+    moq: Optional[int] = 500
+    lead_time_days: Optional[int] = 14
+
+
+@app.post("/api/v1/domains/manufacturing/rfq")
+def get_manufacturing_rfq_response(req: ManufacturingRfqRequest):
+    """Generates 24/7 global RFQ technical proposal."""
+    return ManufacturingDomainPlugin.generate_global_rfq_response(
+        company_name=req.company_name,
+        buyer_country=req.buyer_country,
+        part_name=req.part_name,
+        tolerance_spec=req.tolerance_spec or "±0.005mm",
+        certifications=req.certifications,
+        moq=req.moq or 500,
+        lead_time_days=req.lead_time_days or 14,
+    )
 
 
 TEMPLATES_DIR = os.path.join(os.path.dirname(__file__), "templates")

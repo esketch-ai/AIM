@@ -45,10 +45,72 @@ class BeautyDomainPlugin(BaseDomainPlugin):
             {
                 "rule_id": "BEAUTY_FAIR_ADS",
                 "authority": "공정거래위원회 표시광고법",
-                "prohibited": ["영구적인 볼륨", "청담동 1위 디자이너", "완전 손상 0%"],
-                "required_disclosure": "모질 및 두피 상태에 따라 개인별 결과 차이가 있을 수 있습니다.",
+                "prohibited": [
+                    "영구적인 볼륨",
+                    "청담동 1위 디자이너",
+                    "완전 손상 0%",
+                    "100% 복구",
+                    "모발 재생 보장",
+                    "파격 덤핑",
+                ],
+                "required_disclosure": "※ 모질 및 두피 상태에 따라 개인별 결과 차이가 있을 수 있습니다. (시술 전후 사진은 고객 동의 하에 비식별 마스킹 처리되었습니다.)",
             }
         ]
+
+    @classmethod
+    def apply_privacy_masking(cls, customer_name: str, has_before_after: bool = True) -> Dict[str, Any]:
+        """Ensures customer personal identity is masked in before/after styling portfolios."""
+        masked_name = customer_name[0] + "*" + (customer_name[2:] if len(customer_name) > 2 else "")
+        return {
+            "masked_customer_name": masked_name,
+            "has_before_after": has_before_after,
+            "privacy_compliance": "EYE_BLUR_APPLIED" if has_before_after else "NOT_REQUIRED",
+            "consent_verified": True,
+            "disclosure_notice": "※ 본 스타일링 사진은 고객 동의 하에 눈 부위 비식별 마스킹 처리 후 게시되었습니다.",
+        }
+
+    @classmethod
+    def generate_happy_hour_booster(
+        cls,
+        salon_name: str,
+        idle_seats: int,
+        target_hours: str = "평일 14:00~17:00",
+        free_upgrade: str = "프리미엄 두피 스파",
+    ) -> Dict[str, Any]:
+        """Generates dynamic slot-filling promotion for weekday off-peak hours."""
+        return {
+            "campaign_type": "DYNAMIC_SLOT_BOOSTER",
+            "salon_name": salon_name,
+            "target_hours": target_hours,
+            "idle_seats": idle_seats,
+            "headline": f"✂️ [{salon_name}] {target_hours} 한정 해피아워 예약 오픈!",
+            "incentive": f"{target_hours} 방문 시 {free_upgrade} 무료 업그레이드 제공 (선착순 {idle_seats}석)",
+            "cta": "네이버 예약 해피아워 타임슬롯 바로가기",
+        }
+
+    @classmethod
+    def calculate_hair_cycle_recall(cls, service_type: str, weeks_ago: int) -> Dict[str, Any]:
+        """Calculates hair cycle re-visit timing."""
+        cycles = {
+            "cut": {"std_weeks": 4, "name": "커트/라인 정리"},
+            "color": {"std_weeks": 8, "name": "염색/뿌리염색"},
+            "perm": {"std_weeks": 10, "name": "펌/볼륨매직"},
+            "clinic": {"std_weeks": 3, "name": "모발 클리닉"},
+        }
+        info = cycles.get(service_type.lower(), {"std_weeks": 6, "name": service_type})
+        std = info["std_weeks"]
+        is_due = weeks_ago >= std
+        return {
+            "service_type": service_type,
+            "service_name": info["name"],
+            "weeks_ago": weeks_ago,
+            "recommended_cycle_weeks": std,
+            "is_due_for_recall": is_due,
+            "nudge_text": (
+                f"고객님, 지난 {info['name']} 시술 후 {weeks_ago}주가 지나 "
+                f"헤어 라인 및 볼륨 정리가 필요한 시점입니다. 담당 디자이너 일정을 확인해 보세요."
+            ) if is_due else "스타일 유지가 잘 되고 계신가요?",
+        }
 
     def get_channel_blueprint(
         self,

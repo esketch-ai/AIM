@@ -48,10 +48,62 @@ class MedicalDomainPlugin(BaseDomainPlugin):
             {
                 "rule_id": "MEDICAL_LAW_ART56",
                 "authority": "의료법 제56조 및 보건복지부 의료광고 가이드라인",
-                "prohibited": ["부작용 전혀 없음", "100% 완치", "국내 최고 실력", "영구적인 효과", "최저가 이벤트"],
+                "prohibited": [
+                    "부작용 전혀 없음",
+                    "100% 완치",
+                    "국내 최고 실력",
+                    "영구적인 효과",
+                    "최저가 이벤트",
+                    "완벽 개선",
+                    "파격 덤핑 할인",
+                    "치료효과 보장",
+                    "재발 제로",
+                ],
                 "required_disclosure": "※ 모든 시술은 개인에 따라 멍, 붓기, 염증 등 부작용이 발생할 수 있으므로 전문의와 충분한 상담이 필요합니다. (의료광고 사전심의필)",
             }
         ]
+
+    @classmethod
+    def calculate_recall_schedule(cls, procedure_type: str, days_since_last_procedure: int) -> Dict[str, Any]:
+        """Calculates clinical golden-time recall status based on procedure cycle."""
+        cycles = {
+            "botox": {"standard_days": 90, "window_days": 14, "name": "보톡스/주름완화"},
+            "skin_booster": {"standard_days": 30, "window_days": 7, "name": "스킨부스터/물광"},
+            "laser": {"standard_days": 14, "window_days": 3, "name": "색소/토닝 레이저"},
+            "lifting": {"standard_days": 180, "window_days": 30, "name": "울쎄라/슈링크 리프팅"},
+        }
+        cycle_info = cycles.get(procedure_type.lower(), {"standard_days": 60, "window_days": 10, "name": procedure_type})
+        std = cycle_info["standard_days"]
+        win = cycle_info["window_days"]
+
+        is_golden_time = (std - win) <= days_since_last_procedure <= (std + win)
+        is_overdue = days_since_last_procedure > (std + win)
+
+        return {
+            "procedure_type": procedure_type,
+            "procedure_name": cycle_info["name"],
+            "days_since": days_since_last_procedure,
+            "recommended_cycle_days": std,
+            "is_golden_time": is_golden_time,
+            "is_overdue": is_overdue,
+            "suggested_message": (
+                f"고객님, 지난 {cycle_info['name']} 시술 후 {days_since_last_procedure}일이 경과하여 "
+                f"효과 유지 및 피부 진정을 위한 최적의 골든타임 재방문 주기입니다."
+            ) if is_golden_time else "정기 검진 슬롯을 안내해 드립니다."
+        }
+
+    @classmethod
+    def fill_emergency_slot(cls, clinic_name: str, slot_time: str, doctor_name: str = "대표원장") -> Dict[str, Any]:
+        """Generates emergency no-show fill copy complying with Medical Law Art 56."""
+        return {
+            "headline": f"🚨 [{clinic_name}] {slot_time} 당일 진료 슬롯 우선 오픈",
+            "body": (
+                f"금일 {slot_time} {doctor_name} 1:1 맞춤 상담 및 진료 슬롯 1석이 오픈되었습니다. "
+                f"정품·정량 원칙을 준수하며 개인별 피부 상태에 따른 꼼꼼한 진단을 약속드립니다.\n"
+                f"※ 모든 시술은 개인에 따라 멍, 붓기 등 부작용이 있을 수 있습니다. (의료광고 사전심의필)"
+            ),
+            "cta": "원내 유선 문의 또는 네이버 예약 당일 슬롯 확인",
+        }
 
     def get_channel_blueprint(
         self,

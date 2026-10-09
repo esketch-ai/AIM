@@ -20,7 +20,13 @@ class ComplianceEngine:
 
     @classmethod
     def audit(
-        cls, text: str, domain: str, required_attribution: Optional[str] = None
+        cls,
+        text: str,
+        domain: str,
+        required_attribution: Optional[str] = None,
+        tenant_id: Optional[str] = None,
+        business_name: Optional[str] = None,
+        auto_quarantine: bool = False,
     ) -> ComplianceReport:
         """required_attribution이 주어지면 그 문구가 본문에 있는지 검사한다.
 
@@ -66,6 +72,23 @@ class ComplianceEngine:
             )
 
         is_compliant = len(violations) == 0
+
+        # Auto-quarantine hook for high-risk / non-compliant campaigns
+        if auto_quarantine and not is_compliant:
+            try:
+                from aim.admin.quarantine import ComplianceQuarantineQueue
+                ComplianceQuarantineQueue.enqueue_violation(
+                    tenant_id=tenant_id or "TENANT_UNKNOWN",
+                    business_name=business_name or f"사업장 ({domain})",
+                    domain=domain,
+                    flagged_copy=text,
+                    violations=violations,
+                    recommended_sanitized=sanitized,
+                    risk_level="CRITICAL" if any(v.severity == "HIGH" for v in violations) else "HIGH",
+                )
+            except Exception:
+                pass
+
         return ComplianceReport(
             is_compliant=is_compliant,
             violations=violations,

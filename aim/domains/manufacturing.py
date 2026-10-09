@@ -3,7 +3,7 @@ Encapsulates domain logic for CNC machining, injection molding, and B2B industri
 Models idle machinery capacity, raw material market fluctuations (LME), and 24/7 global RFQ auto-quoting.
 """
 
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 from aim.domains.base import BaseDomainPlugin
 from aim.schema import BusinessState, Context6D, StrategyObjective
 
@@ -45,10 +45,74 @@ class ManufacturingDomainPlugin(BaseDomainPlugin):
             {
                 "rule_id": "MANUFACTURING_FAIR_TRADE",
                 "authority": "공정거래위원회 하도급법 및 전략물자 수출통제",
-                "prohibited": ["무조건 국내 최저가 납품", "불량률 0% 완전 보장"],
-                "required_disclosure": "소재 시험 성적서(MTR) 및 공차 검사 성적서 공식 발행",
+                "prohibited": [
+                    "무조건 국내 최저가 납품",
+                    "불량률 0% 완전 보장",
+                    "납기 지연 배상 면책",
+                    "100% 무결점 보증",
+                ],
+                "required_disclosure": "※ 소재 시험 성적서(MTR) 및 공차 검사 성적서 공식 발행",
             }
         ]
+
+    @classmethod
+    def generate_global_rfq_response(
+        cls,
+        company_name: str,
+        buyer_country: str,
+        part_name: str,
+        tolerance_spec: str = "±0.005mm",
+        certifications: Optional[List[str]] = None,
+        moq: int = 500,
+        lead_time_days: int = 14,
+    ) -> Dict[str, Any]:
+        """Generates 24/7 global RFQ technical proposal in response to foreign buyer inquiry."""
+        certs = ", ".join(certifications or ["ISO 9001:2015", "IATF 16949"])
+        return {
+            "rfq_response_type": "24_7_GLOBAL_RFQ_PROPOSAL",
+            "buyer_country": buyer_country,
+            "part_name": part_name,
+            "headline": f"Official Technical Proposal: Precision {part_name} - {company_name}",
+            "specifications": {
+                "machining_tolerance": tolerance_spec,
+                "certifications": certs,
+                "moq": moq,
+                "estimated_lead_time": f"{lead_time_days} business days",
+                "inspection": "CMM 3D Coordinate Inspection & Material Test Report (MTR)",
+            },
+            "cover_letter": (
+                f"Dear Procurement Manager ({buyer_country}),\n\n"
+                f"Thank you for your RFQ regarding {part_name}. {company_name} is fully equipped "
+                f"with 5-axis CNC machining centers achieving precision tolerance of {tolerance_spec}.\n"
+                f"We hold {certs} certifications and guarantee full material traceability with official MTR.\n\n"
+                f"Please find our initial technical feasibility and manufacturing schedule enclosed."
+            ),
+            "disclosure": "※ 소재 시험 성적서(MTR) 및 공차 검사 성적서 공식 발행",
+            "cta": "Request CAD Drawing Review & Formal Quotation Sheet",
+        }
+
+    @classmethod
+    def generate_lme_raw_material_deal(
+        cls,
+        company_name: str,
+        material_name: str,
+        price_drop_pct: float,
+        discount_offer_pct: float = 5.0,
+    ) -> Dict[str, Any]:
+        """Generates B2B flash purchase offer triggered by LME raw material market dips."""
+        return {
+            "campaign_type": "LME_RAW_MATERIAL_FLASH_DEAL",
+            "material": material_name,
+            "price_drop_pct": price_drop_pct,
+            "headline": f"📢 [{company_name}] {material_name} 시세 하락 연동 긴급 사전발주 프로모션",
+            "narrative": (
+                f"런던금속거래소(LME) {material_name} 시세 {price_drop_pct:.1f}% 하락에 연동하여, "
+                f"차기 분기 물량을 선발주하시는 고객사 대상 {discount_offer_pct:.1f}% 특별 단가 네고 및 "
+                f"당사 정밀 가공 라인 우선 배정 혜택을 제공합니다."
+            ),
+            "disclosure": "※ 소재 시험 성적서(MTR) 및 공차 검사 성적서 공식 발행",
+            "cta": "도면 첨부 및 특별 단가 확정 회신",
+        }
 
     def get_channel_blueprint(
         self,
