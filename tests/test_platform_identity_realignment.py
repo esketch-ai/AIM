@@ -123,3 +123,31 @@ def test_customer_development_14_rules_framework_in_html():
     assert "실리콘밸리 고객 개발 14대 원칙(Customer Development Manifesto) 내장 온보딩" in html
 
 
+def test_step_by_step_guided_stepper_in_html():
+    """Validates that the main page features a concise, step-by-step progressive disclosure flow."""
+    res = client.get("/")
+    assert res.status_code == 200
+    html = res.text
+
+    # 1. Stepper Navigator & Step Tabs
+    assert "STEP-BY-STEP PROGRESSIVE GUIDANCE" in html
+    assert "하나씩 차근차근 알아가는 3단계 자율 마케팅 여정" in html
+    assert "stepTabBtn1" in html
+    assert "stepTabBtn2" in html
+    assert "stepTabBtn3" in html
+    assert "1단계: 내 비즈니스 연결" in html
+    assert "2단계: AI 진단 & 오늘 할 일" in html
+    assert "3단계: 배포 & 매출 증명" in html
+
+    # 2. Step Containers
+    assert 'id="stepContainer1"' in html
+    assert 'id="stepContainer2"' in html
+    assert 'id="stepContainer3"' in html
+
+    # 3. Stepper Controller Functions
+    assert "goToStep" in html
+    assert "toggleStepperMode" in html
+    assert "currentStepIndicatorBadge" in html
+
+
+
