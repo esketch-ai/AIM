@@ -723,7 +723,7 @@
         <div class="brand-logo-badge">AIM · 자율 마케팅 OS</div>
         <div class="brand-text">
           <h1>내 사업장 데이터만 연결하면, AI가 5대 채널 마케팅을 알아서 끝냅니다.</h1>
-          <p>리뷰·매출·상황 데이터 자동 분석 ➔ 블로그·인스타·알림톡 5대 채널 자동 제작 ➔ 법적 검수 ➔ 원클릭 배포까지</p>
+          <p>[AI 시대 웹·앱·SaaS 서비스 & 로컬 비즈니스] URL/데이터 자동 분석 ➔ Product Hunt·X·블로그·인스타·알림톡 5대 채널 자동 제작 ➔ 법적 검수 ➔ 원클릭 배포까지</p>
         </div>
       </div>
       <div style="display: flex; align-items: center; gap: 8px;">
@@ -746,13 +746,58 @@
     <!-- ======================================================== -->
     <section id="viewSimple" class="view-panel" style="display: block; max-width: 900px; margin: 0 auto; padding: 20px 16px 48px;">
       
+      <!-- ======================================================== -->
+      <!-- [CORE IDENTITY] AI Web/App Service Instant 1-Click GTM Launcher -->
+      <!-- ======================================================== -->
+      <div style="background: linear-gradient(135deg, rgba(22, 26, 32, 0.98) 0%, rgba(28, 32, 38, 0.95) 100%); border: 2px solid var(--primary); border-radius: 20px; padding: 22px 24px; margin-bottom: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 10px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 26px;">🚀</span>
+            <div>
+              <span style="font-size: 13px; font-weight: 800; color: var(--primary); letter-spacing: 0.5px;">AI-ERA WEB & APP SERVICES GTM DISTRIBUTION OS</span>
+              <h2 style="font-size: 20px; font-weight: 900; color: #FFFFFF; margin-top: 2px;">
+                내 웹·앱·SaaS 서비스 URL만 입력하면, 3초 만에 5대 채널 GTM 마케팅 자동 발사
+              </h2>
+            </div>
+          </div>
+          <span style="font-size: 13px; background: rgba(78, 159, 134, 0.15); color: var(--success); border: 1px solid var(--success); padding: 4px 12px; border-radius: 999px; font-weight: 800;">
+            ● 1인 개발·AI 빌더 전용
+          </span>
+        </div>
+        <p style="font-size: 14px; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px;">
+          AI 코딩으로 쏟아지는 웹·앱 서비스의 최대 난제는 <strong>"0명의 유저 & 마케팅 부재"</strong>입니다. URL 하나로 Product Hunt 런칭, X(트위터) 바이럴 쓰레드, AEO(ChatGPT/Perplexity 인용) 스키마, 숏폼 시연 콘티, 이탈 방지 온보딩 메일까지 즉시 생성합니다.
+        </p>
+
+        <!-- Interactive URL Input Bar -->
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px;">
+          <input id="inputServiceUrl" type="text" placeholder="https://flowdoc.ai 또는 GitHub 리포지토리/랜딩페이지 URL 입력..." style="flex: 1; min-width: 280px; background: #121417; border: 1.5px solid var(--card-border); border-radius: 12px; padding: 14px 18px; color: #FFFFFF; font-size: 15px; font-weight: 600; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--card-border)'" />
+          <button onclick="handleInstantServiceLaunch()" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%); color: #FFFFFF; font-size: 16px; font-weight: 900; border: none; padding: 14px 24px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 15px rgba(217, 107, 39, 0.4); white-space: nowrap;">
+            ⚡ 3초 만에 5대 GTM 자동 생성
+          </button>
+        </div>
+
+        <!-- Quick Demo Presets -->
+        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+          <span style="font-size: 13px; color: var(--text-muted); font-weight: 700;">💡 원클릭 실증 프리셋:</span>
+          <button onclick="presetServiceLaunch('b2b_saas')" style="background: rgba(255,255,255,0.06); border: 1px solid var(--card-border); color: #FFFFFF; font-size: 13px; font-weight: 800; padding: 6px 14px; border-radius: 8px; cursor: pointer; transition: all 0.15s;">
+            💻 플로우독 AI 협업툴 (SaaS 웹앱)
+          </button>
+          <button onclick="presetServiceLaunch('fnb_cafe')" style="background: rgba(255,255,255,0.06); border: 1px solid var(--card-border); color: var(--text-muted); font-size: 13px; font-weight: 700; padding: 6px 14px; border-radius: 8px; cursor: pointer; transition: all 0.15s;">
+            🥐 성수 베이커리 (로컬 F&B)
+          </button>
+          <button onclick="presetServiceLaunch('medical_derma')" style="background: rgba(255,255,255,0.06); border: 1px solid var(--card-border); color: var(--text-muted); font-size: 13px; font-weight: 700; padding: 6px 14px; border-radius: 8px; cursor: pointer; transition: all 0.15s;">
+            🏥 강남 리엔 피부과 (의료)
+          </button>
+        </div>
+      </div>
+
       <!-- Industry / Tenant Switcher Bar for Clean Mode -->
       <div style="margin-bottom: 20px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-        <span style="font-size: 14px; font-weight: 800; color: var(--primary);">🏢 내 사업장 업종 선택:</span>
-        <button id="sBtn_TENANT_001" class="simple-tenant-btn active" onclick="switchTenant('TENANT_001')">🥐 F&B 외식 (성수 베이커리)</button>
+        <span style="font-size: 14px; font-weight: 800; color: var(--primary);">🏢 내 비즈니스 도메인 선택:</span>
+        <button id="sBtn_TENANT_004" class="simple-tenant-btn" onclick="switchTenant('TENANT_004')">💻 AI 웹·앱·SaaS (플로우독 IT)</button>
+        <button id="sBtn_TENANT_001" class="simple-tenant-btn active" onclick="switchTenant('TENANT_001')">🥐 로컬 F&B 외식 (성수 베이커리)</button>
         <button id="sBtn_TENANT_002" class="simple-tenant-btn" onclick="switchTenant('TENANT_002')">🏥 의료 병원 (강남 리엔 피부과)</button>
         <button id="sBtn_TENANT_003" class="simple-tenant-btn" onclick="switchTenant('TENANT_003')">✂️ 뷰티 살롱 (청담 헤어살롱)</button>
-        <button id="sBtn_TENANT_004" class="simple-tenant-btn" onclick="switchTenant('TENANT_004')">💻 B2B SaaS (플로우독 IT)</button>
         <button id="sBtn_TENANT_005" class="simple-tenant-btn" onclick="switchTenant('TENANT_005')">🏭 B2B 제조 (대진정밀공업)</button>
       </div>
 
@@ -766,7 +811,7 @@
               <span style="font-size: 13px; background: var(--success); color: #FFFFFF; padding: 3px 10px; border-radius: 999px; font-weight: 800;">플래그십 가동 중</span>
             </div>
             <div style="font-size: 14px; color: var(--text-main); margin-top: 4px; line-height: 1.5;">
-              모든 업종을 한 번에 다 하지 않고, <strong>가장 절박한 로컬 외식·소상공인 분야부터 완벽히 해결</strong>한 후 의료·뷰티·B2B로 순차 확장합니다.
+              AI 웹·앱 글로벌 디스트리뷰션 OS 엔진과 함께, <strong>가장 절박한 로컬 외식·소상공인 분야부터 완벽히 해결</strong>한 후 의료·뷰티·B2B로 순차 확장합니다.
             </div>
           </div>
         </div>
@@ -4581,6 +4626,49 @@
       if (vAmt) vAmt.innerText = a.voucherAmount;
       const vTime = document.getElementById('simpleVoucherTime');
       if (vTime) vTime.innerText = a.voucherTime;
+    }
+
+    /* AI-Era Web & App Service Instant GTM Launch Handlers */
+    function presetServiceLaunch(type) {
+      const urlInput = document.getElementById('inputServiceUrl');
+      if (type === 'b2b_saas') {
+        if (urlInput) urlInput.value = 'https://flowdoc.ai (FlowDoc AI 협업 SaaS)';
+        switchTenant('TENANT_004');
+        showToast('🚀 [AI 웹·앱 SaaS GTM 모드] 깃허브 v2.4 릴리즈 및 5대 글로벌 채널(Product Hunt, X, AEO, Shorts, 이탈방지 메일)이 활성화되었습니다!');
+      } else if (type === 'fnb_cafe') {
+        if (urlInput) urlInput.value = 'https://seongsu-atelier.local (성수 아뜰리에 베이커리)';
+        switchTenant('TENANT_001');
+        showToast('🥐 [로컬 F&B 버티컬] 날씨 타임어택 & POS 실측 매출 방어 모드가 활성화되었습니다.');
+      } else if (type === 'medical_derma') {
+        if (urlInput) urlInput.value = 'https://gangnam-lien.local (강남 리엔 피부과)';
+        switchTenant('TENANT_002');
+        showToast('🏥 [메디컬 버티컬] 의료법 제56조 안심 가드레일 & 90일 리콜 모드가 활성화되었습니다.');
+      }
+    }
+
+    async function handleInstantServiceLaunch() {
+      const urlInput = document.getElementById('inputServiceUrl');
+      const url = urlInput ? urlInput.value.trim() : '';
+      if (!url) {
+        showToast('웹/앱 서비스 URL이나 GitHub 링크를 입력해 주세요.');
+        if (urlInput) urlInput.focus();
+        return;
+      }
+      showToast(`🤖 AI가 '${url}' 웹/앱 서비스의 USP, 타겟 페르소나 및 경쟁사를 자동 분석 중입니다...`);
+      
+      await switchTenant('TENANT_004');
+      
+      const sName = document.getElementById('simpleStoreName');
+      if (sName && url) {
+        let cleanName = url.replace(/https?:\/\//i, '').split('/')[0];
+        sName.innerText = cleanName + ' (AI 프로덕트)';
+      }
+      const sSub = document.getElementById('simpleStoreSub');
+      if (sSub) sSub.innerText = `글로벌 GTM 자동 사출 · ${url}`;
+
+      setTimeout(() => {
+        showToast(`✨ [사출 완료] 5대 채널 GTM 마케팅 패키지(Product Hunt, X 바이럴, AEO Schema, 숏폼 데모, 온보딩 메일)가 준비되었습니다! 아래 1-클릭 실행 버튼을 확인하세요.`);
+      }, 700);
     }
 
     /* Switch Active Tenant Across All Pillars */

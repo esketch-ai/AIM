@@ -74,3 +74,18 @@ def test_no_sole_bias_to_fnb_coupon():
     assert "강남 리엔 피부과" in html
     assert "플로우독 IT" in html or "플로우독 SaaS" in html
     assert "대진정밀공업" in html
+
+
+def test_ai_era_webapp_instant_gtm_launcher_in_html():
+    """Validates that the AI-Era Web & App Service Instant GTM Launcher is prominently available."""
+    res = client.get("/")
+    assert res.status_code == 200
+    html = res.text
+
+    assert "AI-ERA WEB & APP SERVICES GTM DISTRIBUTION OS" in html
+    assert "내 웹·앱·SaaS 서비스 URL만 입력하면, 3초 만에 5대 채널 GTM 마케팅 자동 발사" in html
+    assert "inputServiceUrl" in html
+    assert "handleInstantServiceLaunch" in html
+    assert "presetServiceLaunch" in html
+    assert "플로우독 AI 협업툴 (SaaS 웹앱)" in html
+
