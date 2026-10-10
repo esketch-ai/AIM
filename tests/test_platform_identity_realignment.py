@@ -89,3 +89,37 @@ def test_ai_era_webapp_instant_gtm_launcher_in_html():
     assert "presetServiceLaunch" in html
     assert "플로우독 AI 협업툴 (SaaS 웹앱)" in html
 
+
+def test_customer_development_14_rules_framework_in_html():
+    """Validates that Steve Blank's 14 Customer Development Principles framework is prominently delivered to new founders."""
+    res = client.get("/")
+    assert res.status_code == 200
+    html = res.text
+
+    # 1. Framework Identity & Manifesto OS
+    assert "고객 개발 14대 원칙" in html
+    assert "Customer Development" in html
+    assert "CUSTOMER DEVELOPMENT MANIFESTO OS" in html
+    assert "신규 사업자를 위한 고객 개발 14대 원칙 체계" in html
+
+    # 2. 4 Practical Stages for New Founders
+    assert "고객 발견 (Customer Discovery)" in html
+    assert "고객 검증 (Customer Validation)" in html
+    assert "고객 창출 (Customer Creation)" in html
+    assert "사업 빌딩 & 피벗 (Company Building & Pivot)" in html
+
+    # 3. Steve Blank Key Principles
+    assert "사무실에서 알 수 있는 것은 없으니 현장으로 나가라" in html
+    assert "고객 개발에 애자일 개발을 접목하라" in html
+    assert "실패는 탐색 절차의 필수적인 요소다" in html
+    assert "비즈니스 모델 캔버스" in html
+    assert "스타트업은 기존 기업과 다른 지표를 쓴다" in html
+    assert "필요할 때만 쓰고 아껴라" in html
+
+    # 4. Interactive Modal & Handlers
+    assert "openCustomerDevelopmentModal" in html
+    assert "customerDevModal" in html
+    assert "triggerCustomerDevPhase" in html
+    assert "실리콘밸리 고객 개발 14대 원칙(Customer Development Manifesto) 내장 온보딩" in html
+
+

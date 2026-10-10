@@ -791,6 +791,108 @@
         </div>
       </div>
 
+      <!-- ======================================================== -->
+      <!-- [FOUNDER OS] 신규 사업자를 위한 고객 개발 14대 원칙 자율 실행 가이드 -->
+      <!-- ======================================================== -->
+      <div style="background: linear-gradient(135deg, rgba(22, 26, 32, 0.98) 0%, rgba(28, 32, 38, 0.95) 100%); border: 1.5px solid var(--primary); border-radius: 20px; padding: 22px 24px; margin-bottom: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 26px;">🧭</span>
+            <div>
+              <span style="font-size: 13px; font-weight: 800; color: var(--primary); letter-spacing: 0.5px;">CUSTOMER DEVELOPMENT MANIFESTO OS</span>
+              <h3 style="font-size: 19px; font-weight: 900; color: #FFFFFF; margin-top: 2px;">
+                신규 사업자를 위한 고객 개발 14대 원칙 체계 (Customer Development OS)
+              </h3>
+            </div>
+          </div>
+          <button onclick="openCustomerDevelopmentModal()" style="background: rgba(217, 107, 39, 0.15); border: 1px solid var(--primary); color: var(--primary); font-size: 13px; font-weight: 800; padding: 6px 14px; border-radius: 999px; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: all 0.15s;">
+            📖 14대 원칙 실전 가이드 전문 보기 ➔
+          </button>
+        </div>
+        <p style="font-size: 14px; color: var(--text-muted); line-height: 1.5; margin-bottom: 18px;">
+          스티브 블랭크(Steve Blank)의 <strong>고객 개발 14대 원칙</strong>을 프로그램 코드로 구현했습니다. "제품을 만들면 알아서 찾아온다"는 환상을 버리고, 추측 대신 팩트 데이터와 린(Lean) 실험으로 0명에서 첫 고객 1,000명을 검증합니다.
+        </p>
+
+        <!-- 4-Stage Bento Grid for New Founders -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 16px;">
+          <!-- Stage 1 -->
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--card-border); border-radius: 14px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                <span style="font-size: 12px; font-weight: 800; color: var(--primary); background: rgba(217,107,39,0.15); padding: 2px 8px; border-radius: 6px;">1단계: 고객 발견</span>
+                <span style="font-size: 11px; color: var(--text-muted);">규칙 1, 5, 6</span>
+              </div>
+              <div style="font-size: 15px; font-weight: 900; color: #FFFFFF; margin-bottom: 6px;">
+                고객 발견 (Customer Discovery)
+              </div>
+              <div style="font-size: 12px; color: var(--text-muted); line-height: 1.45; margin-bottom: 12px;">
+                "사무실 밖으로 나가라." 책상머리 추측 대신 실제 시장의 리뷰·고객 불만 데이터에서 돈 낼 단 하나의 USP 가설을 자동 추출합니다.
+              </div>
+            </div>
+            <button onclick="triggerCustomerDevPhase(1)" style="width: 100%; background: rgba(255,255,255,0.06); border: 1px solid var(--card-border); color: #FFFFFF; font-size: 12px; font-weight: 800; padding: 8px 10px; border-radius: 8px; cursor: pointer; transition: all 0.15s;">
+              🔍 고객 고통·가설 도출 ➔
+            </button>
+          </div>
+
+          <!-- Stage 2 -->
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--card-border); border-radius: 14px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                <span style="font-size: 12px; font-weight: 800; color: #60A5FA; background: rgba(96,165,250,0.15); padding: 2px 8px; border-radius: 6px;">2단계: 고객 검증</span>
+                <span style="font-size: 11px; color: var(--text-muted);">규칙 2, 7, 9</span>
+              </div>
+              <div style="font-size: 15px; font-weight: 900; color: #FFFFFF; margin-bottom: 6px;">
+                고객 검증 (Customer Validation)
+              </div>
+              <div style="font-size: 12px; color: var(--text-muted); line-height: 1.45; margin-bottom: 12px;">
+                "애자일 & 빠른 박자." 시장 유형(SaaS vs 로컬)에 맞춰 3초 만에 5대 채널(Product Hunt, X, AEO, 숏폼, 온보딩 드립)로 린 실험을 즉시 사출합니다.
+              </div>
+            </div>
+            <button onclick="triggerCustomerDevPhase(2)" style="width: 100%; background: rgba(96,165,250,0.15); border: 1px solid #60A5FA; color: #93C5FD; font-size: 12px; font-weight: 800; padding: 8px 10px; border-radius: 8px; cursor: pointer; transition: all 0.15s;">
+              ⚡ 5대 채널 린 실험 사출 ➔
+            </button>
+          </div>
+
+          <!-- Stage 3 -->
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--card-border); border-radius: 14px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                <span style="font-size: 12px; font-weight: 800; color: var(--success); background: rgba(78,159,134,0.15); padding: 2px 8px; border-radius: 6px;">3단계: 고객 창출</span>
+                <span style="font-size: 11px; color: var(--text-muted);">규칙 8, 10, 11</span>
+              </div>
+              <div style="font-size: 15px; font-weight: 900; color: #FFFFFF; margin-bottom: 6px;">
+                고객 창출 (Customer Creation)
+              </div>
+              <div style="font-size: 12px; color: var(--text-muted); line-height: 1.45; margin-bottom: 12px;">
+                "스타트업 실측 지표." 단순 노출수 허상을 배제하고, MRR(월 반복 매출), 실측 결제액, 가입 48시간 활성화율 등 통장 실익만 검증합니다.
+              </div>
+            </div>
+            <button onclick="triggerCustomerDevPhase(3)" style="width: 100%; background: rgba(78,159,134,0.15); border: 1px solid var(--success); color: var(--success); font-size: 12px; font-weight: 800; padding: 8px 10px; border-radius: 8px; cursor: pointer; transition: all 0.15s;">
+              📊 실측 지표 성과 원장 ➔
+            </button>
+          </div>
+
+          <!-- Stage 4 -->
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--card-border); border-radius: 14px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                <span style="font-size: 12px; font-weight: 800; color: #E5A84B; background: rgba(229,168,75,0.15); padding: 2px 8px; border-radius: 6px;">4단계: 사업 빌딩</span>
+                <span style="font-size: 11px; color: var(--text-muted);">규칙 3, 4, 12, 13, 14</span>
+              </div>
+              <div style="font-size: 15px; font-weight: 900; color: #FFFFFF; margin-bottom: 6px;">
+                사업 빌딩 & 피벗 (Company Building & Pivot)
+              </div>
+              <div style="font-size: 12px; color: var(--text-muted); line-height: 1.45; margin-bottom: 12px;">
+                "자원 보존 & 자율 피벗." 실패는 탐색 과정입니다. 월 4.9만원 최소 비용을 지키며, 반응 저조 시 즉시 카피 각도와 타깃 전환(Pivot)을 처방합니다.
+              </div>
+            </div>
+            <button onclick="triggerCustomerDevPhase(4)" style="width: 100%; background: rgba(229,168,75,0.15); border: 1px solid #E5A84B; color: #FCD34D; font-size: 12px; font-weight: 800; padding: 8px 10px; border-radius: 8px; cursor: pointer; transition: all 0.15s;">
+              🔄 자율 피벗 & 가이드 전문 ➔
+            </button>
+          </div>
+        </div>
+      </div>
+
       <!-- Industry / Tenant Switcher Bar for Clean Mode -->
       <div style="margin-bottom: 20px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
         <span style="font-size: 14px; font-weight: 800; color: var(--primary);">🏢 내 비즈니스 도메인 선택:</span>
@@ -1579,6 +1681,25 @@
           </div>
           <button class="btn-hero-primary" style="padding: 10px 20px; font-size: 12px;" onclick="switchViewMode('tenant')">
             💼 사업주 마이 데스크 바로가기 ➔
+          </button>
+        </div>
+
+        <!-- Steve Blank 14 Customer Development Rules Foundation Banner -->
+        <div style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.85) 0%, rgba(22, 26, 32, 0.95) 100%); border: 1.5px solid var(--primary); border-radius: 14px; padding: 16px 20px; margin-bottom: 22px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="font-size: 26px;">🧭</span>
+            <div>
+              <div style="font-size: 15px; font-weight: 900; color: #FFFFFF; display: flex; align-items: center; gap: 8px;">
+                <span>실리콘밸리 고객 개발 14대 원칙(Customer Development Manifesto) 내장 온보딩</span>
+                <span style="font-size: 11px; background: rgba(78, 159, 134, 0.2); color: var(--success); border: 1px solid var(--success); padding: 2px 8px; border-radius: 999px; font-weight: 800;">검증 체계 가동</span>
+              </div>
+              <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px; line-height: 1.45;">
+                스티브 블랭크의 <strong>"사무실 밖으로 나가라(현장 원시 데이터)"</strong>부터 <strong>"린 실험 사출"</strong>, <strong>"최소 비용 자원 보존"</strong>까지 14대 원칙이 가입 즉시 자율 실행됩니다.
+              </div>
+            </div>
+          </div>
+          <button onclick="openCustomerDevelopmentModal()" style="background: rgba(217, 107, 39, 0.15); border: 1px solid var(--primary); color: var(--primary); font-size: 12px; font-weight: 800; padding: 8px 16px; border-radius: 8px; cursor: pointer;">
+            📖 14대 원칙 가이드 열람 ➔
           </button>
         </div>
 
@@ -2843,6 +2964,158 @@
             </button>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- [MODAL] 실리콘밸리 고객 개발 14대 원칙 (Customer Development Manifesto) 실전 가이드 -->
+    <!-- ======================================================== -->
+    <div id="customerDevModal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(18, 20, 23, 0.88); backdrop-filter: blur(10px); z-index: 9999; justify-content: center; align-items: center; padding: 20px;">
+      <div style="background: var(--panel); border: 2px solid var(--primary); border-radius: 20px; width: 100%; max-width: 860px; max-height: 90vh; display: flex; flex-direction: column; box-shadow: 0 25px 60px rgba(0,0,0,0.7); overflow: hidden;">
+        
+        <!-- Modal Header -->
+        <div style="padding: 22px 28px; border-bottom: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: flex-start; background: var(--panel);">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+              <span style="font-size: 12px; background: rgba(217,107,39,0.18); color: var(--primary); border: 1px solid var(--primary); padding: 3px 10px; border-radius: 999px; font-weight: 800;">
+                실리콘밸리 스타트업 바이블
+              </span>
+              <span style="font-size: 12px; background: rgba(78,159,134,0.18); color: var(--success); border: 1px solid var(--success); padding: 3px 10px; border-radius: 999px; font-weight: 800;">
+                고객 개발 14대 원칙 (Customer Development Manifesto)
+              </span>
+            </div>
+            <h3 style="font-size: 22px; font-weight: 900; color: #FFFFFF; line-height: 1.35;">
+              신규 사업자를 위한 고객 개발 14대 원칙 & AIM 자율 마케팅 OS 체계
+            </h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">
+              스티브 블랭크(Steve Blank)의 14대 원칙을 프로그램 코드로 구현하여 1인 AI 개발자 및 신규 매장 사장님께 제공합니다.
+            </p>
+          </div>
+          <button onclick="closeCustomerDevelopmentModal()" style="background: transparent; border: none; color: #94A3B8; font-size: 28px; cursor: pointer; padding: 4px 8px; border-radius: 8px; line-height: 1;">✕</button>
+        </div>
+
+        <!-- Modal Body (Scrollable) -->
+        <div style="padding: 24px 28px; overflow-y: auto; flex: 1;">
+          
+          <!-- Key Philosophy Callout -->
+          <div style="background: linear-gradient(135deg, rgba(217, 107, 39, 0.12) 0%, rgba(38, 43, 51, 0.8) 100%); border: 1.5px solid var(--primary); border-radius: 14px; padding: 16px 20px; margin-bottom: 24px;">
+            <div style="font-size: 14px; font-weight: 800; color: var(--primary); margin-bottom: 4px;">
+              💡 99%의 신규 사업자가 실패하는 이유와 AIM의 해법
+            </div>
+            <div style="font-size: 13px; color: #E6E8EC; line-height: 1.55;">
+              "좋은 제품을 만들면 알아서 고객이 찾아올 것"이라는 착각으로 첫날 방문자/가입자 0명에 좌절하거나, 무의미한 대행사에 수백만 원을 낭비합니다. 
+              <strong>AIM은 뜬구름 잡는 광고가 아니라, 14대 원칙 기반의 '원시 데이터 확인 ➔ 린 가설 실험 ➔ 실측 통장 검증 ➔ 자율 피벗' 루프를 프로그램으로 실행합니다.</strong>
+            </div>
+          </div>
+
+          <!-- 4 Stages Sections -->
+          <div style="display: flex; flex-direction: column; gap: 18px;">
+            
+            <!-- Phase 1 -->
+            <div style="background: var(--card); border: 1px solid var(--card-border); border-radius: 14px; padding: 18px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <span style="font-size: 18px; background: rgba(217,107,39,0.2); color: var(--primary); width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900;">1</span>
+                  <div style="font-size: 16px; font-weight: 900; color: #FFFFFF;">
+                    1단계: 고객 발견 (Customer Discovery)
+                  </div>
+                </div>
+                <span style="font-size: 12px; color: var(--text-muted); font-weight: 700;">규칙 1, 5, 6 준수</span>
+              </div>
+              <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: #CBD5E1; line-height: 1.6;">
+                <li><strong>규칙 1. 사무실에서 알 수 있는 것은 없으니 현장으로 나가라 (Get out of the building)</strong>: 책상머리 추측을 배제하고 실제 고객의 원시 데이터(리뷰, 불만 로그, POS 영수증)를 직시합니다.</li>
+                <li><strong>규칙 5. 비즈니스 모델 캔버스를 활용하라</strong>: 두꺼운 장문 사업계획서 대신 가설-검증 중심 린 캔버스 모델로 기동성을 극대화합니다.</li>
+                <li><strong>규칙 6. 가설을 검증하고자 실험과 테스트를 설계하라 (Design experiments)</strong>: 모든 카피와 마케팅 기능 전 측정 가능한 명확한 가설을 수립합니다.</li>
+              </ul>
+              <div style="margin-top: 10px; padding: 10px 14px; background: rgba(0,0,0,0.3); border-radius: 8px; font-size: 12px; color: #94A3B8;">
+                🛠 <strong>AIM 구현</strong>: URL/매장 정보 1개만 입력하면 실제 시장 리뷰·고객 불만(Pain Points)에서 고객이 돈 낼 단 하나의 USP를 3초 만에 역추적 추출합니다.
+              </div>
+            </div>
+
+            <!-- Phase 2 -->
+            <div style="background: var(--card); border: 1px solid var(--card-border); border-radius: 14px; padding: 18px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <span style="font-size: 18px; background: rgba(96,165,250,0.2); color: #60A5FA; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900;">2</span>
+                  <div style="font-size: 16px; font-weight: 900; color: #FFFFFF;">
+                    2단계: 고객 검증 (Customer Validation)
+                  </div>
+                </div>
+                <span style="font-size: 12px; color: var(--text-muted); font-weight: 700;">규칙 2, 7, 9 준수</span>
+              </div>
+              <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: #CBD5E1; line-height: 1.6;">
+                <li><strong>규칙 2. 고객 개발에 애자일 개발을 접목하라 (Pair with Agile)</strong>: 고객 반응을 확인하는 즉시 짧은 스프린트로 마케팅 카피와 타깃을 개선합니다.</li>
+                <li><strong>규칙 7. 시장 유형에 맞춰라 (Agree on market type)</strong>: 신규 시장(AI SaaS/웹앱)과 기존 재분할 시장(로컬 골목상권)의 GTM 전략을 차별화합니다.</li>
+                <li><strong>규칙 9. 빠른 의사결정, 순환 주기, 속도, 박자를 중시하라 (Speed & tempo)</strong>: 완벽주의로 런칭을 미루지 않고 빠른 턴어라운드로 시장의 반응을 확인합니다.</li>
+              </ul>
+              <div style="margin-top: 10px; padding: 10px 14px; background: rgba(0,0,0,0.3); border-radius: 8px; font-size: 12px; color: #94A3B8;">
+                🛠 <strong>AIM 구현</strong>: 시장 유형에 따라 Product Hunt, X 바이럴, AEO 인용 스키마, 숏폼 시연 콘티, 온보딩 드립 메일까지 5대 채널 패키지를 3초 만에 동시 사출합니다.
+              </div>
+            </div>
+
+            <!-- Phase 3 -->
+            <div style="background: var(--card); border: 1px solid var(--card-border); border-radius: 14px; padding: 18px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <span style="font-size: 18px; background: rgba(78,159,134,0.2); color: var(--success); width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900;">3</span>
+                  <div style="font-size: 16px; font-weight: 900; color: #FFFFFF;">
+                    3단계: 고객 창출 (Customer Creation)
+                  </div>
+                </div>
+                <span style="font-size: 12px; color: var(--text-muted); font-weight: 700;">규칙 8, 10, 11 준수</span>
+              </div>
+              <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: #CBD5E1; line-height: 1.6;">
+                <li><strong>규칙 8. 스타트업은 기존 기업과 다른 지표를 쓴다 (Startup metrics)</strong>: 무의미한 조회수나 클릭수(Vanity Metric) 대신, MRR(월 반복 매출), POS 실측 결제, 리텐션, CAC 회수율만 측정합니다.</li>
+                <li><strong>규칙 10. 열정이 가장 중요하다 (It's all about passion)</strong>: 사업주와 유저의 절박한 고통을 집요하게 파고들어 전환율을 견인합니다.</li>
+                <li><strong>규칙 11. 스타트업의 직책은 대기업과 다르다</strong>: 사일로(Silo)를 부수고 마케팅-데이터-운영 전방위 협업을 단일 자동화로 통합합니다.</li>
+              </ul>
+              <div style="margin-top: 10px; padding: 10px 14px; background: rgba(0,0,0,0.3); border-radius: 8px; font-size: 12px; color: #94A3B8;">
+                🛠 <strong>AIM 구현</strong>: 4단계 매출 증명 원장으로 "이번 마케팅으로 창출된 순이익: +45만 원, 전환율: 18.4%"를 실측 숫자로 통장에 증명합니다.
+              </div>
+            </div>
+
+            <!-- Phase 4 -->
+            <div style="background: var(--card); border: 1px solid var(--card-border); border-radius: 14px; padding: 18px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <span style="font-size: 18px; background: rgba(229,168,75,0.2); color: #E5A84B; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900;">4</span>
+                  <div style="font-size: 16px; font-weight: 900; color: #FFFFFF;">
+                    4단계: 사업 빌딩 & 피벗 (Company Building & Pivot)
+                  </div>
+                </div>
+                <span style="font-size: 12px; color: var(--text-muted); font-weight: 700;">규칙 3, 4, 12, 13, 14 준수</span>
+              </div>
+              <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: #CBD5E1; line-height: 1.6;">
+                <li><strong>규칙 3. 실패는 탐색 절차의 필수적인 요소다 (Failure is integral to search)</strong>: 가설 검증의 미반응은 실패가 아닌 귀중한 배움입니다.</li>
+                <li><strong>규칙 4. 끊임없이 반복하고 전환하라 (Iterate and Pivot)</strong>: 데이터가 초기 가정과 다를 때 주저 없이 카피 후킹 각도와 타깃을 피벗(방향 전환)합니다.</li>
+                <li><strong>규칙 12. 필요할 때만 쓰고 아껴라 (Preserve cash & resources)</strong>: 수백만 원 대행료 대신 월 4.9만 원 최소 비용으로 최대의 가치를 검증하여 런웨이를 극대화합니다.</li>
+                <li><strong>규칙 13. 배운 것을 소통하고 공유하라 (Communicate & share learning)</strong>: 실험 결과와 인사이트를 성과 원장에 영속화하여 지속적 자산으로 축적합니다.</li>
+                <li><strong>규칙 14. 성공적인 고객 개발은 합의에서 시작한다 (Success begins with buy-in)</strong>: AI와 사업주 간 1-Click 원클릭 승인으로 투명한 얼라인먼트를 유지합니다.</li>
+              </ul>
+              <div style="margin-top: 10px; padding: 10px 14px; background: rgba(0,0,0,0.3); border-radius: 8px; font-size: 12px; color: #94A3B8;">
+                🛠 <strong>AIM 구현</strong>: 반응이 저조한 가설은 AI가 즉시 감지하여 카피 각도 전환 및 채널 가중치 재분배를 자율 처방(Autonomous Pivot)합니다.
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Modal Footer Actions -->
+        <div style="padding: 18px 28px; border-top: 1px solid var(--card-border); background: var(--panel); display: flex; justify-content: space-between; align-items: center; border-radius: 0 0 20px 20px; flex-wrap: wrap; gap: 10px;">
+          <button onclick="closeCustomerDevelopmentModal()" style="background: var(--card); color: var(--text-muted); border: 1px solid var(--card-border); font-size: 14px; font-weight: 700; padding: 10px 20px; border-radius: 10px; cursor: pointer;">
+            닫기
+          </button>
+          <div style="display: flex; gap: 10px;">
+            <button onclick="closeCustomerDevelopmentModal(); triggerCustomerDevPhase(1);" style="background: var(--card-elevated); color: #FFFFFF; border: 1px solid var(--card-border); font-size: 14px; font-weight: 800; padding: 10px 18px; border-radius: 10px; cursor: pointer;">
+              🔍 1단계: 고객 고통·가설 도출하기
+            </button>
+            <button onclick="closeCustomerDevelopmentModal(); triggerCustomerDevPhase(2);" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%); color: #FFFFFF; border: none; font-size: 14px; font-weight: 900; padding: 10px 22px; border-radius: 10px; cursor: pointer; box-shadow: 0 4px 15px rgba(217, 107, 39, 0.4);">
+              🚀 2단계: 5대 채널 린 실험 사출하기
+            </button>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -4149,6 +4422,42 @@
     function closePublishingModal() {
       const modal = document.getElementById('publishingModal');
       if (modal) modal.style.display = 'none';
+    }
+
+    function openCustomerDevelopmentModal() {
+      const modal = document.getElementById('customerDevModal');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeCustomerDevelopmentModal() {
+      const modal = document.getElementById('customerDevModal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function triggerCustomerDevPhase(phaseNum) {
+      if (phaseNum === 1) {
+        const inp = document.getElementById('inputServiceUrl');
+        if (inp) {
+          inp.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          inp.focus();
+        }
+        showToast('🔍 [1단계: 고객 발견] 내 서비스 URL이나 매장 정보를 입력하세요. AI가 고객의 절박한 고통(Pain Points)과 핵심 USP를 자동 추출합니다.');
+      } else if (phaseNum === 2) {
+        const inp = document.getElementById('inputServiceUrl');
+        if (inp && !inp.value.trim()) {
+          inp.value = 'https://flowdoc.ai';
+        }
+        handleInstantServiceLaunch();
+      } else if (phaseNum === 3) {
+        const step3 = document.getElementById('step3ResultsSection');
+        if (step3) {
+          step3.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        showToast('📊 [3단계: 고객 창출] 가짜 노출수를 배제하고, MRR/POS 실측 결제액과 가입 활성화율 통장 성과 원장을 증명합니다.');
+      } else if (phaseNum === 4) {
+        openCustomerDevelopmentModal();
+        showToast('🔄 [4단계: 사업 빌딩 & 피벗] 반응이 저조한 가설은 즉시 카피 각도와 타깃을 전환(Pivot)하여 실패 비용을 0으로 통제합니다.');
+      }
     }
 
     function populateModalData(bundle) {
